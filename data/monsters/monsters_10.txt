@@ -1,0 +1,54 @@
+Slime|5|6|Slime|The basic slime is the weakest monster, yet it has a strange appeal to it. In some cultures domesticated slimes are used for cleaning purposes|731848249505218633/slime.png|4,1,1|0;
+Goblin|6|13|Beast|Nasty humanoid creatures that can form groups so large they can sometimes plunder whole villages|731848293717377094/goblin.png|4,1,1|4;
+Skeleton Soldier|14|7|Undead|The most basic undead warrior. Not very dangerous on its own but groups can quickly overwhelm an unprepared adventurer|731855372050104330/skeleton_soldier.png|1,1,1|10;
+Hellhound|13|7|Fire|A creature that gives off the appearance of something that has crawled out from hell itself. Covered in undying hellfire which emanates much more energy than regular flames do|733082330792591360/hellhound.png|1,1,1|13;
+Cursed Skull|8|14|Undead,Fire|An undead monster that burns endlessly. It's animated by the curse of a suffering soul from hell|736661183469191228/cursed_skull.png|4,1,1|24;
+Giant Rat|4|16|Beast|A large rat sometimes found in the sewers of large cities. Like regular rats, it will fight back fiercely when cornered|739165606468911174/giant_rat.png|5,1,1|36;
+Ravager|7|14|Beast|The Ravager is a predator the size of a dog. It uses echolocation to detect prey and its surroundings|739165691344715886/ravager.png|5,1,1|40;
+Imp|6|13|Demon|In many ways the most civilized kind of demon of them all. Imps love treasure and other riches more than anything so they often try to make deals with humans|739165646532903023/imp.png|2,1,1|53;
+D
+#################################################################################
+Lesser Minotaur|33|16|Beast|Lesser Minotaurs are nothing to scoff at, even when compared to their bigger cousins. They wield large axes and are very easily angered|731849250463416350/lesser_minotaur.png|1,3,1|0;
+Goblin Shaman|27|22|Beast|Every mid-sized goblin tribe has at least one shaman. They are responsible for conducting rituals and protecting the group against evil spirits|731849266250907718/goblin_shaman.png|3,2,1|1;
+Fire Elemental|35|15|Fire,Intangible|A type of spirit born from the wrath of nature. It sets anything it touches ablaze|736676390384042094/fire_elemental.png|3,2,1|11;
+Armored Bull|42|10|Armored,Beast|The Armored Bull's breath is poisonous and the plates covering its body allow it to crash into most obstacles without taking damage|739165255296614480/armored_bull.png|1,3,1|16;
+Sickle Spider|16|36|Arthropod|Extremely sharp claws and an inability to produce webs are the main traits of this nocturnal predator|739165382643810365/sickle_spider.png|2,3,1|22;
+Dread Wraith|21|29|Dark,Intangible|A more powerful variant of the wraith. It's able to cast dark magic as well as curses|739165297227071518/dread_wraith.png|4,3,1|25;
+Nightstalker|14|38|Dark|Placeholder|739165392433315941/nightstalker.png|6,2,1|30;
+Possessive Slime|39|10|Slime,Undead|Placeholder|739165401472172142/possessive_slime.png|3,2,1|40;
+Reaper Skeleton|28|23|Undead|Placeholder|739165402965213205/reaper_skeleton.png|6,2,1|44;
+Naga|17|31|Reptile|A large snake-like monster with 2 arms. It's worshipped as a holy creature in some demihuman societies|739165388037685438/naga.png|6,2,1|50;
+Red Slime|9|40|Slime|This slime has evolved to be smaller but also faster than its brethren, making it very proficient at hunting smaller animals|772104749612400640/red_slime.png|2,3,1|56;
+C
+#################################################################################
+Huge Slime|54|30|Slime|These slimes are so large that they can envelop a person entirely, slowly drowning and then dissolving them|731849283376119840/huge_slime.png|4,4,2|0;
+Minotaur|57|32|Beast|A race that is famous for being ruthless. Minotaurs are so imposing that they can force even Armored Bulls to obey their commands|731855778629025903/minotaur.png|1,4,2|1;
+Haunted Armor|48|40|Armored,Intangible|This set of enchanted equipment once belonged to a powerful knight. Now it is only inhabited by a mindless spirit, controlling it with its magic|733289645013729310/haunted_armor.png|5,4,2|3;
+Demon|50|36|Armored,Demon|The standard demon soldier. Its only goal in life is to dominate others and inflict as much pain as possible|734189738168418354/demon.png|1,4,2|4;
+Beholder|51|41|Demon,Flying|Also known as "Oculus Tyrannus" or Eye Tyrant, the Beholder is an intelligent demon wielding powerful magic, recognizable by its one large eye and the numerous smaller eyestalks|739164852508950578/beholder.png|6,2,2|14;
+Dark Sludge|78|14|Slime,Dark|A slime specialized in surprise attacks. It hides itself in small crevices or on ceilings waiting for prey to come near|739164854425878690/dark_sludge.png|3,4,2|15;
+Fire Drake|45|48|Flying,Reptile|Found in various different environments, these drakes are the only ones able to breathe fire like their larger cousins, the dragons|739164906720460922/fire_drake.png|5,4,2|22;
+Gazer|65|31|Demon|A grotesque and more ferocious relative of the Beholder that mostly feeds on carrion. But it's by no means a weak opponent|739164907282366504/gazer.png|1,4,2|23;
+Spectre|58|34|Intangible,Dark|A kind of ghost with the appearance of a skeleton. Still, it is not Undead as it has no physical body and is not being kept alive or controlled by negative energy|739165013675212810/spectre.png|6,2,2|35;
+Ogre|74|20|Beast|The Ogre is a large beast that prefers damp environments even though it is unable to swim|739870794930454612/ogre.png|1,4,2|38;
+B
+#################################################################################
+Void Creature|39|78|Dark|A creature that likes to keep itself hidden and lash out at unsuspecting prey using its sharp tendrils|731849483620581386/void_creature.png|2,6,2|0;
+Corrupted Mimic|66|50|Dark|When a Mimic absorbs too much dark energy it becomes corrupted. Unlike normal Mimics this subspecies does not try to disguise itself - Instead it attacks head-on in a mad rampage|731859390373691392/corrupted_mimic.png|4,5,2|2;
+Iron Golem|103|13|Armored|A strange golem that has lost its core long ago but has somehow never stopped functioning. The swings of its gigantic axe are so powerful that their wind pressure alone can cut through solid rock|734191041728741406/iron_golem.webp|1,6,2|5;
+Skeleton Champion|68|55|Undead,Armored|A former hero who has since turned undead. It still faintly remembers some of its techniques from when it was alive|734191264114671616/skeleton_champion.png|6,4,2|7;
+Cockatrice|50|69|Flying|A dragon-like creature with features of a rooster. It can kill its prey by simply staring at it for long enough which is why it's occasionally confused with the Basilisk|739862475687854110/cockatrice.png|6,4,2|15;
+Flame Centipede|63|61|Arthropod|Although not actually a Fire-type creature, this horrific insect can breathe flames just like a dragon would|739164564846805132/flame_centipede.png|3,6,2|19;
+Madness Slime|89|35|Slime,Dark|Also called "Shoggoth", these slimes are servants of a higher being and have been fully consumed by evil|739164651169775686/madness_slime.png|4,5,2|21;
+Shadow Drake|37|86|Dark,Flying|A variant of drake with particularly good eyesight and the ability to fly without making any sounds. Quite similar to an owl but with added size and danger|739164669876502658/shadow_drake.png|5,6,2|28;
+A
+#################################################################################
+Mimic|114|43|/ |Sly creatures that disguise themselves as chests in order to trick passing humans. Even so, they can still contain a variety of treasures|731955991897309234/mimic.png|4,6,2|1;
+Chaos Slime|110|43|Slime,Dark|This slime is an embodiment of chaos. It's constantly shifting, forming mouths, eyes and tentacles sporadically. Although most slimes consume their prey by simply digesting it whole, the Chaos Slime actually creates razor-sharp teeth for chewing it first|736702104303042620/chaos_slime.png|6,6,2|8;
+Manticore|102|50|Beast,Legendary|The Manticore is incredibly intelligent and cunning. It likes to lure people into traps and slowly rip them apart while laughing|739149840428040252/manticore.png|6,6,2|16;
+Ecliptic Demon|92|60|Demon|An extremely powerful demon wielding a unique kind of magic known as Eclipse Magic. It excels at large-scale destruction|772107525847253023/ecliptic_demon.png|6,6,2|22;
+S
+#################################################################################
+Gold Slime|2|176|Slime,Holy|An incredibly rare kind of slime. It's as weak as a regular slime but extremely fast. It also likes to relax in the sun|739145174545858699/gold_slime.webp|4,8,3|11;
+Soul Dragon|75|120|Intangible,Dragon|The soul of an ancient dragon that died long ago. Sometimes these creatures still retain some of their intelligence|739146382534901810/soul_dragon.png|4,8,3|13;
+SS

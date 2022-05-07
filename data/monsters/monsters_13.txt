@@ -1,0 +1,36 @@
+Hellhound|13|7|Fire|A creature that gives off the appearance of something that has crawled out from hell itself. Covered in undying hellfire which emanates much more energy than regular flames do|733082330792591360/hellhound.png|1,1,1|13;
+Hellcat|7|13|Fire|The feline counterpart to the Hellhound. This one however only covers itself in hellfire when it needs to, conserving energy for longer|733082363403436112/hellcat.png|2,1,1|14;
+Blade Demon|12|9|Demon,Armored,Flying|A ball of flesh covered in sharp metal shards. These beings used to be normal creatures but have since been turned into mindless torturing devices by higher demons|736648089263145030/blade_demon.png|1,1,1|21;
+Cursed Skull|8|14|Undead,Fire|An undead monster that burns endlessly. It's animated by the curse of a suffering soul from hell|736661183469191228/cursed_skull.png|4,1,1|24;
+Gargoyle|11|9|Armored,Demon|Unlike most demons which are born in the Underworld, the Gargoyles used to be regular stone statues created by mankind until they were brought to life by the first Demon King thousands of years ago|739165588500512909/gargoyle.png|1,1,1|49;
+Imp|6|13|Demon|In many ways the most civilized kind of demon of them all. Imps love treasure and other riches more than anything so they often try to make deals with humans|739165646532903023/imp.png|2,1,1|53;
+Lesser Demon|9|12|Demon|This species of demon can be found all over the Underworld - It's a cunning monster that likes to drench itself in the blood of its enemies|739165651683246110/lesser_demon.png|6,1,1|62;
+D
+#################################################################################
+Red Devil|24|26|Demon|A demon known for its cruelty. It usually doesn't fight on the frontlines, instead it's responsible for giving commands to other demons that are less intelligent or disobedient|734188426630266919/red_devil.png|1,3,1|6;
+Demon Brute|44|8|Demon,Beast|One of the more simpleminded demons out there, these large beasts only care about fighting and nothing else|739165250301198487/demon_brute.png|1,3,1|13;
+Barbed Demon|37|13|Demon,Beast|The Barbed Demons follow their instincts more than anything so they mostly act like wild animals depsite their intelligence|739165259553833090/barbed_demon.png|5,2,1|14;
+Madness Demon|17|35|Demon|Placeholder|739165341342630009/madness_demon.png|2,3,1|33;
+Hunger Demon|33|21|Demon,Flying|Also called Demon of Gluttony. The only thing this monster can think of is to eat anything that looks even slightly edible|739165312250937384/hunger_demon.png|5,2,1|38;
+C
+#################################################################################
+Demon|50|36|Armored,Demon|The standard demon soldier. Its only goal in life is to dominate others and inflict as much pain as possible|734189738168418354/demon.png|1,4,2|4;
+Beholder|51|41|Demon,Flying|Also known as "Oculus Tyrannus" or Eye Tyrant, the Beholder is an intelligent demon wielding powerful magic, recognizable by its one large eye and the numerous smaller eyestalks|739164852508950578/beholder.png|6,2,2|14;
+Bone Demon|61|32|Undead,Demon|Even though it's clearly undead, nobody has ever seen what the Bone Demon looked like when it was still alive. Or is it perhaps born without any life from the start?|739164858167328768/bone_demon.png|1,4,2|16;
+Succubus|18|69|Demon|No other demon is as pleasing to the eye as the Succubus. However, it's just as heinous as the rest, most of the time luring people into a false sense of security and then consuming them|739165002824417340/succubus.png|6,2,2|31;
+B
+#################################################################################
+Cerberus|78|47|Beast|The three-headed guardian of the gates of hell - Or so it is described|739164552247115786/cerberus.webp|3,6,2|12;
+Demon Monstrosity|101|21|Demon,Beast|Desperate humans sometimes attempt to summon demons to aid them. If such a summoning process fails, it may result in the birth of this mindless abomination instead|739164562955304980/demon_monstrosity.png|1,6,2|17;
+Reaper Demon|53|71|Demon,Dark|The guards of the demon castle. They also carry out the tasks of the Demon King directly, often being sent out to execute enemies of the Underworld|739164660770537472/reaper_demon.png|3,6,2|25;
+Punisher Demon|79|43|Demon|Stray demons that are powerful enough to be able to survive on their own in the depths of the Underworld. They wield large axes coated in their own poisonous saliva|739164669956194354/punisher_demon.png|1,6,2|27;
+A
+#################################################################################
+Hellfire Centipede|84|71|Fire,Arthropod|Possibly the greatest nightmare of many adventurers - This monster can swim through lava and spit chunks of obsidian at its opponents|739149834581442600/hellfire_centipede.png|5,6,2|14;
+Demon Royalty|84|68|Demon|These high-ranking demons may have a tattered appearance but they can easily force almost any other demon into submission. When aggravated, their entire body becomes engulfed in the flames of hell|742175053122109450/demon_royalty.webp|5,6,2|20;
+Ecliptic Demon|92|60|Demon|An extremely powerful demon wielding a unique kind of magic known as Eclipse Magic. It excels at large-scale destruction|772107525847253023/ecliptic_demon.png|6,6,2|22;
+S
+#################################################################################
+Demon King|103|89|Demon|Only the strongest member of the demon royalty may take the position of king. The higher demons always keep track of the most powerful among them to ensure a replacement can be found quickly, should the current king disappear|771481827957407804/demon_king.png|6,7,3|16;
+Destruction Dragon|124|76|Dragon,Dark|An evil dragon also known by the name "Ragnarok" which some believe has been sent to bring forth the end of the world. It's famous for having destroyed a whole country in a single night|772107561977643048/destruction_dragon.png|1,10,3|18;
+SS

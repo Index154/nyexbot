@@ -1,0 +1,1 @@
+captures|0,57,0|1|stat|exp&gold|100|Desert|

@@ -1,0 +1,1 @@
+captures|1,0,0|1|stat|exp&gold|150|Caverns|

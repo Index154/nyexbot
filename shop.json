@@ -1,0 +1,9 @@
+{
+	"week": 0,
+	"buyingModifier": 1,
+	"sellingModifier": 1,
+	"shinyMonster": 0,
+	"lastShinyUser": null,
+	"items": [0, 0, 0, 0, 0],
+	"prices": [200, 200, 200, 200, 200]
+}

@@ -1,0 +1,40 @@
+Skeleton Archer|14|7|Undead|A Skeleton that prefers to attack from a distance. When they run out of arrows, they start throwing anything they can get their hands on|731855384561582080/skeleton_archer.png|2,1,1|9;
+Skeleton Soldier|14|7|Undead|The most basic undead warrior. Not very dangerous on its own but groups can quickly overwhelm an unprepared adventurer|731855372050104330/skeleton_soldier.png|1,1,1|10;
+Lost Spirit|8|11|Intangible|The ghost of a person who died holding a great grudge, now wandering around and seeking vengeance|731983219582566510/lost_spirit.png|6,1,1|12;
+Crawling Hand|2|18|Undead|The hand of a Zombie which has had its main body destroyed. It seems to draw energy from one of its rings, allowing it to continue moving|736652978420973598/crawling_hand.png|3,1,1|23;
+Cursed Skull|8|14|Undead,Fire|An undead monster that burns endlessly. It's animated by the curse of a suffering soul from hell|736661183469191228/cursed_skull.png|4,1,1|24;
+Undead Bat|6|15|Flying,Undead|Undead beings don't need any sustenance to survive nor do they retain any of their previous instincts. Instead, they only seek to attack anything that's alive|739165759959465994/undead_bat.png|2,1,1|35;
+Ghoul|5|14|Undead,Beast|The Ghoul is a variant of Zombie who's body was still in good condition at the time of turning undead. Because of this it's also substantially faster|739165588617822288/ghoul.png|6,1,1|39;
+Wraith|8|14|Dark,Intangible|Humans that were excessively evil before perishing may turn into Wraiths instead of regular spirits. These monsters carry deeper grudges and sometimes hold more power as a result|739165774337409115/wraith.png|3,1,1|46;
+Hollow Zombie|14|6|Undead|The classic Zombie, one of the most well-known monsters. It's slow and unintelligent but can overwhelm unprepared adventurers if it appears in groups|739165641822568508/hollow_zombie.png|5,1,1|56;
+D
+#################################################################################
+Bone Serpent|39|12|Undead|An undead creature with the body of a serpent. It also has venomous fangs much like a living snake|736676352635174941/bone_serpent.png|6,2,1|9;
+Blade Wraith|31|20|Intangible,Dark|An apparition that shrouds its surroundings in fog, allowing it to launch surprise attacks|739165262229667900/blade_wraith.png|3,2,1|17;
+Dread Wraith|21|29|Dark,Intangible|A more powerful variant of the wraith. It's able to cast dark magic as well as curses|739165297227071518/dread_wraith.png|4,3,1|25;
+Nightstalker|14|38|Dark|Placeholder|739165392433315941/nightstalker.png|6,2,1|30;
+Scythe Tree|18|30|Plant,Dark|Placeholder|739165377480753182/scythe_tree.png|4,3,1|42;
+Reaper Skeleton|28|23|Undead|Placeholder|739165402965213205/reaper_skeleton.png|6,2,1|44;
+Infection Beast|32|20|Beast,Undead,Flying|A monster that has been killed by a strange infection and is now being controlled by it. Strange bulbs are growing all over its body|739165313630732358/infection_beast.png|1,3,1|55;
+C
+#################################################################################
+Haunted Armor|48|40|Armored,Intangible|This set of enchanted equipment once belonged to a powerful knight. Now it is only inhabited by a mindless spirit, controlling it with its magic|733289645013729310/haunted_armor.png|5,4,2|3;
+Nebula Wraith|37|54|Intangible|A fog-like apparition with a unique appearance. The Nebula Wraith can disassemble and reassamble its body, effectively teleporting over short distances|736681085072834700/nebula_wraith.png|6,2,2|9;
+Ashen Spirit|32|59|Dark,Intangible,Armored|The Ashen Spirit is equipped with a set of cursed armor that was forged using dark magic. One of few objects that can be directly interacted with by both the living and the dead|739164858943275028/ashen_spirit.png|5,4,2|18;
+Nightmare|19|73|Dark,Undead|This undead horse is shrouded in darkness, making it hard to see at night. Sometimes used as mounts by Reaper Skeletons|739164899099541606/nightmare.png|2,4,2|19;
+Lich|66|26|Undead|An Undead magician that can still cast several types of attack spells. It's also able to summon lower Undead as its minions|739164912311599165/lich.png|3,4,2|25;
+Skeleton Giant|79|12|Undead|It's quite rare for giants to die without being properly buried so these Undead are also not seen often|739165010600656997/skeleton_giant.png|1,4,2|34;
+Spectre|58|34|Intangible,Dark|A kind of ghost with the appearance of a skeleton. Still, it is not Undead as it has no physical body and is not being kept alive or controlled by negative energy|739165013675212810/spectre.png|6,2,2|35;
+B
+#################################################################################
+Skeleton Champion|68|55|Undead,Armored|A former hero who has since turned undead. It still faintly remembers some of its techniques from when it was alive|734191264114671616/skeleton_champion.png|6,4,2|7;
+Shadow Drake|37|86|Dark,Flying|A variant of drake with particularly good eyesight and the ability to fly without making any sounds. Quite similar to an owl but with added size and danger|739164669876502658/shadow_drake.png|5,6,2|28;
+A
+#################################################################################
+Armogohma|79|77|Arthropod,Armored|A huge spider with an exoskeleton that is as hard as stone. The large eye on top of its thorax is its only weak point|731855791832825856/armogohma.png|3,8,2|2;
+Chaos Slime|110|43|Slime,Dark|This slime is an embodiment of chaos. It's constantly shifting, forming mouths, eyes and tentacles sporadically. Although most slimes consume their prey by simply digesting it whole, the Chaos Slime actually creates razor-sharp teeth for chewing it first|736702104303042620/chaos_slime.png|6,6,2|8;
+S
+#################################################################################
+Skeletal Dragon|113|76|Dragon,Undead|Zombie Dragons that have lived for long enough that all their flesh has rotted away. As a result they can move faster but are also somewhat less powerful|731849520262021120/skeletal_dragon.webp|1,10,3|0;
+Zombie Dragon|136|55|Dragon,Undead|The undead carcass of a dragon. Its original breath attack is replaced by a cloud of deadly poison|739146589813080226/zombie_dragon.png|5,8,3|15;
+SS

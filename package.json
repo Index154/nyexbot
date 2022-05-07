@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "adc.js": "^1.0.1",
+    "discord.js": "^13.6.0",
+    "discordjs-button-pagination": "^3.0.1",
+    "mysql2": "^2.3.3",
+    "pm2": "^5.2.0"
+  }
+}

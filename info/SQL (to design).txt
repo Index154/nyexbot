@@ -1,0 +1,15 @@
+clips:
+clipId, clipTopic, clipName, link
+
+media:
+mediaId, mediaTopic, mediaName, link
+
+monsterHunterLexicon:
+monsterId, monsterName, description
+
+quotes:
+username, quote
+
+words:
+wordType, word
+(maybe don't even make a table for this?)

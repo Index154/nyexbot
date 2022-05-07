@@ -1,0 +1,139 @@
+Async programming help:
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous
+
+
+What to turn into module functions:
+- searchForMatch
+- updateEventRealm
+- setSpecialShopItems
+- trophyCheck
+- sCheck
+- onlyUnique
+- changeEquipment (stat calculation)
+(new ideas below)
+- determineMonster
+- startEncounter
+- giveMonsters
+- giveItems
+- removeMonsters
+- removeItems
+- giveEXP (better levelCheck?)
+- giveGold
+- giveScrap
+etc.
+Also: Every action that could reward a trophy should probably be done through a function so I don't have to code the trophy checks everytime
+
+Functions to still look for and implement in all the commands:
+- nCheck
+- levelCheck
+
+
+Get random row:
+SELECT * FROM tableName ORDER BY RAND() LIMIT 1;
+
+
+Use JSON.parse() to transform a String into an object based on json syntax. Also use JSON.stringify(object, null, 4) to save it again.
+Make sure to use asynchronous read and write functions when necessary, also define the correct encoding!
+
+
+Rename the errorlog command to something more generalized (admin or something like that)?
+
+
+Monster modifier ideas:
+- Shimmering: Higher chance for item drops, also gives more gold and exp when defeated
+- Enchanted: Will instantly give a temporary buff when captured, may also grant radar charges?
+
+
+Trophy ideas:
+- Using many radar charges at once
+- Spending lotsa Gold at once
+- Ones for all the counters
+- Been to every event realm
+- Daily streak milestones
+
+
+Monster type effect notes:
+?Slime: May alter your equipment ability when capturing => Disabled by Intangible, buffed by Slime
+?Armored: Attack is worth more than Speed when fighting => Disabled by Slime, buffed by Armored
+?Intangible: Considers capture stat for fighting instead of Attack and Speed => Disabled by Lightning, buffed by Intangible
+?Flying: Speed is worth more than Attack when fighting => Disabled by Lightning, buffed by Flying
++Undead: May still stay active after fighting => Disabled by Holy, buffed by Dark
++Water: May increase the duration of your active buff when capturing => Disabled by Frost, buffed by Slime
++Beast: May buff Attack and Speed when fighting => Disabled by Armored, buffed by Beast
++Holy: May heal your HP in realms when capturing => Disabled by Demon, buffed by Legendary
++Legendary: May buff any luck stat when capturing => Disabled by Demon, buffed by Legendary
++Lightning: May charge your radar or buff your Speed when fighting => Disabled by Intangible, buffed by Water
++Plant: May grant EXP when fighting => Disabled by Fire, buffed by Water
+-Dragon: May steal some of your Gold when fighting => Disabled by Dark, buffed by Legendary
+-Arthropod: May debuff your drop or rare luck when fighting => Disabled by Reptile, buffed by Plant
+-Frost: May debuff your Speed when fighting => Disabled by Fire, buffed by Undead
+-Dark: May debuff your Capture stat and give a random stat change to another stat when capturing => Disabled by Holy, buffed by Dark
+-Demon: May deal extra damage to you in realms when capturing => Disabled by Dragon, buffed by Dark
+-Reptile: May remove some of your Scrap when fighting => Disabled by Frost, buffed by Arthropod
+-Fire: May debuff your monster luck when capturing => Disabled by Water, buffed by Plant
+
+
+Keep in mind:
+Favorite can disable or buff effects of encounters
+Encounters can disable or buff effects of your favorite
+When an effect is being buffed AND negated at the same time then it will retain its base values
+A monster may disable or buff its OWN type effects if it has multiple types
+A singular instance of a type can not disable or buff itself (example: A Beast encounter won't have buffed Beast effects but if your favorite is a Beast then the two monsters will buff each other)
+Negative effects are more likely when you lose and less likely when you win. For positive effects it is the other way around.
+
+
+Guess topic ideas:
+- MH (monster subclasses)
+- Isaac (bosses, characters)
+- Spelunky 2 (enemies, people, areas)
+- Pokemon (by gen or type)
+
+
+
+
+SQL data types and options:
+
+
+For strings:
+CHAR(size) = Faster but requires more space (max size 255)
+VARCHAR(size) = Smaller but less performant (max size 65535)
+(the difference is probably negligible since my tables will be on the smaller side anyway)
+=> Use varchar for ease of use
+
+For numbers:
+BOOL = 1 or 0
+TINYINT(size) = -128 to 127 or 0 to 255
+SMALLINT(size) = -32768 to 32767 or 0 to 65535
+MEDIUMINT(size) = -8388608 to 8388607 or 0 to 16777215 (probably not gonna need anything bigger than that)
+DOUBLE(total digits, digits after decimal point) = For floating point numbers
+
+For timestamps:
+TIMESTAMP = Time in seconds since 01.01.1970 (enable explicit_defaults_for_timestamp to prevent automatic values!) (can probably be cast to other types for readability)
+DATETIME(0) = Time as an actual ISO time string thing or whatever (more easily readable)
+
+Special column options:
+AUTO_INCREMENT = Assigns a unique number (good for IDs) (but be careful not to assign any values manually or it will reset the incrementation)
+UNIQUE (column) = Only accepts values that aren't already in use
+NOT NULL = Needs to have a value (good for anything that should never be empty)
+UNSIGNED = Only accepts positive numbers but has twice as much room for them (can't be used on decimal numbers)
+PRIMARY KEY (column name) = Defines the main unique identifier column (can't be NULL and must be UNIQUE) (can also be two columns "combined")
+ZEROFILL = Implies UNSIGNED and also pads the full size of the field with zeros (from the front) (good for monster IDs)
+DEFAULT [value] = Makes the field take on a certain default value when not assigned
+FOREIGN KEY (column name) REFERENCES OtherTableName(primary column) = Defines a column as referring to a primary column of another table. Useful for keeping relations stable
+CONSTRAINT constraint name CHECK (evaluation) = Can be used to make columns more stable by adding custom constraints but may lead to confusion if not documented correctly
+CREATE INDEX index name ON table name (column); = Makes searching through values in a column faster. Use on columns that are often searched through (this is a solo command)
+
+
+
+SQL notes:
+- A value that is the same in many rows should rather be turned into an id. The id then refers to a different table where each unique value is defined
+- Instead of having multiple values in one column, make a new table with one column that refers to the original table's row and one column for the value itself. That way you will simply turn the repeating group into multiple rows in a different table
+- For every value in every column, think about how much work it would be to change it in the future. Does it make more sense to make a new related table for it?
+- Will the rows in a table ever have to be changed manually in the future? How does this affect other tables? Will it cause inconsistencies?
+- Don't abbreviate names
+- Use constraints (meh)
+- Use elastisearch? Or a database analyzer to check if indexes make sense (later)
+- Does it make sense to have all values for an entity in the same table? Are they often needed at the same time? Or is it smarter to split a table up?
+- Choose the right data types (nvarchar when users can enter a value)
+- Every table needs to have unique row identifiers (really?)
+- Use prepared statements?

@@ -1,0 +1,51 @@
+Assassin Vine|10|11|Plant|A carnivorous plant that hunts mostly small mammals by wrapping itself around them and then sucking them dry|736642822228279406/assassin_vine.png|2,1,1|17;
+Demon Fungus|18|1|Plant|A sentient mushroom that gives off a gas which causes hallucinations. It can absorb prey through movable roots that are very similar to those of normal plants|736661191107018772/demon_fungus.png|5,1,1|25;
+Demon Insect|6|13|Arthropod|Large insects named after their highly tenacious and aggressive nature|736664963724345384/demon_insect.png|2,1,1|26;
+Draco Lizard|10|10|Reptile,Water|The Draco Lizard is a crocodilian with an especially tough hide. It lacks any other special features|736664978622382100/draco_lizard.png|4,1,1|27;
+Vampire Frog|9|11|Water|For the most part this monster is just a large frog, its only special traits being two exceptionally large teeth and a thirst for blood|739165763461578813/vampire_frog.png|5,1,1|29;
+Scavenger|18|3|Beast|Scavengers may be big but they hardly pose a threat due to their passive nature. They mostly feed on plants and carrion|739165789428645888/scavenger.png|1,1,1|33;
+Giant Mosquito|1|18|Arthropod,Flying|The constant buzzing of this insect's wings make it incredibly annoying but luckily it's large enough to be discovered easily|739165602295447562/giant_mosquito.png|2,1,1|34;
+Ravager|7|14|Beast|The Ravager is a predator the size of a dog. It uses echolocation to detect prey and its surroundings|739165691344715886/ravager.png|5,1,1|40;
+Giant Toad|12|7|Water|Due to their decently high weight combined with their powerful legs, these toads prefer to attack by simply tackling their opponents|739165633589280848/giant_toad.png|3,1,1|52;
+Giant Leech|18|1|/ |Nasty creatures that latch onto larger animals and suck out all of their blood. They're too big to attach themselves to humans but will still try to bite them nonetheless|739165595722842193/giant_leech.png|3,1,1|58;
+Mud Golem|19|2|Water|In order to avoid drying up, these golems need to stay close to a source of water at all times|739165685459976242/mud_golem.png|3,1,1|60;
+Mad Sloth|16|4|Beast|A slow but ferocious creature. It spends most of its time on trees where it's safe from predators and can launch surprise attacks on terrestrial prey|739165703575437484/mad_sloth.png|5,1,1|61;
+Giant Mantis|10|11|Arthropod|Equipped with sharp scythe-like arms and exceptional reflexes, these monsters have the potential to become very powerful. Luckily they frequently kill each other so it's rare for a Mantis to fully mature|739165601032962238/giant_mantis.png|2,1,1|63;
+D
+#################################################################################
+Killer Beetle|27|24|Armored,Arthropod|A beetle often found in jungles and swamps. Unlike many other insect monsters, it's not venomous. This monster relies on its claws and horns inflicting enough damage|734189338832666764/killer_beetle.png|5,2,1|7;
+Cetus|40|9|Reptile,Water,Beast|A sea monster that turns to stone when exposed to intense sunlight. It's said to have been created by the god of jelousy|739165244571648020/cetus.png|6,2,1|15;
+Two-Headed Lesser Drake|28|30|Reptile|Placeholder|739165465066209371/two-headed_lesser_drake.png|4,3,1|34;
+Spore Slime|42|6|Slime,Plant|Placeholder|739165387467259924/spore_slime.png|3,2,1|39;
+Scythe Tree|18|30|Plant,Dark|Placeholder|739165377480753182/scythe_tree.png|4,3,1|42;
+Vipervine|13|38|Plant|Placeholder|739165470552490004/vipervine.png|5,2,1|43;
+Naga|17|31|Reptile|A large snake-like monster with 2 arms. It's worshipped as a holy creature in some demihuman societies|739165388037685438/naga.png|6,2,1|50;
+Mold Slime|45|4|Plant,Slime|This slime attaches itself to old wood or other dead plants and can barely move. It defends itself by shooting out a poisonous gas|739165346434383882/mold_slime.png|4,3,1|51;
+Poison Pitcher Plant|21|27|Plant|While this plant only feeds on small birds and insects, it will also defend itself from larger animals by shooting a poisonous liquid at them|739165393930813450/poison_pitcher_plant.png|3,2,1|53;
+Infection Beast|32|20|Beast,Undead,Flying|A monster that has been killed by a strange infection and is now being controlled by it. Strange bulbs are growing all over its body|739165313630732358/infection_beast.png|1,3,1|55;
+C
+#################################################################################
+Dracolisk|43|50|Reptile,Flying|A mutated drake that was fused with a Basilisk through an obscure ritual before hatching. While it inherits features of both parent species, they're not as prominent when comapred to the originals|739164839880032346/dracolisk.png|5,4,2|10;
+Emperor Cobra|53|41|Reptile|An enormous cobra with venom so strong that it can kill an adult in less than a minute. Fighting it without an antidote or heavy armor is reckless|739164900730994758/emperor_cobra.png|4,4,2|20;
+Feathered Drake|23|69|Flying,Reptile|One of the oldest species of drake, this one looks closer to a bird than a reptile thanks to its feathers and sharp beak|739164902672957551/feathered_drake.png|2,4,2|21;
+Jungle Drake|28|66|Flying,Reptile|A species of drake that has adapted to the jungle. Its slender body and precise flying skills allow it to traverse the thicket with ease|739164912076718141/jungle_drake.png|2,4,2|24;
+Sulfur Slime|83|9|Slime|The body of this slime is even more acidic than those of its relatives, melting down its prey extremely quickly and even corroding metals|739164934801326221/sulfur_slime.png|1,4,2|28;
+Overgrowth|88|5|Plant|This strange plant monster only takes very little damage from normal weaponry. It also collects all kinds of objects, attaching them to its body for protection|739164944498556958/overgrowth.png|1,4,2|29;
+Ogre|74|20|Beast|The Ogre is a large beast that prefers damp environments even though it is unable to swim|739870794930454612/ogre.png|1,4,2|38;
+Swamp Beast|40|52|Beast|This mammal covers its body in moss to make up for its lack of hair. It's always surrounded by insects as it gives off a strong odor that seems to attract them|739165068847087627/swamp_beast.png|3,4,2|39;
+Vine Golem|82|10|Plant,Armored|This golem collects rocks, wrapping itself around them to increase its weight and power. Its core is actually located in a large vine on its back|739165071594487859/vine_golem.png|6,2,2|41;
+B
+#################################################################################
+Elder Ent|87|32|Plant|The Elder Ent may look like a grown-up Wood Spirit but the only relation between them is that they consist of mana wood|731911031970070618/elder_ent.png|3,6,2|1;
+Glavenus|92|31|Reptile|A brute monster that wields its heavy tail like a blade. It grows hotter and more keen with each strike until it glows red|739164549009113198/glavenus.png|1,6,2|11;
+Vine Wolf|55|67|Plant,Beast|Is it a plant that has somehow acquired the soul of a wolf and has changed its appearance to match it? Or is it a wolf that had its body transformed? Nobody really knows|739164714092986508/vine_wolf.png|4,5,2|29;
+Titan Centipede|72|51|Arthropod|An enormous centipede that is unusually nimble for its size, thanks to its strong legs. It can easily crush a person by hitting them with any part of its body|739164722347376651/titan_centipede.png|2,6,2|31;
+A
+#################################################################################
+Hydra|90|62|Legendary,Reptile|A monster often mentioned in myths and legends, the Hydra is famous for its regenerative abilities and it also possesses a deadly venom|734192010419765348/hydra.webp|4,6,2|5;
+Tyrannosaurus|98|54|Reptile|Without a doubt an apex predator. The Tyrannosaurus' full name means "King of the tyrant lizards"|736702034237194250/Tyrannosaurus.png|1,8,2|7;
+S
+#################################################################################
+Gold Dragon|118|73|Dragon,Flying|Widely known to be the proudest out of all the dragon species. They spend most of their time flying, looking down on all other beings|739145167285649468/gold_dragon.png|6,7,3|10;
+Tarrasque|143|53|Beast,Legendary|The Tarrasque is a force of pure destruction, tearing down anything it comes across. Some say that it was created by an ancient civilisation during a great war|739232831892488222/tarrasque.png|1,10,3|14;
+SS
