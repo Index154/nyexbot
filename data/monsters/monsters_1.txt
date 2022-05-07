@@ -1,0 +1,56 @@
+Slime|5|6|Slime|The basic slime is the weakest monster, yet it has a strange appeal to it. In some cultures domesticated slimes are used for cleaning purposes|731848249505218633/slime.png|4,1,1|0;
+Bear|11|9|Beast|Perhaps the most dangerous beast you can encounter close to human settlements. Angry bears are the bane of lightly armed travellers|731848267486330940/bear.png|1,1,1|1;
+Wolf|8|12|Beast|Wolves are fast and vicious but their most troublesome feature is their intelligence. Encountering a pack of them can be deadly. Luckily this game only features solo encounters|733036853678178497/wolf.png|2,1,1|2;
+Goblin|6|13|Beast|Nasty humanoid creatures that can form groups so large they can sometimes plunder whole villages|731848293717377094/goblin.png|4,1,1|4;
+Giant Crab|15|5|Arthropod,Water|Found near bodies of fresh water, these crustaceans are unexpectedly territorial|731855499930370108/giant_crab.webp|5,1,1|6;
+Wood Spirit|10|9|Plant|It is said that spirits are born from the wishes of nature itself. These Spirits seem to exist in order to protect the forest|731910782249336832/wood_spirit.png|3,1,1|7;
+Vampire Bat|5|14|Dark,Flying|Highly aggressive and always hungry for blood|731983166499323972/vampire_bat.png|5,1,1|11;
+Man-Eating Flower|14|5|Plant|Like most normal plants, this one also gets the majority of its energy from rain and sunlight. But when these natural resources aren't enough, it will attempt to feed on any creatures that pass by. Thanks to this trait it can even survive in dry and cold environments|739165711171059812/man-eating_flower.png|3,1,1|28;
+Giant Stag|15|4|Arthropod|A beetle the size of a horse. It has wings hidden underneath its shiny shell but it rarely uses them|739165579864440942/giant_stag.png|4,1,1|30;
+Mandragora|16|2|Plant|A peculiar vegetable that sometimes grows as large as a person and will do anything in its power to avoid being eaten|739165705282256956/mandragora.png|6,1,1|32;
+Gloomwood|13|7|Plant,Dark|When a tree absorbs enough mana, it may turn into an Ent. But should it absorb negative energy, such as that of an undead creature, it will turn into a Gloomwood instead|739165635665461248/gloomwood.png|6,1,1|38;
+Werewolf|14|8|Beast|Werewolves grow stronger at night, especially during a full moon. For this reason they spend the day in safety and venture out to hunt at night|739165769224683631/werewolf.png|1,1,1|42;
+Scarecrow|15|6|Plant,Dark|Invented by a young genius, these Scarecrows were granted a will of their own so they could do their job more effectively. Unfortunately they are sometimes consumed by madness and become evil monsters|739165778728976384/scarecrow.png|6,1,1|50;
+Lesser Drake|13|7|Reptile|As distant relatives of regular drakes, these creatures lack not only wings but also hind legs. Considering this, their movement speed is still rather decent|739165655407788082/lesser_drake.png|4,1,1|64;
+D
+#################################################################################
+Lesser Minotaur|33|16|Beast|Lesser Minotaurs are nothing to scoff at, even when compared to their bigger cousins. They wield large axes and are very easily angered|731849250463416350/lesser_minotaur.png|1,3,1|0;
+Goblin Shaman|27|22|Beast|Every mid-sized goblin tribe has at least one shaman. They are responsible for conducting rituals and protecting the group against evil spirits|731849266250907718/goblin_shaman.png|3,2,1|1;
+Earth Tortoise|35|15|Reptile,Armored|Rock-hard scales and a powerful jaw make this slow monster a lot more dangerous than it might look|731983184744415333/forest_tortoise.png|1,3,1|3;
+Orc|29|20|Armored|A fierce warrior. Orcs are relentless and known for their unbreakable morale in battles|733287112409088060/orc.png|1,3,1|5;
+Armored Bull|42|10|Armored,Beast|The Armored Bull's breath is poisonous and the plates covering its body allow it to crash into most obstacles without taking damage|739165255296614480/armored_bull.png|1,3,1|16;
+Wind Elemental|3|48|Intangible|Wind given shape and mind by the will of the world. It goes around causing nothing but destruction|739165445336334388/wind_elemental.png|4,3,1|21;
+Jabberwock|22|30|Flying,Reptile|Placeholder|739165288825749604/jabberwock.png|5,2,1|31;
+Land Shark|42|11|Beast|This monster hunts by digging a large hole where it hides itself. When something passes by, it jumps out and attacks|739165351731920906/land_shark.png|1,3,1|32;
+Two-Headed Lesser Drake|28|30|Reptile|Placeholder|739165465066209371/two-headed_lesser_drake.png|4,3,1|34;
+Spore Slime|42|6|Slime,Plant|Placeholder|739165387467259924/spore_slime.png|3,2,1|39;
+Possessive Slime|39|10|Slime,Undead|Placeholder|739165401472172142/possessive_slime.png|3,2,1|40;
+Scythe Tree|18|30|Plant,Dark|Placeholder|739165377480753182/scythe_tree.png|4,3,1|42;
+River Drake|8|44|Flying,Reptile,Water|These drakes have adapted to hunting fish by plunging into the water at high speeds, similar to some species of birds|739165405414686751/river_drake.png|2,3,1|48;
+Wood Golem|41|10|Plant|A golem made of regular wood with a core carved from mana wood|739165445961285702/wood_golem.png|1,3,1|52;
+Red Slime|9|40|Slime|This slime has evolved to be smaller but also faster than its brethren, making it very proficient at hunting smaller animals|772104749612400640/red_slime.png|2,3,1|56;
+C
+#################################################################################
+Huge Slime|54|30|Slime|These slimes are so large that they can envelop a person entirely, slowly drowning and then dissolving them|731849283376119840/huge_slime.png|4,4,2|0;
+Minotaur|57|32|Beast|A race that is famous for being ruthless. Minotaurs are so imposing that they can force even Armored Bulls to obey their commands|731855778629025903/minotaur.png|1,4,2|1;
+Stone Soldier|65|24|Armored|A kind of golem made of ancient stone. It's rather slow thanks to its old age|736681044320714863/stone_soldier.png|1,4,2|7;
+Dragon Fairy|12|79|Dragon,Flying,Holy|The smallest and weakest species of dragon. These creatures may look cute but they're far from docile|739164843042668574/dragon_fairy.png|2,4,2|11;
+Nightmare|19|73|Dark,Undead|This undead horse is shrouded in darkness, making it hard to see at night. Sometimes used as mounts by Reaper Skeletons|739164899099541606/nightmare.png|2,4,2|19;
+Fire Drake|45|48|Flying,Reptile|Found in various different environments, these drakes are the only ones able to breathe fire like their larger cousins, the dragons|739164906720460922/fire_drake.png|5,4,2|22;
+Magic Wolf|27|68|Holy,Beast|While many monsters are able to use magic, wolves normally can't. These individuals however, have somehow surpassed the limits of their species and they submit only to the legendary Fenrir|739164913531879444/magic_wolf.png|4,4,2|26;
+Overgrowth|88|5|Plant|This strange plant monster only takes very little damage from normal weaponry. It also collects all kinds of objects, attaching them to its body for protection|739164944498556958/overgrowth.png|1,4,2|29;
+Wyvern|48|42|Flying,Reptile|Wyverns are somewhere between regular drakes and dragons when it comes to how dangerous they are. Their tails are covered in poisonous spikes and they are able to shoot balls of fire|739165061729353778/wyvern.png|5,4,2|37;
+B
+#################################################################################
+Elder Ent|87|32|Plant|The Elder Ent may look like a grown-up Wood Spirit but the only relation between them is that they consist of mana wood|731911031970070618/elder_ent.png|3,6,2|1;
+Cockatrice|50|69|Flying|A dragon-like creature with features of a rooster. It can kill its prey by simply staring at it for long enough which is why it's occasionally confused with the Basilisk|739862475687854110/cockatrice.png|6,4,2|15;
+Giant|112|9|Beast|The race of giants values strength above anything else and looks down on anyone who appears weaker than them. Peaceful villages are often decimated by them without warning|739164564935016498/giant.png|1,6,2|18;
+A
+#################################################################################
+Red Dragon|94|59|Dragon|The most well-known species of dragon. Getting caught in its fiery breath can lead to a very quick death|731849508824285214/red_dragon.png|1,8,2|0;
+Chimera|93|58|Beast,Legendary|An unholy fusion between multiple animals, the Chimera should have never existed in the first place. This breed was created many decades ago by a mad sorcerer|739149541160255508/chimera.png|1,8,2|11;
+S
+#################################################################################
+Fenrir|49|143|Legendary,Beast|Often called the "god of wolves", the Fenrir is not only lightning-fast but also a master of illusion magic|731855801832177714/fenrir.png|2,10,3|1;
+Behemoth|163|29|Legendary,Armored|The Behemoth is a creature that lives for what seems like an eternity. Nobody has seen even a glimpse of their lifecycle yet|733297579433001010/behemoth.png|1,10,3|2;
+SS

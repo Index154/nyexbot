@@ -1,0 +1,50 @@
+Wandering Husk|10|8|Undead,Arthropod|(Special) The remains of a bug, animated by a strange force. Wanders the roads where it once lived|855939994790264852/wandering_husk.webp|3,1,1|70;
+Vengefly|8|11|Arthropod,Flying|(Special) This fierce flying predator will bravely chase down creatures many times its size. Admirable! It is weak though|855940002085077012/vengefly.webp|2,1,1|71;
+Shrumal Warrior|13|8|Plant|(Special) A fungal creature that attacks intruders to protect its young|855940010707910666/shrumal_warrior.webp|1,1,1|72;
+Mosscreep|8|9|Arthropod,Plant|(Special) A weakling that covers itself in leaves to appear larger. Hides amongst the undergrowth|855940018832801802/mosscreep.webp|4,1,1|73;
+Gruzzer|5|12|Arthropod,Flying|(Special) A simple-minded creature that haphazardly buzzes around, bumping into things|855940029931323462/gruzzer.webp|5,1,1|74;
+Fungoon|14|5|Flying,Plant|(Special) A fully grown fungal balloon. Spits built up internal gas at aggressors. So round!|855940048108388372/fungoon.webp|6,1,1|75;
+Fungling|4|8|Flying,Plant|(Special) A young fungal balloon. Internal gasses cause it to float|855940057218678824/fungling.webp|4,1,1|76;
+Dirtcarver|11|9|Arthropod|(Special) Springy and vicious, these hunters will try to overwhelm you with numbers in the dark, tight, twisting caverns they carve through the ground. Always be on your guard!|855941863574994944/carver.webp|3,1,1|77;
+D
+#################################################################################
+Baldur|14|34|Arthropod|(Special) Rolls into a ball and propels itself at intruders who wander into its territory. Aggressive even when newly born|856169367237951488/baldur.webp|2,3,1|63;
+Carver Hatcher|20|28|Arthropod,Flying|(Special) A flying creature that fires out Dirtcarvers from its body when potential prey comes close|856169686709174272/carver_hatcher.webp|4,3,1|64;
+Deephunter|11|39|Arthropod|(Special) Crawls along walls and roofs, spitting burning venom at anything that passes by|856169693668179978/deephunter.webp|2,3,1|65;
+Glimback|42|7|Arthropod,Armored|(Special) A slow, hardy creature. The crystals that grow on its back provide extra protection from foes above|856169700945690624/glimback.webp|6,2,1|66;
+Grimmkin Nightmare|24|27|Intangible|(Special) A terrifying member of the Grimm Troupe. It gathers scarlet flame within its torch. Strangely, the flame will dissipate without a trace once defeated|856170735843541052/grimmkin_nightmare.webp|3,2,1|67;
+Gruz Mother|36|15|Arthropod,Flying|(Special) A mature Gruzzer that carries its young in its belly. Attacks by hurling its huge body around|856170744819744779/gruz_mother.webp|1,3,1|68;
+Hive Soldier|21|32|Arthropod,Flying|(Special) Defends its hive against intruders with its extendable stinger|856170933173485578/hive_soldier.webp|3,2,1|69;
+Husk Guard|45|8|Arthropod|(Special) The remains of a great Hallownest Crossguard, animated by a strange force. Instinct still drives it to guard its post against intruders|856170963645235260/husk_guard.webp|1,3,1|70;
+Lance Sentry|16|32|Arthropod,Flying|(Special) A winged Sentry of Hallownest equipped with a nail-lance. Charges at threats or throws its lance from a distance|856170971463548928/lance_sentry.webp|5,2,1|71;
+Moss Charger|10|37|Arthropod,Plant|(Special) A timid creature that frightens away intruders by covering itself in huge clumps of moss|856170981659115570/moss_charger.webp|2,3,1|72;
+Ooma|41|11|Flying|(Special) A ghastly, eerie creature made out of thick liquid containing an explosive core|856170995559432212/ooma.webp|4,3,1|73;
+C
+#################################################################################
+Collector|32|59|Dark|(Special) A shadow that sometimes flits through the caverns, making strange noises to itself. It preserves other creatures in glass jars|856174869757296640/collector.webp|3,4,2|50;
+Death Loodle|41|53|Arthropod|(Special) They seem fierce, but they have a lot of difficulty aiming at their target|856174877975248896/death_loodle.webp|4,4,2|51;
+Elder Baldur|80|11|Arthropod,Armored|(Special) Bulky and covered in thick plating. It retracts into itself when attacked|856174891057545276/elder_baldur.webp|1,4,2|52;
+Mantis Warrior|22|66|Arthropod|(Special) A member of a proud tribe, fiercely protective of its territory. Launches savage attacks with bladed forelimbs|856174901925117972/mantis_warrior.webp|2,4,2|53;
+Mawlurk|94|0|Arthropod|(Special) A large, immobile creature. Wildly spits venom when intruders pass by|856174911869812736/mawlurk.webp|1,4,2|54;
+Moss Knight|42|50|Arthropod,Armored|(Special) They hide as bush-like mounds and look soft, but beware these warriors! They are relentless in combat|856174925110575104/moss_knight.webp|5,4,2|55;
+Primal Aspid|28|64|Arthropod,Flying|(Special) These cruel foes will ambush you and relentlessly attack with their searing venom. Once thought extinct|856174933444395008/primal_aspid.webp|2,4,2|56;
+Soul Twister|37|59|Arthropod,Flying|(Special) A highly intelligent bug that uses arcane knowledge to twist soul into vicious spells|856174945851539517/soul_twister.webp|6,2,2|57;
+Stalking Devout|58|36|Arthropod,Armored|(Special) Worshippers of Herrah the Beast. They shield themselves with hard plated foreclaws, then lash out suddenly to cut down prey|856174956835897354/stalking_devout.webp|4,4,2|58;
+B
+#################################################################################
+Broken Vessel|52|71|Dark,Arthropod|(Special) A shattered corpse, reanimated by infected parasites|856179323869069332/broken_vessel.webp|3,6,2|38;
+Crystal Guardian|80|42|Arthropod,Undead,Armored|(Special) A heavyset miner overcome by crystal growth. Can discharge blazing beams of light from its crystallized limbs|856179331536519208/crystal_guardian.webp|4,5,2|39;
+False Knight|91|34|Arthropod,Armored|(Special) A maggot driven mad by a strange force. Inhabits a stolen armored shell|856179338889265202/false_knight.webp|1,6,2|40;
+Kingsmould|63|65|Dark,Armored|(Special) A guard construct of Hallownest's Palace and skilled wielder of the curved claw-blade. Its heavy white armour protects a fragile body|856179348443889664/kingsmould.webp|5,6,2|41;
+Mantis Lord|28|94|Arthropod|(Special) A leader of the Mantis tribe and one of its finest warriors. They bear thin nail-lances and attack with blinding speed|856179356438233118/mantis_lord.webp|2,6,2|42;
+Watcher Knight|66|53|Arthropod,Undead,Armored|(Special) The discarded shell of a guardian knight, re-animated by a swarm of infected flies|856179364579115038/watcher_knight.webp|6,4,2|43;
+A
+#################################################################################
+Grimm|58|95|Intangible|(Special) The master of the Grimm Troupe|856179621069062144/grimm.webp|4,6,2|26;
+Hollow Knight|82|74|Dark,Arthropod|(Special) A fully grown vessel, carrying the plague's heart within its body|856179632725819412/hollow_knight.webp|5,6,2|27;
+S
+#################################################################################
+Nightmare King Grimm|75|121|Intangible|(Special) Twisted spectre of scarlet flame|856179773919068160/nightmare_king_grimm.webp|3,10,2|20;
+Pure Vessel|118|77|Dark,Arthropod|(Special) The chosen vessel, raised and trained to prime form|856179782920044594/pure_vessel.webp|4,8,3|21;
+Radiance|93|102|Holy,Flying|(Special) The light, forgotten. The madness that haunts the corpses of Hallownest|856179790133067827/radiance.webp|5,8,3|22;
+SS

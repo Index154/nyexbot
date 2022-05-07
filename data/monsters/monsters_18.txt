@@ -1,0 +1,32 @@
+Peeper|2|17|Water,Fish|(Special) A fast prey fish encountered in shallow waters and rich in protein|868967152080789545/peeper.webp|2,1,1|82;
+Lava Larva|5|15|Water|(Special) A grub-like species which appears to lack sight and smell, but is able to sense and drain thermal and electrical energy in its immediate environment|868967171601088542/lava_larva.webp|3,1,1|83;
+Cave Crawler|7|12|Arthropod|(Special) Agile, territorial carrion-feeder. Well-adapted to both land and sea|868967185110949909/cave_crawler.webp|5,1,1|84;
+Bleeder|3|16|Water|(Special) A simple parasitic organism, little more complex than the common leech monster, but just as dirty|868967217868472340/bleeder.webp|6,1,1|85;
+Biter|4|16|Water,Fish|(Special) Vicious, pack-hunting predator. 94% muscle, 4% connective tissue, 2% brain. Indiscriminate when hungry. Almost always hungry|868967227213377627/biter.webp|2,1,1|86;
+D
+#################################################################################
+Stalker|16|34|Water,Fish|(Special) A streamlined predator encountered in kelp forests in wait of prey leaving the safety of the shallows to feed|868970674079826040/stalker.webp|2,3,1|78;
+Sandshark|27|24|Water,Fish,Armored|(Special) A powerful, medium-sized predator that burrows into the sand and ambushes its prey from below|868970681952530473/sandshark.webp|1,3,1|79;
+Ghostray|10|37|Water,Fish|(Special) This ray species has adapted to deep-sea conditions. Its body is fully protected by a translucent skin, and its large wings are capable of generating considerable thrust|868970690106249226/ghostray.webp|6,2,1|80;
+Gasopod|32|19|Water|(Special) A slow-moving lifeform. Providing a substantial meal to would-be predators, the gasopod protects its domain by filling the surrounding water with poisonous and corrosive pods whose contents dissolve even synthetic fibers|868970700290007080/gasopod.webp|5,2,1|81;
+C
+#################################################################################
+Mesmer|21|69|Water,Fish|(Special) Small, carnivorous lifeform with a unique hunting mechanism that enables it to hypnotize its foes|868970933895970856/mesmer.webp|3,4,2|63;
+Cuddlefish|12|76|Water,Fish|(Special) A small, gray-colored herbivore, the cuddlefish displays high levels of intelligence, curiosity and attachment|868970941634465882/cuddlefish.webp|4,4,2|64;
+Boneshark|32|61|Water,Fish,Armored|(Special) A large and powerful predator that lives in small groups and fiercely defends its hunting grounds|868970953701482516/boneshark.webp|1,4,2|65;
+Ampeel|46|44|Water,Fish,Lightning|(Special) A powerful and inquisitive predator. Its torso-mounted prongs generate a powerful electrical current which the ampeel uses to incapacitate its prey|868970961402224720/ampeel.webp|1,4,2|66;
+B
+#################################################################################
+River Prowler|27|92|Water,Fish|(Special) A fast, agile predator discovered at great depths|868971128138399764/river_prowler.webp|5,6,2|47;
+Crabsnake|32|91|Water|(Special) The crabsnake has two pairs of fangs, and one larger claw on either side. It plunges these claws into its prey, locking them in place while the inner jaw tears through the flesh|868971138238275614/crabsnake.webp|2,6,2|48;
+A
+#################################################################################
+Warper|80|68|Alien,Water|(Special) An aggressive creature with the ability to teleport itself and others in space|868971152830234694/warper.webp|3,8,2|30;
+Crabsquid|65|86|Water,Lightning|(Special) This large predator can be found in deep waters, where it lurks in search of prey. It can deploy a powerful electromagnetic pulse to defend itself|868971159931211848/crabsquid.webp|6,6,2|31;
+Reefback Leviathan|111|37|Water,Fish,Armored|(Special) This vast lifeform is in excess of 30m long and has been designated leviathan class. Fortunately it feeds exclusively on plankton-like lifeforms in the water|868978882525687948/reefback_leviathan.webp|4,6,2|32;
+S
+#################################################################################
+Sea Dragon Leviathan|153|31|Water,Reptile|(Special) A colossal leviathan with reptilian features. As the largest carnivorous species encountered on 4546B, almost everything is potential prey|868971179271139338/sea_dragon_leviathan.webp|4,8,3|25;
+Reaper Leviathan|123|72|Water,Fish|(Special) Leviathan class species are vast organisms at the top of their respective food chains. This species is a streamlined hunter, with highly developed senses|868971187009630299/reaper_leviathan.webp|1,10,3|26;
+Ghost Leviathan|127|66|Water,Legendary,Fish|(Special) This creature is approaching the size limit for sustainable organic lifeforms, and has been designated leviathan class. Adults of the species react with extreme aggression on approach|868971197591859200/ghost_leviathan.webp|3,10,2|27;
+SS

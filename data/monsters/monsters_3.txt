@@ -1,0 +1,34 @@
+Abyssal Fish|8|10|Fish,Water|The abyss is a region deep under the sea, populated by many strange and dangerous creatures. These fish often come up to the surface, trying to escape from larger predators that can't handle the sunlight as well as them|736639769907560488/abyssal_fish.png|4,1,1|16;
+Meerfolk|9|11|Water,Fish|Inhabitants of the deep city Kurghal. They're hard to communicate with because they rarely interact with humans|739165717139685466/meerfolk.png|4,1,1|54;
+Lesser Sea Serpent|6|16|Water,Reptile|Although it shares part of its name with the Sea Serpent, they're not related in any way at all|739165630732828680/lesser_sea_serpent.png|2,1,1|55;
+D
+#################################################################################
+Abyssal Demon|32|17|Fish,Water,Demon|This demon, unlike most others of its kind, lives in the abyssal region. It has an ember of hellfire encased in its chest to make up for the low temperatures of the deep sea|736676340534608002/abyssal_demon.png|1,3,1|8;
+Cetus|40|9|Reptile,Water,Beast|A sea monster that turns to stone when exposed to intense sunlight. It's said to have been created by the god of jelousy|739165244571648020/cetus.png|6,2,1|15;
+Lesser Sea Drake|11|38|Reptile,Water|These monsters are born with two small fins which grow into proper limbs as they get older|739165336594677790/lesser_sea_drake.png|2,3,1|18;
+Killer Squid|20|31|Water|A grotesque monster with two gaping mouths, one between its tentacles and one on top of its head. It uses both interchangeably|739165349949210624/killer_squid.png|3,2,1|19;
+Demon Crab|36|15|Arthropod,Armored|Placeholder|739165291342463027/demon_crab.png|5,2,1|27;
+Abyssal Stalker|30|21|Arthropod,Water|One of the stranger monsters living in the Abyss. It catches its prey using tentacles and eats the brain with its upper mouth before consuming the rest using the lower one|739165253736202250/abyssal_stalker.png|3,2,1|28;
+Lesser Cliff Drake|34|15|Reptile|These drakes live around mountain lakes and ocean cliffs. They warm themselves up on land and hunt in the water|739872893525295114/lesser_cliff_drake.png|3,2,1|29;
+Water Elemental|9|42|Water,Intangible|Placeholder|739165435177598998/water_elemental.png|2,3,1|37;
+Abyssal Crab|36|16|Arthropod,Armored,Water|These crabs from the abyss mostly feed on tiny organisms but they also have powerful claws to defend themselves with|739165251236397066/abyssal_crab.png|5,2,1|54;
+C
+#################################################################################
+Abyssal Eel|25|67|Fish,Water|Deep-sea monsters with glowing appendages and two thin arms equipped with claws. They despise the sunlight but still somehow end up near the surface every now and then|739164849074077796/abyssal_eel.png|4,4,2|12;
+Abyssal Soldier|64|30|Arthropod,Armored,Water|Although they're only about as intelligent as ants, the tough shell of these crustaceans and their powerful claws make them worthy opponents|739164851246727198/abyssal_soldier.png|1,4,2|13;
+Dragon Turtle|70|19|Reptile,Water|The Dragon Turtle gets its name from its ferocious nature and similarities between its shell and the scales of actual dragons|739164858053820497/dragon_turtle.png|4,4,2|17;
+Reefclaw|51|42|Fish,Water|A giant mix between a catfish and a lobster. The Reefclaw lives in shallow waters, protecting its home - usually a small underwater cave - from anything that comes close|739164946138529892/reefclaw.png|2,4,2|30;
+Sea Drake|16|77|Flying,Reptile,Water|A drake that spends most of its time in and above water, hunting fish and oftentimes being hunted by other larger sea monsters|739165009225056356/sea_drake.png|2,4,2|33;
+B
+#################################################################################
+Abyssal Terror|42|80|Fish,Water|One of the most dangerous creatures found in the Abyss. It sometimes comes up to the surface chasing after small Fish,Water|739164557217497149/abyssal_terror.png|2,6,2|14;
+A
+#################################################################################
+Sea Serpent|63|89|Reptile,Water|A gigantic eel-like monster that always stays close to the surface of the ocean, hunting large birds, sea drakes and sometimes even young dragons|739150157353975818/sea_serpent.png|4,6,2|15;
+Sea Hydra|100|54|Legendary,Fish,Water|A species of Hydra that lives in oceans and large lakes. Unlike other Hydras it can shoot concentrated bursts of water from its mouths|739150146851307541/sea_hydra.png|5,6,2|19;
+Colossal Hermit|134|14|Armored,Arthropod|A gigantic hermit crab carrying a whole mountain on its back. It wanders around aimlessly, flattening anything in its path|772107515780530206/colossal_hermit.png|4,6,2|21;
+S
+#################################################################################
+Leviathan|136|58|Arthropod,Water|The Leviathan is a huge crustacean living in the deepest parts of the ocean. It occasionally comes up to the surface when disturbed|736710397947674644/leviathan.webp|1,10,3|7;
+Kraken|104|89|Legendary,Water|One of the most well-known sea monsters. The Kraken is featured in a lot of folklore but the stories about it don't come close to describing the helplessness you feel when confronted by this massive monster|736710439307706448/kraken.png|3,10,2|8;
+SS

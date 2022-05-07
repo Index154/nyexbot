@@ -1,0 +1,17 @@
+Froggo|1|3|Water|(Special) This small frog has the ability to store large amounts of air inside of its body. It can expel the air rapidly to escape from danger|924738223954087956/froggo.png|3,1,1|91;
+D
+#################################################################################
+Rock Lizard|31|23|Armored,Reptile|(Special) A peculiar lizard with unusually strong legs and scales made of stone. They live for a very long time but spend most of it sleeping. Crystals and minerals often grow on their backs due to this|924739845144842250/rock_lizard.png|1,3,1|86;
+C
+#################################################################################
+Fogwalker Dragon|41|52|Dragon|(Special) This dragon likes to walk through the air by controlling the natural fog around it. It's general knowledge not to enter the habitat of these dragons as they can easily ambush you within their foggy home|924741531712241674/fogwalker_dragon.png|4,4,2|74;
+B
+#################################################################################
+Unstable Dragon|75|47|Dragon|(Special) A dragon formed by huge amounts of chaotic energy originating from a wormhole created by the Rift Dragon King. The resulting dragon's body is so unstable that it's constantly releasing light|924742243363991562/unstable_dragon.png|5,6,2|56;
+A
+#################################################################################
+Golden City Keeper|132|21|Armored,Holy|(Special) A powerful artificial golem made of solid gold and a guardian of the ancient desert city of Oreah. The city which has already crumbled long ago used to be known for its superiority in the field of automation and mana inscription|924742488617541643/golden_city_keeper.png|5,6,2|39;
+S
+#################################################################################
+Eternal Flame Dragon King|132|71|Legendary,Fire,Dragon|(Special) One of the 17 dragon kings and the sovereign of eternity. The flames it wields are said to never go out, completely overcoming the known principles of our world. Any location ever burned by it remains inhabitable to this day. Records of history show that this dragon has lived for countless millennia, perhaps even since the dawn of time itself|924743682819751946/eternal_flame_dragon_king.png|4,8,3|30;
+SS

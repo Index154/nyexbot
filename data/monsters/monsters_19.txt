@@ -1,0 +1,41 @@
+Lesser Volcanic Dragon|13|7|Fire,Dragon|(Special) This young dragon stores dormant volcanic energy within its wing-like appendages|875497022948507728/lesser_volcanic_dragon.webp|1,1,1|87;
+Lesser Water Dragon|10|8|Water,Dragon|(Special) A juvenile water-dwelling dragon which hasn't gained control of its elemental abilities yet|875497169430380564/lesser_water_dragon.webp|5,1,1|88;
+Liger|12|10|Beast|(Special) A powerful and fast predator which has feline and reptilian features|875497177621880862/liger.webp|4,1,1|89;
+Protector Dragon|14|7|Flying,Dragon|(Special) A small dragon wielding the element of earth. It often acts as a guardian for the babies of its kin|875497184404045864/protector_dragon.webp|3,1,1|90;
+D
+#################################################################################
+Brute Dragon|37|14|Dragon|(Special) One of the least intelligent dragons, this monster is highly aggressive and only attacks with its body|875497435449933874/brute_dragon.webp|1,3,1|82;
+Gale Dragon|23|30|Flying,Dragon|(Special) Also simply called the Wind Dragon. This species spends most of its time in the air and has some control over the element of wind|875497454538227772/gale_dragon.webp|6,2,1|83;
+Lindworm|19|32|Dragon|(Special) A uniquely slender build makes this land-dwelling dragon stand out among its kind. It may have no special abilities but is quite cunning|875497462498992158/lindworm.webp|3,2,1|84;
+Ocean Serpent Dragon|22|31|Water,Dragon,Fish|(Special) When talking about sea dragons, this one is probably what most people think about. A streamlined body which allows for fast travel in the water and in the air alike|875497475086123008/ocean_serpent_dragon.webp|4,3,1|85;
+C
+#################################################################################
+Darkness Dragon|62|33|Dark,Dragon|(Special) An utterly evil creature which takes pleasure in the murder of other intelligent life. It can even make use of dark magic|875498907407351888/darkness_dragon.webp|1,4,2|67;
+Eternal Flame Dragon|57|36|Fire,Dragon|(Special) As devote followers of the third dragon king, these creatures see the eternal flame as a formless deity in and of itself. Fragments of the flame are passed down from generation to generation among them, imbuing them with their powers|875498974201643039/eternal_flame_dragon.webp|4,4,2|68;
+Evil Dragon|59|31|Dragon|(Special) These heinous monsters are loyal only to the Mad Dragon King, possessing a similarly fierce and radical nature|875498984054079498/evil_dragon.webp|6,2,2|69;
+Mad Wind Dragon|43|51|Dragon|(Special) A surprisingly small dragon which can create blades of wind on its arms, tearing apart any who oppose it|875498995244478544/mad_wind_dragon.webp|2,4,2|70;
+Misty Lance Dragon|36|56|Dragon,Flying|(Special) These dragons have often been observed standing perfectly still in mid-air, surrounded by fog. Some believe them to be guarding something|875499007424757780/misty_lance_dragon.webp|4,4,2|71;
+Phantom Dragon|48|43|Dark,Dragon|(Special) A dragon with the ability to assimilate with the darkness around it, seemingly vanishing into thin air|875499016610283600/phantom_dragon.webp|5,4,2|72;
+Warrior Dragon|50|39|Dragon,Armored|(Special) These dragons are extremely dutiful, always obeying their orders until the very end. The downfall of their lineage was once prevented by the Golden Dragon King, earning him their neverending loyalty|875499025007251496/warrior_dragon.webp|3,4,2|73;
+B
+#################################################################################
+Ancient Dragon|57|65|Flying,Dragon|(Special) A wise but simultaneously very deceitful dragon. It likes riddles|875499047799111820/ancient_dragon.webp|3,6,2|49;
+Flame Sorcery Dragon|89|34|Fire,Dragon|(Special) A powerful dragon with the ability to wield advanced flame magic, albeit only in close combat|875499056410030100/flame_sorcery_dragon.webp|1,6,2|50;
+High Gale Dragon|72|51|Flying,Dragon|(Special) Most Gale Dragons receive the full extent of their power at birth. However, in some cases they may obtain an additional blessing from what they think is the God of Wind as they grow older, turning them into this subspecies|875499070016352326/high_gale_dragon.webp|3,6,2|51;
+Holy Shock Dragon|56|65|Holy,Lightning,Dragon|(Special) A feathered dragon with control over electricity. It can create small thunder strikes anywhere it goes|875499083475877929/holy_shock_dragon.webp|6,4,2|52;
+Nidhogg|66|55|Frost,Dragon|(Special) A cold-blooded monster determined to devour its victims alive. Some cultures sentence criminals to death by sacrificing them to these dragons|875499099284176946/nidhogg.webp|4,5,2|53;
+Purity Dragon|42|76|Holy,Frost,Dragon|(Special) A dragon with expertly control over both ice and holy magic. It's usually peaceful, never attacking without a reason|875499111665795112/purity_dragon.webp|5,6,2|54;
+Stormback Dragon|53|74|Lightning,Dragon|(Special) This dragon is constantly emitting high-voltage bursts of lightning from its back. It almost always lives in solitude, fearing that it would hurt its kin by simply being near them|875499122398990366/stormback_dragon.webp|4,5,2|55;
+A
+#################################################################################
+Armored Dragon|93|59|Armored,Dragon|(Special) A dragon with the peculiar hobby of forging and wearing armor made of other dragons' scales|875499141885755402/armored_dragon.webp|5,6,2|33;
+Heavenly Dragon|63|84|Holy,Dragon|(Special) Members of this species often act as something along the lines of neutral government officials, solving conflicts between other (usually weaker) dragons|875499150786056282/heavenly_dragon.webp|4,6,2|34;
+High Darkness Dragon|86|65|Dark,Dragon|(Special) A Darkness Dragon which has received additional powers from its overlord, allowing it to cast highly dangerous spells|875499160093200415/high_darkness_dragon.webp|5,6,2|35;
+High Water Dragon|58|91|Water,Dragon|(Special) An adult water dragon which now has full control over its element. It could easily flood a whole town if it wanted to|875499169190645870/high_water_dragon.webp|3,8,2|36;
+Nyarlathotep|125|27|Dark|(Special) The Crawling Chaos. This strange creature is reminiscent of a Chaos Slime, the main difference between them being that it has a much wilder nature, never resting and always trying to cause destruction. It's not an understatement to call it the embodiment of chaos|875499177759617114/nyarlathotep.webp|1,8,2|37;
+Volcanic Overdrive Dragon|117|37|Fire,Dragon|(Special) After collecting and compressing volcanic energy inside of them for several years, these dragons can enter a superactive state during which their physical abilities increase more than tenfold|875499187553308672/volcanic_overdrive_dragon.webp|1,8,2|38;
+S
+#################################################################################
+Thunder Emperor Eagle|89|104|Lightning,Flying,Legendary|(Special) This bird of legends is revered as a god by many. A single flap of its wings can bring forth a storm |875499223464947752/thunder_emperor_eagle.webp|5,8,3|28;
+Ultimate Gale Dragon|112|82|Holy,Dragon|(Special) Only the strongest of all High Gale Dragons get the chance to reach their ultimate form: Those who pass the trial prepared by the Heavenly Dragon King shall receive his blessing and surpass their limits|875499234122674206/ultimate_gale_dragon.webp|6,7,3|29;
+SS
