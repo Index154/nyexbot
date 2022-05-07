@@ -1,0 +1,34 @@
+Bear|11|9|Beast|Perhaps the most dangerous beast you can encounter close to human settlements. Angry bears are the bane of lightly armed travellers|731848267486330940/bear.png|1,1,1|1;
+Sabertooth Tiger|10|12|Beast|This species had already gone extinct long ago but has since been brought back to life by a famous witch|739165697543897109/sabertooth_tiger.png|2,1,1|41;
+Insect Warrior|15|5|Arthropod,Armored|The insect people are emotionless, making disputes between them rare. Unfortunately they're also not particularly tolerant towards others due to their lack of sympathy|739165648604626984/insect_warrior.png|4,1,1|43;
+Harpy|9|12|Flying,Holy|An inhabitiant of the floating city Icas which is under the protection of the Heavenly Legion. While most harpies are regular citizens, only scouts who have been trained in combat are allowed to leave the city|739165640614477864/harpy.png|4,1,1|47;
+Rock Mimic|20|0|Armored|A strange monster with the features of a rock. It can't move but its body is quite tough in return|739165696952500274/rock_mimic.png|4,1,1|51;
+D
+#################################################################################
+Griffon|21|30|Beast,Flying|Griffons are respected by many culutures as the kings of the sky. And their proud attitude sure matches that of a king|736676373485060206/griffon.png|2,3,1|10;
+Hippogriff|26|23|Flying,Beast|While it's similar to a Griffon, the Hippogriff is more aggressive and less intelligent in comparison|739165305145655326/hippogriff.png|5,2,1|20;
+Lesser Cliff Drake|34|15|Reptile|Placeholder|739872893525295114/lesser_cliff_drake.png|3,2,1|29;
+Crystal Bat|7|45|Armored,Flying|Placeholder|739165247532695663/crystal_bat.png|2,3,1|41;
+C
+#################################################################################
+Gemshard Golem|65|19|Armored|This type of golem is formed when a large amount of mana accumulates in a cave. Its core is a large mana gem and it also often contains smaller gems in its body|731895489745649664/gemshard_golem.webp|3,4,2|2;
+Dragon Fairy|12|79|Dragon,Flying,Holy|The smallest and weakest species of dragon. These creatures may look cute but they're far from docile|739164843042668574/dragon_fairy.png|2,4,2|11;
+Wyvern|48|42|Flying,Reptile|Wyverns are somewhere between regular drakes and dragons when it comes to how dangerous they are. Their tails are covered in poisonous spikes and they are able to shoot balls of fire|739165061729353778/wyvern.png|5,4,2|37;
+Volcano Golem|84|8|Fire,Armored|A gigantic golem with lava for blood. Its head resembles a volcano and serves as the exhaust for the excess heat that is given off by its core|739165071107948604/volcano_golem.png|5,4,2|40;
+B
+#################################################################################
+Crystal Guardian|57|64|Legendary|A dragon's guardian made of pure crystallized mana. It is somewhat similar to a golem but instead of being powered by a core it's actually controlled by the soul of a former drake|734191215842557982/crystal_guardian.png|4,5,2|6;
+Crystal Slime|45|79|Slime|This type of slime can crystallize parts of its body at will, allowing it to stab and slice its prey before engulfing it|739164560120086598/crystal_slime.png|4,5,2|16;
+Pegasus|34|91|Holy,Beast|The Pegasus is a winged horse that gives off a holy aura. It can only be ridden by those who have a pure heart|739164653413728317/pegasus.png|3,6,2|22;
+A
+#################################################################################
+Roc|60|93|Flying,Legendary|A mythical eagle that is so huge it can carry creatures the size of elephants in its talons|736702363167096953/roc.png|3,8,2|9;
+Bronze Dragon|42|106|Dragon|Bronze Dragons often fight each other over territory but it never results in any of them dying because their claws simply aren't sharp enough to pierce through their own scales|739149526547431445/bronze_dragon.png|2,8,2|10;
+Dragon Snake|123|31|Reptile|The Dragon Snake spends most of its time sleeping. But when it wakes up and ventures out of its den to look for food it can often destroy entire ecosystems thanks to its unsatiable hunger|739149681061396540/dragon_snake.png|3,8,2|12;
+Nergigante|91|67|Beast|Nergigante has the ability to regrow and harden its numerous spikes. It's also one of the few known creatures who actively hunt other S-Rank monsters|739150004597555261/nergigante.png|1,8,2|17;
+S
+#################################################################################
+Wyrm|107|88|Legendary,Lightning,Flying|One of the largest monsters known to mankind. The Wyrm is not only gigantic but also fast and it has perfect control over lightning magic. Some say that every thunderstorm is caused by a Wyrm waking from its slumber|734193068307251220/wyrm.png|4,8,3|3;
+Silver Dragon|57|132|Dragon,Flying|The Silver Dragon is the fastest among all the dragons. Since it usually flies above the clouds it is only seen extremely rarely|734193163199053884/silver_dragon.png|4,8,3|4;
+Crystal Dragon|73|118|Dragon|A unique dragon with scales made of crystals. All of its matierals are highly valuable|734193529621840002/crystal_dragon.png|5,8,3|5;
+SS

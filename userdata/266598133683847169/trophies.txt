@@ -1,0 +1,27 @@
+10|Tester|Special|**Alpha Tester** - One of the special people!;
+51|Slime|A|**[Slime] Enthusiast** - Collected 50% of Slime monsters;
+51|Fire|A|**[Fire] Enthusiast** - Collected 50% of Fire monsters;
+90|Slayer1|A|**Boss slayer** - Dealt 2052 damage to [Legendary Abyssal Terror];
+51|Flying|A|**[Flying] Enthusiast** - Collected 50% of Flying monsters;
+90|Slayer1|C|**Boss slayer** - Dealt 864 damage to [Grand Scythe Tree];
+90|Slayer1|C|**Boss slayer** - Dealt 1134 damage to [Alpha Wind Elemental];
+51|Arthropod|A|**[Arthropod] Enthusiast** - Collected 50% of Arthropod monsters;
+51|Intangible|A|**[Intangible] Enthusiast** - Collected 50% of Intangible monsters;
+90|Slayer1|B|**Boss slayer** - Dealt 1590 damage to [Grand Heavenly Knight];
+90|Slayer1|S|**Boss slayer** - Dealt 1512 damage to [Superior Bronze Dragon];
+39|Quest|C|**Quest Completionist** - Completed 25% of all quests;
+38|Quest|B|**Quest Completionist** - Completed 50% of all quests;
+37|Quest|A|**Quest Completionist** - Completed 75% of all quests;
+36|Quest|S|**Quest Completionist** - Completed 100% of all quests;
+90|Slayer1|B|**Boss slayer** - Dealt 1580 damage to [Mythical Dragon Fairy];
+90|Slayer1|B|**Boss slayer** - Dealt 1368 damage to [Humongous Haunted Armor];
+40|Level|S|**EXP collector** - Reached level 50;
+90|Slayer1|B|**Boss slayer** - Dealt 1328 damage to [King Abyssal Eel];
+90|Slayer1|D|**Boss slayer** - Dealt 546 damage to [Unparalleled Vampire Frog];
+90|Slayer1|C|**Boss slayer** - Dealt 778 damage to [Superior Fire Elemental];
+91|Slayer2|B|**Boss slayer** - Dealt 780 damage to [Grand Huge Slime];
+91|Slayer2|A|**Boss slayer** - Dealt 312 damage to [Grand Void Creature];
+92|Slayer3|B|**Boss slayer** - Dealt 78 damage to [Super Magma Beetle];
+92|Slayer3|D|**Boss slayer** - Dealt 98 damage to [Legendary Lost Spirit];
+92|Slayer3|S|**Boss slayer** - Dealt 196 damage to [Humongous Tyrannosaurus];
+92|Slayer3|B|**Boss slayer** - Dealt 98 damage to [Unparalleled Haunted Armor]

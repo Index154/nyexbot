@@ -1,0 +1,30 @@
+Bear|11|9|Beast|Perhaps the most dangerous beast you can encounter close to human settlements. Angry bears are the bane of lightly armed travellers|731848267486330940/bear.png|1,1,1|1;
+Wolf|8|12|Beast|Wolves are fast and vicious but their most troublesome feature is their intelligence. Encountering a pack of them can be deadly. Luckily this game only features solo encounters|733036853678178497/wolf.png|2,1,1|2;
+Man-Eating Flower|14|5|Plant|Like most normal plants, this one also gets the majority of its energy from rain and sunlight. But when these natural resources aren't enough, it will attempt to feed on any creatures that pass by. Thanks to this trait it can even survive in dry and cold environments|739165711171059812/man-eating_flower.png|3,1,1|28;
+Sabertooth Tiger|10|12|Beast|This species had already gone extinct long ago but has since been brought back to life by a famous witch|739165697543897109/sabertooth_tiger.png|2,1,1|41;
+Werewolf|14|8|Beast|Werewolves grow stronger at night, especially during a full moon. For this reason they spend the day in safety and venture out to hunt at night|739165769224683631/werewolf.png|1,1,1|42;
+Yeti|12|9|Frost,Beast|The Yeti may be bulky and by no means slow but the environment it resides in often poses a bigger threat in comparison|739165773246758962/yeti.webp|5,1,1|48;
+D
+#################################################################################
+Lesser Minotaur|33|16|Beast|Lesser Minotaurs are nothing to scoff at, even when compared to their bigger cousins. They wield large axes and are very easily angered|731849250463416350/lesser_minotaur.png|1,3,1|0;
+Frost Salamander|26|23|Frost,Reptile|Frost Salamanders have bad eyesight as they usually live deep within frozen caves. Their bodies are designed to withstand temperaturs as low as -100øC|739165299588464710/frost_salamander.png|2,3,1|26;
+Lesser Frost Drake|32|19|Frost,Reptile|Placeholder|739165328961044550/lesser_frost_drake.png|5,2,1|45;
+Wandering Golem|21|30|Armored|A golem that seems to constantly be in search of something. It doesn't allow anyone or anything to get in its way. What could it be looking for?|739165433126453338/wandering_golem.png|1,3,1|49;
+C
+#################################################################################
+Frost Worm|58|33|Armored,Frost|A giant worm that has adapted to colder regions. It's covered in a shell made of icy scales and can freeze smaller creatures with its breath|736680942281949245/frost_worm.png|5,4,2|6;
+Magic Wolf|27|68|Holy,Beast|While many monsters are able to use magic, wolves normally can't. These individuals however, have somehow surpassed the limits of their species and they submit only to the legendary Fenrir|739164913531879444/magic_wolf.png|4,4,2|26;
+B
+#################################################################################
+Glass Golem|62|59|Holy|Glass Golems are heartless killer machines with an unknown origin. If one appears in an area inhabited by humans it will lead to large-scale evacuations|733292726698770472/glass_golem.png|5,6,2|3;
+Frost Drake|53|70|Frost,Flying|A rare subspecies of drake that has control over ice magic. Just being in its vicinity makes you feel colder|736692154113589248/frost_drake.png|4,5,2|8;
+Ice Golem|54|68|Frost,Armored|A golem made of pure ice. It's light but still rather sturdy|739164554940121150/ice_golem.png|4,5,2|13;
+A
+#################################################################################
+Roc|60|93|Flying,Legendary|A mythical eagle that is so huge it can carry creatures the size of elephants in its talons|736702363167096953/roc.png|3,8,2|9;
+Chimera|93|58|Beast,Legendary|An unholy fusion between multiple animals, the Chimera should have never existed in the first place. This breed was created many decades ago by a mad sorcerer|739149541160255508/chimera.png|1,8,2|11;
+S
+#################################################################################
+Fenrir|49|143|Legendary,Beast|Often called the "god of wolves", the Fenrir is not only lightning-fast but also a master of illusion magic|731855801832177714/fenrir.png|2,10,3|1;
+Cocytus|135|56|Frost|This monster shares its name with the 9th layer of Hell, a giant frozen lake. It can create custom weapons using ice magic and fights using a combination of melee combat and other spells|772107548891152384/cocytus.png|5,8,3|17;
+SS

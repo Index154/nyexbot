@@ -1,0 +1,116 @@
+globalVariables.json:
+	{
+		"adminUserId": "214754022832209921",
+		"mainServerId": "516031666456887312",
+		"updateChannelId": "731236740974510100",
+		"bossRate": 6000,
+		"shinyRate": 4000,
+		"questRadarBonus": 20,
+		"monsterRadarBonus": 30,
+		"rareTreasureChance": 15,
+		"veryRareTreasureChance": 5,
+		"statPointAttackValue": 1,
+		"statPointSpeedValue": 1,
+		"statPointCaptureEfficiencyValue": 1,
+		"statPointMonsterLuckValue": 1,
+		"statPointDropLuckValue": 0.5,
+		"statPointRareLuckValue": 0.5,
+		"maintenance": false
+	}
+
+weeklyRealm.json:
+	{
+		"week": 0,
+		"areaId": null
+	}
+
+shop.json:
+	{
+		"week": 0,
+		"buyingModifier": 1,
+		"sellingModifier": 1,
+		"shinyMonster": 0,
+		"lastShinyUser": null,
+		"items": [0, 0, 0, 0, 0],
+		"prices": [200, 200, 200, 200, 200]
+	}
+
+boss.json:
+	{
+		"bossName": null,
+		"modifier": null,
+		"monsterRarityId": null,
+		"hp": null
+	}
+
+areas:
+	create table areas(
+		areaId tinyint unsigned unique auto_increment not null,
+		areaName varchar(40) unique not null,
+		isRealm bool not null default 1,
+		isUnique bool not null default 0,
+		primary key (areaId)
+	);
+Filling method: Manual
+
+icons:
+	create table icons(
+		iconId tinyint unsigned unique auto_increment not null,
+		iconString varchar(60) unique not null,
+		commonName varchar(15) unique not null,
+		primary key (iconId)
+	);
+Filling method: Manual
+
+recipeTypes:
+	create table recipeTypes(
+		recipeTypeId tinyint unsigned unique auto_increment not null,
+		recipeTypeName varchar(50) unique not null,
+		primary key (recipeTypeId)
+	);
+Filling method: Manual
+
+shopItemRarities:
+	create table shopItemRarities(
+		shopItemRarityId tinyint unsigned unique auto_increment not null,
+		rarityName varchar(20) unique not null,
+		chance tinyint unsigned not null,
+		primary key (shopItemRarityId)
+	);
+Filling method: Manual
+
+equipmentModifiers:
+	create table equipmentModifiers(
+		modifierId tinyint unsigned unique auto_increment not null,
+		modifierName varchar(20) not null,
+		weight tinyint not null,
+		attack smallint not null,
+		speed smallint not null,
+		captureEfficiency smallint not null,
+		monsterLuck smallint not null,
+		dropLuck smallint not null,
+		rareLuck smallint not null,
+		primary key (modifierId)
+	);
+Filling method: Manual
+
+research:
+	create table research(
+		researchId tinyint unsigned unique auto_increment not null,
+		rewardType varchar(20) not null,
+		amount smallint unsigned not null,
+		size varchar(10) not null,
+		cost tinyint not null,
+		duration tinyint not null,
+		primary key (researchId)
+	);
+Filling method: Manual
+
+guessTopics:
+	create table guessTopics(
+		topicId tinyint unsigned unique auto_increment not null,
+		topicName varchar(20) unique not null,
+		primary key (topicId)
+	);
+Filling method: Manual
+

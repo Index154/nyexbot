@@ -1,0 +1,40 @@
+Cave Mole|7|12|Beast|(Special) Who's got teeth like spades and needs no shades? CAVE MOLE! CAVE MOLE!|849040499650199562/cave_mole.png|2,1,1|65;
+Caveman|9|9|Beast|(Special) One of our primitive ancestors. His simple life is somewhat enviable|849040509144924180/caveman.png|5,1,1|66;
+Hang Spider|8|10|Arthropod|(Special) It could chase you if it had to but it'd rather not leave its web if possible|849040518088228914/hang_spider.png|3,1,1|67;
+Horned Lizard|8|13|Reptile|(Special) It still hasn't figured out how to stop rolling once it starts|849040525415677972/horned_lizard.png|4,1,1|68;
+Jiangshi|12|6|Undead|(Special) A reanimated corpse. Its stiff legs force it to hop around|849040533120876564/jiangshi.png|6,1,1|69;
+D
+#################################################################################
+Eggplup|19|30|Beast,Plant|(Special) Once a fierce hound of hell, now a playful puppy|849043219592249377/eggplup.png|4,3,1|57;
+Fire Frog|45|4|Water|(Special) Some frogs have developed an explosive personality|849043235397697546/fire_frog.png|B|58;
+Mantrap|48|3|Plant|(Special) Once it tasted human flesh, it never looked back!|849043244822036540/mantrap.png|1,3,1|59;
+Olmite|12|36|Beast|(Special) Tiamat's secondborn. An inquisitive race that excels at creation|849043252962656286/olmite.png|6,2,1|60;
+Rock Dog|28|21|Fire|(Special) The skin of this fire-breathing canine is protected by a rock-hard plates, hence the name|849043261149413376/rock_dog.png|5,2,1|61;
+Vampire|16|35|Undead|(Special) A tortured soul who traded their humanity for eternal life|849043269551783956/vampire.png|2,3,1|62;
+C
+#################################################################################
+Ammit|52|41|Demon|(Special) A terrifying underworld demon who eats the hearts of unclean souls, casuing them to die a second death|849045027988307968/ammit.png|1,4,2|42;
+Cat Mummy|21|73|Undead,Beast|(Special) These mummified felines are filled with terrible curses|849045040947789854/cat_mummy.png|2,4,2|43;
+Giant Bee|10|82|Flying,Arthropod|(Special) An important part of the cave ecosystem. However, it's much larger and more aggressive than the common honeybee|849045051039678464/giant_bee.png|2,4,2|44;
+Giant Fly|75|13|Flying,Arthropod|(Special) A fly of titanic proportions. It looks threatening but seems rather uninterested in us...|849045059469967360/giant_fly.png|6,2,2|45;
+Golden Monkey|1|87|Beast|(Special) He struck out on adventure but a sorceress used magic to transform him into an idol|849045068059902002/golden_monkey.png|4,4,2|46;
+Lamassu|62|30|Beast|(Special) A mighty demigod created by the Olmites to help them guard their city|849045075895386152/lamassu.png|5,4,2|47;
+Octopy|43|48|Water|(Special) It defends itself with a blinding ink attack and a crown of razor sharp barnacles|849045085956866078/octopy.png|6,2,2|48;
+Witch Doctor|79|14|Beast|(Special) A Tiki tribe elder who practices black magic. They use an effigy to attack intruders|849045103754215526/witch_doctor.png|1,4,2|49;
+B
+#################################################################################
+Anubis|91|32|Legendary,Beast|(Special) This legendary jackal-headed god is tasked with guarding the Temple's most hallowed treasures|849046378406477834/anubis.png|5,6,2|32;
+Crocman|41|84|Reptile|(Special) Their powerful bite and teleportation magic makes them a dangerous foe|849046385583325235/crocman.png|4,5,2|33;
+Goliath Frog|115|3|Water|(Special) A frog of legend. It carries its entire family within its mighty belly|849046393598771270/goliath_frog.png|1,6,2|34;
+Lavamander|102|16|Fire,Reptile|(Special) The blood of this lizard-like monster runs so cold that only the immense heat of lava can keep it going|849046401144324146/lavamander.png|3,6,2|35;
+Mech Rider|94|25|Armored,Alien|(Special) A MOYA-class mechanized armor designed by aliens to combat the Olmites during the Second Wars|849046409406578692/mech_rider.png|1,6,2|36;
+Queen Bee|32|89|Flying,Arthropod|(Special) The matriarch of the hive. On her abdomen one might find a blob of delicious royal jelly|849046418597740554/queen_bee.png|2,6,2|37;
+A
+#################################################################################
+Apep|103|51|Legendary,Fire,Reptile|(Special) A great snake god who slithers tirelessly throughout Duat, with scales of flint and a stomach full of hot ash|849046709823864883/apep.png|4,6,2|23;
+Ghost|122|29|Intangible|(Special) This angry and relentless spirit chases down explorers for reasons unknown|849046724810113024/ghost.png|3,8,2|24;
+Olmec|87|66|Armored|(Special) Once thought to be the cause of a curse that trapped explorers in a cave... but maybe he was just a small part of it?|849046732817301504/olmec.png|1,8,2|25;
+S
+#################################################################################
+Celestial Jellyfish|139|53|Legendary|(Special) These mighty titans roam the vast waters of the cosmos, leaving behind them great ripples that alter time and space|849046748327313418/celestial_jellyfish.png|4,8,3|19;
+SS

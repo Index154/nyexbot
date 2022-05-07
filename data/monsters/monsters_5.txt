@@ -1,0 +1,34 @@
+Stray Lizardman|9|10|Reptile|The lizardman tribe usually doesn't engage in conflicts even though they have a hatred towards humans. But when an individual is exiled from the tribe, it can quickly come to a hostile encounter|731855489662713866/lizardman.png|5,1,1|8;
+Skeleton Archer|14|7|Undead|A Skeleton that prefers to attack from a distance. When they run out of arrows, they start throwing anything they can get their hands on|731855384561582080/skeleton_archer.png|2,1,1|9;
+Skeleton Soldier|14|7|Undead|The most basic undead warrior. Not very dangerous on its own but groups can quickly overwhelm an unprepared adventurer|731855372050104330/skeleton_soldier.png|1,1,1|10;
+Enforcer|13|9|Armored|A remnant of a lost civilisation. The Enforcers are weak golems but they still act out the tasks programmed into them even after all the time that has passed since then|739165585740660816/enforcer.png|1,1,1|31;
+Werewolf|14|8|Beast|Werewolves grow stronger at night, especially during a full moon. For this reason they spend the day in safety and venture out to hunt at night|739165769224683631/werewolf.png|1,1,1|42;
+Shadow Vermin|5|14|Dark,Beast|A hairless rodent with the ability to shrowd itself in a dark fog, allowing it to perform sneak-attacks|739165789961060463/shadow_vermin.png|4,1,1|45;
+Wraith|8|14|Dark,Intangible|Humans that were excessively evil before perishing may turn into Wraiths instead of regular spirits. These monsters carry deeper grudges and sometimes hold more power as a result|739165774337409115/wraith.png|3,1,1|46;
+Gargoyle|11|9|Armored,Demon|Unlike most demons which are born in the Underworld, the Gargoyles used to be regular stone statues created by mankind until they were brought to life by the first Demon King thousands of years ago|739165588500512909/gargoyle.png|1,1,1|49;
+D
+#################################################################################
+Blade Wraith|31|20|Intangible,Dark|An apparition that shrouds its surroundings in fog, allowing it to launch surprise attacks|739165262229667900/blade_wraith.png|3,2,1|17;
+Stone Golem|46|6|Armored|Placeholder|739165456627400814/stone_golem.png|1,3,1|36;
+Wandering Golem|21|30|Armored|A golem that seems to constantly be in search of something. It doesn't allow anyone or anything to get in its way. What could it be looking for?|739165433126453338/wandering_golem.png|1,3,1|49;
+C
+#################################################################################
+Stone Soldier|65|24|Armored|A kind of golem made of ancient stone. It's rather slow thanks to its old age|736681044320714863/stone_soldier.png|1,4,2|7;
+Spiral Guardian|63|33|Armored|A metal golem with a peculiar design - Its lower body is constantly rotating, slicing apart anyone that comes too close|739165015634083890/spiral_guardian.png|4,4,2|36;
+B
+#################################################################################
+Soul Eater|58|56|Dark,Spirit|A being made of concentrated negative energy. Because it has no soul of its own, it constantly yearns for those of others|733292992844136557/soul_eater.png|3,6,2|4;
+Iron Golem|103|13|Armored|A strange golem that has lost its core long ago but has somehow never stopped functioning. The swings of its gigantic axe are so powerful that their wind pressure alone can cut through solid rock|734191041728741406/iron_golem.webp|1,6,2|5;
+Demon Monstrosity|101|21|Demon,Beast|Desperate humans sometimes attempt to summon demons to aid them. If such a summoning process fails, it may result in the birth of this mindless abomination instead|739164562955304980/demon_monstrosity.png|1,6,2|17;
+Madness Slime|89|35|Slime,Dark|Also called "Shoggoth", these slimes are servants of a higher being and have been fully consumed by evil|739164651169775686/madness_slime.png|4,5,2|21;
+Protector|60|63|Armored|An advanced golem that has been programmed to fend off anyone who gets too close to what it's defending - Whatever that may be...|739164657394384916/protector.png|1,6,2|24;
+A
+#################################################################################
+Dragon Snake|123|31|Reptile|The Dragon Snake spends most of its time sleeping. But when it wakes up and ventures out of its den to look for food it can often destroy entire ecosystems thanks to its unsatiable hunger|739149681061396540/dragon_snake.png|3,8,2|12;
+Golem Titan|138|15|Armored|These enormous stone titans have been buried all over the world by an ancient civilisation, seemingly to protect their settlements which have already long since turned into rubble|739149689148145664/golem_titan.png|1,8,2|13;
+S
+#################################################################################
+Gold Dragon|118|73|Dragon,Flying|Widely known to be the proudest out of all the dragon species. They spend most of their time flying, looking down on all other beings|739145167285649468/gold_dragon.png|6,7,3|10;
+Soul Dragon|75|120|Intangible,Dragon|The soul of an ancient dragon that died long ago. Sometimes these creatures still retain some of their intelligence|739146382534901810/soul_dragon.png|4,8,3|13;
+Destruction Dragon|124|76|Dragon,Dark|An evil dragon also known by the name "Ragnarok" which some believe has been sent to bring forth the end of the world. It's famous for having destroyed a whole country in a single night|772107561977643048/destruction_dragon.png|1,10,3|18;
+SS

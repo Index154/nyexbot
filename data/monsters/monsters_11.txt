@@ -1,0 +1,35 @@
+Astral Lurker|6|13|Alien|Originally from another world, these creatures often come to this planet in search of food and other resources their home has run out of|736642841257836665/astral_lurker.png|5,1,1|18;
+Astral Serpent|4|16|Alien|A common pet of other more intelligent extraterrestrial monsters. It can swallow its prey whole just like a snake|736642934081978369/astral_serpent.png|6,1,1|19;
+Harpy|9|12|Flying,Holy|An inhabitiant of the floating city Icas which is under the protection of the Heavenly Legion. While most harpies are regular citizens, only scouts who have been trained in combat are allowed to leave the city|739165640614477864/harpy.png|4,1,1|47;
+D
+#################################################################################
+Heavenly Drone|24|27|Armored,Holy,Flying|A mindless scout of the heavenly army. It seeks out any impurities and attempts to destroy them with beams of holy light|733284447188811876/heavenly_drone.png|4,3,1|4;
+Griffon|21|30|Beast,Flying|Griffons are respected by many culutures as the kings of the sky. And their proud attitude sure matches that of a king|736676373485060206/griffon.png|2,3,1|10;
+Astral Spirit|9|42|Intangible,Alien|Not much is known about this monster besides that its some sort of spirit from very far away|739165256827273246/astral_spirit.png|4,3,1|12;
+Hippogriff|26|23|Flying,Beast|While it's similar to a Griffon, the Hippogriff is more aggressive and less intelligent in comparison|739165305145655326/hippogriff.png|5,2,1|20;
+Wind Elemental|3|48|Intangible|Wind given shape and mind by the will of the world. It goes around causing nothing but destruction|739165445336334388/wind_elemental.png|4,3,1|21;
+C
+#################################################################################
+Heavenly Knight|33|54|Armored,Holy|A knight of the Heavenly Legion. They are normally only sent out as groups or armies but occasionally they can be seen travelling through the human world alone. Just for what purpose?|734189965579386970/heavenly_knight.png|4,4,2|5;
+Nebula Wraith|37|54|Intangible|A fog-like apparition with a unique appearance. The Nebula Wraith can disassemble and reassamble its body, effectively teleporting over short distances|736681085072834700/nebula_wraith.png|6,2,2|9;
+Dragon Fairy|12|79|Dragon,Flying,Holy|The smallest and weakest species of dragon. These creatures may look cute but they're far from docile|739164843042668574/dragon_fairy.png|2,4,2|11;
+Feathered Drake|23|69|Flying,Reptile|One of the oldest species of drake, this one looks closer to a bird than a reptile thanks to its feathers and sharp beak|739164902672957551/feathered_drake.png|2,4,2|21;
+Wyvern|48|42|Flying,Reptile|Wyverns are somewhere between regular drakes and dragons when it comes to how dangerous they are. Their tails are covered in poisonous spikes and they are able to shoot balls of fire|739165061729353778/wyvern.png|5,4,2|37;
+B
+#################################################################################
+Storm Elemental|92|29|Lightning,Intangible|A gigantic storm cloud full of rage. It's said to be born from the wrath of a god|736692229447483462/storm_elemental.png|1,6,2|10;
+Thunderbird|21|103|Lightning,Flying|The Thunderbird is similar to the Phoenix in that it's rare, very nimble and able to use powerful elemental magic. When it hunts, this predator kills its prey with highly accurate lightning strikes from up to 40 meters away|739164638528143461/thunderbird.png|2,6,2|20;
+Pegasus|34|91|Holy,Beast|The Pegasus is a winged horse that gives off a holy aura. It can only be ridden by those who have a pure heart|739164653413728317/pegasus.png|3,6,2|22;
+Storm Giant|97|25|Lightning|These giants are affiliated with the Heavenly Legion of Deisos. They usually serve as ranged support during large-scale battles as their able to infuse their swords with the power of lightning, allowing them to discharge flashing blades at far-away targets|739164669511467028/storm_giant.png|1,6,2|26;
+A
+#################################################################################
+Astral Seeker|34|116|Holy,Dark|A mysterious being with control over both light and darkness. It has unimaginably vast knowledge, yet seems to be looking for something|734192040123957329/astral_seeker.png|2,8,2|6;
+Roc|60|93|Flying,Legendary|A mythical eagle that is so huge it can carry creatures the size of elephants in its talons|736702363167096953/roc.png|3,8,2|9;
+Bronze Dragon|42|106|Dragon|Bronze Dragons often fight each other over territory but it never results in any of them dying because their claws simply aren't sharp enough to pierce through their own scales|739149526547431445/bronze_dragon.png|2,8,2|10;
+S
+#################################################################################
+Wyrm|107|88|Legendary,Lightning,Flying|One of the largest monsters known to mankind. The Wyrm is not only gigantic but also fast and it has perfect control over lightning magic. Some say that every thunderstorm is caused by a Wyrm waking from its slumber|734193068307251220/wyrm.png|4,8,3|3;
+Silver Dragon|57|132|Dragon,Flying|The Silver Dragon is the fastest among all the dragons. Since it usually flies above the clouds it is only seen extremely rarely|734193163199053884/silver_dragon.png|4,8,3|4;
+Celestial Serpent|64|129|Legendary,Alien,Flying|These creatures can sometimes be spotted traveling between distant planets in the night sky. They live off of any kind of energy and can even consume whole stars if given enough time|739138379010146343/celestial_serpent.png|2,10,3|9;
+Destruction Dragon|124|76|Dragon,Dark|An evil dragon also known by the name "Ragnarok" which some believe has been sent to bring forth the end of the world. It's famous for having destroyed a whole country in a single night|772107561977643048/destruction_dragon.png|1,10,3|18;
+SS

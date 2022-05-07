@@ -1,0 +1,45 @@
+Giant Scorpion|12|7|Beast,Arthropod|Similar in size to an alligator, this creature's main method of attack is the large pincer on its tail which can inject a powerful toxin|731848303255224340/giant_scorpion.png|6,1,1|3;
+Stray Lizardman|9|10|Reptile|The lizardman tribe usually doesn't engage in conflicts even though they have a hatred towards humans. But when an individual is exiled from the tribe, it can quickly come to a hostile encounter|731855489662713866/lizardman.png|5,1,1|8;
+Basilisk|7|14|Reptile|The Basilisk has the ability to partially turn other creatures into stone with its gaze. Fortunately the petrification can be cured quickly by pouring a special chemical onto the affected body part|736648075946229780/basilisk.png|2,1,1|20;
+Chupacabra|9|12|Beast|A feral creature that is very aggressive. They're known to steal lifestock from small villages|736652967456931850/chupacabra.png|2,1,1|22;
+Man-Eating Flower|14|5|Plant|Like most normal plants, this one also gets the majority of its energy from rain and sunlight. But when these natural resources aren't enough, it will attempt to feed on any creatures that pass by. Thanks to this trait it can even survive in dry and cold environments|739165711171059812/man-eating_flower.png|3,1,1|28;
+Mummy|16|5|Undead|Mummies are a special kind of Zombie covered in ancient cursed rags. They aren't much different besides that though|739165688513691819/mummy.png|4,1,1|37;
+Scavenger Serpent|12|8|Reptile|A medium-sized creature with a snake-like body and small arms. It's similar to a vulture in its nature|739165782168305794/scavenger_serpent.png|3,1,1|44;
+Rock Mimic|20|0|Armored|A strange monster with the features of a rock. It can't move but its body is quite tough in return|739165696952500274/rock_mimic.png|4,1,1|51;
+Giant Ant|8|10|Arthropod|Insect-type monsters often possess some kind of venom but the ant is an exception. Perhaps thanks to its exceptional swarm mentality it hasn't had the necessity to develop any such features|739165592334106735/giant_ant.png|6,1,1|57;
+D
+#################################################################################
+Earth Tortoise|35|15|Reptile,Armored|Rock-hard scales and a powerful jaw make this slow monster a lot more dangerous than it might look|731983184744415333/forest_tortoise.png|1,3,1|3;
+Bone Serpent|39|12|Undead|An undead creature with the body of a serpent. It also has venomous fangs much like a living snake|736676352635174941/bone_serpent.png|6,2,1|9;
+Wind Elemental|3|48|Intangible|Wind given shape and mind by the will of the world. It goes around causing nothing but destruction|739165445336334388/wind_elemental.png|4,3,1|21;
+Giant Worm|34|18|Armored|This burrowing carnivore has no need for eyes. It detects its prey through vibrations alone|739165303388372992/giant_worm.png|1,3,1|24;
+Jabberwock|22|30|Flying,Reptile|Placeholder|739165288825749604/jabberwock.png|5,2,1|31;
+Land Shark|42|11|Beast|This monster hunts by digging a large hole where it hides itself. When something passes by, it jumps out and attacks|739165351731920906/land_shark.png|1,3,1|32;
+Desert Drake|12|37|Reptile,Flying|Placeholder|739165294815346748/desert_drake.png|2,3,1|46;
+Wandering Golem|21|30|Armored|A golem that seems to constantly be in search of something. It doesn't allow anyone or anything to get in its way. What could it be looking for?|739165433126453338/wandering_golem.png|1,3,1|49;
+C
+#################################################################################
+Minotaur|57|32|Beast|A race that is famous for being ruthless. Minotaurs are so imposing that they can force even Armored Bulls to obey their commands|731855778629025903/minotaur.png|1,4,2|1;
+Dracolisk|43|50|Reptile,Flying|A mutated drake that was fused with a Basilisk through an obscure ritual before hatching. While it inherits features of both parent species, they're not as prominent when comapred to the originals|739164839880032346/dracolisk.png|5,4,2|10;
+Emperor Cobra|53|41|Reptile|An enormous cobra with venom so strong that it can kill an adult in less than a minute. Fighting it without an antidote or heavy armor is reckless|739164900730994758/emperor_cobra.png|4,4,2|20;
+Mummy Pharaoh|72|22|Undead|Among the mummies, this one is something like a king and also a religious figure. It's more intelligent and also possesses valuable equipment|739164915088097340/mummy_pharaoh.png|5,4,2|27;
+Sulfur Slime|83|9|Slime|The body of this slime is even more acidic than those of its relatives, melting down its prey extremely quickly and even corroding metals|739164934801326221/sulfur_slime.png|1,4,2|28;
+Wyvern|48|42|Flying,Reptile|Wyverns are somewhere between regular drakes and dragons when it comes to how dangerous they are. Their tails are covered in poisonous spikes and they are able to shoot balls of fire|739165061729353778/wyvern.png|5,4,2|37;
+B
+#################################################################################
+Sand Golem|109|12|/ |A golem made entirely of sand. Its core radiates a pulling energy, preventing the body from falling apart|736692172744687757/sand_golem.png|5,6,2|9;
+Glavenus|92|31|Reptile|A brute monster that wields its heavy tail like a blade. It grows hotter and more keen with each strike until it glows red|739164549009113198/glavenus.png|1,6,2|11;
+Cockatrice|50|69|Flying|A dragon-like creature with features of a rooster. It can kill its prey by simply staring at it for long enough which is why it's occasionally confused with the Basilisk|739862475687854110/cockatrice.png|6,4,2|15;
+Flame Centipede|63|61|Arthropod|Although not actually a Fire-type creature, this horrific insect can breathe flames just like a dragon would|739164564846805132/flame_centipede.png|3,6,2|19;
+Titan Centipede|72|51|Arthropod|An enormous centipede that is unusually nimble for its size, thanks to its strong legs. It can easily crush a person by hitting them with any part of its body|739164722347376651/titan_centipede.png|2,6,2|31;
+A
+#################################################################################
+Tyrannosaurus|98|54|Reptile|Without a doubt an apex predator. The Tyrannosaurus' full name means "King of the tyrant lizards"|736702034237194250/Tyrannosaurus.png|1,8,2|7;
+Manticore|102|50|Beast,Legendary|The Manticore is incredibly intelligent and cunning. It likes to lure people into traps and slowly rip them apart while laughing|739149840428040252/manticore.png|6,6,2|16;
+Phoenix|32|119|Fire,Legendary,Flying|The mythical Phoenix is said to be reborn from its own ashes after dying. It's regarded as a deity in many cultures|739150014194122862/phoenix.png|4,6,2|18;
+S
+#################################################################################
+Skeletal Dragon|113|76|Dragon,Undead|Zombie Dragons that have lived for long enough that all their flesh has rotted away. As a result they can move faster but are also somewhat less powerful|731849520262021120/skeletal_dragon.webp|1,10,3|0;
+Behemoth|163|29|Legendary,Armored|The Behemoth is a creature that lives for what seems like an eternity. Nobody has seen even a glimpse of their lifecycle yet|733297579433001010/behemoth.png|1,10,3|2;
+Tarrasque|143|53|Beast,Legendary|The Tarrasque is a force of pure destruction, tearing down anything it comes across. Some say that it was created by an ancient civilisation during a great war|739232831892488222/tarrasque.png|1,10,3|14;
+SS

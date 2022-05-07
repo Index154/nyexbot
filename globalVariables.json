@@ -1,0 +1,18 @@
+{
+	"adminUserId": "214754022832209921",
+	"mainServerId": "516031666456887312",
+	"updateChannelId": "731236740974510100",
+	"bossRate": 6000,
+	"shinyRate": 4000,
+	"questRadarBonus": 20,
+	"monsterRadarBonus": 30,
+	"rareTreasureChance": 15,
+	"veryRareTreasureChance": 5,
+	"statPointAttackValue": 1,
+	"statPointSpeedValue": 1,
+	"statPointCaptureEfficiencyValue": 1,
+	"statPointMonsterLuckValue": 1,
+	"statPointDropLuckValue": 0.5,
+	"statPointRareLuckValue": 0.5,
+	"maintenance": false
+}

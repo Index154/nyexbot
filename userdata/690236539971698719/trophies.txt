@@ -1,0 +1,8 @@
+10|Tester|Special|**Alpha Tester** - One of the special people!;
+44|Level|D|**EXP collector** - Reached level 10;
+92|Slayer3|A|**Boss slayer** - Dealt 8 damage to [Legendary Abyssal Terror];
+91|Slayer2|C|**Boss slayer** - Dealt 19 damage to [Extreme Red Slime];
+43|Level|C|**EXP Collector** - Reached level 20;
+91|Slayer2|D|**Boss slayer** - Dealt 34 damage to [Superior Crawler];
+91|Slayer2|D|**Boss slayer** - Dealt 34 damage to [Crazy Basilisk];
+91|Slayer2|A|**Boss slayer** - Dealt 34 damage to [Legendary Vine Wolf]

@@ -1,0 +1,31 @@
+Hellhound|13|7|Fire|A creature that gives off the appearance of something that has crawled out from hell itself. Covered in undying hellfire which emanates much more energy than regular flames do|733082330792591360/hellhound.png|1,1,1|13;
+Hellcat|7|13|Fire|The feline counterpart to the Hellhound. This one however only covers itself in hellfire when it needs to, conserving energy for longer|733082363403436112/hellcat.png|2,1,1|14;
+Cursed Skull|8|14|Undead,Fire|An undead monster that burns endlessly. It's animated by the curse of a suffering soul from hell|736661183469191228/cursed_skull.png|4,1,1|24;
+Imp|6|13|Demon|In many ways the most civilized kind of demon of them all. Imps love treasure and other riches more than anything so they often try to make deals with humans|739165646532903023/imp.png|2,1,1|53;
+D
+#################################################################################
+Fire Elemental|35|15|Fire,Intangible|A type of spirit born from the wrath of nature. It sets anything it touches ablaze|736676390384042094/fire_elemental.png|3,2,1|11;
+Lesser Magma Drake|37|12|Fire,Reptile|Unlike other lesser drakes, this species has two additional claws that are mainly used for digging and climbing|739165332077281320/lesser_magma_drake.png|6,2,1|23;
+Magma Scorpion|37|14|Fire,Arthropod|Placeholder|739165343792103494/magma_scorpion.png|4,3,1|35;
+Volcanic Guardian|39|12|Fire|Placeholder|739165474834743437/volcanic_guardian.png|4,3,1|47;
+C
+#################################################################################
+Magma Beetle|46|44|Fire,Arthropod|These beetles have active magma flowing through their bodies and they can shoot it at foes as a defense mechanism|736681069264240791/magma_beetle.png|1,4,2|8;
+Ashen Spirit|32|59|Dark,Intangible,Armored|The Ashen Spirit is equipped with a set of cursed armor that was forged using dark magic. One of few objects that can be directly interacted with by both the living and the dead|739164858943275028/ashen_spirit.png|5,4,2|18;
+Obsidian Golem|34|60|Armored,Flying|This golem is made of a metal alloy also containing obsidian. The wings are only coated with this material, making them a weak spot|739165006163214467/obsidian_golem.png|3,4,2|32;
+Volcano Golem|84|8|Fire,Armored|A gigantic golem with lava for blood. Its head resembles a volcano and serves as the exhaust for the excess heat that is given off by its core|739165071107948604/volcano_golem.png|5,4,2|40;
+B
+#################################################################################
+Flame Centipede|63|61|Arthropod|Although not actually a Fire-type creature, this horrific insect can breathe flames just like a dragon would|739164564846805132/flame_centipede.png|3,6,2|19;
+Molten Slime|40|79|Slime,Fire|An irregular monster that is only loosely categorized as a slime. Its body is made of hot liquid steel with purple crystals embedded in it. These crystals are slowly burned inside of its body, providing heat and releasing poisonous smoke. The slime dies once it completely runs out of crystals, turning into a lifeless statue|739164655510880306/molten_squid.png|4,5,2|23;
+Volcanic Beast|88|34|Fire,Beast|The obsidian shell of this monster provides high defense. That, coupled with its fiery breath and its heavy attacks makes it a very powerful foe|739164716449923172/volcanic_beast.png|1,6,2|30;
+A
+#################################################################################
+Furnace Golem|132|24|Armored,Fire|A walking furnace that collects any items it comes across and incinerates them in the hopes of finding something it cannot melt down. Supposedly created by a mad blacksmith who wants to create the strongest blade in the world|733297174833659924/furnace_golem.png|5,6,2|3;
+Ifrit|47|99|Legendary,Fire|The spirit king of fire - A symbol of conflict, war and great disaster|734191718630555729/ifrit.png|1,8,2|4;
+Hellfire Centipede|84|71|Fire,Arthropod|Possibly the greatest nightmare of many adventurers - This monster can swim through lava and spit chunks of obsidian at its opponents|739149834581442600/hellfire_centipede.png|5,6,2|14;
+S
+#################################################################################
+Dragon Hydra|125|72|Legendary,Dragon|Each head of the Dragon Hydra can shoot out a different kind of magic: Flames, freezing mist, poisonous gas, beams of light and electric blasts|734194070339190784/dragon_hydra.png|1,10,3|6;
+Magma Dragon|133|62|Dragon,Fire|The Magma Dragon doesn't spew fire - Instead it shoots bursts of lava which turn into stationary hazards after impact|739146376419737630/magma_dragon.png|1,10,3|12;
+SS

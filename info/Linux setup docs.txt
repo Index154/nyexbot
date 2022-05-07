@@ -1,0 +1,118 @@
+Setting up Nyexbot:
+	sudo bash
+	apt update
+	apt-get install npm
+	mkdir nyexbot
+	cd nyexbot
+	npm install -g n
+	n lts
+	
+	reopen the console
+	
+	sudo bash
+	cd nyexbot
+	npm i -g pm2
+	npm install mysql2
+	npm install discord.js
+	npm install adc.js
+	npm install discordjs-button-pagination
+	pm2 start app.js
+	pm2 startup
+	pm2 save
+	(Make sure this really works, may need sudo for startup or maybe not)
+	
+	Replace index.js in .\node_modules\discordjs-pagination-embed with the edited one
+	
+	deb http://security.debian.org/debian-security bullseye-security main contrib non-free
+	put this into /etc/apt/sources.list
+
+	sudo timedatectl set-timezone Europe/Berlin
+	
+
+Setting up Apache (indexnight.com):
+	sudo bash
+	apt-get install php
+	mkdir indexnight
+	
+	Get all of the files and put them into indexnight
+	Check apache status: systemctl status apache2
+	
+	nano /etc/apache2/sites-enabled/000-default.conf (change documentroot to /home/admin/indexnight)
+	nano /etc/apache2/sites-enabled/default-ssl.conf (change documentroot to /home/admin/indexnight)
+	nano /etc/apache2/apache2.conf (add directory /home/admin/indexnight path with allowoverride all)
+	nano /etc/apache2/conf-enabled/security.conf (activate security options)
+	
+	sudo a2enmod headers
+	sudo a2enmod rewrite
+	sudo a2enmod ssl
+	sudo systemctl restart apache2
+	
+	Useful command for checking apache2 logs: sudo gedit /var/log/apache2/error.log
+	
+	https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-using-lets-encrypt-certificates-with-lamp
+	(for SSL setup with DNS validation)
+	
+	https://www.linkedin.com/pulse/ssl-configuration-apache-sachila-ranawaka
+
+
+Setting up MySQL:
+	sudo bash
+	sudo useradd user
+	sudo passwd user
+	
+	Enter password twice
+	
+	sudo usermod -aG sudo user
+	
+	restart the machine
+	
+	https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-debian-10
+	https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
+	
+	(How to use: mysql -u root -p)
+
+
+VSCode OpenSSH setup:
+	Install VSCode
+	Install Remote Development extension pack
+	Make sure OpenSSH Client feature is enabled on Windows
+	Save private key for SSH in C:/Users/user
+	Open VSCode
+	Press F1
+	Select "Remote-SSH: Open SSH Configuration File..."
+	Select the config file in the user path
+	Paste the following (edit username):
+		Host indexnight.com
+		  HostName indexnight.com
+		  User admin
+		  IdentityFile C:/Users/username/nyexVirginia1.pem
+		  
+	"Remote-SSH: Connect to Host..." can now be used to connect
+	The toolbar option "Terminal" > "New Terminal" can be used to open a regular SSH terminal within the program
+
+
+Atop (resource logging):
+	sudo apt-get install atop
+	sudo update-rc.d atop defaults
+	Add LOGINTERVAL=60 to /etc/default/atop
+	systemctl restart atop
+	Use atop -r to view current log file (or an older one by supplying a path) (logs location: /var/log/atop)
+
+
+Maintenance:
+	cd nyexbot
+	sudo bash
+	apt-get update
+	npm update
+	
+	n latest
+	apt-get upgrade
+
+
+Making a swap partition:
+	sudo fallocate -l 4G /swapfile
+	sudo chmod 600 /swapfile
+	sudo mkswap /swapfile
+	sudo nano /etc/fstab
+		Add this line: /swapfile swap swap defaults 0 0
+	echo vm.swappiness=40 | sudo tee -a /etc/sysctl.conf

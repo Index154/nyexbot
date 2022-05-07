@@ -1,0 +1,24 @@
+Slime|5|6|Slime|The basic slime is the weakest monster, yet it has a strange appeal to it. In some cultures domesticated slimes are used for cleaning purposes|731848249505218633/slime.png|4,1,1|0;
+D
+#################################################################################
+Spore Slime|42|6|Slime,Plant|Placeholder|739165387467259924/spore_slime.png|3,2,1|39;
+Possessive Slime|39|10|Slime,Undead|Placeholder|739165401472172142/possessive_slime.png|3,2,1|40;
+Mold Slime|45|4|Plant,Slime|This slime attaches itself to old wood or other dead plants and can barely move. It defends itself by shooting out a poisonous gas|739165346434383882/mold_slime.png|4,3,1|51;
+Red Slime|9|40|Slime|This slime has evolved to be smaller but also faster than its brethren, making it very proficient at hunting smaller animals|772104749612400640/red_slime.png|2,3,1|56;
+C
+#################################################################################
+Huge Slime|54|30|Slime|These slimes are so large that they can envelop a person entirely, slowly drowning and then dissolving them|731849283376119840/huge_slime.png|4,4,2|0;
+Dark Sludge|78|14|Slime,Dark|A slime specialized in surprise attacks. It hides itself in small crevices or on ceilings waiting for prey to come near|739164854425878690/dark_sludge.png|3,4,2|15;
+Sulfur Slime|83|9|Slime|The body of this slime is even more acidic than those of its relatives, melting down its prey extremely quickly and even corroding metals|739164934801326221/sulfur_slime.png|1,4,2|28;
+B
+#################################################################################
+Crystal Slime|45|79|Slime|This type of slime can crystallize parts of its body at will, allowing it to stab and slice its prey before engulfing it|739164560120086598/crystal_slime.png|4,5,2|16;
+Madness Slime|89|35|Slime,Dark|Also called "Shoggoth", these slimes are servants of a higher being and have been fully consumed by evil|739164651169775686/madness_slime.png|4,5,2|21;
+Molten Slime|40|79|Slime,Fire|An irregular monster that is only loosely categorized as a slime. Its body is made of hot liquid steel with purple crystals embedded in it. These crystals are slowly burned inside of its body, providing heat and releasing poisonous smoke. The slime dies once it completely runs out of crystals, turning into a lifeless statue|739164655510880306/molten_squid.png|4,5,2|23;
+A
+#################################################################################
+Chaos Slime|110|43|Slime,Dark|This slime is an embodiment of chaos. It's constantly shifting, forming mouths, eyes and tentacles sporadically. Although most slimes consume their prey by simply digesting it whole, the Chaos Slime actually creates razor-sharp teeth for chewing it first|736702104303042620/chaos_slime.png|6,6,2|8;
+S
+#################################################################################
+Gold Slime|2|176|Slime,Holy|An incredibly rare kind of slime. It's as weak as a regular slime but extremely fast. It also likes to relax in the sun|739145174545858699/gold_slime.webp|4,8,3|11;
+SS

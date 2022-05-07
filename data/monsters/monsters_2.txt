@@ -1,0 +1,42 @@
+Bear|11|9|Beast|Perhaps the most dangerous beast you can encounter close to human settlements. Angry bears are the bane of lightly armed travellers|731848267486330940/bear.png|1,1,1|1;
+Crawler|7|14|Dark,Arthropod|A strange mix between a spider and a somewhat human-like appearance. These monsters prefer to live in damp caves and are known for their agility|731854466067726336/spider_crawler.webp|2,1,1|5;
+Vampire Bat|5|14|Dark,Flying|Highly aggressive and always hungry for blood|731983166499323972/vampire_bat.png|5,1,1|11;
+Rock Scorpion|12|7|Armored,Arthropod|A species of scorpion that lives in caves and coats itself with an armor of rocks using its sticky saliva|734176469231730758/rock_scorpion.png|1,1,1|15;
+Giant Rat|4|16|Beast|A large rat sometimes found in the sewers of large cities. Like regular rats, it will fight back fiercely when cornered|739165606468911174/giant_rat.png|5,1,1|36;
+Insect Warrior|15|5|Arthropod,Armored|The insect people are emotionless, making disputes between them rare. Unfortunately they're also not particularly tolerant towards others due to their lack of sympathy|739165648604626984/insect_warrior.png|4,1,1|43;
+Shadow Vermin|5|14|Dark,Beast|A hairless rodent with the ability to shrowd itself in a dark fog, allowing it to perform sneak-attacks|739165789961060463/shadow_vermin.png|4,1,1|45;
+Wraith|8|14|Dark,Intangible|Humans that were excessively evil before perishing may turn into Wraiths instead of regular spirits. These monsters carry deeper grudges and sometimes hold more power as a result|739165774337409115/wraith.png|3,1,1|46;
+Rock Mimic|20|0|Armored|A strange monster with the features of a rock. It can't move but its body is quite tough in return|739165696952500274/rock_mimic.png|4,1,1|51;
+Giant Ant|8|10|Arthropod|Insect-type monsters often possess some kind of venom but the ant is an exception. Perhaps thanks to its exceptional swarm mentality it hasn't had the necessity to develop any such features|739165592334106735/giant_ant.png|6,1,1|57;
+Troll|14|5|Beast|Trolls are like the polar opposites of Goblins: They rely on raw strength rather than intelligence and almost never act in groups|739165756197044224/troll.png|1,1,1|59;
+D
+#################################################################################
+Lesser Minotaur|33|16|Beast|Lesser Minotaurs are nothing to scoff at, even when compared to their bigger cousins. They wield large axes and are very easily angered|731849250463416350/lesser_minotaur.png|1,3,1|0;
+Steel-Silk Spider|20|32|Arthropod|These spiders are named after the extremely strong silk they produce. If you ever end up in a Steel-Silk Spider's lair, there is almost no chance for escape|731855680902004736/steel-silk_spider.png|2,3,1|2;
+Sickle Spider|16|36|Arthropod|Extremely sharp claws and an inability to produce webs are the main traits of this nocturnal predator|739165382643810365/sickle_spider.png|2,3,1|22;
+Giant Worm|34|18|Armored|This burrowing carnivore has no need for eyes. It detects its prey through vibrations alone|739165303388372992/giant_worm.png|1,3,1|24;
+Nightstalker|14|38|Dark|Placeholder|739165392433315941/nightstalker.png|6,2,1|30;
+Crystal Bat|7|45|Armored,Flying|Placeholder|739165247532695663/crystal_bat.png|2,3,1|41;
+C
+#################################################################################
+Minotaur|57|32|Beast|A race that is famous for being ruthless. Minotaurs are so imposing that they can force even Armored Bulls to obey their commands|731855778629025903/minotaur.png|1,4,2|1;
+Gemshard Golem|65|19|Armored|This type of golem is formed when a large amount of mana accumulates in a cave. Its core is a large mana gem and it also often contains smaller gems in its body|731895489745649664/gemshard_golem.webp|3,4,2|2;
+Beholder|51|41|Demon,Flying|Also known as "Oculus Tyrannus" or Eye Tyrant, the Beholder is an intelligent demon wielding powerful magic, recognizable by its one large eye and the numerous smaller eyestalks|739164852508950578/beholder.png|6,2,2|14;
+Gazer|65|31|Demon|A grotesque and more ferocious relative of the Beholder that mostly feeds on carrion. But it's by no means a weak opponent|739164907282366504/gazer.png|1,4,2|23;
+Obsidian Golem|34|60|Armored,Flying|This golem is made of a metal alloy also containing obsidian. The wings are only coated with this material, making them a weak spot|739165006163214467/obsidian_golem.png|3,4,2|32;
+B
+#################################################################################
+Void Creature|39|78|Dark|A creature that likes to keep itself hidden and lash out at unsuspecting prey using its sharp tendrils|731849483620581386/void_creature.png|2,6,2|0;
+Soul Eater|58|56|Dark,Spirit|A being made of concentrated negative energy. Because it has no soul of its own, it constantly yearns for those of others|733292992844136557/soul_eater.png|3,6,2|4;
+Crystal Slime|45|79|Slime|This type of slime can crystallize parts of its body at will, allowing it to stab and slice its prey before engulfing it|739164560120086598/crystal_slime.png|4,5,2|16;
+Madness Slime|89|35|Slime,Dark|Also called "Shoggoth", these slimes are servants of a higher being and have been fully consumed by evil|739164651169775686/madness_slime.png|4,5,2|21;
+A
+#################################################################################
+Armogohma|79|77|Arthropod,Armored|A huge spider with an exoskeleton that is as hard as stone. The large eye on top of its thorax is its only weak point|731855791832825856/armogohma.png|3,8,2|2;
+Furnace Golem|132|24|Armored,Fire|A walking furnace that collects any items it comes across and incinerates them in the hopes of finding something it cannot melt down. Supposedly created by a mad blacksmith who wants to create the strongest blade in the world|733297174833659924/furnace_golem.png|5,6,2|3;
+Chaos Slime|110|43|Slime,Dark|This slime is an embodiment of chaos. It's constantly shifting, forming mouths, eyes and tentacles sporadically. Although most slimes consume their prey by simply digesting it whole, the Chaos Slime actually creates razor-sharp teeth for chewing it first|736702104303042620/chaos_slime.png|6,6,2|8;
+S
+#################################################################################
+Skeletal Dragon|113|76|Dragon,Undead|Zombie Dragons that have lived for long enough that all their flesh has rotted away. As a result they can move faster but are also somewhat less powerful|731849520262021120/skeletal_dragon.webp|1,10,3|0;
+Soul Dragon|75|120|Intangible,Dragon|The soul of an ancient dragon that died long ago. Sometimes these creatures still retain some of their intelligence|739146382534901810/soul_dragon.png|4,8,3|13;
+SS
