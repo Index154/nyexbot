@@ -324,10 +324,9 @@ module.exports = {
     },
 	
 	// Input: Array, integer, object, string, object, string
-	// Dependency: discordjs-button-pagination
     // Function: Creates a paged embed with buttons using another external module
 	createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir){
-		const { paginationEmbed } = require('discordjs-button-pagination');
+		//const { paginationEmbed } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
 		// Create embed page field contents
@@ -358,14 +357,13 @@ module.exports = {
 		buttonList = [ button1, button2 ];
 		
 		// Send embed
-		paginationEmbed(message, embedTemplate, pages, buttonList, 30000);
+		lib.paginationEmbed(message, embedTemplate, pages, buttonList, 30000);
 	},
 	
 	// Input: Array, object, integer, object, string, ?, ?, ?, string, string, object
-	// Dependency: discordjs-button-pagination
     // Function: Creates a paged embed with buttons using another external module
 	createPagedEmbedAlt(idArray, embedTemplate, startingId, message, dir, monster_groups, monster_names2, items, username, startingName, firstButton){
-		const { paginationEmbedAlt } = require('discordjs-button-pagination');
+		//const { paginationEmbedAlt } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
 		// Create embeds
@@ -512,14 +510,13 @@ module.exports = {
 		buttonList = [ button1, button2, button3 ];
 		
 		// Send embed
-		paginationEmbedAlt(message, pages, buttonList, startingId, 30000, shinyButtons);
+		lib.paginationEmbedAlt(message, pages, buttonList, startingId, 30000, shinyButtons);
 	},
 	
 	// Input: Array, string, integer, object
-	// Dependency: discordjs-button-pagination
     // Function: Creates a paged embed with buttons using another external module
 	createPagedEmbedNight(entryList, stringTemplate, startingId, message){
-		const { paginationNight } = require('discordjs-button-pagination');
+		//const { paginationNight } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
 		// Create embeds
@@ -547,7 +544,7 @@ module.exports = {
 		buttonList = [ button1, button2 ];
 		
 		// Send embed
-		paginationNight(message, pages, buttonList, startingId, 30000);
+		lib.paginationNight(message, pages, buttonList, startingId, 30000);
 	},
 	
 	// Input: Object, object, array
@@ -808,6 +805,268 @@ module.exports = {
 			message.reply({ content: "Random result:\n" + thingList[key], allowedMentions: { repliedUser: false }});
 		}
 		
+	},
+
+	// Input: Object, array, array, integer, integer
+    // Function: Creates an interactive embed message with several pages that can be switched between
+	async paginationEmbed(msg, embedTemplate, pages, buttonList, timeout = 120000){
+		const {MessageActionRow} = require("discord.js");
+
+		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
+		if (!pages) throw new Error("Pages are not given.");
+		if (!buttonList) throw new Error("Buttons are not given.");
+		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+		  	throw new Error(
+				"Link buttons are not supported with discordjs-button-pagination"
+		  	);
+		if (buttonList.length !== 2) throw new Error("Need two buttons.");
+	  
+		let page = 0;
+	  
+		const row = new MessageActionRow().addComponents(buttonList);
+		var curPage = "";
+		if(pages.length == 1){
+		  	embedTemplate.fields[embedTemplate.fields.length - 1].value = pages[page];
+		  	curPage = await msg.reply({
+				embeds: [embedTemplate.setFooter(`Page ${page + 1} / ${pages.length}`)],
+				allowedMentions: { repliedUser: false },
+				fetchReply: true,
+		  	});
+		}else{
+		  	embedTemplate.fields[embedTemplate.fields.length - 1].value = pages[page];
+		  	curPage = await msg.reply({
+				embeds: [embedTemplate.setFooter(`Page ${page + 1} / ${pages.length}`)],
+				components: [row],
+				allowedMentions: { repliedUser: false },
+				fetchReply: true,
+		  	});
+	  
+			const filter = (i) =>
+				(i.customId === buttonList[0].customId ||
+				i.customId === buttonList[1].customId) &&
+				i.member.user.id === msg.member.user.id;
+	  
+		  	const collector = await curPage.createMessageComponentCollector({
+				filter,
+				time: timeout,
+		  	});
+	  
+		  	collector.on("collect", async (i) => {
+				switch (i.customId) {
+			  	case buttonList[0].customId:
+					page = page > 0 ? --page : pages.length - 1;
+					break;
+			  	case buttonList[1].customId:
+					page = page + 1 < pages.length ? ++page : 0;
+					break;
+			  	default:
+					break;
+				}
+				await i.deferUpdate();
+				embedTemplate.fields[embedTemplate.fields.length - 1].value = pages[page];
+				await i.editReply({
+			  		embeds: [embedTemplate.setFooter(`Page ${page + 1} / ${pages.length}`)],
+			  		components: [row],
+				});
+				collector.resetTimer();
+		  	});
+	  
+		  	collector.on("end", () => {
+				if (!curPage.deleted) {
+			  		const disabledRow = new MessageActionRow().addComponents(
+						buttonList[0].setDisabled(true),
+						buttonList[1].setDisabled(true)
+			  		);
+			  		curPage.edit({
+						embeds: [embedTemplate.setFooter(`Page ${page + 1} / ${pages.length}`)],
+						components: [disabledRow],
+			  		});
+				}
+		  	});
+	  
+		}
+	  
+		return curPage;
+	},
+	
+	// Input: Object, array, array, integer, integer
+    // Function: Creates an interactive embed message with several pages that can be switched between
+	async paginationEmbedAlt(msg, pages, buttonList, startingId, timeout = 120000, extraButtons){
+		const {MessageActionRow, MessageButton} = require("discord.js");
+
+		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
+		if (!pages) throw new Error("Pages are not given.");
+		if (!buttonList) throw new Error("Buttons are not given.");
+		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+		  	throw new Error(
+				"Link buttons are not supported with discordjs-button-pagination"
+		  	);
+		if (buttonList.length !== 3) throw new Error("Need three buttons.");
+	  
+		let page = startingId;
+		
+		var row = new MessageActionRow().addComponents(buttonList);
+		var singleRow = new MessageActionRow().addComponents(buttonList[1]);
+		
+		if(extraButtons[page].customId.split("|")[1] != "None"){
+			row.addComponents(extraButtons[page]);
+			singleRow.addComponents(extraButtons[page]);
+		}
+		
+		var curPage = "";
+		if(pages.length == 1){
+		  	curPage = await msg.reply({
+				embeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
+				components: [singleRow],
+				allowedMentions: { repliedUser: false },
+				fetchReply: true,
+		  	});
+		}else{
+		  	curPage = await msg.reply({
+				mbeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
+				components: [row],
+				allowedMentions: { repliedUser: false },
+				fetchReply: true,
+		  	});
+	  
+		  	const filter = (i) =>
+				(i.customId === buttonList[0].customId ||
+				i.customId === buttonList[2].customId ||
+				i.customId === extraButtons[page].customId) &&
+				i.member.user.id === msg.member.user.id;
+	  
+		  	const collector = await curPage.createMessageComponentCollector({
+				filter,
+				time: timeout,
+		  	});
+	  
+		  	collector.on("collect", async (i) => {
+				switch (i.customId) {
+				case buttonList[0].customId:
+					page = page > 0 ? --page : pages.length - 1;
+					break;
+				case buttonList[2].customId:
+					page = page + 1 < pages.length ? ++page : 0;
+					break;
+				case extraButtons[page].customId:
+					page = parseInt(extraButtons[page].customId.split("|")[1]);
+					break;
+				default:
+					break;
+				}
+				buttonList[1] = new MessageButton()
+					.setCustomId(msg.member.user.id + '|captures favorite ' + pages[page].title.trim())
+					.setLabel('Favorite')
+					.setStyle('SUCCESS');
+				row = new MessageActionRow().addComponents(buttonList);
+				if(extraButtons[page].customId.split("|")[1] != "None"){
+					row.addComponents(extraButtons[page]);
+				}
+				await i.deferUpdate();
+				await i.editReply({
+					embeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
+					components: [row],
+				});
+				collector.resetTimer();
+			});
+	  
+			collector.on("end", () => {
+				if (!curPage.deleted) {
+					const row = new MessageActionRow().addComponents(
+						buttonList[0].setDisabled(true),
+						buttonList[1].setDisabled(true),
+						buttonList[2].setDisabled(true)
+					);
+					curPage.edit({
+						embeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
+						components: [row],
+					});
+				}
+			});
+		
+		}
+	  
+		return curPage;
+	},
+	
+	// Input: Object, array, array, integer, integer
+    // Function: Creates an interactive embed message with several pages that can be switched between
+	async paginationNight(msg, pages, buttonList, startingId, timeout = 120000){
+		const {MessageActionRow} = require("discord.js");
+
+		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
+		if (!pages) throw new Error("Pages are not given.");
+		if (!buttonList) throw new Error("Buttons are not given.");
+		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+			throw new Error(
+				"Link buttons are not supported with discordjs-button-pagination"
+			);
+		if (buttonList.length !== 2) throw new Error("Need two buttons.");
+	  
+		let page = startingId;
+		
+		var row = new MessageActionRow().addComponents(buttonList);
+		
+		var curPage = "";
+		if(pages.length == 1){
+			curPage = await msg.reply({
+				content: pages[page] + `\nResult ${page + 1} / ${pages.length}`,
+				allowedMentions: { repliedUser: false },
+				fetchReply: true,
+			});
+		}else{
+			curPage = await msg.reply({
+				content: pages[page] + `\nResult ${page + 1} / ${pages.length}`,
+				components: [row],
+				allowedMentions: { repliedUser: false },
+				fetchReply: true,
+			});
+	  
+			const filter = (i) =>
+				(i.customId === buttonList[0].customId ||
+				i.customId === buttonList[1].customId) &&
+				i.member.user.id === msg.member.user.id;
+	  
+			const collector = await curPage.createMessageComponentCollector({
+				filter,
+				time: timeout,
+			});
+	  
+			collector.on("collect", async (i) => {
+				switch (i.customId) {
+				case buttonList[0].customId:
+					page = page > 0 ? --page : pages.length - 1;
+					break;
+				case buttonList[1].customId:
+					page = page + 1 < pages.length ? ++page : 0;
+					break;
+				default:
+					break;
+				}
+				await i.deferUpdate();
+				await i.editReply({
+					content: pages[page] + `\nResult ${page + 1} / ${pages.length}`,
+					components: [row],
+				});
+				collector.resetTimer();
+			});
+	  
+			collector.on("end", () => {
+				if (!curPage.deleted) {
+					const row = new MessageActionRow().addComponents(
+						buttonList[0].setDisabled(true),
+						buttonList[1].setDisabled(true)
+					);
+					curPage.edit({
+						content: pages[page] + `\nResult ${page + 1} / ${pages.length}`,
+						components: [row],
+					});
+				}
+			});
+	  
+		}
+		
+		return curPage;
 	}
 	
 };
