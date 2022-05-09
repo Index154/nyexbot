@@ -1,1 +1,0 @@
-captures|2,25,0|1|stat|exp&gold|200||

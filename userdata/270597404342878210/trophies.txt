@@ -1,5 +1,0 @@
-44|Level|D|**EXP collector** - Reached level 10;
-39|Quest|C|**Quest Completionist** - Completed 25% of all quests;
-43|Level|C|**EXP collector** - Reached level 20;
-10|Tester|Special|**Alpha Tester** - One of the special people!;
-92|Slayer3|C|**Boss slayer** - Dealt 144 damage to [Enraged Red Slime]

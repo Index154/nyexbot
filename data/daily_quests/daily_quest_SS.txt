@@ -1,1 +1,0 @@
-captures|5,8,0|1|stat|exp&gold|500|Ocean|

@@ -1,3 +1,0 @@
-92|Slayer3|C|**Boss slayer** - Dealt 24 damage to [Alpha Wind Elemental];
-92|Slayer3|A|**Boss slayer** - Dealt 8 damage to [Grand Void Creature];
-92|Slayer3|C|**Boss slayer** - Dealt 8 damage to [Alpha Magma Scorpion]

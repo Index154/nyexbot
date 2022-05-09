@@ -1,1 +1,0 @@
-Obsidian Chunk|25|-5|0|0|0|0|0|0|A small piece of mostly solidified lava. Over the years it has absorbed the mana of many different creatures, turning it into a valuable magic item|Item,0|153|C
