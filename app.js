@@ -260,8 +260,8 @@ client.on('messageCreate', async message => {
         }
     }
     
-    // If the message was sent in the updates channel on the main server then crosspost it to all other configured announcement channels (except the one on the main server)
-    if(message.channel.id == "731236740974510100"){
+    // If the message was sent in the updates channel on the main server and is not a minor patch then crosspost it to all other configured announcement channels (except the one on the main server)
+    if(message.channel.id == "731236740974510100" && !message.content.toLowerCase().includes("[minor patch]")){
         fs.readdir("./data/configs", (err, files) => {
             for(i = 0; i < files.length; i++){
                 var channelID = lib.readFile("./data/configs/" + files[i] + "/channel.txt");
