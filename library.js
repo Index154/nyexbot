@@ -761,6 +761,7 @@ module.exports = {
 		var allArgs = args.join(" ");
 		if(args.length > 0){
 			// Check if the search can be matched to a thing
+			allArgs = allArgs.replace(/^\*/g, ".*");
 			allArgs = allArgs.replace(/\./g, "[^|]");
 			var reg = new RegExp(allArgs, "g");
 			things = things.replace(reg, "$REPLACERSTRING$");
