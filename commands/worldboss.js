@@ -234,7 +234,11 @@ module.exports = {
 	                giveTrophy("92", "Slayer3", rank, third_data[1], name, scores[2]);
 	            }
 	        }
-	        
+
+			// Give 20 Gold to the user
+			user_data[12] = parseInt(user_data[12]) + 20;
+			lib.saveFile(dir + "/stats.txt", user_data.join("|"));
+
 	        // Global output
 	        if(buff_extra !== ""){buff_extra = "\n" + buff_extra;}
 	        message.reply({ content: "You dealt **" + damage + "** damage to the boss, successfully defeating it! You've received **20 Gold**!" + buff_extra, allowedMentions: { repliedUser: false }});
@@ -250,15 +254,32 @@ module.exports = {
             });
 
 	    }else{
+			// Define standard output
+			var output = "You dealt **" + damage + " damage** to the boss and received **20 Gold**! Here is the monster's current status:```\n[" + name + "] (Rank " + rank + "X)\n" + hp + " HP remaining```" + buff_extra;
+
+			// Determine if Gold should be taken away or given
+			if(lib.rand(1, 6) == 1){
+				// Unlucky!
+				user_data[12] = parseInt(user_data[12]);
+				var loss = 50;
+				if(user_data[12] < loss){loss = loss - (loss - user_data[12]);}
+				user_data[12] = user_data[12] - loss;
+				output = "You dealt **" + damage + " damage** to the boss!\n__Oh no! The boss sneezed on you, making you lose **" + loss + " Gold**!__ Here is the monster's current status:```\n[" + name + "] (Rank " + rank + "X)\n" + hp + " HP remaining```" + buff_extra;
+			}else{
+				// Normal outcome
+				user_data[12] = parseInt(user_data[12]) + 20;
+			};
+			
+			// Update user stats with Gold change
+			lib.saveFile(dir + "/stats.txt", user_data.join("|"));
+
 	        // Regular output
-	        message.reply({ content: "You dealt **" + damage + " damage** to the boss and received **20 Gold**! Here is the monster's current status:```\n[" + name + "] (Rank " + rank + "X)\n" + hp + " HP remaining```" + buff_extra, allowedMentions: { repliedUser: false }});
+	        message.reply({ content: output, allowedMentions: { repliedUser: false }});
 	        lib.saveFile("data/worldboss.txt", name + "|" + hp + "|" + rank);
 	        lib.saveFile("data/boss_participants.txt", players);
 	    }
 	    
-	    // Give 20 Gold to the user
-	    user_data[12] = parseInt(user_data[12]) + 20;
-	    lib.saveFile(dir + "/stats.txt", user_data.join("|"));
+	    
 	    
 	},
 };
