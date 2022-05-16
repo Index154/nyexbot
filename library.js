@@ -1068,6 +1068,21 @@ module.exports = {
 		}
 		
 		return curPage;
+	},
+
+	// Input: ?, String
+    // Dependency: lib itself
+    // Function: Gets a list entry based on the user Id
+    // Output: String
+	getFate(userId, listPath){
+		// Load item list
+        var items = lib.readFile(listPath).split("\n");
+
+        // Pick an array index based on the user ID
+        var resultIndex = parseInt(userId) % items.length;
+        if(resultIndex == 0){resultIndex = parseInt(("" + userId).slice(0, 2));}
+        var result = items[resultIndex];
+		return result;
 	}
 	
 };
