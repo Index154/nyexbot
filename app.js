@@ -266,7 +266,7 @@ client.on('messageCreate', async message => {
             for(i = 0; i < files.length; i++){
                 var channelID = lib.readFile("./data/configs/" + files[i] + "/channel.txt");
                 if(channelID !== "Undefined" && channelID !== "516038839949852695"){
-                    client.channels.cache.get(channelID).send("__**Bot update announcement from Index:**__\n" + message.content.trim());
+                    client.channels.cache.get(channelID).send("__**Update:**__\n" + message.content.trim());
                 }
             }
         });
