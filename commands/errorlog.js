@@ -27,14 +27,20 @@ module.exports = {
         }
         
         // Do prepared SQL insertions if I want to
-        if(lib.exists(args[0]) && args[0].toLowerCase() == "insert"){
+        if(lib.exists(args[0]) && args[0].toLowerCase() == "pop"){
             async function insertStuff(){
-                let query = 'insert into  () values ';
                 // Read some file / list of things to prepare for insertion
+                let tablename = "";
+                let fields = "";
+                let values = "";
+                if(!lib.exists(tablename) || !lib.exists(fields) || !lib.exists(values)){
+                    message.reply({ content: "\u274C Missing variables! Edit this command first", allowedMentions: { repliedUser: false }});
+                    return;
+                }
 
                 // Process query
-                let [rows] = await con.execute({sql: '', rowsAsArray: false });
-                message.reply({ content: "Insertion completed! Reply:\n" + JSON.stringify(rows), allowedMentions: { repliedUser: false }});
+                let [rows] = await con.execute({sql: `insert into ${tablename} (${fields}) values ${values};`, rowsAsArray: false });
+                message.reply({ content: "Table populated! SQL reply:\n" + JSON.stringify(rows), allowedMentions: { repliedUser: false }});
             }
             insertStuff();
             return;
