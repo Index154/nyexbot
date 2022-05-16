@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'fate',
 	usages: [''],
-	descriptions: ['Tells you what your item of destiny is!'],
+	descriptions: ['Tells you about the objects that are important to your destiny!'],
 	
 	execute(message, user, args) {
 	    fs = require('fs');
@@ -26,10 +26,12 @@ module.exports = {
         var fates = {
             isaac: {path: "./data/imported/isaac/isaacitems.txt", title: "Isaac item"},
             isaacPocket: {path: "./data/imported/isaac/isaacpockets.txt", title: "Isaac pocket item"},
-            isaacTrinket: {path: "./data/imported/isaac/isaactrinkets.txt", title: "Isaac trinket"}
+            isaacTrinket: {path: "./data/imported/isaac/isaactrinkets.txt", title: "Isaac trinket"},
+            isaacCharacter: {path: "./data/imported/isaac/isaaccharacters.txt", title: "Isaac character"}
         };
         
         // Pick a fate, determine its result and add it to the output
+        output += "\nYour " + fates.isaacCharacter.title + " of destiny is ||" + lib.getFate(user.id, fates.isaacCharacter.path) + "||!";
         output += "\nYour " + fates.isaac.title + " of destiny is ||" + lib.getFate(user.id, fates.isaac.path) + "||!";
         output += "\nYour " + fates.isaacTrinket.title + " of destiny is ||" + lib.getFate(user.id, fates.isaacTrinket.path) + "||!";
         output += "\nYour " + fates.isaacPocket.title + " of destiny is ||" + lib.getFate(user.id, fates.isaacPocket.path) + "||!";
