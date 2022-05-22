@@ -80,7 +80,7 @@ module.exports = {
         }
         
         // Split word list
-        var wordLists = words.split("#####################################################\n");
+        var wordLists = words.split("\n#####################################################\n");
         var adjectives = wordLists[0].split(";;\n");
         var nouns = wordLists[1].split(";;\n");
         var mhwTitles = wordLists[2].split(";;\n");

@@ -221,20 +221,22 @@ module.exports = {
 				// The item's data has been retrieved!
 				var item_info = items_array[result_key].split("|");
 				var modifierData = equipRarities[0].split("|");
-				if(item_info[10] == "Defense"){modifierData = equipRarities[1].split("|");}else
-				if(item_info[10] == "Tool"){modifierData = equipRarities[2].split("|");}
-				// Re-format the modifier data for displaying and add the values to the total values of the item
-				for(i = 1; i < modifierData.length; i++){
-				    item_info[i] += parseInt(modifierData[i]);
-					if(parseInt(modifierData[i]) === 0){modifierData[i] = "";}
-					else{
-						if(modifierData[i].includes("-")){modifierData[i] = "(" + modifierData[i] + ")";}
-						else{modifierData[i] = "(+" + modifierData[i] + ")";}
+				if(item_info[10] == "Defense" || item_info[10] == "Tool" || item_info[10] == "Weapon"){
+					if(item_info[10] == "Defense"){modifierData = equipRarities[1].split("|");}else
+					if(item_info[10] == "Tool"){modifierData = equipRarities[2].split("|");}
+					// Re-format the modifier data for displaying and add the values to the total values of the item
+					for(i = 1; i < modifierData.length; i++){
+						item_info[i] = parseInt(item_info[i]) + parseInt(modifierData[i]);
+						if(parseInt(modifierData[i]) === 0){modifierData[i] = "";}
+						else{
+							if(modifierData[i].includes("-")){modifierData[i] = "(" + modifierData[i] + ")";}
+							else{modifierData[i] = "(+" + modifierData[i] + ")";}
+						}
 					}
+					
+					// Prepare ability variables
+					var abilities = lib.readFile("data/abilities.txt").split("######################################\n");
 				}
-				
-				// Prepare ability variables
-                var abilities = lib.readFile("data/abilities.txt").split("######################################\n");
 				
 				// Further differentiate between item types and alter the output message
 				var stat_names = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Type Bonus"];
