@@ -41,7 +41,7 @@ Rename the errorlog command to something more generalized (admin or something li
 
 Monster modifier ideas:
 - Shimmering: Higher chance for item drops, also gives more gold and exp when defeated
-- Enchanted: Will instantly give a temporary buff when captured, may also grant radar charges?
+- Enchanted: Will instantly give a temporary buff when captured, may also grant radar charges
 
 
 Trophy ideas:
@@ -53,33 +53,40 @@ Trophy ideas:
 
 
 Monster type effect notes:
+(
+    ? = Very extreme effect, not inherently negative or positive
+    + = Minor effect, always positive
+    - = Stronger effects, but sometimes negative
+)
 ?Slime: May alter your equipment ability when capturing => Disabled by Intangible, buffed by Slime
-?Armored: Attack is worth more than Speed when fighting => Disabled by Slime, buffed by Armored
-?Intangible: Considers capture stat for fighting instead of Attack and Speed => Disabled by Lightning, buffed by Intangible
-?Flying: Speed is worth more than Attack when fighting => Disabled by Lightning, buffed by Flying
-+Undead: May still stay active after fighting => Disabled by Holy, buffed by Dark
+?Armored: Attack is worth more than Speed when fighting => Disabled by Slime, buffed by Frost
+?Intangible: Partially considers capture stat for fighting instead of Attack and Speed => Disabled by Lightning, buffed by Undead
+?Flying: Speed is worth more than Attack when fighting => Disabled by Lightning, buffed by Arthropod
+?Dark: May give a random stat change to a stat when capturing => Disabled by Holy, buffed by Demon
+
++Undead: The encounter may stay active after fighting => Disabled by Holy, buffed by Dark
 +Water: May increase the duration of your active buff when capturing => Disabled by Frost, buffed by Slime
-+Beast: May buff Attack and Speed when fighting => Disabled by Armored, buffed by Beast
++Beast: May buff Attack and Speed when fighting => Disabled by Fire, buffed by Reptile
 +Holy: May heal your HP in realms when capturing => Disabled by Demon, buffed by Legendary
-+Legendary: May buff any luck stat when capturing => Disabled by Demon, buffed by Legendary
++Legendary: May buff any luck stat when capturing => Disabled by Demon, buffed by Dragon
 +Lightning: May charge your radar or buff your Speed when fighting => Disabled by Intangible, buffed by Water
-+Plant: May grant EXP when fighting => Disabled by Fire, buffed by Water
--Dragon: May steal some of your Gold when fighting => Disabled by Dark, buffed by Legendary
--Arthropod: May debuff your drop or rare luck when fighting => Disabled by Reptile, buffed by Plant
--Frost: May debuff your Speed when fighting => Disabled by Fire, buffed by Undead
--Dark: May debuff your Capture stat and give a random stat change to another stat when capturing => Disabled by Holy, buffed by Dark
--Demon: May deal extra damage to you in realms when capturing => Disabled by Dragon, buffed by Dark
--Reptile: May remove some of your Scrap when fighting => Disabled by Frost, buffed by Arthropod
--Fire: May debuff your monster luck when capturing => Disabled by Water, buffed by Plant
++Plant: May grant extra EXP when fighting => Disabled by Fire, buffed by Water
+
+-Dragon: May steal some of your Gold when fighting / May duplicate items dropped by monsters => Disabled by Dark, buffed by Legendary
+-Arthropod: May debuff your Drop Luck or Rare Luck when fighting / May grant you Scrap => Disabled by Reptile, buffed by Plant
+-Frost: May debuff your Speed when fighting / May buff your Drop Luck => Disabled by Fire, buffed by Intangible
+-Demon: May deal extra damage to you in realms when capturing / May increase the chance for you to receive Vortexes => Disabled by Dragon, buffed by Dark
+-Reptile: May remove some of your Scrap when fighting / May grant you extra Gold => Disabled by Frost, buffed by Arthropod
+-Fire: May debuff your monster luck when capturing / May buff your Rare Luck => Disabled by Water, buffed by Plant
 
 
 Keep in mind:
-Favorite can disable or buff effects of encounters
-Encounters can disable or buff effects of your favorite
-When an effect is being buffed AND negated at the same time then it will retain its base values
-A monster may disable or buff its OWN type effects if it has multiple types
-A singular instance of a type can not disable or buff itself (example: A Beast encounter won't have buffed Beast effects but if your favorite is a Beast then the two monsters will buff each other)
-Negative effects are more likely when you lose and less likely when you win. For positive effects it is the other way around.
+- Encounters can disable or buff the effects of your favorited monster
+- Type effects that give you a buff will not trigger if you already have an active buff
+- When an effect is being buffed AND negated at the same time then it will retain its base values
+- A monster may disable or buff its OWN type effects if it has multiple types
+- A singular instance of a type can not disable or buff itself
+- Negative effects are more likely when you lose and less likely when you win. For positive effects it is the other way around
 
 
 Guess topic ideas:

@@ -254,7 +254,7 @@ classAbilities:
 Filling method: Manual
 Requires: classes
 
-MonsterTypes
+monsterTypes
 	create table monsterTypes(
 		typeId tinyint unsigned unique auto_increment not null,
 		typeName varchar(15) unique not null,
@@ -289,12 +289,10 @@ monsterTypeEffects:
 	create table monsterTypeEffects(
 		typeId tinyint unsigned not null,
 		monsterRarityId tinyint unsigned not null,
-		isPositive bool not null,
-		isGuaranteed bool not null,
-		procChanceGood tinyint unsigned,
-		procChanceBad tinyint unsigned,
-		procChanceGoodBuffed tinyint unsigned,
-		procChanceBadBuffed tinyint unsigned,
+		procChanceWin tinyint unsigned,
+		procChanceLose tinyint unsigned,
+		procChanceWinBuffed tinyint unsigned,
+		procChanceLoseBuffed tinyint unsigned,
 		negatingTypeId tinyint unsigned not null,
 		buffingTypeId tinyint unsigned not null,
 		primary key (typeId, monsterRarityId),
