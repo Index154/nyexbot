@@ -6,7 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Loads a random clip that has been saved before (also accepts search arguments)'],
 	aliases: ['c'],
-	addendum: 'Search arguments are parsed as regular expressions',
+	addendum: 'Search arguments will be matched to entry names as well as tags',
 	
 	execute(message, user, args) {
 	    fs = require('fs');

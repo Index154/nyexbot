@@ -155,7 +155,7 @@ client.on('interactionCreate', interaction => {
 		commandName = interactionData[1];
 	}
 	else if(interaction.isButton()){
-	    if(interaction.customId === 'previousbtn' || interaction.customId === 'nextbtn') return;
+	    if(interaction.customId === 'previousbtn' || interaction.customId === 'randbtn' || interaction.customId === 'nextbtn') return;
 		var interactionData = interaction.customId.split("|");
 		if(interactionData[0] != "any" && interactionData[0] != user.id) return;
 		var args = interactionData[1].split(" ");

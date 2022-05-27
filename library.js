@@ -324,7 +324,7 @@ module.exports = {
     },
 	
 	// Input: Array, integer, object, string, object, string
-    // Function: Creates a paged embed with buttons using another external module
+    // Function: Creates a paged embed with buttons using another module
 	createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir){
 		//const { paginationEmbed } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
@@ -361,13 +361,12 @@ module.exports = {
 	},
 	
 	// Input: Array, object, integer, object, string, ?, ?, ?, string, string, object
-    // Function: Creates a paged embed with buttons using another external module
+    // Function: Creates a paged embed with buttons using another module
 	createPagedEmbedAlt(idArray, embedTemplate, startingId, message, dir, monster_groups, monster_names2, items, username, startingName, firstButton){
 		//const { paginationEmbedAlt } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
 		// Create embeds
-		var pageCount = idArray.length
 		var pages = [];
 		var shinyButtons = [];
 		pages[startingId] = embedTemplate;
@@ -514,7 +513,7 @@ module.exports = {
 	},
 	
 	// Input: Array, string, integer, object
-    // Function: Creates a paged embed with buttons using another external module
+    // Function: Creates a paged embed with buttons using another module
 	createPagedEmbedNight(entryList, stringTemplate, startingId, message){
 		//const { paginationNight } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
@@ -540,7 +539,11 @@ module.exports = {
 			.setCustomId('nextbtn')
 			.setLabel('Next')
 			.setStyle('SECONDARY');
-		buttonList = [ button1, button2 ];
+		const button3 = new MessageButton()
+			.setCustomId('randbtn')
+			.setLabel('Random')
+			.setStyle('PRIMARY')
+		buttonList = [ button1, button3, button2 ];
 		
 		// Send embed
 		lib.paginationNight(message, pages, buttonList, startingId, 30000);
@@ -1064,7 +1067,7 @@ module.exports = {
 			throw new Error(
 				"Link buttons are not supported with discordjs-button-pagination"
 			);
-		if (buttonList.length !== 2) throw new Error("Need two buttons.");
+		if (buttonList.length < 2) throw new Error("Need at least two buttons.");
 	  
 		let page = startingId;
 		
@@ -1087,7 +1090,8 @@ module.exports = {
 	  
 			const filter = (i) =>
 				(i.customId === buttonList[0].customId ||
-				i.customId === buttonList[1].customId) &&
+				i.customId === buttonList[1].customId ||
+				i.customId === buttonList[2].customId) &&
 				i.member.user.id === msg.member.user.id;
 	  
 			const collector = await curPage.createMessageComponentCollector({
@@ -1101,6 +1105,9 @@ module.exports = {
 					page = page > 0 ? --page : pages.length - 1;
 					break;
 				case buttonList[1].customId:
+					page = lib.rand(0, pages.length - 1);
+					break;
+				case buttonList[2].customId:
 					page = page + 1 < pages.length ? ++page : 0;
 					break;
 				default:
@@ -1118,7 +1125,8 @@ module.exports = {
 				if (!curPage.deleted) {
 					const row = new MessageActionRow().addComponents(
 						buttonList[0].setDisabled(true),
-						buttonList[1].setDisabled(true)
+						buttonList[1].setDisabled(true),
+						buttonList[2].setDisabled(true)
 					);
 					curPage.edit({
 						content: pages[page] + `\nResult ${page + 1} / ${pages.length}`,
