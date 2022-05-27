@@ -114,3 +114,23 @@ guessTopics:
 	);
 Filling method: Manual
 
+entryTypes:
+create table entryTypes(
+	entryTypeId tinyint unsigned unique auto_increment not null,
+	entryTypeName varchar(40) unique not null,
+	primary key (entryTypeId)
+);
+Filling Method: Manual
+
+entries:
+create table entries(
+	entryId smallint unsigned unique auto_increment not null,
+	entryTypeId tinyint unsigned not null,
+	entryName varchar(50) unique not null,
+	content varchar(500) unique not null,
+	entryTags varchar(60) not null,
+	primary key (entryId),
+	foreign key (entryTypeId) references entryTypes(entryTypeId)
+);
+Filling Method: Automatic
+Requires: entryTypes

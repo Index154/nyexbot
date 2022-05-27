@@ -20,6 +20,6 @@ module.exports = {
             }
         }
         
-        lib.searchableList("clip", message, args);
+        lib.searchableListNew("clip", message, args);
 	},
 };

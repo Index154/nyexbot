@@ -1,14 +1,12 @@
-clips:
-clipId, clipTopic, clipName, link
+(
+    Entries example:
+    - User does .c funny gungeon
+    - .c causes it to filter entries by entryType "clip"
+    - Match the arguments to tags or clip names
+    - join tables and select all rows that have all of the determined tags or name
 
-media:
-mediaId, mediaTopic, mediaName, link
-
-monsterHunterLexicon:
-monsterId, monsterName, description
-
-quotes:
-username, quote
+    This can be used for all searchableLists: media, clip, quote, mhl, and journal!
+)
 
 words:
 wordType, word

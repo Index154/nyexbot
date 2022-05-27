@@ -520,7 +520,6 @@ module.exports = {
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
 		// Create embeds
-		var pageCount = entryList.length
 		var pages = [];
 		pages[startingId] = stringTemplate;
 		var startingMod = 1;
@@ -808,6 +807,69 @@ module.exports = {
 		
 	},
 
+	// Input: String, object, array
+    // Dependency: readFile, createPagedEmbedNight
+    // Function: Gets one or more results from a list of quotes/clips/images/etc.
+	async searchableListNew(fileName, message, args){
+
+		// If there was at least one argument, try to pick entries that match the search
+		if(args.length > 0){
+			
+			// Loop through arguments, turning them into parts of the query
+			for(i = 0; i < args.length; i++){
+				if(args[i])
+				args[i] = "(entries.entryTags LIKE '%" + args[i].toLowerCase() + "%' OR entries.entryName LIKE '%" + args[i].toLowerCase() + "%')";
+			}
+			
+			// SQL Query
+			var [rows] = await con.execute({sql: `
+				SELECT entries.entryName, entries.content, entries.entryTags
+				FROM entries
+				INNER JOIN entryTypes ON entryTypes.entryTypeId=entries.entryTypeId
+				WHERE entryTypes.entryTypeName = '${fileName}' AND (${args.join(" AND ")});
+			`, rowsAsArray: false });
+			
+			// If there were no results, get a random one
+			if(rows.length < 1){
+				[rows] = await con.execute({sql: `
+					SELECT entries.entryName, entries.content, entries.entryTags
+					FROM entries
+					INNER JOIN entryTypes ON entryTypes.entryTypeId=entries.entryTypeId
+					WHERE entryTypes.entryTypeName = '${fileName}'
+					ORDER BY RAND()
+					LIMIT 1;
+				`, rowsAsArray: false });
+				rows[0] = rows[0].entryName + ":\n" + rows[0].content + "\nTags: " + rows[0].entryTags;
+				message.reply({ content: "No matches found! Random result:\n" + rows[0], allowedMentions: { repliedUser: false }});
+				return;
+			}
+
+			// Prepare and send output
+			// Remove duplicates! TODO
+			for(i = 0; i < rows.length; i++){
+				rows[i] = rows[i].entryName + ":\n" + rows[i].content + "\nTags: " + rows[i].entryTags;
+			}
+			var randKey = lib.rand(0, rows.length - 1);
+			lib.createPagedEmbedNight(rows, rows[randKey], randKey, message);
+
+		}else{
+			// Get a random result if there was no argument
+			[rows] = await con.execute({sql: `
+				SELECT entries.entryName, entries.content, entries.entryTags
+				FROM entries
+				INNER JOIN entryTypes ON entryTypes.entryTypeId=entries.entryTypeId
+				WHERE entryTypes.entryTypeName = '${fileName}'
+				ORDER BY RAND()
+				LIMIT 1;
+			`, rowsAsArray: false });
+
+			// Prepare and send output
+			rows[0] = rows[0].entryName + ":\n" + rows[0].content + "\nTags: " + rows[0].entryTags;
+			message.reply({ content: "Random result:\n" + rows[0], allowedMentions: { repliedUser: false }});
+		}
+		
+	},
+
 	// Input: Object, array, array, integer, integer
     // Function: Creates an interactive embed message with several pages that can be switched between
 	async paginationEmbed(msg, embedTemplate, pages, buttonList, timeout = 120000){
@@ -829,14 +891,14 @@ module.exports = {
 		if(pages.length == 1){
 		  	embedTemplate.fields[embedTemplate.fields.length - 1].value = pages[page];
 		  	curPage = await msg.reply({
-				embeds: [embedTemplate.setFooter(`Page ${page + 1} / ${pages.length}`)],
+				embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
 		  	});
 		}else{
 		  	embedTemplate.fields[embedTemplate.fields.length - 1].value = pages[page];
 		  	curPage = await msg.reply({
-				embeds: [embedTemplate.setFooter(`Page ${page + 1} / ${pages.length}`)],
+				embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [row],
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
@@ -866,7 +928,7 @@ module.exports = {
 				await i.deferUpdate();
 				embedTemplate.fields[embedTemplate.fields.length - 1].value = pages[page];
 				await i.editReply({
-			  		embeds: [embedTemplate.setFooter(`Page ${page + 1} / ${pages.length}`)],
+			  		embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 			  		components: [row],
 				});
 				collector.resetTimer();
@@ -879,7 +941,7 @@ module.exports = {
 						buttonList[1].setDisabled(true)
 			  		);
 			  		curPage.edit({
-						embeds: [embedTemplate.setFooter(`Page ${page + 1} / ${pages.length}`)],
+						embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 						components: [disabledRow],
 			  		});
 				}
@@ -917,14 +979,14 @@ module.exports = {
 		var curPage = "";
 		if(pages.length == 1){
 		  	curPage = await msg.reply({
-				embeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
+				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [singleRow],
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
 		  	});
 		}else{
 		  	curPage = await msg.reply({
-				mbeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
+				mbeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [row],
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
@@ -965,12 +1027,12 @@ module.exports = {
 				}
 				await i.deferUpdate();
 				await i.editReply({
-					embeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
+					embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 					components: [row],
 				});
 				collector.resetTimer();
 			});
-	  
+			
 			collector.on("end", () => {
 				if (!curPage.deleted) {
 					const row = new MessageActionRow().addComponents(
@@ -979,7 +1041,7 @@ module.exports = {
 						buttonList[2].setDisabled(true)
 					);
 					curPage.edit({
-						embeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
+						embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 						components: [row],
 					});
 				}

@@ -21,11 +21,11 @@ module.exports = {
         if (!args.length) {
             data.push(commands.map(command => command.name));
             var newData = data[0];
-            let halfwayThrough = Math.floor(newData.length / 2)
+            var halfwayThrough = Math.floor(newData.length / 2)
             
-            let arrayFirstHalf = newData.slice(0, halfwayThrough);
+            var arrayFirstHalf = newData.slice(0, halfwayThrough);
             var arrayFirst = arrayFirstHalf.join("\n");
-            let arraySecondHalf = newData.slice(halfwayThrough, newData.length);
+            var arraySecondHalf = newData.slice(halfwayThrough, newData.length);
             var arraySecond = arraySecondHalf.join("\n");
             
             // Assemble a basic embed

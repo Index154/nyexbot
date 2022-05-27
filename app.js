@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 fs = require('fs');
 lib = require("./library.js");
 mysql = require('mysql2/promise');
-let maintenance = false;
+maintenance = false;
 
 // Connect to MySQL database
 con = mysql.createPool({

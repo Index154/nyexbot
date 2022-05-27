@@ -30,16 +30,16 @@ module.exports = {
         if(lib.exists(args[0]) && args[0].toLowerCase() == "pop"){
             async function insertStuff(){
                 // Read some file / list of things to prepare for insertion
-                let tablename = "";
-                let fields = "";
-                let values = "";
+                var tablename = "";
+                var fields = "";
+                var values = "";
                 if(!lib.exists(tablename) || !lib.exists(fields) || !lib.exists(values)){
                     message.reply({ content: "\u274C Missing variables! Edit this command first", allowedMentions: { repliedUser: false }});
                     return;
                 }
 
                 // Process query
-                let [rows] = await con.execute({sql: `insert into ${tablename} (${fields}) values ${values};`, rowsAsArray: false });
+                var [rows] = await con.execute({sql: `insert into ${tablename} (${fields}) values ${values};`, rowsAsArray: false });
                 message.reply({ content: "Table populated! SQL reply:\n" + JSON.stringify(rows), allowedMentions: { repliedUser: false }});
             }
             insertStuff();
@@ -52,7 +52,7 @@ module.exports = {
                 args.splice(0, 1);
 
                 // SQL query
-                let [rows] = await con.execute({sql: args.join(' '), rowsAsArray: false });
+                var [rows] = await con.execute({sql: args.join(' '), rowsAsArray: false });
 
                 message.reply({ content: "The query has been processed! Reply:\n" + JSON.stringify(rows), allowedMentions: { repliedUser: false }});
             }
