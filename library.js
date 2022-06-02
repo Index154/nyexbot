@@ -360,9 +360,9 @@ module.exports = {
 		lib.paginationEmbed(message, embedTemplate, pages, buttonList, 30000);
 	},
 	
-	// Input: Array, object, integer, object, string, ?, ?, ?, string, string, object
+	// Input: Array, object, integer, object, ?, ?, ?, string, string, object
     // Function: Creates a paged embed with buttons using another module
-	createPagedEmbedAlt(idArray, embedTemplate, startingId, message, dir, monster_groups, monster_names2, items, username, startingName, firstButton){
+	createPagedEmbedAlt(idArray, embedTemplate, startingId, message, monster_groups, monster_names2, items, username, startingName, firstButton){
 		//const { paginationEmbedAlt } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
@@ -985,14 +985,14 @@ module.exports = {
 				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [singleRow],
 				allowedMentions: { repliedUser: false },
-				fetchReply: true,
+				fetchReply: true
 		  	});
 		}else{
 		  	curPage = await msg.reply({
-				mbeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [row],
 				allowedMentions: { repliedUser: false },
-				fetchReply: true,
+				fetchReply: true
 		  	});
 	  
 		  	const filter = (i) =>

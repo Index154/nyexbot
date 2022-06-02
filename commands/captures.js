@@ -298,7 +298,6 @@ module.exports = {
 				}else{
 				    type = monster_info[3];
 				}
-				
                 var outputEmbed = new Discord.MessageEmbed()
                 	.setColor(embed_color)
                 	.setTitle(monster_info[0])
@@ -360,7 +359,7 @@ module.exports = {
 				var startingId = uniq_array.indexOf(monster_key_groups[key]);
 				
 				// Create custom paged embed with all monsters (sorted)
-				lib.createPagedEmbedAlt(uniq_array, outputEmbed, startingId, message, dir, monster_groups, monster_names2, items, username, monster_info[0], button4);
+				lib.createPagedEmbedAlt(uniq_array, outputEmbed, startingId, message, monster_groups, monster_names2, items, username, monster_info[0], button4);
 				
 			}else{
 				// Error, monster not found
