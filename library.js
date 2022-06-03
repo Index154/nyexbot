@@ -362,21 +362,27 @@ module.exports = {
 	
 	// Input: Array, object, integer, object, ?, ?, ?, string, string, object
     // Function: Creates a paged embed with buttons using another module
-	createPagedEmbedAlt(idArray, embedTemplate, startingId, message, monster_groups, monster_names2, items, username, startingName, firstButton){
+	createPagedEmbedAlt(idArray, embedTemplate, startingId, message, monster_groups, monster_names2, items, username, startingName, firstButton, firstAltImage){
 		//const { paginationEmbedAlt } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
+		var shinies = lib.readFile("data/monsters/monsters_shiny.txt");
+		var shiny_groups = shinies.split("#################################################################################\n");
+
 		// Create embeds
 		var pages = [];
 		var shinyButtons = [];
+		var alternateImages = [];
 		pages[startingId] = embedTemplate;
 		shinyButtons[startingId] = firstButton;
+		alternateImages[startingId] = firstAltImage;
 		var startingMod = 1;
 		if(startingId + 1 == idArray.length){startingMod = -1 * startingId;}
 		for(i = startingId + startingMod; i < idArray.length && (i > startingId || i < startingId); ){
 			
 			var result_keys = idArray[i].split(",");
 			var monsters_array = monster_groups[result_keys[0]].split(";\n");
+			var shinies_array = shiny_groups[result_keys[0]].split(";\n");
 			// The monster's data has been retrieved!
 			var result_monster = monsters_array[result_keys[1]];
 			
@@ -386,17 +392,16 @@ module.exports = {
 			
 			// If the monster is shiny, get the shiny entry instead
 			var altIndex = "None";
+			var altImage = "Not owned";
 			if(result_keys[2] == "1"){
 			    embed_color = "#8f1ee6";
-				var shinies = lib.readFile("data/monsters/monsters_shiny.txt");
-				var shiny_groups = shinies.split("#################################################################################\n");
-				var shinies_array = shiny_groups[result_keys[0]].split(";\n");
 				result_monster = shinies_array[result_keys[1]];
 				
-				// Check if the user has the normal variant as well and find its page number
+				// Check if the user has the normal variant as well and find its page number as well as its thumbnail
 				var altId = result_keys[0] + "," + result_keys[1] + "," + 0;
 				if(idArray.includes(altId)){
 				    altIndex = idArray.indexOf(altId);
+					altImage = "https://cdn.discordapp.com/attachments/731848120539021323/" + monsters_array[result_keys[1]].split("|")[5];
 				}
 				
 			}else{
@@ -404,6 +409,7 @@ module.exports = {
 				var altId = result_keys[0] + "," + result_keys[1] + "," + 1;
 				if(idArray.includes(altId)){
 				    altIndex = idArray.indexOf(altId);
+					altImage = "https://cdn.discordapp.com/attachments/731848120539021323/" + shinies_array[result_keys[1]].split("|")[5];
 				}
 			}
 			var monster_info = result_monster.split("|");
@@ -414,6 +420,7 @@ module.exports = {
     			.setLabel('Switch')
     			.setStyle('PRIMARY');
     		shinyButtons[i] = button4;
+			alternateImages[i] = altImage;
 			
 			// Get rarity
             var rarity_names = ["D", "C", "B", "A", "S", "SS"];
@@ -509,7 +516,7 @@ module.exports = {
 		buttonList = [ button1, button2, button3 ];
 		
 		// Send embed
-		lib.paginationEmbedAlt(message, pages, buttonList, startingId, 30000, shinyButtons);
+		lib.paginationEmbedAlt(message, pages, buttonList, startingId, 30000, shinyButtons, alternateImages);
 	},
 	
 	// Input: Array, string, integer, object
@@ -957,7 +964,7 @@ module.exports = {
 	
 	// Input: Object, array, array, integer, integer
     // Function: Creates an interactive embed message with several pages that can be switched between
-	async paginationEmbedAlt(msg, pages, buttonList, startingId, timeout = 120000, extraButtons){
+	async paginationEmbedAlt(msg, pages, buttonList, startingId, timeout = 120000, extraButtons, alternateImages){
 		const {MessageActionRow, MessageButton} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
@@ -974,6 +981,10 @@ module.exports = {
 		var row = new MessageActionRow().addComponents(buttonList);
 		var singleRow = new MessageActionRow().addComponents(buttonList[1]);
 		
+		if(alternateImages[page] != "Not owned"){
+			pages[page].setThumbnail(alternateImages[page]);
+		}
+
 		if(extraButtons[page].customId.split("|")[1] != "None"){
 			row.addComponents(extraButtons[page]);
 			singleRow.addComponents(extraButtons[page]);
@@ -1025,6 +1036,11 @@ module.exports = {
 					.setLabel('Favorite')
 					.setStyle('SUCCESS');
 				row = new MessageActionRow().addComponents(buttonList);
+				if(alternateImages[page] != "Not owned"){
+					pages[page].setThumbnail(alternateImages[page]);
+				}else if(pages[page].hasOwnProperty('thumbnail')){
+					delete pages[page].thumbnail;
+				}
 				if(extraButtons[page].customId.split("|")[1] != "None"){
 					row.addComponents(extraButtons[page]);
 				}

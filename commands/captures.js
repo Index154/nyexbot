@@ -241,6 +241,9 @@ module.exports = {
 				
 				var result_keys = monster_key_groups[key].split(",");
 				var monsters_array = monster_groups[result_keys[0]].split(";\n");
+				var shinies = lib.readFile("data/monsters/monsters_shiny.txt");
+				var shiny_groups = shinies.split("#################################################################################\n");
+				var shinies_array = shiny_groups[result_keys[0]].split(";\n");
 				// The monster's data has been retrieved!
 				var result_monster = monsters_array[result_keys[1]];
 				
@@ -250,23 +253,23 @@ module.exports = {
 				
 				// If the monster is shiny, get the shiny entry instead
 				var altIndex = "None";
+				var firstAltImage = "Not owned";
 				if(result_keys[2] == "1"){
 				    embed_color = "#8f1ee6";
-					var shinies = lib.readFile("data/monsters/monsters_shiny.txt");
-					var shiny_groups = shinies.split("#################################################################################\n");
-					var shinies_array = shiny_groups[result_keys[0]].split(";\n");
 					result_monster = shinies_array[result_keys[1]];
 					
 					// Check if the user has the normal variant as well and find its page number
     				var altId = result_keys[0] + "," + result_keys[1] + "," + 0;
     				if(uniq_array.includes(altId)){
     				    altIndex = uniq_array.indexOf(altId);
+						firstAltImage = "https://cdn.discordapp.com/attachments/731848120539021323/" + monsters_array[result_keys[1]].split("|")[5];
     				}
 				}else{
     			    // Check if the user has the shiny variant as well and find its page number
     				var altId = result_keys[0] + "," + result_keys[1] + "," + 1;
     				if(uniq_array.includes(altId)){
     				    altIndex = uniq_array.indexOf(altId);
+						firstAltImage = "https://cdn.discordapp.com/attachments/731848120539021323/" + shinies_array[result_keys[1]].split("|")[5];
     				}
     			}
     			var monster_info = result_monster.split("|");
@@ -359,7 +362,7 @@ module.exports = {
 				var startingId = uniq_array.indexOf(monster_key_groups[key]);
 				
 				// Create custom paged embed with all monsters (sorted)
-				lib.createPagedEmbedAlt(uniq_array, outputEmbed, startingId, message, monster_groups, monster_names2, items, username, monster_info[0], button4);
+				lib.createPagedEmbedAlt(uniq_array, outputEmbed, startingId, message, monster_groups, monster_names2, items, username, monster_info[0], button4, firstAltImage);
 				
 			}else{
 				// Error, monster not found
