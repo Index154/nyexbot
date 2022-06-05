@@ -272,7 +272,7 @@ Shiny Storm Elemental|92|29|Lightning,Intangible|A gigantic storm cloud full of 
 Shiny Glavenus|92|31|Reptile|The tail of this specimen is extra-sharp|861261357030834196/shiny_glavenus.webp|1,6,2;
 Shiny Cerberus|78|47|Beast|The three-headed guardian of the gates of hell - Or so it is described|739164552247115786/cerberus.webp|3,6,2;
 Shiny Ice Golem|54|68|Frost,Armored|A golem made of pure ice. It's light but still rather sturdy|739164554940121150/ice_golem.png|4,5,2;
-Shiny Abyssal Terror|42|80|Fish,Water|One of the most dangerous creatures found in the Abyss. It sometimes comes up to the surface chasing after small Fish,Water|739164557217497149/abyssal_terror.png|2,6,2;
+Shiny Abyssal Terror|42|80|Fish,Water|Hello monkeys|983119526856118282/shiny_abyssal_terror.png|2,6,2;
 Shiny Cockatrice|50|69|Flying|A dragon-like creature with features of a rooster. It can kill its prey by simply staring at it for long enough which is why it's occasionally confused with the Basilisk|739862475687854110/cockatrice.png|6,4,2;
 Shiny Crystal Slime|45|79|Slime|This type of slime can crystallize parts of its body at will, allowing it to stab and slice its prey before engulfing it|739164560120086598/crystal_slime.png|4,5,2;
 Shiny Demon Monstrosity|101|21|Demon,Beast|Meat master|903383754666553374/shiny_demon_monstrosity.png|1,6,2;

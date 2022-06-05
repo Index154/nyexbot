@@ -37,6 +37,17 @@ module.exports = {
 			return;
 		}
 		
+        // Increment the current chain or start a new one
+        var chain = lib.readFile(dir + "/chain.txt").split("|");
+        var chainValue = 0;
+        if(chain[0] == monster_keys){
+            chain[1] = parseInt(chain[1]) + 1;
+            chainValue = chain[1];
+            lib.saveFile(dir + "/chain.txt", chain.join("|"));
+        }else{
+            lib.saveFile(dir + "/chain.txt", monster_keys + "|" + 0);
+        }
+
 		// Get monster stats and name with modifier
 		var monster_groups = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
 		var monster_keys_array = monster_keys.split(",");
@@ -330,13 +341,20 @@ module.exports = {
 			lib.saveFile(dir + "/current_encounter.txt", "");
 			output = "```diff\n+You successfully captured the " + monster_title + "!```" + realm_extra + "The success chance was **" + win_chance + "%**" + abilityOutput + trophy_extra;
 		}
-		
-		// End encounter and give output
+
+		// End encounter (unless ability prevented it)
 		if(!win && keepEncounter){
 		    output = "```diff\n-You did not capture the " + monster_title + "```" + realm_extra + "The success chance was **" + win_chance + "%**\n**Your equipment ability has activated, allowing you to try again!**";
 		}else{
 		    lib.saveFile(dir + "/current_encounter.txt", "");
 		}
+
+        // If there is a chain, add it to the output
+        if(chainValue > 0){
+            output += "\nYour current capture chain is **" + chainValue + "**";
+        }
+
+        // Output
 		message.reply({ content: "@ __**" + username + "**__" + output, allowedMentions: { repliedUser: false }});
 		
     },

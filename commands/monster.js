@@ -36,6 +36,7 @@ module.exports = {
             lib.saveFile(dir + "/boss_cd.txt", "1");
             lib.saveFile(dir + "/captures.txt", "");
             lib.saveFile(dir + "/charges.txt", "0");
+            lib.saveFile(dir + "/chain.txt", "0|0");
             lib.saveFile(dir + "/confirm.txt", "");
             lib.saveFile(dir + "/confirm_conv.txt", "no");
             lib.saveFile(dir + "/cooldown.txt", "1");

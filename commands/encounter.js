@@ -34,6 +34,7 @@ module.exports = {
             lib.saveFile(dir + "/boss_cd.txt", "1");
             lib.saveFile(dir + "/captures.txt", "");
             lib.saveFile(dir + "/charges.txt", "0");
+            lib.saveFile(dir + "/chain.txt", "0|0");
             lib.saveFile(dir + "/confirm.txt", "");
             lib.saveFile(dir + "/confirm_conv.txt", "no");
             lib.saveFile(dir + "/cooldown.txt", "1");
@@ -351,10 +352,29 @@ module.exports = {
                 
             }
         }
+
+        // Get monster info for output
+        var monster_info = monsters[monster_key].split("|");
+        // Change monster key to accomodate for the area
+        monster_key = monster_info[7];
+
+        // Chain calculations
+        var shinyRate = 40000;
+        var chain = lib.readFile(dir + "/chain.txt").split("|");
+        var chainInfo = "";
+        // 1.2 = 42 | 1.3 = 31 | 1.4 = 25 | 1.5 = 21 | 1.6 = 18 | 1.8 = 15 | 2 = 12
+        var chainModifiers = [1.2, 1.3, 1.35, 1.4, 1.6, 2];
+        if(chain[0] == chosen_group + "," + monster_key + ",0"){
+            chainInfo = "\n❗ ❗ This monster is your current chain target ❗ ❗";
+            for(i = 0; i < parseInt(chain[1]); i++){
+                shinyRate = Math.floor(shinyRate / chainModifiers[chosen_group]);
+            }
+        }
+        // Determine shininess
         while(shiny_key === 0  && polisher > 0){
             // Default: 1 roll
             polisher--;
-            var mod_rand = lib.rand(1, 40000);
+            var mod_rand = lib.rand(1, shinyRate);
             if(mod_rand <= shiny_chance){
                 shiny_key = 1;
             }
@@ -366,10 +386,6 @@ module.exports = {
             lib.saveFile(dir + "/ability_cd.txt", abilityCondition);
         }
         
-        // Get monster info for output
-        var monster_info = monsters[monster_key].split("|");
-        // Change monster key to accomodate for the area
-        monster_key = monster_info[7];
         // Get new info from the main file
         var monster_groups_all = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
         if(lib.readFile(dir + "/monster_mode.txt") == "funny"){monster_groups_all = lib.readFile("data/monsters/monsters_alt.txt").split("#################################################################################\n");}
@@ -436,7 +452,7 @@ module.exports = {
         	.setColor(embed_color)
         	.setTitle("@ __**" + username + "**__")
         	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5]) //Alternative source (server): "https://indexnight.com/monsters/" + monster_name.toLowerCase().replace(/ /g, "_") + ".png"
-        	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + "```" + buff_extra + newInfo + abilityOutput);
+        	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + chainInfo + "```" + newInfo + buff_extra + abilityOutput);
 		// Real output
 		message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
 		//lib.buttonReply(message, [outputEmbed], buttonList1, buttonList2)     This would make the capture and fight buttons timeout after a while and disable after one click
