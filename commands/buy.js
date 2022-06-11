@@ -121,7 +121,7 @@ module.exports = {
     		}
     		
     		// Get the price
-    		var rankPrices = [5000, 7000, 10000, 13000, 16000, 20000];
+    		var rankPrices = [7500, 10000, 12500, 15000, 20000, 30000];
 		    var result_price = rankPrices[monster_keys_array[0]];
     		
 		    // If the user is a Merchant, check for abilities

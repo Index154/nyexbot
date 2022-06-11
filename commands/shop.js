@@ -69,7 +69,7 @@ module.exports = {
 	    if(args[0] == "shiny"){
 	        
     		// Get the price
-    		var rankPrices = [5000, 7000, 10000, 13000, 16000, 20000];
+    		var rankPrices = [7500, 10000, 12500, 15000, 20000, 30000];
 		    var monster_keys_array = monster_keys.split(",");
 		    var result_price = rankPrices[monster_keys_array[0]];
     		
