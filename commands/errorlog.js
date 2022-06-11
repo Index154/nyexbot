@@ -28,6 +28,30 @@ module.exports = {
         
         // Do prepared SQL insertions if I want to
         if(lib.exists(args[0]) && args[0].toLowerCase() == "pop"){
+            
+            var newImages = lib.readFile("./data/monsters/temp.txt").split("\n");
+            var shinyLists = lib.readFile("./data/monsters/monsters_shiny.txt").split("#################################################################################\n");
+            for(i = 0; i < shinyLists.length; i++){
+                var shinyList = shinyLists[i].split(";\n");
+                for(o = 0; o < shinyList.length - 1; o++){
+                    var shiny = shinyList[o].split("|");
+                    if(!shiny[5].includes("shiny")){
+                        for(e = 0; e < newImages.length; e++){
+                            var image = newImages[e].split("/");
+                            image = image[1].split(".");
+                            if(shiny[0].toLowerCase().replaceAll(/ /g, "_") == image[0]){
+                                shiny[5] = newImages[e];
+                            }
+                        }
+                    }
+                    shinyList[o] = shiny.join("|");
+                }
+                shinyLists[i] = shinyList.join(";\n");
+            }
+            lib.saveFile("./data/monsters/monsters_shiny.txt", shinyLists.join("#################################################################################\n"));
+            message.reply({ content: "Operation completed!", allowedMentions: { repliedUser: false }});
+            return;
+
             async function insertStuff(){
                 // Read some file / list of things to prepare for insertion
                 var tablename = "";
