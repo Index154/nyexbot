@@ -75,7 +75,7 @@ client.once('ready', async () => {
 client.on('rateLimit', console.log);
 
 // Load some stuff for the boss code
-var bossChance = 5000;   // 1 out of x
+var bossChance = 8000;   // 1 out of x
 var min = Math.ceil(1);
 var ranks = ["D", "C", "B", "A", "S", "SS"];
 var chances = [23, 30, 20, 14, 9, 4];
@@ -334,3 +334,8 @@ client.on('messageCreate', async message => {
 
 // Login to Discord with your app's token
 client.login(token);
+
+// Log to know the bot is still alive
+var stillAlive = setInterval(function() {
+    console.log("Still alive! " + Date());
+}, 300 * 1000);

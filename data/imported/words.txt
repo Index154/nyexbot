@@ -9055,4 +9055,7 @@ Sammy;;
 Mr;;
 Monk;;
 God;;
-Bongus
+Bongus;;
+Mighty;;
+Sloth;;
+Teeth
