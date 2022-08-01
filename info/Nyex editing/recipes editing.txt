@@ -1,0 +1,74 @@
+12|4,4|Consumable;   // Concentrated Slime Gel: Blue Slime Gel
+20|17,10|Tool;   // Large Mana Ruby: Mana Ruby
+21|18,10|Tool;   // Large Mana Emerald: Mana Emerald
+22|19,10|Tool;   // Large Mana Sapphire: Mana Sapphire
+32|11,1:108,3|Weapon Upgrade;   // Flaming Greataxe: Rusty Greataxe, Raging Ember
+26|13,4:109,1|Consumable;   // Malicious Bone: Dark Matter, Bone
+110|91,1:88,2:42,1|Consumable;   // Strange Salad: Mandragora Bulb, Azure Petal, Pure Blood
+111|3,1:84,1|Consumable;   // Power Potion: Scorpion Toxin, Small Core
+112|111,1:108,2|Consumable;   // Berserker Potion: Power Potion, Raging Ember
+115|114,1:4,1|Fragment;   // Dimensional Fragment (Slime): Dimensional Fragment, Blue Slime Gel
+162|155,1:135,1:158,1|Tool;   // Mythical Feather Necklace: Thunderous Feather, Phoenix Feather, Ashen Feather
+165|17,1:18,1:19,1|Consumable;   // Gemstone Necklace: Mana Ruby, Mana Emerald, Mana Sapphire
+166|156,1:157,1:159,1|Consumable;   // Grand Slime Gel: Madness Slime Gel, Chaos Slime Gel, Golden Slime Gel
+167|27,1:28,1|Consumable;   // Combined Thread: Sticky Thread, Steel Thread
+153|37,2|Consumable;   // Overloaded Ectoplasm: Ectoplasm
+168|4,1:38,1|Consumable;   // Cursed Slime Gel: Blue Slime Gel, Cursed Blood
+169|17,1:42,1|Consumable;   // Bloodred Ruby: Mana Ruby, Pure Blood
+41|40,5|Tool;   // Undying Ember: Small Ember
+170|74,3:89,1|Consumable;   // Supreme Stew: Supreme Meat, Frog Mucus
+172|82,3:171,1|Consumable;   // Hellish Skewer: Demonic Meat, Demon Spike
+173|93,1:82,1:74,1|Consumable;   // Meat Platter: Rotten Flesh, Demonic Meat, Supreme Meat
+174|95,1:108,1|Consumable;   // Ignited Gloomwood: Charred Wood, Raging Ember
+175|146,1:147,1:154,1|Consumable;   // Chaos Orb: Wind Orb, Water Orb, Storm Orb
+150|13,3|Consumable;   // Nightmare Matter: Dark Matter
+176|4,6|Defense;   // Blue Slime Shield: Blue Slime Gel
+177|15,4:4,1|Weapon;   // Mana Wood Pole: Mana Wood Splinter, Blue Slime Gel
+178|27,1:28,3|Weapon;   // Steel-Silk Whip: Sticky Thread, Steel Thread
+180|146,3:179,1|Weapon;   // Wind Crystal: Wind Orb, Crystal Shard
+181|147,3:179,1|Tool;   // Water Crystal: Water Orb, Crystal Shard
+182|179,3:144,2|Defense;   // Crystal Helmet: Crystal Shard, Living Flame
+183|77,6|Defense;   // Alloy Greaves: Obsidian Alloy
+186|184,2:185,3|Weapon;   // Glavenus Buster: Glavenus Hardfang, Glavenus Shard
+189|187,3:188,3|Weapon;   // Purgation's Atrocity: Nergigante Talon, Nergigante Regrowth Plate
+191|190,2:188,4|Defense;   // Nergigante Vambraces: Nergigante Horn, Nergigante Regrowth Plate
+287|201,2:200,1|Tool;   // Watchful Skull: Lifeless Eye, Scavenger Serpent Skull
+288|109,1:199,1|Weapon;   // Small Tail Club: Bone, Ravager Tail
+289|197,3|Defense;   // Draco Pants: Draco Hide
+290|0,1:4,1:202,1|Weapon Upgrade;   // Shabby Spear: Sturdy Stick, Blue Slime Gel, Yeti Horn
+291|1,1:205,2|Defense Upgrade;   // Protected Gloves: Leather Gloves, Cyan Scale
+292|2,1:193,2|Tool Upgrade;   // Enhanced Magic Rags: Tattered Magic Rags, Stardust
+293|0,1:4,1:195,1|Weapon Upgrade;   // Makeshift Sickle: Sturdy Stick, Blue Slime Gel, Chupacabra Claw
+294|1,1:198,2|Defense Upgrade;   // Heavy Gloves: Leather Gloves, Mossy Scale
+295|163,6|Defense;   // Red Slime Shield: Red Slime Gel
+45|6,1:171,5|Weapon Upgrade;   // Spiky Club: Wooden Club, Demon Spike
+296|9,1:148,4|Weapon Upgrade;   // Poison Claw: Bear Claw, Pitcher Poison
+297|14,1:210,2:147,3|Weapon Upgrade;   // Tidal Pincer: Crab Pincer, Essence of the Sea, Water Orb
+298|24,1:207,2:146,3|Weapon Upgrade;   // Skyshot Bow: Simple Bow, Griffon Feathers, Wind Orb
+299|25,1:28,3:27,2|Weapon Upgrade;   // Threadbound Sword: Old Straightsword, Steel Thread, Sticky Thread
+300|79,1:217,4|Weapon Upgrade;   // Spore Whip: Vine Whip, Toxic Spore Sac
+301|83,1:221,2:209,1|Weapon Upgrade;   // Mixed-Metal Blade: Sharp Metal Scrap, Refined Iron, Iron Plate
+302|97,1:211,5|Weapon Upgrade;   // Coldblade Axe: Small Hand Axe, Icy Hide
+303|98,1:144,5|Weapon Upgrade;   // Flaming Hammer: War Hammer, Living Flame
+304|100,1:147,4:210,1|Weapon Upgrade;   // Splashpoint Spear: Golden Spear, Water Orb, Essence of the Sea
+305|102,1:216,4:208,1|Weapon Upgrade;   // The Hungry Spear: Demon Spear, Demonic Eye, Demonic Horn
+306|103,1:219,4|Weapon Upgrade;   // Sickle Whip: Mantis Claw, Living Vine
+307|177,1:223,5|Weapon Upgrade;   // Absorbing Pole: Mana Wood Pole, Slime Moss
+308|290,1:211,2:146,3:27,1:203,1|Weapon Upgrade;   // Frostwind Spear: Shabby Spear, Icy Hide, Wind Orb, Sticky Thread, Cloth
+309|293,1:163,2:27,2:214,1|Weapon Upgrade;   // Double Claw Staff: Makeshift Sickle, Red Slime Gel, Sticky Thread, Land Shark Claw
+310|16,1:222,4|Defense Upgrade;   // Reinforced Breastplate: Leather Breastplate, Naga Scales  
+311|53,1:75,5|Defense Upgrade;   // Improved Rock Shell: Rock Scorpion Shell, Obsidian Chunk
+312|90,1:213,2:27,2:203,1|Defense Upgrade;   // Combined Shell Shield: Large Shiny Shell, Demon Crab Shell, Sticky Thread, Cloth
+313|99,1:27,1:211,4|Defense Upgrade;   // Coldblood Robes: Wraith Robes, Sticky Thread, Icy Hide
+314|176,1:163,3:218,1|Defense Upgrade;   // Purple Slime Shield: Blue Slime Shield, Red Slime Gel, Possessive Slime Gel
+315|289,1:220,5|Defense Upgrade;   // Drake-Wing Pants: Draco Pants, Desert Drake Wing
+316|294,1:28,2:27,3|Defense Upgrade;   // Steel-Hard Gloves: Heavy Gloves, Steel Thread, Sticky Thread
+317|291,1:222,3:147,1|Defense Upgrade;   // Hydro Gloves: Protected Gloves, Naga Scales, Water Orb
+318|41,1:144,6|Tool Upgrade;   // Everliving Ember: Undying Ember, Living Flame
+319|85,1:145,6|Tool Upgrade;   // Starforce Ring: Enchanted Ring, Galactic Particle
+320|284,1:218,2:215,3|Tool Upgrade;   // Enhanced Corestem: Scarecrow Corestem, Possessive Slime Gel, Rune Stone
+321|285,1:144,6|Tool Upgrade;   // Flamestaff: Staff of Embers, Living Flame
+322|287,1:216,2:218,3|Tool Upgrade;   // Possessed Skull: Watchfull Skull, Demonic Eye, Possessive Slime Gel
+323|292,1:145,3:203,2:27,1|Tool Upgrade;   // Starscape Cloth: Enhanced Magic Rags, Galactic Particle, Cloth, Sticky Thread
+126|226,6|Tool;   // Nebula Singularity: Nebula Mist
+346|105,1:212,1|Consumable   // Ability Changer: Cracked Core, Demon Crab Egg

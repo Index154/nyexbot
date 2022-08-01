@@ -1,0 +1,15 @@
+1,1|116,347|116,347,354|116,347|30|10;  // Unstable common: Slime Vortex (Common), Arthropod Vortex (Common)|Slime Vortex (Common), Arthropod Vortex (Common), Lure Vortex|Slime Vortex (Common), Arthropod Vortex (Common)
+1,1|229,348|229,348,354|229,348|20|10;  // Unstable rare: Slime Vortex (Rare), Arthropod Vortex (Rare)|Slime Vortex (Rare), Arthropod Vortex (Rare), Lure Vortex|Slime Vortex (Rare), Arthropod Vortex (Rare)
+1,1|230,349|230,349|230,349,354|20|10;  // Unstable Ultra Rare: Slime Vortex (Ultra rare), Arthropod Vortex (Ultra rare)|Slime Vortex (Ultra rare), Arthropod Vortex (Ultra rare)|Slime Vortex (Ultra rare), Arthropod Vortex (Ultra rare), Lure Vortex
+2,4|4,163,168,218|12,152,161,326|156,157|5|1;  // Slime common: Blue Slime Gel, Red Slime Gel, Cursed Slime Gel, Possessive Slime Gel|Concentrated Slime Gel, Sulfuric Slime Gel, Crystallized Gel, Slime Lure|Madness Slime Gel, Chaos Slime Gel
+2,3|12,152,161|4,163,168,218|156,157|15|5;  // Slime rare: Concentrated Slime Gel, Sulfuric Slime Gel, Crystallized Gel, Slime Lure|Blue Slime Gel, Red Slime Gel, Cursed Slime Gel, Possessive Slime Gel|Madness Slime Gel, Chaos Slime Gel
+2,3|156,157|159,166|12,152,161,4,163,168,218|30|5;  // Slime ultra rare: Madness Slime Gel, Chaos Slime Gel|Golden Slime Gel, Grand Slime Gel|Concentrated Slime Gel, Sulfuric Slime Gel, Crystallized Gel, Blue Slime Gel, Red Slime Gel, Cursed Slime Gel, Possessive Slime Gel
+2,4|3,84|27,28,213,196|212,330|15|5;  // Arthropod common: Scorpion Toxin, Small Core|Sticky Thread, Steel Thread, Demon Crab Shell, Demon Insect Mandibles|Demon Crab Egg, Arthropod Lure
+2,3|330,3,84,27,28|196,213|255,260|30|5;  // Arthropod rare: Arthropod Lure, Scorpion Toxin, Small Core, Sticky Thread, Steel Thread|Demon Insect Mandibles, Demon Crab Shell|Glowing Carapace, Titan Shell
+2,3|330,255,260,271,272|27,28,272|3,84,276|15|5;  // Arthropod ultra rare: Arthropod Lure, Glowing Carapace, Titan Shell, Hermit Crystal, Hermit Shell|Sticky Thread, Steel Thread, Hermit Shell|Scorpion Toxin, Small Core, Emperor's Shell
+1,1|340,340|286,227,324|346,350,114,354|30|10;  // Special common: Monster Token, Monster Token|Reality Shifter, Stasis Cube, Unique Fragment|Ability Changer, Grand Token, Dimensional Fragment, Lure Vortex
+1,2|340,350|286,227,324|346,114,354|30|10;  // Special rare: Monster Token, Grand Token|Reality Shifter, Stasis Cube, Unique Fragment|Ability Changer, Dimensional Fragment, Lure Vortex
+2,2|350,350|286,227,324|346,114,354|30|10;  // Special ultra rare: Grand Token, Grand Token|Reality Shifter, Stasis Cube, Unique Fragment|Ability Changer, Dimensional Fragment, Lure Vortex
+2,3|326,327,328,329,330,331,332,333,334,335,336,337,339,341,342,343|344,345|344,345|10|10;  // Lure: Slime Lure, Beast Lure, Demon Lure, Undead Lure, Arthropod Lure, Dark Lure, Water Lure, Plant Lure, Reptile Lure, Armored Lure, Flying Lure, Fire Lure, Holy Lure, Intangible Lure, Frost Lure, Lightning Lure|Legendary Lure, Dragon Lure|Legendary Lure, Dragon Lure
+Min drops,Max drops|Common drop 1,Common drop 2|Rare drop 1,Rare drop 2|Very rare drop 1,Very rare drop 2|Rare chance|Very rare chance
+,|,|,|,||

@@ -353,4 +353,5 @@ Special Vortex (Common)|0|0|0|0|0|0|0|0|This strange wormhole seems to be linked
 Special Vortex (Rare)|0|0|0|0|0|0|0|0|This strange wormhole seems to be linked to a special place from a different world. Perhaps some items could be extracted from it|Vortex,10|450|Vortex;
 Special Vortex (Ultra rare)|0|0|0|0|0|0|0|0|This strange wormhole seems to be linked to a special place from a different world. Perhaps some items could be extracted from it|Vortex,11|500|Vortex;
 Lure Vortex|0|0|0|0|0|0|0|0|This strange wormhole seems to be linked to a research lab from a different world. Perhaps some items could be extracted from it|Vortex,12|300|Vortex;
+Glowing Bulb|0|0|0|-80|0|0|0|0|An appendage of the Abyssal Eel used to attract weaker monsters|Item,20|120|B;
 |0|0|0|0|0|0|0|0|Placeholder|Ty|$|Ra;

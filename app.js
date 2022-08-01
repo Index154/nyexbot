@@ -109,6 +109,7 @@ client.on("guildDelete", guild => {
 // Listen for interactions
 client.on('interactionCreate', interaction => {
     var user = interaction.user;
+    user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "");
     // Maintenance mode: Only allow Index to use the bot!
     if(maintenance){
         if(user.id != "214754022832209921"){
@@ -220,7 +221,8 @@ client.on('interactionCreate', interaction => {
 // Listen for messages
 client.on('messageCreate', async message => {
 	var user = message.author;
-     
+    user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "");
+
     // Check whether a world boss should spawn or not
     var worldboss = lib.readFile("./data/worldboss.txt");
     if(worldboss === ""){

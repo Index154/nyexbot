@@ -303,6 +303,7 @@ module.exports = {
         var shiny_key = 0;
         // Modify chance
         var shiny_chance = 1 + Math.round(parseInt(user_stats[4]) / 20) + radar_bonus;
+        if(shiny_chance < 1){shiny_chance = 1;}
         // Apply polisher ability
         var polisher = 1;
         var abilityData = lib.readFile(dir + "/ability.txt").split("|");
@@ -363,11 +364,12 @@ module.exports = {
         var chain = lib.readFile(dir + "/chain.txt").split("|");
         var chainInfo = "";
         // 1.2 = 42 | 1.3 = 31 | 1.4 = 25 | 1.5 = 21 | 1.6 = 18 | 1.8 = 15 | 2 = 12
-        var chainModifiers = [1.2, 1.3, 1.35, 1.4, 1.6, 2];
+        var chainModifiers = [1.3, 1.33, 1.4, 1.5, 1.6, 2];
         if(chain[0] == chosen_group + "," + monster_key + ",0"){
             chainInfo = "\n❗ ❗ This monster is your current chain target ❗ ❗";
             for(i = 0; i < parseInt(chain[1]); i++){
                 shinyRate = Math.floor(shinyRate / chainModifiers[chosen_group]);
+                if(shinyRate < 1){shinyRate = 1;}
             }
         }
         // Determine shininess

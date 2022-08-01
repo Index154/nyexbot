@@ -1,0 +1,20 @@
+D,6,9,14,24,25,79,83,96,97,98,100,102,103,177,288,290,293,D|   // Wooden Club, Bear Claw, Crab Pincer, Simple Bow, Old Straightsword, Vine Whip, Sharp Metal Scrap, Smilodon Fang, Small Hand Axe, War Hammer, Golden Spear, Demon Spear, Mantis Claw, Mana Wood Pole, Small Tail Club, Shabby Spear, Makeshift Sickle
+C,11,39,45,54,117,118,119,120,121,122,123,178,180,296,297,298,299,300,301,302,303,304,305,306,307,308,309,C|   // Rusty Greataxe, Boulder, Spiky Club, Chain Blade, Giant Rib, Blade Claw, Spider Sickle, Abyssal Tentacle, Obsidian Stinger, Scythe Branch, The Reaper's Scythe, Steel-Silk Whip, Wind Crystal, Poison Claw, Tidal Pincer, Skyshot Bow, Threadbound Sword, Spore Whip, Mixed-Metal Blade, Coldblade Axe, Flaming Hammer, Splashpoint Spear, The Hungry Spear, Sickle Whip, Absorbing Pole, Frostwind Spear, Double Claw Staff
+B,32,46,56,57,59,125,127,129,131,186,B|   // Flaming Greataxe, Enchanted Greatsword, Flamewhip, Punishing Blade, Firesword, Ancient Sword, Alguul Grimoire (Tool), Relic Pike, Robotic Blade, Glavenus Buster
+A,48,61,63,65,132,133,134,A|   // Glass Shard, Giant Iron Axe, Mana Shard, Iron Broadsword, Ictu Gladio, Punishing Greataxe, The Rock Smasher
+S,31,67,68,189,S|   // Dragon Tooth, Flameking Sabers, Fang of the Hydra, Purgation's Atrocity
+SS,36,72,73,164,SS                  Weapons   // Fogblade, Crystal Dragon Claw, Rainbow-Colored Core, Frozen Halberd
+#############################################
+D,8,16,53,90,99,137,176,289,291,294,D|   // Wolf Pelt, Leather Breastplate, Rock Scorpion Shell, Large Shiny Shell, Wraith Robes, Worm Carapace, Blue Slime Shield, Draco Pants, Protected Gloves, Heavy Gloves
+C,43,44,55,138,182,295,310,311,312,313,314,315,316,317,C|   // Golden Helmet, Iron Chainmail, Beetle Carapace, The Reaper's Cloak, Crystal Helmet, Red Slime Shield, Reinforced Breastplate, Improved Rock Shell, Combined Shell Shield, Coldblood Robes, Purple Slime Shield, Drake-Wing Pants, Steel-Hard Gloves, Hydro Gloves
+B,47,58,60,124,139,140,141,183,238,B|   // Enchanted Greatshield, Dark Metal Armor, Golden Holy Armor, Ancient Shield, Frost Carapace, Draconata Shell, Mana-Infused Pelt, Alloy Greaves, Cursed Armor
+A,29,62,64,142,A|   // Mana Wood Shield, Large Iron Plate, Dragonwing Shield, Barrier Generator
+S,50,66,69,143,191,S|   // Adamantite Plating, Flameking Armor, Starlight Cloak, Living Shield, Nergigante Vambraces
+SS,51,70,71,SS                      Defense   // Behemoth Carapace, Wyrmscale Shard, Silver Scale
+#############################################
+D,41,85,284,285,287,D|   // Undying Ember, Enchanted Ring, Scarecrow Corestem, Staff of Embers, Watchful Skull
+C,10,181,318,319,320,321,322,323,C|   // Shaman Staff, Water Crystal, Everliving Ember, Starforce Ring, Enhanced Corestem, Flamestaff, Possessed Skull, Starscape Cloth
+B,20,21,22,23,126,127,130,B|   // Large Mana Ruby, Large Mana Emerald, Large Mana Sapphire, Large Mana Diamond, Nebula Singularity, Alguul Grimoire (Tool), Necklace of Bewitching
+A,49,49,A|   // Clump of Souls, Clump of Souls
+S,33,135,162,S|   // Grand Spider Eye, Phoenix Feather, Mythical Feather Necklace
+SS,34,136,SS                        Tools   // Empty Dragon Core, Heart of the Stars

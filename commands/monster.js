@@ -284,6 +284,7 @@ module.exports = {
         var shiny_key = 0;
         // Modify chance
         var shiny_chance = 1 + Math.round(parseInt(user_stats[4]) / 20) + radar_bonus;
+        if(shiny_chance < 1){shiny_chance = 1;}
         // Apply polisher ability
         var polisher = 1;
         var abilityData = lib.readFile(dir + "/ability.txt").split("|");

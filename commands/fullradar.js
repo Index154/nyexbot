@@ -154,6 +154,7 @@ module.exports = {
         // Roll for shininess until a shiny is encountered or all charges are used up
         var shiny_key = 0;
         var shiny_chance = 1 + Math.round(parseInt(user_stats[4]) / 20) + radar_bonus + 1;
+        if(shiny_chance < 1){shiny_chance = 1;}
         var roll_count = 0;
         while(charges > 0 && shiny_key === 0){
             //Determine shininess

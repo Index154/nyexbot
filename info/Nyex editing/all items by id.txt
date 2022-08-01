@@ -1,0 +1,355 @@
+Sturdy Stick is 0 ------ Leather Gloves is 1
+Tattered Magic Rags
+Scorpion Toxin
+Blue Slime Gel
+Godslayer Greatsword
+Wooden Club
+Goblin Horn
+Wolf Pelt
+Bear Claw
+Shaman Staff
+Rusty Greataxe
+Concentrated Slime Gel
+Dark Matter
+Crab Pincer
+Mana Wood Splinter
+Leather Breastplate
+Mana Ruby
+Mana Emerald
+Mana Sapphire
+Large Mana Ruby
+Large Mana Emerald
+Large Mana Sapphire
+Large Mana Diamond
+Simple Bow
+Old Straightsword
+Malicious Bone
+Sticky Thread
+Steel Thread
+Mana Wood Shield
+Dragon Core
+Dragon Tooth
+Flaming Greataxe
+Grand Spider Eye
+Empty Dragon Core
+Fenrir Core
+Fogblade
+Ectoplasm
+Cursed Blood
+Boulder
+Small Ember
+Undying Ember
+Pure Blood
+Golden Helmet
+Iron Chainmail
+Spiky Club
+Enchanted Greatsword
+Enchanted Greatshield
+Glass Shard
+Clump of Souls
+Adamantite Plating
+Behemoth Carapace
+Golem Core
+Rock Scorpion Shell
+Chain Blade
+Beetle Carapace
+Flamewhip
+Punishing Blade
+Dark Metal Armor
+Firesword
+Golden Holy Armor
+Giant Iron Axe
+Large Iron Plate
+Mana Shard
+Dragonwing Shield
+Iron Broadsword
+Flameking Armor
+Flameking Sabers
+Fang of the Hydra
+Starlight Cloak
+Wyrmscale Shard
+Silver Scale
+Crystal Dragon Claw
+Rainbow-Colored Core
+Supreme Meat
+Obsidian Chunk
+Pure Obsidian
+Obsidian Alloy
+Compressed Core
+Vine Whip
+Stardust Core
+Basilisk Eye
+Demonic Meat
+Sharp Metal Scrap
+Small Core
+Enchanted Ring
+Cursed Flame
+Fungus Juice
+Azure Petal
+Frog Mucus
+Large Shiny Shell
+Mandragora Bulb
+Regular Core
+Rotten Flesh
+Ancient Bandages
+Charred Wood
+Smilodon Fang
+Small Hand Axe
+War Hammer
+Wraith Robes
+Golden Spear
+Haunted Pumpkin
+Demon Spear
+Mantis Claw
+Energized Crystal
+Cracked Core
+Shiny Crystal
+Large Cracked Core
+Raging Ember
+Bone
+Strange Salad
+Power Potion
+Berserker Potion
+Large Core
+Dimensional Fragment
+Dimensional Fragment (Slime)
+Slime Vortex (Common)
+Giant Rib
+Blade Claw
+Spider Sickle
+Abyssal Tentacle
+Obsidian Stinger
+Scythe Branch
+The Reaper's Scythe
+Ancient Shield
+Ancient Sword
+Nebula Singularity
+Alguul Grimoire (Tool)
+Alguul Grimoire (Weapon)
+Relic Pike
+Necklace of Bewitching
+Robotic Blade
+Ictu Gladio
+Punishing Greataxe
+The Rock Smasher
+Phoenix Feather
+Heart of the Stars
+Worm Carapace
+The Reaper's Cloak
+Frost Carapace
+Draconata Shell
+Mana-Infused Pelt
+Barrier Generator
+Living Shield
+Living Flame
+Galactic Particle
+Wind Orb
+Water Orb
+Pitcher Poison
+Bulbuous Growth
+Nightmare Matter
+King's Venom
+Sulfuric Slime Gel
+Overloaded Ectoplasm
+Storm Orb
+Thunderous Feather
+Madness Slime Gel
+Chaos Slime Gel
+Ashen Feather
+Golden Slime Gel
+Draconic Soul Stone
+Crystallized Gel
+Mythical Feather Necklace
+Red Slime Gel
+Frozen Halberd
+Gemstone Necklace
+Grand Slime Gel
+Combined Thread
+Cursed Slime Gel
+Bloodred Ruby
+Supreme Stew
+Demon Spike
+Hellish Skewer
+Meat Platter
+Ignited Gloomwood
+Chaos Orb
+Blue Slime Shield
+Mana Wood Pole
+Steel-Silk Whip
+Crystal Shard
+Wind Crystal
+Water Crystal
+Crystal Helmet
+Alloy Greaves
+Glavenus Hardfang
+Glavenus Shard
+Glavenus Buster
+Nergigante Talon
+Nergigante Regrowth Plate
+Purgation's Atrocity
+Nergigante Horn
+Nergigante Vambraces
+Rock Plate
+Stardust
+Metal Scrap
+Chupacabra Claw
+Demon Insect Mandibles
+Draco Hide
+Mossy Scale
+Ravager Tail
+Scavenger Serpent Skull
+Lifeless Eye
+Yeti Horn
+Cloth
+Meerfolk Fin
+Cyan Scale
+Sloth Fur
+Griffon Feathers
+Demonic Horn
+Iron Plate
+Essence of the Sea
+Icy Hide
+Demon Crab Egg
+Demon Crab Shell
+Land Shark Claw
+Rune Stone
+Demonic Eye
+Toxic Spore Sac
+Possessive Slime Gel
+Living Vine
+Desert Drake Wing
+Refined Iron
+Naga Scales
+Slime Moss
+Enchanted Metal
+Magma Carapace
+Nebula Mist
+Stasis Cube
+Dracolisk Egg
+Slime Vortex (Rare)
+Slime Vortex (Ultra rare)
+Unstable Vortex (Common)
+Unstable Vortex (Rare)
+Unstable Vortex (Ultra rare)
+Tiny Dragon Wing
+Abyss Essence
+Ominous Eyestalk
+Haunted Ash
+Cursed Armor
+Drake Beak
+Gazer Saliva
+Emerald Scale
+Reef-Claw
+Drake Webbing
+Tail Spike
+Ogre Stone
+Mossy Antlers
+Pure Void
+Frost Essence
+Sand
+Dark Steel Fragment
+Terrible Horn
+Cockatrice Claw
+Meaty Stinger
+Gigantic Plating
+Glowing Carapace
+Holy Feather
+Energized Amethyst
+Shadow Scale
+Vine Fur
+Titan Shell
+Tyrannosaurus Tooth
+Gigantic Claw
+Bronze Scale
+Artificial Hide
+Charred Scale
+Ancient Core
+Glimmering Scale
+Sinister Fur
+True Essence of the Sea
+Royal Withered Flesh
+Hermit Crystal
+Hermit Shell
+Eclipse Matter
+Silver Scale
+Crystal Scale
+Emperor's Shell
+Kraken Beak
+Golden Scale
+Tempered Greathorn
+Towering Claw
+King's Flesh
+Horn of Ragnarok
+Mindwipe Tonic
+Scarecrow Corestem
+Staff of Embers
+Reality Shifter
+Watchful Skull
+Small Tail Club
+Draco Pants
+Shabby Spear
+Protected Gloves
+Enhanced Magic Rags
+Makeshift Sickle
+Heavy Gloves
+Red Slime Shield
+Poison Claw
+Tidal Pincer
+Skyshot Bow
+Threadbound Sword
+Spore Whip
+Mixed-Metal Blade
+Coldblade Axe
+Flaming Hammer
+Splashpoint Spear
+The Hungry Spear
+Sickle Whip
+Absorbing Pole
+Frostwind Spear
+Double Claw Staff
+Reinforced Breastplate
+Improved Rock Shell
+Combined Shell Shield
+Coldblood Robes
+Purple Slime Shield
+Drake-Wing Pants
+Steel-Hard Gloves
+Hydro Gloves
+Everliving Ember
+Starforce Ring
+Enhanced Corestem
+Flamestaff
+Possessed Skull
+Starscape Cloth
+Unique Fragment
+Shapeless Shard
+Slime Lure
+Beast Lure
+Demon Lure
+Undead Lure
+Arthropod Lure
+Dark Lure
+Water Lure
+Plant Lure
+Reptile Lure
+Armored Lure
+Flying Lure
+Fire Lure
+Dimensional Fragment (Arthropod)
+Holy Lure
+Monster Token
+Intangible Lure
+Frost Lure
+Lightning Lure
+Legendary Lure
+Dragon Lure
+Ability Changer
+Arthropod Vortex (Common)
+Arthropod Vortex (Rare)
+Arthropod Vortex (Ultra rare)
+Grand Token
+Special Vortex (Common)
+Special Vortex (Rare)
+Special Vortex (Ultra rare)
+Lure Vortex
+Glowing Bulb
