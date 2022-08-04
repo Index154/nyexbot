@@ -40,34 +40,32 @@ module.exports = {
         
         // Only run the command if there is an active prompt or it has been called with an argument
         var item_list = lib.readFile("data/items.txt").split(";\n");
-        if(!lib.exists(new_equip_key)){
-            if(lib.exists(allArgs)){
-                // Find all equipment items matching the search argument
-                noButtons = true;
-                allArgs = allArgs.toLowerCase();
-                var results = [];
-                for(i = 0; i < item_list.length; i++){
-                    if(item_list[i].includes("|Weapon|") || item_list[i].includes("|Tool|") || item_list[i].includes("|Defense|")){
-                        var itemName = item_list[i].split("|")[0].toLowerCase();
-                        if(itemName.includes(allArgs)){
-                            results.push(i);
-                        }
-                    }
-                }
-                if(results.length < 1){
-                    // No items found!
-                    message.reply({ content: "@ __**" + username + "**__ \u274C No equipment item matching your input was found!", allowedMentions: { repliedUser: false }});
-                    return;
-                }
-                
-                new_equip_key = results[lib.rand(0, results.length - 1)];
-                newModifier = "|0|0|0|0|0|0".split("|");
-                
-            }else{
-                message.reply({ content: "@ __**" + username + "**__ \u274C There is no equipment item to compare!\nTry again after obtaining one or include the name of one after the command name", allowedMentions: { repliedUser: false }});
-                return;
-            }
-        }
+		if(lib.exists(allArgs)){
+			// Find all equipment items matching the search argument
+			noButtons = true;
+			allArgs = allArgs.toLowerCase();
+			var results = [];
+			for(i = 0; i < item_list.length; i++){
+				if(item_list[i].includes("|Weapon|") || item_list[i].includes("|Tool|") || item_list[i].includes("|Defense|")){
+					var itemName = item_list[i].split("|")[0].toLowerCase();
+					if(itemName.includes(allArgs)){
+						results.push(i);
+					}
+				}
+			}
+			if(results.length < 1){
+				// No items found!
+				message.reply({ content: "@ __**" + username + "**__ \u274C No equipment item matching your input was found!", allowedMentions: { repliedUser: false }});
+				return;
+			}
+			
+			new_equip_key = results[lib.rand(0, results.length - 1)];
+			newModifier = "|0|0|0|0|0|0".split("|");
+			
+		}else if(!lib.exists(new_equip_key)){
+			message.reply({ content: "@ __**" + username + "**__ \u274C There is no equipment item to compare!\nTry again after obtaining one or include the name of one after the command name", allowedMentions: { repliedUser: false }});
+			return;
+		}
         
         // Get data of new equipment item
         var new_item = item_list[new_equip_key];

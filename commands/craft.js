@@ -100,7 +100,7 @@ module.exports = {
                     var source_type = "inventory";
                     var source_inv = inventory_array;
                 }
-                
+
                 if(!no_remove){
                     // Remove all items with the same ID in a loop
                     for(i = 0; i < parseInt(ingredient_info[1]); i++){
@@ -134,12 +134,12 @@ module.exports = {
 				if(craft_data[2].includes("Upgrade")){
 					var oldModifiers = lib.readFile(dir + "/equip_modifiers.txt").split("\n");
 					var modifier = "";
-					if(new_type == "Weapon"){modifier = oldModifiers[0].split("|");}else
-					if(new_type == "Defense"){modifier = oldModifiers[1].split("|");}else
-					if(new_type == "Tool"){modifier = oldModifiers[2].split("|");}
+					if(new_type == "Weapon"){modifier = oldModifiers[0];}else
+					if(new_type == "Defense"){modifier = oldModifiers[1];}else
+					if(new_type == "Tool"){modifier = oldModifiers[2];}
 				}else{
 					var user_stats = lib.readFile(dir + "/stats.txt").split("|");
-					var modifier = lib.generateModifier(user_stats[6]).split("|");
+					var modifier = lib.generateModifier(user_stats[6]);
 					lib.saveFile(dir + "/new_modifier.txt", modifier);
 				}
 				reward_data[0] = modifier.split("|")[0] + reward_data[0];
