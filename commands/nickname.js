@@ -125,7 +125,7 @@ module.exports = {
             var selectedWord2 = nouns[lib.rand(0, nouns.length - 1)];
             // Replace one of the words in the output with the user's input. Also save the user's input to the special word list if it is new
             if(lib.exists(args[0])){
-                args[0] = args[0].toLowerCase().replace("_", " ");
+                args[0] = args[0].toLowerCase().replaceAll(/_/g, " ");
                 args[0] = args[0].charAt(0).toUpperCase() + args[0].slice(1);
                 var replaceRand = lib.rand(1, 2);
                 if(replaceRand == 1){

@@ -218,7 +218,7 @@ module.exports = {
         var outputEmbed = new Discord.MessageEmbed()
         	.setColor('#0099ff')
         	.setTitle("This week's shop")
-        	.setDescription("Buying regular consumable items at **" + buying + "%** price!\nBuying treasure items at **" + t_buying + "%** price!\nSelling regular items at **" + selling + "%** price!\n**Weekly unique realm: " + area_names[parseInt(current_event)] + "**\n**Current shiny: " + monster_data[0] + "**")
+        	.setDescription("Buying regular consumable items at **" + buying + "%** price!\nSelling regular items at **" + selling + "%** price!\n**Weekly unique realm: " + area_names[parseInt(current_event)] + "**\n**Current shiny: " + monster_data[0] + "**")
         	.addFields(
         		{ name: 'Items for sale', value: item1_name + "\n" + item2_name + "\n" + item3_name + "\n" + item4_name + "\n" + item5_name + "\n\u200B\n" + item6_name + "\n" + item7_name + "\n" + item8_name + "\n" + item9_name + "\n" + item10_name, inline: true },
         		{ name: prices_column, value: prices[0] + " Gold\n" + prices[1] + " Gold\n" + prices[2] + " Gold\n" + prices[3] + " Gold\n" + prices[4] + " Gold\n\u200B\n" + prices[5] + " Gold\n" + prices[6] + " Gold\n" + prices[7] + " Gold\n" + prices[8] + " Gold\n" + prices[9] + " Gold", inline: true }

@@ -30,15 +30,12 @@ module.exports = {
         
         // Get a full list of all the user's items
         var inventory = lib.readFile(dir + "/inventory.txt");
-        var treasure = lib.readFile(dir + "/treasure.txt");
         var items = lib.readFile("data/items.txt");
         var items_array = items.split(";\n");
         if(inventory.includes(",")){
             var item_keys = inventory.split(",");
         }else if(inventory !== ""){
             item_keys = [inventory];
-        }else if(treasure !== ""){
-            item_keys = [treasure];
         }else{
             message.reply({ content: "\u274C You don't have any useable items!", allowedMentions: { repliedUser: false }});
             return;
@@ -74,42 +71,23 @@ module.exports = {
 			var item_names_lower = item_names.toLowerCase();
 			item_names_lower = "|" + item_names_lower + "|";
 			
-			// First check if a matching item is in the user's treasure inventory
-			var is_treasure = false;
-			if(treasure !== ""){
-				// Get name
-				var treasure_values = items_array[treasure].split("|");
-				var treasure_name = treasure_values[0].toLowerCase();
-				
-				if(treasure_name.includes(allArgs)){
-				    // The treasure matched the search
-				    is_treasure = true;
-				}
-			}
-			
 			// Check if the search can be matched to an item in the user's possession
-			if(item_names_lower.includes(allArgs) || is_treasure){
+			if(item_names_lower.includes(allArgs)){
 				// First try searching for exact matches. If there is none, search for any matches
     			var result_key = 0;
-    			if(is_treasure){
-    			    result_key = treasure;
-    			    var inventory_array = inventory.split(",");
-    			    if(inventory === ""){inventory_array = [];}
-    			}else{
-    				var key = 0;
-    				if(item_names_lower.includes("|" + allArgs + "|")){
-    				    var item_names_array = item_names_lower.split("|");
-    					key = item_names_array.indexOf(allArgs);
-    				}else{
-    					var split = item_names_lower.split(allArgs);
-    					var left_side = split[0].replace(/[^|]/g, "");
-    					key = left_side.length;
-    				}
-    				
-    				key--;
-    				var inventory_array = inventory.split(",");
-    				result_key = inventory_array[key];
-    			}
+                var key = 0;
+                if(item_names_lower.includes("|" + allArgs + "|")){
+                    var item_names_array = item_names_lower.split("|");
+                    key = item_names_array.indexOf(allArgs);
+                }else{
+                    var split = item_names_lower.split(allArgs);
+                    var left_side = split[0].replace(/[^|]/g, "");
+                    key = left_side.length;
+                }
+                key--;
+                var inventory_array = inventory.split(",");
+                result_key = inventory_array[key];
+            
 				// The item's data has been retrieved!
 				var new_item_data = items_array[result_key].split("|");
 				
@@ -117,7 +95,7 @@ module.exports = {
                 var itemVCounts = new adc(inventory_array).count();
                 if(itemVCounts[result_key] < amountNum){
                     // Not enough
-                    message.reply({ content: "\u274C You don't have enough of the item **" + new_item_data[0] + "**!\nYour held amount is " + itemVCounts[result_key] + " (treasure not included)", allowedMentions: { repliedUser: false }});
+                    message.reply({ content: "\u274C You don't have enough of the item **" + new_item_data[0] + "**!\nYour held amount is " + itemVCounts[result_key], allowedMentions: { repliedUser: false }});
                     return;
                 }
 				
@@ -644,29 +622,20 @@ module.exports = {
                         }
                     }
                     
-                    // Remove the item from the inventory or treasure inventory
-                    var treasure_extra = "";
+                    // Remove the item from the inventory
                     if(!keep_item && !keep_item_2){
-                        if(is_treasure){
-                            if(amountNum > 1){
-                                // Can't use treasure multiple times
-                                message.reply({ content: "\u274C You can't use your treasure item multiple times!", allowedMentions: { repliedUser: false }});
+                        
+                        if(amountNum > 1){
+                            // Check the key position in the inventory again on every loop!
+                            key = inventory_array.indexOf(result_key);
+                            if(key == -1){
+                                // Weird error
+                                message.reply({ content: "\u274C Error! Expected item key but could not find it on loop " + (r + 1), allowedMentions: { repliedUser: false }});
                                 return;
                             }
-                            treasure_extra = " (treasure item)";
-                            lib.saveFile(dir + "/treasure.txt", "");
-                        }else{
-                            if(amountNum > 1){
-                                // Check the key position in the inventory again on every loop!
-                                key = inventory_array.indexOf(result_key);
-                                if(key == -1){
-                                    // Weird error
-                                    message.reply({ content: "\u274C Error! Expected item key but could not find it on loop " + (r + 1), allowedMentions: { repliedUser: false }});
-                                    return;
-                                }
-                            }
-                            inventory_array.splice(key, 1);
                         }
+                        inventory_array.splice(key, 1);
+                    
                     }
 				}
 				lib.saveFile(dir + "/inventory.txt", inventory_array.join(","));
@@ -716,9 +685,9 @@ module.exports = {
                         var pointNum = parseInt(new_item_data_2[1]) * amountNum;
                         var pointGrammar = "";
                         if(pointNum > 1){pointGrammar = "s";}
-                        message.reply({ content: "You used the **" + new_item_data[0] + treasure_extra + "**, gaining **" + pointNum + " Token Point" + pointGrammar + "**!\nThe `monster` command will grant you one special monster per token point until they have all been used up! The points are shown in your inventory as long as you have any" + special_extra + alch_extra, allowedMentions: { repliedUser: false }});
+                        message.reply({ content: "You used the **" + new_item_data[0] + "**, gaining **" + pointNum + " Token Point" + pointGrammar + "**!\nThe `monster` command will grant you one special monster per token point until they have all been used up! The points are shown in your inventory as long as you have any" + special_extra + alch_extra, allowedMentions: { repliedUser: false }});
                     }else{
-                        message.reply({ content: "You used the **" + new_item_data[0] + treasure_extra + "**!" + special_extra + alch_extra, allowedMentions: { repliedUser: false }});
+                        message.reply({ content: "You used the **" + new_item_data[0] + "**!" + special_extra + alch_extra, allowedMentions: { repliedUser: false }});
                     }
                 // For Reality Shifter, send a unique output that looks like an encounter
                 }else if(new_item_data_2[0] == "Shifter"){
@@ -752,7 +721,7 @@ module.exports = {
                     message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});
                 }else{
                     if(amountNum > 1){new_item_data[0] += " x " + amountNum;}
-                    message.reply({ content: "@ __**" + username + "**__, you used the **" + new_item_data[0] + treasure_extra + "**!" + alch_extra, allowedMentions: { repliedUser: false }});
+                    message.reply({ content: "@ __**" + username + "**__, you used the **" + new_item_data[0] + "**!" + alch_extra, allowedMentions: { repliedUser: false }});
                 }
 				
 			}else{
@@ -760,7 +729,7 @@ module.exports = {
 			}
 		
         }else{
-            message.reply({ content: "\u274C You have to include a useable item from your inventory or treasure slot!", allowedMentions: { repliedUser: false }});
+            message.reply({ content: "\u274C You have to include a useable item from your inventory!", allowedMentions: { repliedUser: false }});
         }
 				
 	},

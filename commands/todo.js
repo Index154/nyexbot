@@ -102,21 +102,6 @@ module.exports = {
     		buttons.push(button4);
         }
         
-        // Check treasure cooldown
-        var last_tre = parseInt(lib.readFile(dir + "/cooldown.txt"));
-        var treCD = 10800;
-        if(last_tre + treCD < current_sec || last_tre - current_sec > treCD){
-            description += "\n\uD83D\uDC8E You can receive a **treasure** item right now!";
-            var button5 = new MessageButton()
-    			.setCustomId("any|treasure")
-    			.setLabel('Treasure')
-    			.setStyle('PRIMARY')
-    		buttons.push(button5);
-        }else{
-            var treCooldown = lib.secondsToTime(treCD - current_sec + last_tre);
-            description += "\n\u274C Your treasure cooldown is **" + treCooldown + "**";
-        }
-        
         // Check research
         if(level >= 20){
             var research = lib.readFile(dir + "/research.txt");

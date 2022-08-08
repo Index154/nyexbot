@@ -9076,4 +9076,11 @@ Issue;;
 Scammer;;
 Sud;;
 Stinker;;
-Scp
+Scp;;
+Destroyer;;
+Genocide;;
+Lizard on_you;;
+Monkey time;;
+Terradoge;;
+Stalking;;
+Iguanaostrava

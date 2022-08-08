@@ -109,7 +109,7 @@ client.on("guildDelete", guild => {
 // Listen for interactions
 client.on('interactionCreate', interaction => {
     var user = interaction.user;
-    user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "");
+    user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "").replace(/[\r\n]/gm, "");
     // Maintenance mode: Only allow Index to use the bot!
     if(maintenance){
         if(user.id != "214754022832209921"){

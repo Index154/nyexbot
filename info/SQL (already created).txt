@@ -44,14 +44,6 @@ commands:
 	);
 Filling method: Manual
 
-treasureRarities:
-	create table treasureRarities(
-		treasureRarityId tinyint unsigned unique auto_increment not null,
-		rarityName varchar(20) not null,
-		primary key (treasureRarityId)
-	);
-Filling method: Manual
-
 dailyRewards:
 	create table dailyRewards(
 		rewardId tinyint unsigned unique auto_increment not null,
@@ -228,18 +220,6 @@ recipeIngredients:
 Filling method: Automatic
 Requires: items, recipes
 
-treasureItems:
-	create table treasureItems(
-		treasureId smallint unsigned unique auto_increment not null,
-		itemId smallint unsigned not null,
-		treasureRarityId tinyint unsigned not null,
-		primary key (treasureId),
-		foreign key (itemId) references items(itemId),
-		foreign key (treasureRarityId) references treasureRarities(treasureRarityId)
-	);
-Filling method: Automatic
-Requires: items, treasureRarities
-
 classAbilities:
 	create table classAbilities(
 		classAbilityId tinyint unsigned unique auto_increment not null,
@@ -394,8 +374,6 @@ users:
 		abilityId smallint unsigned not null,
 		abilityTimestamp timestamp,
 		bossTimestamp timestamp,
-		treasureTimestamp timestamp,
-		treasureItemId smallint unsigned not null,
 		recipeId smallint unsigned not null,
 		questId smallint unsigned not null,
 		lastDaily smallint unsigned not null,
@@ -411,7 +389,6 @@ users:
 		foreign key (userRankId) references userRanks(userRankId),
 		foreign key (abilityId) references equipmentAbilities(abilityId),
 		foreign key (areaId) references areas(areaId),
-		foreign key (treasureItemId) references items(itemId),
 		foreign key (recipeId) references recipes(recipeId),
 		foreign key (questId) references quests(questId),
 		foreign key (lastDaily) references dailyQuests(day),

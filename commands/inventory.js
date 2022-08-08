@@ -157,33 +157,12 @@ module.exports = {
 			item_names2 = item_names2 + item_name;
 		}
         
-        // Get treasure item info
-        var treasure = lib.readFile(dir + "/treasure.txt");
-        var treasure_name = "None";
-        if(treasure !== ""){
-            // Get name
-            var treasure_values = items_array[treasure].split("|");
-            treasure_name = treasure_values[0];
-            var treasure_name_lower = treasure_name.toLowerCase();
-        }
-        
         // Check if the user gave an input. If so, look for it in their inventory and give out its info if possible
         if(args.length > 0){
 			// There was an argument so check if it matches an item
 			allArgs = allArgs.toLowerCase();
 			var item_names_lower = item_names2.toLowerCase();
 			item_names_lower = "|" + item_names_lower + "|";
-			
-			// Add treasure to the item list
-			if(treasure !== ""){
-				item_names_lower = item_names_lower + treasure_name_lower + "|";
-				item_keys[item_keys.length] = treasure;
-				if(inventory === ""){
-					inventory = treasure + ",filler";
-				}else{
-					inventory = inventory + "," + treasure;
-				}
-			}
 			
 			// Check if the search can be matched to an item in the user's possession
 			if(item_names_lower.includes(allArgs) || allArgs == "random" || allArgs == "weapon" || allArgs == "defense" || allArgs == "tool"){
@@ -447,7 +426,6 @@ module.exports = {
                 		{ name: 'Equipment', value: name0 + "\n" + name1 + "\n" + name2 },
                 		{ name: 'Gold', value: user_data[12], inline: true },
                 		{ name: 'Stasis Space', value: stasis_info, inline: true },
-                		{ name: 'Treasure', value: treasure_name, inline: true },
 					)
 				
 				// Add token points if there are any
@@ -466,8 +444,7 @@ module.exports = {
                 	.addFields(
                 		{ name: 'Equipment', value: name0 + "\n" + name1 + "\n" + name2 },
                 		{ name: 'Gold', value: user_data[12], inline: true },
-                		{ name: 'Stasis Space', value: stasis_info, inline: true },
-                		{ name: 'Treasure', value: treasure_name, inline: true }
+                		{ name: 'Stasis Space', value: stasis_info, inline: true }
                 	)
                 	.setFooter({ text: "Use \"" + prefix + "inv [item name]\" to view an item's details!" })
                 	.setThumbnail(lib.readFile(dir + "/main_monster.txt"));

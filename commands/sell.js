@@ -2,8 +2,8 @@ var { prefix } = require('../config.json');
 
 module.exports = {
 	name: 'sell',
-	usages: ['[number] [item name]', 'treasure'],
-	descriptions: ['Attempts to sell consumables from your inventory to the shop', 'Attempts to sell your current treasure item'],
+	usages: ['[number] [item name]'],
+	descriptions: ['Attempts to sell consumables from your inventory to the shop'],
     addendum: 'If no amount is given it defaults to one',
 	
 	execute(message, user, args) {
@@ -52,15 +52,12 @@ module.exports = {
 	    
 	    // Get a full list of all the user's items
         var inventory = lib.readFile(dir + "/inventory.txt");
-        var treasure = lib.readFile(dir + "/treasure.txt");
         var items = lib.readFile("data/items.txt");
         var item_array = items.split(";\n");
         if(inventory.includes(",")){
             var item_keys = inventory.split(",");
         }else if(inventory !== ""){
             item_keys = [inventory];
-        }else if(treasure !== ""){
-            item_keys = ["Only treasure!"];
         }else{
             message.reply({ content: "\u274C You don't have any sellable items!", allowedMentions: { repliedUser: false }});
             return;
@@ -79,32 +76,6 @@ module.exports = {
         
         // Get popularity price fluctuations
         var popularities = lib.readFile("./data/item_popularity.txt").split("\n");
-        
-        // If the input was treasure, sell the treasure item. If not, continue unless the user has no other items
-        if(args[0] == "treasure"){
-            if(treasure !== undefined && treasure !== ""){
-                var result_item_data = item_array[treasure].split("|");
-                var fluctuation = 1 + (parseInt(popularities[treasure]) * 0.01);
-                var selling_price = Math.round(parseInt(result_item_data[11]) * buying * 0.75 * 0.35 * merch_mod * fluctuation);
-                
-                //Give the user their gold
-                user_data[12] = parseInt(user_data[12]) + selling_price;
-                lib.saveFile(dir + "/stats.txt", user_data.join("|"));
-                
-                //Remove the treasure item
-                lib.saveFile(dir + "/treasure.txt", "");
-                
-                //Output
-                message.reply({ content: "You sold your **" + result_item_data[0] + "** (treasure item) for **" + selling_price + "** Gold!", allowedMentions: { repliedUser: false }});
-            }else{
-                message.reply({ content: "\u274C You have no treasure item to sell!", allowedMentions: { repliedUser: false }});
-            }
-            return;
-            
-        }else if(item_keys[0] == "Only treasure!"){
-            message.reply({ content: "\u274C You have nothing to sell besides your treasure item!\nUse `" + prefix + "sell treasure` to sell it!", allowedMentions: { repliedUser: false }});
-            return;
-        }
         
         // Go through the item names and join them into a list
         var item_names = "";

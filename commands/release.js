@@ -40,11 +40,13 @@ module.exports = {
         var monsters = lib.readFile("data/monsters/monsters.txt");
 		var monster_groups = monsters.split("#################################################################################\n");
 		
-		if(captures.includes(";")){
-			var monster_key_groups = captures.split(";");
-		}else if(captures !== ""){
-			var monster_key_groups = [captures];
-		}else{
+        if(lib.exists(captures)){
+            if(captures.includes(";")){
+                var monster_key_groups = captures.split(";");
+            }else{
+                var monster_key_groups = [captures];
+            }
+        }else{
 			message.reply({ content: "You have no monsters yet!", allowedMentions: { repliedUser: false }});
 			return;
 		}

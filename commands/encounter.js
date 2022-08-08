@@ -62,7 +62,6 @@ module.exports = {
             lib.saveFile(dir + "/stats.txt", "Classless|5|5|3|0|0|0|0|0|D|1|0|0|0");
             lib.saveFile(dir + "/token_state.txt", "");
             lib.saveFile(dir + "/trade.txt", "");
-            lib.saveFile(dir + "/treasure.txt", "");
             lib.saveFile(dir + "/username.txt", username);
             
             // If the user is an alpha tester, give them their trophy to start with
