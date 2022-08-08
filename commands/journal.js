@@ -7,6 +7,7 @@ module.exports = {
 	descriptions: ['Loads a random Spelunky 2 badly translated journal page (also accepts search arguments)'],
 	aliases: ['j'],
 	addendum: 'Search arguments are parsed as regular expressions',
+	category: 'variety',
 	
 	execute(message, user, args) {
 	    fs = require('fs');

@@ -5,6 +5,7 @@ module.exports = {
 	name: 'fate',
 	usages: [''],
 	descriptions: ['Tells you about the objects that are important to your destiny!'],
+    category: 'variety',
 	
 	execute(message, user, args) {
 	    fs = require('fs');

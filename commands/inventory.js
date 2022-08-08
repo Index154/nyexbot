@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[item name]', 'weapon/defense/tool', 'random', 'user [ID or username]', 'user random'],
 	descriptions: ['Displays your inventory', 'Displays the data of a specified item from your inventory', 'Displays the data of one of your equipment items', 'Displays the data of a random item from your inventory', 'Displays the inventory of a different user', 'Displays the inventory of a random user'],
 	aliases: ['inv'],
+	category: 'items',
 	
 	execute(message, user, args) {
 	    adc  = require('adc.js');

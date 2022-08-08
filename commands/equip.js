@@ -4,6 +4,7 @@ module.exports = {
 	name: 'equip',
 	usages: ['', 'convert'],
 	descriptions: ['Equips a discovered equipment item', 'Converts a discovered equipment item into Scrap'],
+    category: 'items',
 	
 	execute(message, user, args) {
         

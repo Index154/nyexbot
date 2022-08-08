@@ -3,6 +3,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Reloads a command, activating any changes made to the code since the latest reload or restart'],
 	aliases:["rl","rld"],
+    category: 'admin',
 	
 	execute(message, user, args) {
 		if (!args.length) return message.reply({ content: `\u274C You didn't specify a command to reload!`, allowedMentions: { repliedUser: false }});

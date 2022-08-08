@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Shows the uptime of the bot as well as the server it runs on'],
 	aliases: ['up'],
+    category: 'admin',
 
 	execute(message, user, args) {
 	    fs = require('fs');

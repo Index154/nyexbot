@@ -5,6 +5,7 @@ module.exports = {
 	usages: ['', '[class name]'],
 	descriptions: ['Shows a list of available classes', 'Permanently chooses a class'],
 	addendum: 'Can only be used after reaching level 10',
+    category: 'misc',
 	
 	execute(message, user, args) {
 	    var allArgs = args.join(" ");

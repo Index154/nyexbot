@@ -7,6 +7,7 @@ module.exports = {
 	usages: [''],
 	aliases: ['mon', 'm'],
 	addendum: 'Can only be used once every 3 hours',
+    category: 'tasks',
 	
 	execute(message, user, args) {
 	    fs = require('fs');

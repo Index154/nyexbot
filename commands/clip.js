@@ -5,8 +5,9 @@ module.exports = {
 	name: 'clip',
 	usages: [''],
 	descriptions: ['Loads a random clip that has been saved before (also accepts search arguments)'],
-	aliases: ['c'],
+	aliases: ['c', 'clips'],
 	addendum: 'Search arguments will be matched to entry names as well as tags',
+	category: 'variety',
 	
 	execute(message, user, args) {
 	    fs = require('fs');

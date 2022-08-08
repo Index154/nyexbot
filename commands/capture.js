@@ -7,6 +7,7 @@ module.exports = {
 	cooldown: 2.5,
 	aliases: ['cap'],
 	addendum: 'Has an increased cooldown of 2.5 seconds',
+    category: 'main',
 	
 	    execute(message, user, args) {
 		var allArgs = args.join(" ");

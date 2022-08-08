@@ -4,7 +4,8 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'shop',
 	usages: ['', 'shiny'],
-	descriptions: ['Displays the current weekly shop', 'Displays the shiny shop (requires 100% capture completion)'],
+	descriptions: ['Displays the current weekly shop', 'Displays the shiny shop'],
+    category: 'info',
 	
 	execute(message, user, args) {
         

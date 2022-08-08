@@ -8,6 +8,7 @@ module.exports = {
 	addendum: 'Has an increased cooldown of one minute',
 	cooldown: 60,
 	aliases: ['sub'],
+    category: 'settings',
 	
 	execute(message, user, args) {
 	    var allArgs = args.join(" ");

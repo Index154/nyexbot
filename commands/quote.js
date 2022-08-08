@@ -7,6 +7,7 @@ module.exports = {
 	descriptions: ['Loads a random quote that has been saved before (also accepts search arguments)'],
 	aliases: ['q'],
 	addendum: 'Search arguments are parsed as regular expressions',
+	category: 'variety',
 	
 	execute(message, user, args) {
 	    fs = require('fs');

@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Displays your current encounter again'],
 	aliases: ['showenc','senc'],
+    category: 'info',
 	
 	execute(message, user, args) {
         

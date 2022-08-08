@@ -8,6 +8,7 @@ module.exports = {
 	cooldown: 2.5,
 	aliases: ['enc'],
 	addendum: 'Has an increased cooldown of 2.5 seconds',
+    category: 'main',
 	
 	execute(message, user, args) {
         // Check if the server has a custom prefix and load it

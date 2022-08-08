@@ -5,6 +5,7 @@ module.exports = {
 	name: 'use',
 	usages: ['[item name]', '[amount] [vortex or charge item name]'],
 	descriptions: ['Uses an item from your inventory', 'Uses multiple vortexes or charge items of the same type from your inventory. For unstable vortexes you can\'t use more than 10 at once'],
+    category: 'items',
 
 	execute(message, user, args) {
 	    var adc  = require('adc.js');

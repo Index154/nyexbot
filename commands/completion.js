@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Displays your current completion percentages and resulting radar efficiency'],
 	aliases: ['compl'],
+	category: 'userinfo',
 	
 	execute(message, user, args) {
 		var allArgs = args.join(" ");

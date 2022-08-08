@@ -5,6 +5,7 @@ module.exports = {
 	name: 'craft',
 	usages: ['[item name]', 'confirm'],
 	descriptions: ['Checks the crafting recipe for an item and whether you are able to create it', 'Confirms the crafting process. This needs to be used after the above variant of the command'],
+    category: 'items',
 	
 	execute(message, user, args) {
 	    allArgs = args.join(" ").toLowerCase();

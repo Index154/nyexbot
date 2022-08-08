@@ -9,6 +9,7 @@ module.exports = {
 	usages: ['', 'top', 'user [ID or username]', 'user random'],
 	descriptions: ['Displays a list of your trophies', 'Displays a list of all users ranked by their cumulative trophy scores', 'Displays the trophies of a different user', 'Displays the trophies of a random user'],
 	aliases: ['tro'],
+    category: 'userinfo',
 	
 	execute(message, user, args) {
         

@@ -1,0 +1,72 @@
+main = Important commands
+    encounter
+    capture
+    fight
+    todo
+    quest
+    deliver
+
+tasks = Recurring tasks / Todo
+    monster
+    daily
+    dodaily
+    radar
+    research
+    worldboss
+
+userinfo = User information
+    inventory
+    captures
+    stats
+    completion
+    trophies
+
+items = Item interactions
+    use
+    materials
+    craft
+    equip
+    buy
+    sell
+    transform
+
+info = General information
+    help
+    shop
+    recipes
+    area
+    compare
+    check
+    showencounter
+
+misc = Miscellaneous
+    move
+    fullradar
+    release
+    trade
+    class
+
+settings = ?
+    set
+    submit
+
+variety = Funny / Standalone / Unrelated
+    media
+    clip
+    quote
+    nickname
+    journal
+    http
+    elden
+    mhl
+    fate
+
+minigames = Other minigames
+    guess
+    pokegory
+
+admin = Maintenance / Admin commands
+    errorlog
+    reload
+    uptime
+    add

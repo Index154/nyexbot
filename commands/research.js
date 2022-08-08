@@ -7,6 +7,7 @@ module.exports = {
 	descriptions: ["Displays your available research projects or your currently active project. Also claims a completed project's rewards", 'Starts the selected project'],
 	addendum: 'Can only be used after reaching level 20',
 	aliases: ['res'],
+    category: 'tasks',
 	
 	execute(message, user, args) {
         

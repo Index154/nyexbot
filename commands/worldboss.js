@@ -6,6 +6,7 @@ module.exports = {
 	descriptions: ['Deals damage to the world boss, marking you as a participant and granting you 20 Gold'],
 	addendum: 'Can only be used once an hour and only if there is an active boss',
 	aliases: ['wb','boss'],
+	category: 'tasks',
 	
 	execute(message, user, args) {
         

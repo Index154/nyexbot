@@ -4,6 +4,7 @@ module.exports = {
 	name: 'release',
 	usages: ['[number] [monster name]'],
 	descriptions: ['Releases one or more monsters from your captures in exchange for a buff'],
+    category: 'misc',
 	
 	execute(message, user, args) {
 	    var allArgs = args.join(" ");

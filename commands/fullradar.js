@@ -7,6 +7,7 @@ module.exports = {
 	descriptions: ['Channels all your radar charges into one encounter in exchange for Gold. Also claims your daily charges if eligible'],
 	addendum: 'Can only be used after reaching level 15',
 	aliases: ['frad'],
+    category: 'misc',
 	
 	execute(message, user, args) {
 	    

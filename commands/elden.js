@@ -5,6 +5,7 @@ module.exports = {
 	name: 'elden',
 	usages: [''],
 	descriptions: ['Generates a random message that could be made in Elden Ring'],
+    category: 'variety',
 
 	execute(message, user, args) {
 	    fs = require('fs');

@@ -8,6 +8,7 @@ module.exports = {
 	cooldown: 2.5,
 	aliases: ['fig'],
 	addendum: 'Has an increased cooldown of 2.5 seconds',
+    category: 'main',
 	
 	execute(message, user, args) {
         

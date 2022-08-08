@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[monster name]', 'random', 'user [ID or username]', 'user random', 'favorite [monster name]'],
 	descriptions: ["Shows you a list of all the monsters you've ever captured", "Displays the details of a specified monster from your captures", "Displays the details of a random monster from your captures", 'Displays the capture list of a different user', 'Displays the capture list of a random user', 'Favorites a monster, setting it as your user icon'],
 	aliases: ['caps'],
+	category: 'userinfo',
 	
 	execute(message, user, args) {
 		var allArgs = args.join(" ");

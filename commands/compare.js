@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[Item name]'],
 	descriptions: ['Compares your equipment to the most recently discovered equipment item of the same type', 'Compares your equipment to one matching the searched name'],
 	aliases: ['comp'],
+	category: 'info',
 	
 	execute(message, user, args) {
         var allArgs = args.join(" ");

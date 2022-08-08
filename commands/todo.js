@@ -7,6 +7,7 @@ module.exports = {
 	descriptions: ['Shows a collection of your current command cooldowns and other tasks'],
 	aliases: ['timers'],
 	addendum: '',
+    category: 'main',
 	
 	execute(message, user, args) {
 	    fs = require('fs');

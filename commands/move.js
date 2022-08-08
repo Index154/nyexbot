@@ -6,6 +6,7 @@ module.exports = {
 	descriptions: ['Moves you to a random area', 'Moves you to the specified area'],
 	aliases: ['mv', 'goto'],
 	addendum: 'You can only use this command to move to regular areas',
+    category: 'misc',
 	
 	execute(message, user, args) {
 	    var allArgs = args.join(" ");

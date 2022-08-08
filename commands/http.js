@@ -5,6 +5,7 @@ module.exports = {
 	name: 'http',
 	usages: [''],
 	descriptions: ['Posts a random HTTP status code with a corresponding cat or dog image'],
+    category: 'variety',
 	
 	execute(message, user, args) {
 	    fs = require('fs');

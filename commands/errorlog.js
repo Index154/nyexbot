@@ -6,6 +6,7 @@ module.exports = {
 	descriptions: ["Generates a viewable copy of the bot's error log", "Clears the main error log. The most recently generated copy is left untouched", "Restarts the whole bot (for applying changes made to the main functions)"],
 	aliases: ['el'],
 	addendum: ['Can only be used by Index154'],
+    category: 'admin',
 	
 	execute(message, user, args) {
 	    

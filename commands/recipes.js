@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', 'craftable', '[item name]'],
 	descriptions: ['Posts a link to the list of recipes', 'Displays a list of items you are currently able to craft', 'Displays a list of items that can be crafted with the given item. Also lists the item itself if it can be crafted'],
 	aliases: ["rec"],
+    category: 'info',
 	
 	execute(message, user, args) {
 	    var allArgs = args.join(" ");

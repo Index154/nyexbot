@@ -5,6 +5,7 @@ module.exports = {
 	name: 'check',
 	usages: [''],
 	descriptions: ['Displays information about the currently encountered monster'],
+    category: 'info',
 	
 	execute(message, user, args) {
 	    adc = require('adc.js');

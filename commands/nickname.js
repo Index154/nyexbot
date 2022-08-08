@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Generates a random weird nickname. Add a number argument to generate more than one at a time'],
 	aliases: ['nick'],
+    category: 'variety',
 
 	execute(message, user, args) {
 	    fs = require('fs');

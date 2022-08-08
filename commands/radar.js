@@ -6,6 +6,7 @@ module.exports = {
 	descriptions: ['Activates or deactivates the radar buff. Also claims your daily charges if eligible'],
 	aliases: ['rad'],
 	addendum: 'Can only be used after reaching level 5',
+    category: 'tasks',
 	
 	execute(message, user, args) {
 	    

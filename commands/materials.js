@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[material name]', 'favorite [material name]', 'convert [number] [material name]', 'convert all'],
 	descriptions: ['Shows a list of all your materials and your Scrap amount', "Shows a material's Scrap value, description and amount held", 'Favorites or unfavorites a material', 'Converts a specified amount of a chosen material into Scrap. Defaults to one if no number is given', 'Converts all your unfavorited materials into Scrap. This requires confirmation in the form of using the same command again'],
 	aliases: ['mats', 'mat'],
+    category: 'items',
 	
 	execute(message, user, args) {
 	    var adc  = require('adc.js');

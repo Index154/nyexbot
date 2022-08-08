@@ -5,6 +5,7 @@ module.exports = {
 	name: 'help',
 	descriptions: ['Displays a list of commands', 'Displays the details of a command'],
 	usages: ['', '[command name]'],
+    category: 'info',
 	
 	execute(message, user, args) {
 	    const data = [];

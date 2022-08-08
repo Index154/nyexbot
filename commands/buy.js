@@ -4,6 +4,7 @@ module.exports = {
 	name: 'buy',
 	usages: ['[item name]', 'shinymon'],
 	descriptions: ['Attempts to purchase a selected item from the shop', 'Attempts to buy the shiny from the shiny shop'],
+    category: 'items',
 	
 	execute(message, user, args) {
         
