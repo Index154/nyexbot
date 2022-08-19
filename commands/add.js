@@ -5,6 +5,7 @@ module.exports = {
 	name: 'add',
 	usages: ['[list name] [new entry]'],
 	descriptions: ['Admin command'],
+    shortDescription: 'Add a database entry',
     category: 'admin',
 	
 	execute(message, user, args) {

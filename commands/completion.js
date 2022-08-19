@@ -5,6 +5,7 @@ module.exports = {
 	name: 'completion',
 	usages: [''],
 	descriptions: ['Displays your current completion percentages and resulting radar efficiency'],
+    shortDescription: 'Check your game completion statistics',
 	aliases: ['compl'],
 	category: 'userinfo',
 	

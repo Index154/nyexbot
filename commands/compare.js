@@ -5,6 +5,7 @@ module.exports = {
 	name: 'compare',
 	usages: ['', '[Item name]'],
 	descriptions: ['Compares your equipment to the most recently discovered equipment item of the same type', 'Compares your equipment to one matching the searched name'],
+    shortDescription: 'Compare equipment item stats',
 	aliases: ['comp'],
 	category: 'info',
 	

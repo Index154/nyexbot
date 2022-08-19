@@ -5,6 +5,7 @@ module.exports = {
 	name: 'craft',
 	usages: ['[item name]', 'confirm'],
 	descriptions: ['Checks the crafting recipe for an item and whether you are able to create it', 'Confirms the crafting process. This needs to be used after the above variant of the command'],
+    shortDescription: 'Craft items',
     category: 'items',
 	
 	execute(message, user, args) {
@@ -295,8 +296,10 @@ module.exports = {
         
         // Finalize embed fields
         outputEmbed
-            .addField("Required ingredients", ingredient_info, true)
-            .addField("Owned / Needed", ingredient_info_2, true);
+            .addFields( 
+                { name: "Required ingredients", value: ingredient_info, inline: true },
+                { name: "Owned / Needed", value: ingredient_info_2, inline: true }
+            );
 		
         // If the user is able to craft the item, ask for confirmation and save important values temporarily
         var confirmation = "";
@@ -321,16 +324,16 @@ module.exports = {
 		// Modify embed
 		outputEmbed
         	.setDescription(result_item[9])
-        	.addField("\u200B", "\u200B", true);
+        	.addFields( { name: "\u200B", value: "\u200B", inline: true } );
 		if(result_item[10] == "Weapon"){
 		    outputEmbed
-            	.addField('Type', "Weapon", true);
+            	.addFields( { name: 'Type', value: "Weapon", inline: true } );
 		    // Add ability if needed
             var itemAbilities = abilities[0].split(";\n");
             var abilityName = itemAbilities[parseInt(result_item[11])];
             if(abilityName != "None"){
                 outputEmbed
-                    .addField('Ability', abilityName, true);
+                    .addFields( { name: 'Ability', value: abilityName, inline: true } );
             }
 		    // Add additional fields to the embed
 		    outputEmbed
@@ -344,10 +347,10 @@ module.exports = {
                     if(o == 7){
                         // Special kind of field for type bonus
                         outputEmbed
-                            .addField('Type Bonus', result_item[7] + ' against [' + result_item[8] + ']', true);
+                            .addFields( { name: 'Type Bonus', value: result_item[7] + ' against [' + result_item[8] + ']', inline: true } );
                     }else{
                         outputEmbed
-                            .addField(stat_names[o], result_item[o], true);
+                            .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
                     }
                 }
             }
@@ -357,13 +360,13 @@ module.exports = {
 			if(result_item[2] > result_item[1] * 2){weight = "Light";}
 			else if(result_item[2] * 2 < result_item[1]){weight = "Heavy";}
 		    outputEmbed
-            	.addField('Type', "Defensive equipment", true);
+            	.addFields( { name: 'Type', value: "Defensive equipment", inline: true } );
             // Add ability if needed
             var itemAbilities = abilities[1].split(";\n");
             var abilityName = itemAbilities[parseInt(result_item[11])];
             if(parseInt(abilityName) !== 0){
                 outputEmbed
-            	    .addField('Ability Modifier', abilityName, true);
+            	    .addFields( { name: 'Ability Modifier', value: abilityName, inline: true } );
             }
             outputEmbed
             	.addFields(
@@ -376,32 +379,32 @@ module.exports = {
                     if(o == 7){
                         // Special kind of field for type bonus
                         outputEmbed
-                            .addField('Type Bonus', result_item[7] + ' against [' + result_item[8] + ']', true);
+                            .addFields( { name: 'Type Bonus', value: result_item[7] + ' against [' + result_item[8] + ']', inline: true } );
                     }else{
                         outputEmbed
-                            .addField(stat_names[o], result_item[o], true);
+                            .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
                     }
                 }
             }
 		}else if(result_item[10] == "Tool"){
 			// Add additional fields to the embed
 		    outputEmbed
-            	.addField('Type', "Divine Tool", true);
+            	.addFields( { name: 'Type', value: "Divine Tool", inline: true } );
             // Add ability
             var itemAbilities = abilities[2].split(";\n");
             var abilityName = itemAbilities[parseInt(result_item[11])];
             outputEmbed
-            	.addField('Ability Activation', abilityName, true);
+            	.addFields( { name: 'Ability Activation', value: abilityName, inline: true } );
             	
             for(o = 1; o < 8; o++){
                 if(parseInt(result_item[o]) !== 0){
                     if(o == 7){
                         // Special kind of field for type bonus
                         outputEmbed
-                            .addField('Type Bonus', result_item[7] + ' against [' + result_item[8] + ']', true);
+                            .addFields( { name: 'Type Bonus', value: result_item[7] + ' against [' + result_item[8] + ']', inline: true } );
                     }else{
                         outputEmbed
-                            .addField(stat_names[o], result_item[o], true);
+                            .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
                     }
                 }
             }
@@ -418,10 +421,10 @@ module.exports = {
                     if(o == 7){
                         // Special kind of field for type bonus
                         outputEmbed
-                            .addField('Type Bonus', result_item[7] + ' against [' + result_item[8] + ']', true);
+                            .addFields( { name: 'Type Bonus', value: result_item[7] + ' against [' + result_item[8] + ']', inline: true } );
                     }else{
                         outputEmbed
-                            .addField(stat_names[o], result_item[o], true);
+                            .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
                     }
                 }
             }
@@ -436,12 +439,12 @@ module.exports = {
                     var use_display = "Use Duration";
                 }
                 outputEmbed
-                    .addField(use_display, item_subinfo[1], true);
+                    .addFields( { name: use_display, value: item_subinfo[1], inline: true } );
             }
             
             // Add default selling price
             outputEmbed
-                .addField("Price", result_item[11] + " Gold", true);
+                .addFields( { name: "Price", value: result_item[11] + " Gold", inline: true } );
             
 		}
 		

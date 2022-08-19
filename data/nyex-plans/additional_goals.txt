@@ -1,0 +1,16 @@
+__**Additional goals:**__
+(These can be done at any time in any order and are not super important. Usually QoL improvements, fixes and additional features)
+- A monster dex which shows how many monsters you're missing. Also has clues for how to obtain them
+- Greater Item Luck working based on the average chance of a monster's drops rather than the amount of drops
+- A function for captures that lets you check the monsters of another user which you are missing
+- Turn .inv item view into a paged embed
+- Random button for captures embed
+- A gather command that lets you get environmental materials based on current area (and maybe rank?) with a cooldown. Perhaps it involves sending captured monsters on expeditions too
+- Descriptions for the newer equipment and monsters
+- An option for captures to only show matching results as pages
+- List view sorting options
+- The ability to craft multiple consumables at once
+- Transforming materials into others of your choosing (must be same rank, conversion rate of maybe like 5 to 1)
+- Information about the areas a monster can be found in in check and caps
+- List view for clip, media and such
+<:sp:860269564779429908>

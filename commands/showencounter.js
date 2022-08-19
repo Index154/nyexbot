@@ -5,6 +5,7 @@ module.exports = {
 	name: 'showencounter',
 	usages: [''],
 	descriptions: ['Displays your current encounter again'],
+    shortDescription: 'See your current encounter',
 	aliases: ['showenc','senc'],
     category: 'info',
 	

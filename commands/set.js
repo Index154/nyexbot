@@ -6,6 +6,7 @@ module.exports = {
 	name: 'set',
 	usages: ['channel', 'prefix [text]'],
 	descriptions: ["Sets the current channel as the server's NyexBot announcement channel", "Sets a new server-side prefix for the bot"],
+    shortDescription: 'Set the prefix or announcements channel',
 	addendum: 'Can only be used by users with the permission "Manage Server".\nAnnouncements include update and worldboss notices',
     category: 'settings',
 	

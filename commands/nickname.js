@@ -5,6 +5,7 @@ module.exports = {
 	name: 'nickname',
 	usages: [''],
 	descriptions: ['Generates a random weird nickname. Add a number argument to generate more than one at a time'],
+    shortDescription: 'Generate random nicknames',
 	aliases: ['nick'],
     category: 'variety',
 

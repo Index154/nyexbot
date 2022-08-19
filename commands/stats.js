@@ -5,6 +5,7 @@ module.exports = {
 	name: 'stats',
 	usages: ['', '[number] [stat name]', 'user [ID or username]', 'user random', 'mode'],
 	descriptions: ['Displays your stats', 'Assigns stat points to one of your stats', 'Displays the stats of a different user', 'Displays the stats of a random user', 'Switches your monster display mode to random names and images (funny) or back to normal'],
+    shortDescription: 'Check a user\'s stats and assign stat points',
 	addendum: 'Stat points can only be assigned to Attack, Speed, Capture Efficiency, Monster Luck, Item Luck and Greater Item Luck ',
     category: 'userinfo',
 	
@@ -309,14 +310,14 @@ module.exports = {
         // Add a type bonus if there is one
         if(stat_data[7] != "0"){
             outputEmbed
-                .addField("Type Bonus", stat_data[7] + " against [" + stat_data[8] + "]", true);
+                .addFields( { name: "Type Bonus", value: stat_data[7] + " against [" + stat_data[8] + "]", inline: true } );
         }
         
         // Add realm HP if in a realm
         var hp = lib.readFile(dir + "/hp.txt");
         if(parseInt(area_key) > 13){
             outputEmbed
-                .addField("Current HP", hp, true);
+                .addFields( { name: "Current HP", value: hp, inline: true } );
         }
         
         // Output

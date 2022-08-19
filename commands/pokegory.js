@@ -5,6 +5,7 @@ module.exports = {
 	name: 'pokegory',
 	usages: ['', '[guess]'],
 	descriptions: ['Starts a minigame where you\'re tasked with guessing a Pokemon based on a given category', 'Submits a guess for the current game'],
+    shortDescription: 'Category-based Pokemon quiz',
 	aliases: ['pg'],
     category: 'minigames',
 	

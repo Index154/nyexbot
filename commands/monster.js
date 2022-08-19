@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'monster',
 	descriptions: ['Immediately captures a random monster'],
+    shortDescription: 'Get a free monster',
 	usages: [''],
 	aliases: ['mon', 'm'],
 	addendum: 'Can only be used once every 3 hours',

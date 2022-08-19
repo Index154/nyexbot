@@ -1,0 +1,7 @@
+__**Main goals:**__
+(Basically these are the most important goals for making the game somewhat complete. However, they are less likely to happen quickly because they require more effort)
+- Unique images for all shinies
+- More quests (Next: C)
+- More equipment upgrades along with recipes (Next: C to B)
+- More unique realms (= new exclusive monsters)
+- SQL database implementation (also includes monster dex numbering and more trophies) + full code rewrite including centralization of common operations as functions

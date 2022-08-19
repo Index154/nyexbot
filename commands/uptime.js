@@ -5,6 +5,7 @@ module.exports = {
 	name: 'uptime',
 	usages: [''],
 	descriptions: ['Shows the uptime of the bot as well as the server it runs on'],
+    shortDescription: 'See bot uptime',
 	aliases: ['up'],
     category: 'admin',
 

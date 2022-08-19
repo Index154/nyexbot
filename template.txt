@@ -5,8 +5,10 @@ module.exports = {
 	name: '',
 	usages: [''],
 	descriptions: [''],
+    shortDescription: '',
 	aliases: [''],
 	addendum: '',
+    category: '',
 	
 	execute(message, user, args) {
 	    fs = require('fs');

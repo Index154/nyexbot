@@ -1,0 +1,15 @@
+__**Possibilities:**__
+(Might not ever be implemented - Rough ideas)
+- Check being tied to the active encounter again?
+- Equipment being put into the equipping queue when replaced so you can switch back?
+- Life-ruining gambling mechanics (a mode that makes enc riskier?)
+- Seasonal events / anniversary?
+- An item that lets you save a chain for later
+- Some sort of difficulty increase after unlocking the level cap?
+- An NG+ mechanic?
+- Worldbosses having a small chance to do something funny when you fight them?
+- Public availability of the bot?
+- A command to reset your account? (Except for trophies? Maybe combine this with the NG+ idea?)
+- Release blessings not all being buffs?
+- Every equipment item being assigned to a specific class (or class group) so players don't have an overwhelming amount of choices? (Make it either impossible to get one that doesn't match your class or make it have debuffed stats?)
+- A way to browse through all available equipment items so you can choose a goal to work towards?

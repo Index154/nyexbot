@@ -334,7 +334,9 @@ module.exports = {
 		var pageCount = Math.ceil(paginationArray.length / elementsPerPage);
 		if(pageCount < 1){pageCount = 1;}
 		pages = [];
-		embedTemplate.addField(fieldTitle, "e", false);
+		embedTemplate.addFields(
+			{ name: fieldTitle, value: "e", inline: false }
+		);
 		for(i = 0; i < pageCount; i++){
 			var pageList = "";
 			if(i == pageCount - 1 && paginationArray.length % elementsPerPage !== 0){ elementsPerPage = paginationArray.length % elementsPerPage;}
@@ -455,7 +457,7 @@ module.exports = {
 			var blessing_keys = monster_info[6].split(",");
 			var blessing_type = buff_names[blessing_keys[0]];
 			outputEmbed
-			    .addField("Release Blessing", blessing_type, true);
+			    .addFields( { name: "Release Blessing", value: blessing_type, inline: true } );
 			
 			// Get item drops and add them
 			if(result_keys[2] == "1"){
@@ -485,14 +487,14 @@ module.exports = {
             }
             
             outputEmbed
-                .addField("Drops", drops, true);
+                .addFields( { name: "Drops", value: drops, inline: true } );
 			
 			// Get captured count
 			var monster_array = monster_names2.split("|");
 			var captures_counts = new adc(monster_array).count();
 			var capture_count = captures_counts[monster_info[0]] - 1; // Subtract one because of all_captures.txt
 			outputEmbed
-			    .addField(username + "'s capture count", capture_count.toString(), true);
+			    .addFields( { name: username + "'s capture count", value: capture_count.toString(), inline: true } );
 			
 			// Add to list
 			pages[i] = outputEmbed;
@@ -588,16 +590,14 @@ module.exports = {
 		});
 
 		collector.on("end", () => {
-			if (!newMessage.deleted) {
-				for(y = 0; y < buttons.length; y++){
-					buttons[y].setDisabled(true);
-				}
-				var disabledRow = new MessageActionRow().addComponents(buttons);
-				newMessage.edit({
-					embeds: embeds,
-					components: [disabledRow],
-				});
+			for(y = 0; y < buttons.length; y++){
+				buttons[y].setDisabled(true);
 			}
+			var disabledRow = new MessageActionRow().addComponents(buttons);
+			newMessage.edit({
+				embeds: embeds,
+				components: [disabledRow],
+			});
 		});
 
 	},
@@ -634,16 +634,14 @@ module.exports = {
 		});
 
 		collector.on("end", () => {
-			if (!newMessage.deleted) {
-				for(y = 0; y < buttons.length; y++){
-					buttons[y].setDisabled(true);
-				}
-				var disabledRow = new MessageActionRow().addComponents(buttons);
-				newMessage.edit({
-					content: content,
-					components: [disabledRow],
-				});
+			for(y = 0; y < buttons.length; y++){
+				buttons[y].setDisabled(true);
 			}
+			var disabledRow = new MessageActionRow().addComponents(buttons);
+			newMessage.edit({
+				content: content,
+				components: [disabledRow],
+			});
 		});
 
 	},
@@ -945,16 +943,14 @@ module.exports = {
 		  	});
 	  
 		  	collector.on("end", () => {
-				if (!curPage.deleted) {
-			  		const disabledRow = new MessageActionRow().addComponents(
-						buttonList[0].setDisabled(true),
-						buttonList[1].setDisabled(true)
-			  		);
-			  		curPage.edit({
-						embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
-						components: [disabledRow],
-			  		});
-				}
+				const disabledRow = new MessageActionRow().addComponents(
+					buttonList[0].setDisabled(true),
+					buttonList[1].setDisabled(true)
+				);
+				curPage.edit({
+					embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+					components: [disabledRow],
+				});
 		  	});
 	  
 		}
@@ -1053,17 +1049,15 @@ module.exports = {
 			});
 			
 			collector.on("end", () => {
-				if (!curPage.deleted) {
-					const row = new MessageActionRow().addComponents(
-						buttonList[0].setDisabled(true),
-						buttonList[1].setDisabled(true),
-						buttonList[2].setDisabled(true)
-					);
-					curPage.edit({
-						embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
-						components: [row],
-					});
-				}
+				const row = new MessageActionRow().addComponents(
+					buttonList[0].setDisabled(true),
+					buttonList[1].setDisabled(true),
+					buttonList[2].setDisabled(true)
+				);
+				curPage.edit({
+					embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+					components: [row],
+				});
 			});
 		
 		}
@@ -1138,17 +1132,15 @@ module.exports = {
 			});
 	  
 			collector.on("end", () => {
-				if (!curPage.deleted) {
-					const row = new MessageActionRow().addComponents(
-						buttonList[0].setDisabled(true),
-						buttonList[1].setDisabled(true),
-						buttonList[2].setDisabled(true)
-					);
-					curPage.edit({
-						content: pages[page] + `\nResult ${page + 1} / ${pages.length}`,
-						components: [row],
-					});
-				}
+				const row = new MessageActionRow().addComponents(
+					buttonList[0].setDisabled(true),
+					buttonList[1].setDisabled(true),
+					buttonList[2].setDisabled(true)
+				);
+				curPage.edit({
+					content: pages[page] + `\nResult ${page + 1} / ${pages.length}`,
+					components: [row],
+				});
 			});
 	  
 		}

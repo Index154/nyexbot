@@ -4,6 +4,7 @@ module.exports = {
 	name: 'sell',
 	usages: ['[number] [item name]'],
 	descriptions: ['Attempts to sell consumables from your inventory to the shop'],
+    shortDescription: 'Sell items',
     addendum: 'If no amount is given it defaults to one',
     category: 'items',
 	

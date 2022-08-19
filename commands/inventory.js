@@ -5,6 +5,7 @@ module.exports = {
 	name: 'inventory',
 	usages: ['', '[item name]', 'weapon/defense/tool', 'random', 'user [ID or username]', 'user random'],
 	descriptions: ['Displays your inventory', 'Displays the data of a specified item from your inventory', 'Displays the data of one of your equipment items', 'Displays the data of a random item from your inventory', 'Displays the inventory of a different user', 'Displays the inventory of a random user'],
+    shortDescription: 'Check a user\'s items and their details',
 	aliases: ['inv'],
 	category: 'items',
 	
@@ -228,13 +229,13 @@ module.exports = {
 				if(item_info[10] == "Weapon"){
 				    outputEmbed
 						.setTitle(name0)
-                    	.addField('Type', "Weapon", true);
+                    	.addFields( { name: 'Type', value: "Weapon", inline: true } );
 				    // Add ability if needed
                     var itemAbilities = abilities[0].split(";\n");
                     var abilityName = itemAbilities[parseInt(item_info[11])];
                     if(abilityName != "None"){
                         outputEmbed
-                            .addField('Ability', abilityName, true);
+                            .addFields( { name: 'Ability', value: abilityName, inline: true } );
                     }
 				    // Add additional fields to the embed
 				    outputEmbed
@@ -248,10 +249,10 @@ module.exports = {
                             if(o == 7){
                                 // Special kind of field for type bonus
                                 outputEmbed
-                                    .addField('Type Bonus', item_info[7] + ' against [' + item_info[8] + ']', true);
+                                    .addFields( { name: 'Type Bonus', value: item_info[7] + ' against [' + item_info[8] + ']', inline: true } );
                             }else{
                                 outputEmbed
-                                    .addField(stat_names[o], item_info[o] + modifierData[o], true);
+                                    .addFields( { name: stat_names[o], value: item_info[o] + modifierData[o], inline: true } );
                             }
                         }
                     }
@@ -262,13 +263,13 @@ module.exports = {
 					else if(item_info[2] * 2 < item_info[1]){weight = "Heavy";}
 				    outputEmbed
 						.setTitle(name1)
-                    	.addField('Type', "Defensive equipment", true);
+                    	.addFields( { name: 'Type', value: "Defensive equipment", inline: true } );
                     // Add ability if needed
                     var itemAbilities = abilities[1].split(";\n");
                     var abilityName = itemAbilities[parseInt(item_info[11])];
                     if(parseInt(abilityName) !== 0){
                         outputEmbed
-                    	    .addField('Ability Modifier', abilityName, true);
+                    	    .addFields( { name: 'Ability Modifier', value: abilityName, inline: true } );
                     }
                     outputEmbed
                     	.addFields(
@@ -281,10 +282,10 @@ module.exports = {
                             if(o == 7){
                                 // Special kind of field for type bonus
                                 outputEmbed
-                                    .addField('Type Bonus', item_info[7] + ' against [' + item_info[8] + ']', true);
+                                    .addFields( { name: 'Type Bonus', value: item_info[7] + ' against [' + item_info[8] + ']', inline: true } );
                             }else{
                                 outputEmbed
-                                    .addField(stat_names[o], item_info[o] + modifierData[o], true);
+                                    .addFields( { name: stat_names[o], value: item_info[o] + modifierData[o], inline: true } );
                             }
                         }
                     }
@@ -292,22 +293,22 @@ module.exports = {
 					// Add additional fields to the embed
 				    outputEmbed
 						.setTitle(name2)
-                    	.addField('Type', "Divine Tool", true);
+                    	.addFields( { name: 'Type', value: "Divine Tool", inline: true } );
                     // Add ability
                     var itemAbilities = abilities[2].split(";\n");
                     var abilityName = itemAbilities[parseInt(item_info[11])];
                     outputEmbed
-                    	.addField('Ability Activation', abilityName, true);
+                    	.addFields( { name: 'Ability Activation', value: abilityName, inline: true } );
                     	
                     for(o = 1; o < 8; o++){
                         if(parseInt(item_info[o]) !== 0){
                             if(o == 7){
                                 // Special kind of field for type bonus
                                 outputEmbed
-                                    .addField('Type Bonus', item_info[7] + ' against [' + item_info[8] + ']', true);
+                                    .addFields( { name: 'Type Bonus', value: item_info[7] + ' against [' + item_info[8] + ']', inline: true } );
                             }else{
                                 outputEmbed
-                                    .addField(stat_names[o], item_info[o] + modifierData[o], true);
+                                    .addFields( { name: stat_names[o], value: item_info[o] + modifierData[o], inline: true } );
                             }
                         }
                     }
@@ -324,10 +325,10 @@ module.exports = {
                             if(o == 7){
                                 // Special kind of field for type bonus
                                 outputEmbed
-                                    .addField('Type Bonus', item_info[7] + ' against [' + item_info[8] + ']', true);
+                                    .addFields( { name: 'Type Bonus', value: item_info[7] + ' against [' + item_info[8] + ']', inline: true } );
                             }else{
                                 outputEmbed
-                                    .addField(stat_names[o], item_info[o], true);
+                                    .addFields( { name: stat_names[o], value: item_info[o], inline: true } );
                             }
                         }
                     }
@@ -344,14 +345,14 @@ module.exports = {
                             var use_display = "Use Duration";
                         }
                         outputEmbed
-                            .addField(use_display, item_subinfo[1], true);
+                            .addFields( { name: use_display, value: item_subinfo[1], inline: true } );
                     }
                     
                     // Add default selling price with fluctuation modifier
         			var popularities = lib.readFile("./data/item_popularity.txt").split("\n");
         			item_info[11] = Math.round(parseInt(item_info[11]) * (1 + (parseInt(popularities[result_key]) * 0.01)));
                     outputEmbed
-                        .addField("Price", item_info[11] + " Gold", true);
+                        .addFields( { name: "Price", value: item_info[11] + " Gold", inline: true } );
                         
                     // Set item count and add it to the output
     				var itemCounts = new adc(item_keys).count();
@@ -432,7 +433,7 @@ module.exports = {
 				// Add token points if there are any
 				if(lib.exists(tokens) && tokens != "0"){
                     embedTemplate
-                        .addField("Token Points", tokens, true);
+                        .addFields( { name: "Token Points", value: tokens, inline: true } );
                 }
 				
 				lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir);
@@ -453,7 +454,7 @@ module.exports = {
                 // Add token points if there are any
 				if(lib.exists(tokens) && tokens != "0"){
                     outputEmbed
-                        .addField("Token Points", tokens, true);
+                        .addFields( { name: "Token Points", value: tokens, inline: true } );
                 }
                 
                 // Output

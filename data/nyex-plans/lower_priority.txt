@@ -1,0 +1,26 @@
+__**Lower priority:**__
+(Same as above but even less necessary for the overall quality and completeness of the game)
+- More guessing game topics
+- Review of item drop rates
+- Slash commands
+- Equipment being scrapped when replaced
+- A daily task refresh countdown in relevant commands (for example todo)
+- The addition of some of the fun commands from Nightbot (candidates: ability, comment, decipher, actitle, mhtitle, blackjack, mhshuffle, vietmon)
+- Review of monster luck in items
+- More regular realms and corresponding vortexes
+- Counters for various stats
+- Sorting .rec craftable by icons
+- Sorting the .help command list into categories to make it easier to find something in there
+- New worldbosses spawning even when there already is an active one
+- Removal of type bonuses and item price fluctuations (did they even matter?)
+- Renaming of "Item luck" to "Drop luck" and of "Greater Item luck" to "Rare luck"
+- More random events that can occur when using enc (being moved to a realm, getting a random buff, finding currencies, losing currencies, etc.)
+- Compare command code working based on equipment / item IDs instead of only working on the current drop (so it can be used in other contexts)
+- Radar values being updated whenever quests are completed or monsters are obtained
+- New funny mode activation method
+- Bosses having actual names
+- Monster modifiers (fight/capture reward variety)
+- Monster type effects (favorited monster effects)
+- Special hard-to-get trophies based on the seven sins
+- A cooldown between bosses spawning
+<:sp:860269564779429908>

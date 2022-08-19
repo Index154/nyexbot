@@ -5,6 +5,7 @@ module.exports = {
 	name: 'check',
 	usages: [''],
 	descriptions: ['Displays information about the currently encountered monster'],
+    shortDescription: 'Inspect an encountered monster',
     category: 'info',
 	
 	execute(message, user, args) {
@@ -100,7 +101,7 @@ module.exports = {
 		var blessing_keys = monster_data[6].split(",");
 		var blessing_type = buff_names[blessing_keys[0]];
 		outputEmbed
-		    .addField("Release Blessing", blessing_type, true);
+		    .addFields( { name: "Release Blessing", value: blessing_type, inline: true } );
 		
 		// Get item drops and add them
 		if(monster_keys_array[2] == "1"){
@@ -129,7 +130,7 @@ module.exports = {
         }
         
         outputEmbed
-            .addField("Drops", drops, true);
+            .addFields( { name: "Drops", value: drops, inline: true } );
             
 		// Get captured count
 		var captures_array = lib.readFile(dir + "/captures.txt").split(";");

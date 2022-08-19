@@ -5,6 +5,7 @@ module.exports = {
 	name: 'guess',
     usages: ['', '[text]', 'list', '[topic name]'],
 	descriptions: ['Starts a round of the guessing game', 'Submits a reply for the current round', 'Shows a list of available guessing game topics', 'Switches to the given topic'],
+    shortDescription: 'Play a guessing game',
 	aliases: ['gu'],
     category: 'minigames',
 	

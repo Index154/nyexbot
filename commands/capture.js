@@ -4,6 +4,7 @@ module.exports = {
 	name: 'capture',
 	usages: [''],
 	descriptions: ['Attempts to capture the currently encountered monster'],
+    shortDescription: 'Capture an encountered monster',
 	cooldown: 2.5,
 	aliases: ['cap'],
 	addendum: 'Has an increased cooldown of 2.5 seconds',

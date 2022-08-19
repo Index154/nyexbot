@@ -5,6 +5,7 @@ module.exports = {
 	name: 'todo',
 	usages: [''],
 	descriptions: ['Shows a collection of your current command cooldowns and other tasks'],
+    shortDescription: 'Shows your available tasks',
 	aliases: ['timers'],
 	addendum: '',
     category: 'main',

@@ -4,6 +4,7 @@ module.exports = {
 	name: 'quest',
 	usages: [''],
 	descriptions: ['Shows you your current main quest and some additional info'],
+    shortDescription: 'Check your main quest',
     category: 'main',
 	
 	execute(message, user, args) {

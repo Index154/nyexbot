@@ -5,6 +5,7 @@ module.exports = {
 	name: 'shop',
 	usages: ['', 'shiny'],
 	descriptions: ['Displays the current weekly shop', 'Displays the shiny shop'],
+    shortDescription: 'Check the weekly shop',
     category: 'info',
 	
 	execute(message, user, args) {

@@ -5,6 +5,7 @@ module.exports = {
 	name: 'journal',
 	usages: [''],
 	descriptions: ['Loads a random Spelunky 2 badly translated journal page (also accepts search arguments)'],
+    shortDescription: 'Get a funny Spelunky 2 journal entry',
 	aliases: ['j'],
 	addendum: 'Search arguments are parsed as regular expressions',
 	category: 'variety',

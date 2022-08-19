@@ -9083,4 +9083,11 @@ Lizard on_you;;
 Monkey time;;
 Terradoge;;
 Stalking;;
-Iguanaostrava
+Iguanaostrava;;
+Morbius;;
+Cthulhu;;
+Bong;;
+Maz;;
+Cry;;
+Fart;;
+Hacker

@@ -2,8 +2,9 @@ var { prefix } = require('../config.json');
 
 module.exports = {
 	name: 'errorlog',
-	usages: ['', 'clear', 'restart'],
-	descriptions: ["Generates a viewable copy of the bot's error log", "Clears the main error log. The most recently generated copy is left untouched", "Restarts the whole bot (for applying changes made to the main functions)"],
+	usages: ['', 'clear', 'restart', 'pull'],
+	descriptions: ["Generates a viewable copy of the bot's error log", "Clears the main error log. The most recently generated copy is left untouched", "Restarts the whole bot (for applying changes made to the main functions)", "Fetches the contents of the messages in the nyex-plans channel on the main server and saves them"],
+    shortDescription: 'Many functions',
 	aliases: ['el'],
 	addendum: ['Can only be used by Index154'],
     category: 'admin',
@@ -26,7 +27,29 @@ module.exports = {
             message.reply({ content: "\u274C This command is only useable by Index154", allowedMentions: { repliedUser: false }});
             return;
         }
-        
+
+        // Pull nyex-plans content from Discord if I want to
+        if(lib.exists(args[0]) && args[0].toLowerCase() == "pull"){
+            message.client.channels.cache.get('846802831322775562').messages.fetch('846804108936871997')
+                .then(message => lib.saveFile("./data/nyex-plans/1_main_goals.txt", message.content))
+                .catch(console.error);
+
+            message.client.channels.cache.get('846802831322775562').messages.fetch('983429707360006144')
+                .then(message => lib.saveFile("./data/nyex-plans/additional_goals.txt", message.content))
+                .catch(console.error);
+            
+            message.client.channels.cache.get('846802831322775562').messages.fetch('983429732727156817')
+                .then(message => lib.saveFile("./data/nyex-plans/lower_priority.txt", message.content))
+                .catch(console.error);
+            
+            message.client.channels.cache.get('846802831322775562').messages.fetch('983429746782248960')
+                .then(message => lib.saveFile("./data/nyex-plans/possibilities.txt", message.content))
+                .catch(console.error);
+            
+            message.reply({ content: "Nyex-plans fetched successfully!", allowedMentions: { repliedUser: false }});
+            return;
+        }
+
         // Do prepared SQL insertions if I want to
         if(lib.exists(args[0]) && args[0].toLowerCase() == "pop"){
             

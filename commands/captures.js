@@ -5,6 +5,7 @@ module.exports = {
 	name: 'captures',
 	usages: ['', '[monster name]', 'random', 'user [ID or username]', 'user random', 'favorite [monster name]'],
 	descriptions: ["Shows you a list of all the monsters you've ever captured", "Displays the details of a specified monster from your captures", "Displays the details of a random monster from your captures", 'Displays the capture list of a different user', 'Displays the capture list of a random user', 'Favorites a monster, setting it as your user icon'],
+    shortDescription: 'Check a user\'s monsters and their details',
 	aliases: ['caps'],
 	category: 'userinfo',
 	
@@ -312,14 +313,14 @@ module.exports = {
                 		{ name: 'Speed', value: monster_info[2], inline: true },
                 		{ name: "Rank", value: rarity, inline: true},
                 		{ name: 'Type', value: type, inline: true }
-                	)
+                	);
 				
 				// Add release blessing type
 				var buff_names = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck"];
 				var blessing_keys = monster_info[6].split(",");
 				var blessing_type = buff_names[blessing_keys[0]];
 				outputEmbed
-				    .addField("Release Blessing", blessing_type, true);
+				    .addFields( { name: "Release Blessing", value: blessing_type, inline: true } );
 				
 				// Get item drops and add them
 				if(result_keys[2] == "1"){
@@ -350,14 +351,14 @@ module.exports = {
                 }
                 
                 outputEmbed
-                    .addField("Drops", drops, true);
+                    .addFields( { name: "Drops", value: drops, inline: true } );
 				
 				// Get captured count
 				var monster_array = monster_names2.split("|");
 				var captures_counts = new adc(monster_array).count();
 				var capture_count = captures_counts[monster_info[0]] - 1; // Subtract one because of all_captures.txt
 				outputEmbed
-				    .addField(username + "'s capture count", capture_count.toString(), true);
+				    .addFields( { name: username + "'s capture count", value: capture_count.toString(), inline: true } );
 				
 				// Find starting ID for paged embed
 				var startingId = uniq_array.indexOf(monster_key_groups[key]);

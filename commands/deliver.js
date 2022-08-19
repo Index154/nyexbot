@@ -4,6 +4,7 @@ module.exports = {
 	name: 'deliver',
 	usages: [''],
 	descriptions: ['Attempts to complete your current main quest by removing the required item or monster from you'],
+    shortDescription: 'Complete your current main quest',
 	aliases: ['doquest'],
     category: 'main',
 	
