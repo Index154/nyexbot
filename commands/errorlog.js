@@ -5,6 +5,7 @@ module.exports = {
 	usages: ['', 'clear', 'restart', 'pull'],
 	descriptions: ["Generates a viewable copy of the bot's error log", "Clears the main error log. The most recently generated copy is left untouched", "Restarts the whole bot (for applying changes made to the main functions)", "Fetches the contents of the messages in the nyex-plans channel on the main server and saves them"],
     shortDescription: 'Many functions',
+    weight: 5,
 	aliases: ['el'],
 	addendum: ['Can only be used by Index154'],
     category: 'admin',

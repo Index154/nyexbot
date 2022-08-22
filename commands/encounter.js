@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Starts an encounter and creates a new user account if necessary'],
     shortDescription: 'Encounter a monster',
+    weight: 5,
 	cooldown: 2.5,
 	aliases: ['enc'],
 	addendum: 'Has an increased cooldown of 2.5 seconds',

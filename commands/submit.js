@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['[text]'],
 	descriptions: ['Sends your feedback or bug report to the main server for the developer to see'],
     shortDescription: 'Send feedback',
+    weight: 10,
 	addendum: 'Has an increased cooldown of one minute',
 	cooldown: 60,
 	aliases: ['sub'],

@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', 'shiny'],
 	descriptions: ['Displays the current weekly shop', 'Displays the shiny shop'],
     shortDescription: 'Check the weekly shop',
+    weight: 10,
     category: 'info',
 	
 	execute(message, user, args) {

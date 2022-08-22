@@ -5,6 +5,7 @@ module.exports = {
 	name: 'monster',
 	descriptions: ['Immediately captures a random monster'],
     shortDescription: 'Get a free monster',
+    weight: 5,
 	usages: [''],
 	aliases: ['mon', 'm'],
 	addendum: 'Can only be used once every 3 hours',

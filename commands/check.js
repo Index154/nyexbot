@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Displays information about the currently encountered monster'],
     shortDescription: 'Inspect an encountered monster',
+    weight: 30,
     category: 'info',
 	
 	execute(message, user, args) {

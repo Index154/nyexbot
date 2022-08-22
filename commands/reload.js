@@ -3,6 +3,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Reloads a command, activating any changes made to the code since the latest reload or restart'],
     shortDescription: 'Reload commands',
+    weight: 10,
 	aliases:["rl","rld"],
     category: 'admin',
 	

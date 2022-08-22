@@ -5,6 +5,7 @@ module.exports = {
 	usages: ['[item name]', 'shinymon'],
 	descriptions: ['Attempts to purchase a selected item from the shop', 'Attempts to buy the shiny from the shiny shop'],
     shortDescription: 'Buy an item or shiny with Gold',
+    weight: 25,
     category: 'items',
 	
 	execute(message, user, args) {

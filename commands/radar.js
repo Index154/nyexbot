@@ -5,6 +5,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Activates or deactivates the radar buff. Also claims your daily charges if eligible'],
     shortDescription: 'Get more shinies with this buff (level 5 required)',
+    weight: 20,
 	aliases: ['rad'],
 	addendum: 'Can only be used after reaching level 5',
     category: 'tasks',

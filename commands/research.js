@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', 'A/B/C'],
 	descriptions: ["Displays your available research projects or your currently active project. Also claims a completed project's rewards", 'Starts the selected project'],
     shortDescription: 'Use Scrap to get rewards (level 20 required)',
+    weight: 25,
 	addendum: 'Can only be used after reaching level 20',
 	aliases: ['res'],
     category: 'tasks',

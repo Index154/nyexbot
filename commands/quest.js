@@ -5,6 +5,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Shows you your current main quest and some additional info'],
     shortDescription: 'Check your main quest',
+    weight: 25,
     category: 'main',
 	
 	execute(message, user, args) {

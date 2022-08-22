@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[item name]', 'weapon/defense/tool'],
 	descriptions: ['Shows you a list possible item rerolls and their Scrap prices', 'Attempts to reroll a selected item into a different item of the same type and quality', 'Attempts to reroll the selected equipment item'],
     shortDescription: 'Reroll equipment and vortexes',
+    weight: 35,
 	aliases: ['tf'],
     category: 'items',
 	

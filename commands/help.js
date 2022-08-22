@@ -5,13 +5,11 @@ module.exports = {
 	name: 'help',
 	descriptions: ['Displays a list of commands', 'Displays the details of a command'],
     shortDescription: 'See commands and their details',
+    weight: 5,
 	usages: ['', '[command name]'],
     category: 'info',
 	
 	execute(message, user, args) {
-	    var names = [];
-        var categories = [];
-        var descriptions = [];
         const { commands } = message.client;
 
         // Check if the server has a custom prefix and load it
@@ -23,6 +21,12 @@ module.exports = {
         }
 
         if (!args.length) {
+            var names = [];
+            var categories = [];
+            var descriptions = [];
+            var weights = [];
+            var combined = [];
+
             /*
             function onlyUnique(value, index, self) {
                 return self.indexOf(value) === index;
@@ -32,20 +36,34 @@ module.exports = {
             // Get all command names and their categories into arrays
             names.push(commands.map(command => command.name));
             names = names[0];
-            categories.push(commands.map(command => command.category));
-            categories = categories[0];
             descriptions.push(commands.map(command => command.shortDescription));
             descriptions = descriptions[0];
-            //var uniqueCategories = categories.filter(onlyUnique);
-            var uniqueCategories = ["main", "tasks", "userinfo", "items", "info", "misc", "settings", "variety", "minigames", "admin"];
-            var categoryNames = ["\u2757 Main commands", "\uD83D\uDDD2 Recurring tasks", "\uD83D\uDC64 User information", "\uD83D\uDC8E Item interactions", "\u2139 General information", "\uD83D\uDECD Miscellaneous", "\u2699 Settings / Feedback", "\u2753 Unrelated / Fun commands", "\uD83C\uDFAE Other minigames", "\uD83D\uDD27 Admin commands"];
+            categories.push(commands.map(command => command.category));
+            categories = categories[0];
+            weights.push(commands.map(command => command.weight));
+            weights = weights[0];
 
-            // Throw error if the names and categories don't match in number
-            if(names.length != categories.length || names.length != descriptions.length){
+            // Throw error if the names, weights and categories don't match in number
+            if(names.length != categories.length || names.length != descriptions.length || names.length != weights.length){
                 // Error
                 message.reply({ content: "\u274C Error: Command, category and description counts do not match!", allowedMentions: { repliedUser: false }});
                 return;
             }
+
+            // Combine the names, descriptions, weights and categories into a single object array
+            for(i = 0; i < names.length; i++){
+                combined[i] = {name: names[i], description: descriptions[i], weight: weights[i], category: categories[i]};
+            }
+            // Sort the object array
+            combined.sort((a, b) => {
+                return a.weight - b.weight;
+            });
+            console.log(combined);
+
+            // Set the list of categories in correct order and modified display names
+            //var uniqueCategories = categories.filter(onlyUnique);
+            var uniqueCategories = ["main", "tasks", "userinfo", "items", "info", "misc", "settings", "variety", "minigames", "admin"];
+            var categoryNames = ["\u2757 Main commands", "\uD83D\uDDD2 Recurring tasks", "\uD83D\uDC64 User information", "\uD83D\uDC8E Item interactions", "\u2139 General information", "\uD83D\uDECD Miscellaneous", "\u2699 Settings / Feedback", "\u2753 Unrelated / Fun commands", "\uD83C\uDFAE Other minigames", "\uD83D\uDD27 Admin commands"];
             
             // Assemble a basic embed
     	    var outputEmbed = new Discord.MessageEmbed()
@@ -58,13 +76,20 @@ module.exports = {
             for(i = 0; i < uniqueCategories.length; i++){
                 var categoryCommands = "";
                 for(x = 0; x < names.length; x++){
-                    if(categories[x] == uniqueCategories[i]){
-                        categoryCommands += "`" + names[x] + "` - " + descriptions[x] + "\n";
+                    if(combined[x].category == uniqueCategories[i]){
+                        categoryCommands += "`" + combined[x].name + "` - " + combined[x].description + "\n";
                     }
                 }
 
+                // Add empty field to create inline order
+                /*if(i != 0 && i % 2 == 0){
+                    outputEmbed.addFields(
+                        { name: '\u200b', value: '\u200b', inline: false }
+                    );
+                }*/
+
                 outputEmbed.addFields(
-            		{ name: categoryNames[i], value: categoryCommands, inline: true }
+            		{ name: categoryNames[i], value: categoryCommands, inline: false }
                 );
             }
 

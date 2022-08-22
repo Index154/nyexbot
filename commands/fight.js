@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Fights the currently encountered monster'],
     shortDescription: 'Fight an encountered monster',
+    weight: 15,
 	cooldown: 2.5,
 	aliases: ['fig'],
 	addendum: 'Has an increased cooldown of 2.5 seconds',

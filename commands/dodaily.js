@@ -5,6 +5,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Attempts to complete your daily quest by delivering the necessary monster'],
     shortDescription: 'Complete the daily quest',
+    weight: 15,
 	aliases: ['dd'],
 	addendum: 'You can receive additional rewards if you accumulate a daily completion streak!',
     category: 'tasks',

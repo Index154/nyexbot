@@ -55,6 +55,7 @@ variety = Funny / Standalone / Unrelated
     clip
     quote
     nickname
+    scp
     journal
     http
     elden

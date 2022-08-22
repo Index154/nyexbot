@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Loads a random clip that has been saved before (also accepts search arguments)'],
     shortDescription: 'Look at funny gaming clips',
+    weight: 10,
 	aliases: ['c', 'clips'],
 	addendum: 'Search arguments will be matched to entry names as well as tags',
 	category: 'variety',

@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['[item name]', '[amount] [vortex or charge item name]'],
 	descriptions: ['Uses an item from your inventory', 'Uses multiple vortexes or charge items of the same type from your inventory. For unstable vortexes you can\'t use more than 10 at once'],
     shortDescription: 'Use items',
+    weight: 5,
     category: 'items',
 
 	execute(message, user, args) {

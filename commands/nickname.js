@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[number]', '[word]', 'type1/type2/type3/type4', 'dailyart', 'truename'],
 	descriptions: ['Generates a random weird nickname', 'Generates a specified amount of nicknames. The maximum is 20. This argument can also be used alongside the other arguments. It must always be in the first position', 'Generates a nickname containing the specified word. The world will be added to the pool of custom words and can then appear in all future results', 'Generate a nickname using a specific convention or word pool', 'Suggestes some options for an AI-generated artwork. Will only generate one unique result per day', 'Will generate a new random word that can be used as a name for something'],
     shortDescription: 'Generate random nicknames',
+    weight: 20,
 	aliases: ['nick'],
     category: 'variety',
     addendum: '\ntype1: Uses words from the Monster Hunter World guild card titles pool\ntype2: Uses a word from the "adjectives" pool\ntype3: Uses the naming convention "X of Y"\ntype4: Uses a custom word that was previously used by another user',

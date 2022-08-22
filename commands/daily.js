@@ -5,6 +5,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Shows the daily quest for your current user rank'],
     shortDescription: 'Check the daily quest',
+    weight: 10,
     category: 'tasks',
 	
 	execute(message, user, args) {

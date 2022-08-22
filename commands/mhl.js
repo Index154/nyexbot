@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Loads a random Monster Hunter monster from the lexicon (also accepts search arguments)'],
     shortDescription: 'Look at a Monster Hunter monster',
+    weight: 40,
 	addendum: 'Search arguments are parsed as regular expressions',
     category: 'variety',
 	

@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Loads a random image, gif or video that has been saved before (also accepts search arguments)'],
     shortDescription: 'Look at funny images',
+    weight: 5,
 	aliases: ['m', 'image', 'img', 'i'],
 	addendum: 'Search arguments are parsed as regular expressions',
 	category: 'variety',

@@ -5,6 +5,7 @@ module.exports = {
 	usages: ['', '[area name]'],
 	descriptions: ['Moves you to a random area', 'Moves you to the specified area'],
     shortDescription: 'Change your area',
+    weight: 5,
 	aliases: ['mv', 'goto'],
 	addendum: 'You can only use this command to move to regular areas',
     category: 'misc',

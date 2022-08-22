@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Tells you about the objects that are important to your destiny!'],
     shortDescription: 'Generate your destiny',
+    weight: 45,
     category: 'variety',
 	
 	execute(message, user, args) {

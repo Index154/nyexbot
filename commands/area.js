@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[area name]', 'check [area name]'],
 	descriptions: ['Displays a list of areas', 'Displays a list of monsters in an area', 'Displays a list of monsters the user has yet to capture, available in the specified area'],
     shortDescription: 'Check areas and their monsters',
+    weight: 20,
 	addendum: 'The [area name] argument can be replaced with the word "realm" to inspect a realm you are currently in',
     category: 'info',
 	

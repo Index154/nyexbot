@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[item name]', 'weapon/defense/tool', 'random', 'user [ID or username]', 'user random'],
 	descriptions: ['Displays your inventory', 'Displays the data of a specified item from your inventory', 'Displays the data of one of your equipment items', 'Displays the data of a random item from your inventory', 'Displays the inventory of a different user', 'Displays the inventory of a random user'],
     shortDescription: 'Check a user\'s items and their details',
+    weight: 5,
 	aliases: ['inv'],
 	category: 'items',
 	

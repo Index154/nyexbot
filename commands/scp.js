@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[number]'],
 	descriptions: ['Posts the link to a random SCP', 'Posts the link to the selected SCP'],
     shortDescription: 'Look at an SCP',
+    weight: 23,
     category: 'variety',
 	
 	execute(message, user, args) {

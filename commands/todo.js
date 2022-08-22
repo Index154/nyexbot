@@ -5,9 +5,9 @@ module.exports = {
 	name: 'todo',
 	usages: [''],
 	descriptions: ['Shows a collection of your current command cooldowns and other tasks'],
-    shortDescription: 'Shows your available tasks',
+    shortDescription: 'Check your available tasks',
+    weight: 20,
 	aliases: ['timers'],
-	addendum: '',
     category: 'main',
 	
 	execute(message, user, args) {

@@ -6,6 +6,7 @@ module.exports = {
 	usages: ['', '[number] [stat name]', 'user [ID or username]', 'user random', 'mode'],
 	descriptions: ['Displays your stats', 'Assigns stat points to one of your stats', 'Displays the stats of a different user', 'Displays the stats of a random user', 'Switches your monster display mode to random names and images (funny) or back to normal'],
     shortDescription: 'Check a user\'s stats and assign stat points',
+    weight: 15,
 	addendum: 'Stat points can only be assigned to Attack, Speed, Capture Efficiency, Monster Luck, Item Luck and Greater Item Luck ',
     category: 'userinfo',
 	

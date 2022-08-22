@@ -5,6 +5,7 @@ module.exports = {
 	usages: ['', '[class name]'],
 	descriptions: ['Shows a list of available classes', 'Permanently chooses a class'],
     shortDescription: 'Choose a class (level 10 required)',
+    weight: 25,
 	addendum: 'Can only be used after reaching level 10',
     category: 'misc',
 	

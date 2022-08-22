@@ -6,6 +6,7 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Posts a random HTTP status code with a corresponding cat or dog image'],
     shortDescription: 'Get a funny HTTP image',
+    weight: 30,
     category: 'variety',
 	
 	execute(message, user, args) {

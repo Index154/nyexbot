@@ -5,6 +5,7 @@ module.exports = {
 	usages: ['[number] [monster name]'],
 	descriptions: ['Releases one or more monsters from your captures in exchange for a buff'],
     shortDescription: 'Release monsters for temporary buffs',
+    weight: 15,
     category: 'misc',
 	
 	execute(message, user, args) {
