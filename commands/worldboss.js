@@ -1,4 +1,5 @@
 var { prefix } = require('../config.json');
+nick = require('./nickname.js');
 
 module.exports = {
 	name: 'worldboss',
@@ -48,11 +49,30 @@ module.exports = {
             var monster = monsters[lib.rand(0, monsters.length - 2)];
             var monster_data = monster.split("|");
 	        
-	        // Attach a random modifier to the name
+	        // Make a random boss name (modifier and nick truename)
             var name = monster_data[0];
             var boss_mods = lib.readFile("data/boss_mods.txt").split(";\n");
-            name = boss_mods[lib.rand(0, boss_mods.length - 1)] + " " + name;
-            
+            name = generateTrueName() + ", the " + boss_mods[lib.rand(0, boss_mods.length - 1)] + " " + name;
+            function generateTrueName(){
+				var result = "";
+				// Generate a new random word
+				var consonants = ['q','w','r','t','z','p','s','d','f','g','h','j','k','l','y','x','c','v','b','n','m'];
+				var vowels = ['e','u','i','o','a'];
+				var wordLength = lib.rand(3, 4);
+				for(x = 0; x < wordLength; x++){
+					if(lib.rand(0, 1) === 1){
+						result += consonants[lib.rand(0, consonants.length - 1)];
+						result += vowels[lib.rand(0, vowels.length - 1)];
+					}
+					else{
+						result += vowels[lib.rand(0, vowels.length - 1)];
+						result += consonants[lib.rand(0, consonants.length - 1)];
+					}
+				}
+				result = result.charAt(0).toUpperCase() + result.slice(1);
+				return result;
+			}
+
             // Calculate starting HP based on its stats
             var hp_mod = {"D": 40, "C": 28, "B": 22, "A": 21, "S": 20, "SS": 21};
             var hp = (parseInt(monster_data[1]) + parseInt(monster_data[2])) * hp_mod[rank];

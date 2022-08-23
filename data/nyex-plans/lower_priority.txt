@@ -1,24 +1,18 @@
 __**Lower priority:**__
 (Same as above but even less necessary for the overall quality and completeness of the game)
-- More guessing game topics
-- Review of item drop rates
-- Slash commands
+- The addition and improvement of some of the fun commands from Nightbot (ability, comment, decipher, actitle, mhshuffle, vietmon)
 - Equipment being scrapped when replaced
-- A daily task refresh countdown in relevant commands (for example todo)
-- The addition of some of the fun commands from Nightbot (candidates: ability, comment, decipher, actitle, mhtitle, blackjack, mhshuffle, vietmon)
-- Review of monster luck in items
-- More regular realms and corresponding vortexes
-- Counters for various stats
-- Sorting .rec craftable by icons
-- New worldbosses spawning even when there already is an active one
-- Removal of type bonuses and item price fluctuations (did they even matter?)
-- Renaming of "Item luck" to "Drop luck" and of "Greater Item luck" to "Rare luck"
-- More random events that can occur when using enc (being moved to a realm, getting a random buff, finding currencies, losing currencies, etc.)
-- Radar values being updated whenever quests are completed or monsters are obtained
-- New funny mode activation method
-- Bosses having actual names
-- Monster modifiers (fight/capture reward variety)
-- Monster type effects (favorited monster effects)
-- Special hard-to-get trophies based on the seven sins
 - A cooldown between bosses spawning
+- Bosses being able to replace each other (sort of adding a possibility of failure for the players if they take too long)
+- .rec craftable being sorted by icons
+- Radar values being updated whenever quests are completed or monsters are obtained
+- More regular realms and corresponding vortexes
+- Review of monster luck in items
+- Review of item drop rates
+- More guessing game topics
+- Slash commands
+- Special hard-to-get trophies based on the seven sins (maybe wait for SQL)
+- Monster type effects (favorited monster effects) (maybe wait for SQL)
+- Monster modifiers (fight/capture reward variety) (maybe wait for SQL)
+- Counters for various stats (requires SQL)
 <:sp:860269564779429908>
