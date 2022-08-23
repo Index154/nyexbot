@@ -56,19 +56,67 @@ module.exports = {
             function generateTrueName(){
 				var result = "";
 				// Generate a new random word
-				var consonants = ['q','w','r','t','z','p','s','d','f','g','h','j','k','l','y','x','c','v','b','n','m'];
+				var consonants = ['w','r','t','z','p','s','d','f','g','h','j','k','l','y','x','c','v','b','n','m'];
 				var vowels = ['e','u','i','o','a'];
+				var previousChar = "r";     // Set this to r to avoid errors and to allow all starting chars
 				var wordLength = lib.rand(3, 4);
 				for(x = 0; x < wordLength; x++){
 					if(lib.rand(0, 1) === 1){
-						result += consonants[lib.rand(0, consonants.length - 1)];
-						result += vowels[lib.rand(0, vowels.length - 1)];
+						var newChar = getNextChar(consonants, previousChar);
+						tempOutput += newChar;
+						previousChar = newChar;
+
+						newChar = getNextChar(vowels, previousChar);
+						tempOutput += newChar;
+						previousChar = newChar;
 					}
 					else{
-						result += vowels[lib.rand(0, vowels.length - 1)];
-						result += consonants[lib.rand(0, consonants.length - 1)];
+						var newChar = getNextChar(vowels, previousChar);
+						tempOutput += newChar;
+						previousChar = newChar;
+
+						newChar = getNextChar(consonants, previousChar);
+						tempOutput += newChar;
+						previousChar = newChar;
 					}
 				}
+				// Function for rerolling characters if they are not allowed to come after the previous character
+				function getNextChar(array, prevChar) {
+					// ? is a placeholder that means that all chars are allowed
+					var forbiddenCombos = {
+						w: ['w', 'h', 'v'],
+						r: ['?'],
+						t: ['w', 'd', 'x'],
+						z: ['w', 's', 'f', 'h', 'j', 'x'],
+						p: ['w', 'x', 'b'],
+						s: ['w', 'z', 'x'],
+						d: ['t', 'x'],
+						f: ['w', 'h', 'x', 'v'],
+						g: ['k', 'x'],
+						h: ['h'],
+						j: ['w', 't', 'z', 'p', 's', 'd', 'f', 'g', 'j', 'k', 'l', 'x', 'c', 'v', 'b'],
+						k: ['g', 'x', 'c'],
+						l: ['w', 'h', 'x'],
+						y: ['y', 'j'],
+						x: ['w', 'z', 's', 'f', 'g', 'h', 'j', 'k', 'v'],
+						c: ['g', 'k', 'x'],
+						v: ['w', 'z', 'f', 'h', 'x'],
+						b: ['p', 'h', 'x'],
+						n: ['h', 'x'],
+						m: ['h', 'x'],
+						e: ['?'],
+						u: ['?'],
+						i: ['w', 'i', 'y'],
+						o: ['?'],
+						a: ['?']
+					};
+					var result = array[lib.rand(0, array.length - 1)];
+					while(forbiddenCombos[prevChar].includes(result)){
+						result = array[lib.rand(0, array.length - 1)];
+					}
+					return result;
+				}
+
 				result = result.charAt(0).toUpperCase() + result.slice(1);
 				return result;
 			}
