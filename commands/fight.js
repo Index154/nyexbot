@@ -333,50 +333,50 @@ module.exports = {
             // Set variables from user stats that affect the drop outcome
             var luck = Math.round(parseInt(user_stats[5]) / 3);
             var g_luck = Math.round(parseInt(user_stats[6]) / 3);
-            var g_count = 0;
             
-            // Determine regular drop if there was no vortex drop already
+            // Try to determine a regular drop if there was no vortex drop already
             if(!dropped){
-                // Determine the key of the item that is dropped (or nothing if nothing is dropped)
                 var drop_rand = lib.rand(1, 100);
                 var drop_count = drops.length;
-                var add_chance = 0;
                 chances[drop_count - 1] = parseInt(chances[drop_count - 1]) + luck;
-                
-                // Make sure the greater item luck doesn't make the rarest drop more likely than all other drops combined. Cap it to prevent this
-                var one_half = 0;
-                // Determine the cap
-                if(g_luck < 0){
-                    for(y = 0; y <= (drop_count / 2) - 1; y++){
-                        one_half = one_half + parseInt(chances[y]);
-                    }
-                }else{
-                    for(y = drop_count - 1; y >= (drop_count / 2); y--){
-                        one_half = one_half + parseInt(chances[y]);
+
+                // Calculate the average drop chance
+                var averageChance = 0;
+                for(x = 0; x < drop_count; x++){
+                    averageChance += chances[x];
+                }
+                averageChance = averageChance / chances.length;
+
+                // Determine drop chance variation per item by distributing the Greater Item Luck among them evenly
+                var posCount = 0;
+                var negCount = 0;
+                for(x = 0; x < drop_count; x++){
+                    if(chances[x] <= averageChance){
+                        posCount++;
+                    }else{
+                        negCount++;
                     }
                 }
-                // Actual capping
-                if(g_luck < (0 - one_half)){g_luck = 0 - one_half;}else
-                if(g_luck > one_half){g_luck = one_half;}
+                var gPlus = (g_luck / 2) / posCount;
+                var gMinus = (-1 * (g_luck / 2)) / negCount;
                 
                 // Main loop for determining the result
+                // Items below the average drop chance will have their drop rate increased while items above it will have it reduced by an equivalent amount
+                var add_chance = 0;
                 for(i = 0; i < drop_count && !dropped; i++){
-                    
-                    // Count how often the greater item luck is added to one half of the drops and subract it just as often for the rest so the overall drop chances aren't changed
-                    if(i <= (drop_count / 2) - 1){
-                        chances[i] = parseInt(chances[i]) + g_luck;
-                        g_count++;
-                    }else if(drop_count - i <= g_count){
-                        chances[i] = parseInt(chances[i]) - g_luck;
+                    if(chances[i] <= averageChance){
+                        chances[i] = chances[i] + gPlus;
+                    }else if(chances[i] > averageChance){
+                        chances[i] = chances[i] + gMinus;
                     }
                     
-                    var real_chance = parseInt(chances[i]) + add_chance;
+                    var real_chance = chances[i] + add_chance;
                     if(drop_rand <= real_chance){
                         // The item dropped
                         item_key = drops[i];
                         dropped = true;
                     }
-                    add_chance = add_chance + parseInt(chances[i]);
+                    add_chance = add_chance + chances[i];
                     
                 }
                 

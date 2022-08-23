@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'transform',
 	usages: ['', '[item name]', 'weapon/defense/tool'],
-	descriptions: ['Shows you a list possible item rerolls and their Scrap prices', 'Attempts to reroll a selected item into a different item of the same type and quality', 'Attempts to reroll the selected equipment item'],
+	descriptions: ['Shows you a list of possible item rerolls and their Scrap prices', 'Attempts to reroll a selected item into a different item of the same type and quality', 'Attempts to reroll the selected equipment item'],
     shortDescription: 'Reroll equipment and vortexes',
     weight: 35,
 	aliases: ['tf'],

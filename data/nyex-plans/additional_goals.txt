@@ -1,7 +1,6 @@
 __**Additional goals:**__
 (These can be done at any time in any order and are not super important. Usually QoL improvements, fixes and additional features)
 - A monster dex which shows how many monsters you're missing. Also has clues for how to obtain them
-- Greater Item Luck working based on the average chance of a monster's drops rather than the amount of drops
 - A function for captures that lets you check the monsters of another user which you are missing
 - Turn .inv item view into a paged embed
 - Random button for captures embed
