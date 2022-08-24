@@ -437,7 +437,7 @@ module.exports = {
                         .addFields( { name: "Token Points", value: tokens, inline: true } );
                 }
 				
-				lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir);
+				lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
                 
             }else{
                 // Assemble only a basic embed

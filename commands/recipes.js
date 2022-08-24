@@ -106,7 +106,7 @@ module.exports = {
 			var embedTemplate = new Discord.MessageEmbed()
 				.setColor('#0099ff')
             	.setTitle(username + "'s craftable items")
-			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir);
+			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
         
         // If the user added a different argument then try to match it to an item
         }else if(args.length > 0){
@@ -186,7 +186,7 @@ module.exports = {
 					.setColor('#0099ff')
                 	.setTitle("Items that can be crafted with [" + item_info[0] + "]")
                 	.setDescription("(The item itself is also included if it is craftable)");
-				lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir);
+				lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
 				
 			}else{
 			    // No match found. Send error message

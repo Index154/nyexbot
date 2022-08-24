@@ -325,7 +325,7 @@ module.exports = {
 	
 	// Input: Array, integer, object, string, object, string
     // Function: Creates a paged embed with buttons using another module
-	createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir){
+	createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message){
 		//const { paginationEmbed } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
@@ -359,12 +359,12 @@ module.exports = {
 		buttonList = [ button1, button2 ];
 		
 		// Send embed
-		lib.paginationEmbed(message, embedTemplate, pages, buttonList, 30000);
+		lib.embedFieldPagination(message, embedTemplate, pages, buttonList, 30000);
 	},
 	
 	// Input: Array, object, integer, object, ?, ?, ?, string, string, object
     // Function: Creates a paged embed with buttons using another module
-	createPagedEmbedAlt(idArray, embedTemplate, startingId, message, monster_groups, monster_names2, items, username, startingName, firstButton, firstAltImage){
+	createPagedMonsterEmbed(idArray, embedTemplate, startingId, message, monster_groups, monster_names2, items, username, startingName, firstButton, firstAltImage){
 		//const { paginationEmbedAlt } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
@@ -417,11 +417,11 @@ module.exports = {
 			var monster_info = result_monster.split("|");
 			
 			// Push variant switch button to array
-			var button4 = new MessageButton()
+			var button5 = new MessageButton()
     			.setCustomId('comparebtn|' + altIndex)
     			.setLabel('Switch')
     			.setStyle('PRIMARY');
-    		shinyButtons[i] = button4;
+    		shinyButtons[i] = button5;
 			alternateImages[i] = altImage;
 			
 			// Get rarity
@@ -508,23 +508,27 @@ module.exports = {
 			.setLabel('Previous')
 			.setStyle('SECONDARY');
 		const button2 = new MessageButton()
-			.setCustomId(message.member.user.id + '|captures favorite ' + startingName)
-			.setLabel('Favorite')
-			.setStyle('SUCCESS');
+			.setCustomId('randbtn')
+			.setLabel('Random')
+			.setStyle('PRIMARY');
 		const button3 = new MessageButton()
 			.setCustomId('nextbtn')
 			.setLabel('Next')
 			.setStyle('SECONDARY');
-		buttonList = [ button1, button2, button3 ];
+		const button4 = new MessageButton()
+			.setCustomId(message.member.user.id + '|captures favorite ' + startingName)
+			.setLabel('Favorite')
+			.setStyle('SUCCESS');
+		buttonList = [ button1, button2, button3, button4 ];
 		
 		// Send embed
-		lib.paginationEmbedAlt(message, pages, buttonList, startingId, 30000, shinyButtons, alternateImages);
+		lib.monsterPagination(message, pages, buttonList, startingId, 30000, shinyButtons, alternateImages);
 	},
 	
 	// Input: Array, string, integer, object
     // Function: Creates a paged embed with buttons using another module
-	createPagedEmbedNight(entryList, stringTemplate, startingId, message){
-		//const { paginationNight } = require('discordjs-button-pagination');
+	createPagedNightEmbed(entryList, stringTemplate, startingId, message){
+		//const { embedlessPagination } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
 		// Create embeds
@@ -555,7 +559,7 @@ module.exports = {
 		buttonList = [ button1, button3, button2 ];
 		
 		// Send embed
-		lib.paginationNight(message, pages, buttonList, startingId, 30000);
+		lib.embedlessPagination(message, pages, buttonList, startingId, 30000);
 	},
 	
 	// Input: Object, object, array
@@ -756,7 +760,7 @@ module.exports = {
 	},
 
 	// Input: String, object, array
-    // Dependency: readFile, createPagedEmbedNight
+    // Dependency: readFile, createPagedNightEmbed
     // Function: Gets one or more results from a list of quotes/clips/images/etc.
 	searchableList(fileName, message, args){
 		// Load all things as a list and turn it into a String for searching
@@ -799,7 +803,7 @@ module.exports = {
 					newList.push(thingList[results[i]]);
 				}
 
-				lib.createPagedEmbedNight(newList, thingList[key], randKey, message);
+				lib.createPagedNightEmbed(newList, thingList[key], randKey, message);
 				return;
 			}else{
 				// Pick a random thing since no matching entry was found
@@ -816,7 +820,7 @@ module.exports = {
 	},
 
 	// Input: String, object, array
-    // Dependency: readFile, createPagedEmbedNight
+    // Dependency: readFile, createPagedNightEmbed
     // Function: Gets one or more results from a list of quotes/clips/images/etc.
 	async searchableListNew(fileName, message, args){
 
@@ -858,7 +862,7 @@ module.exports = {
 				rows[i] = rows[i].entryName + ":\n" + rows[i].content + "\nTags: " + rows[i].entryTags;
 			}
 			var randKey = lib.rand(0, rows.length - 1);
-			lib.createPagedEmbedNight(rows, rows[randKey], randKey, message);
+			lib.createPagedNightEmbed(rows, rows[randKey], randKey, message);
 
 		}else{
 			// Get a random result if there was no argument
@@ -879,8 +883,8 @@ module.exports = {
 	},
 
 	// Input: Object, array, array, integer, integer
-    // Function: Creates an interactive embed message with several pages that can be switched between
-	async paginationEmbed(msg, embedTemplate, pages, buttonList, timeout = 120000){
+    // Function: Creates an interactive embed message with several pages that can be switched between. The list of entries is filled into the newest field of an embed built with a template
+	async embedFieldPagination(msg, embed, pages, buttonList, timeout = 120000){
 		const {MessageActionRow} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
@@ -897,16 +901,16 @@ module.exports = {
 		const row = new MessageActionRow().addComponents(buttonList);
 		var curPage = "";
 		if(pages.length == 1){
-		  	embedTemplate.fields[embedTemplate.fields.length - 1].value = pages[page];
+		  	embed.fields[0].value = pages[page];
 		  	curPage = await msg.reply({
-				embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+				embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
 		  	});
 		}else{
-		  	embedTemplate.fields[embedTemplate.fields.length - 1].value = pages[page];
+		  	embed.fields[embed.fields.length - 1].value = pages[page];
 		  	curPage = await msg.reply({
-				embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+				embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [row],
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
@@ -934,9 +938,9 @@ module.exports = {
 					break;
 				}
 				await i.deferUpdate();
-				embedTemplate.fields[embedTemplate.fields.length - 1].value = pages[page];
+				embed.fields[embed.fields.length - 1].value = pages[page];
 				await i.editReply({
-			  		embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+			  		embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 			  		components: [row],
 				});
 				collector.resetTimer();
@@ -948,7 +952,7 @@ module.exports = {
 					buttonList[1].setDisabled(true)
 				);
 				curPage.edit({
-					embeds: [embedTemplate.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+					embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 					components: [disabledRow],
 				});
 		  	});
@@ -959,8 +963,8 @@ module.exports = {
 	},
 	
 	// Input: Object, array, array, integer, integer
-    // Function: Creates an interactive embed message with several pages that can be switched between
-	async paginationEmbedAlt(msg, pages, buttonList, startingId, timeout = 120000, extraButtons, alternateImages){
+    // Function: Creates an interactive embed message with several pages that can be switched between. Only used for the captures command due to custom logic
+	async monsterPagination(msg, pages, buttonList, startingId, timeout = 120000, extraButtons, alternateImages){
 		const {MessageActionRow, MessageButton} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
@@ -970,12 +974,12 @@ module.exports = {
 		  	throw new Error(
 				"Link buttons are not supported with discordjs-button-pagination"
 		  	);
-		if (buttonList.length !== 3) throw new Error("Need three buttons.");
+		if (buttonList.length !== 4) throw new Error("Need four buttons.");
 	  
 		let page = startingId;
 		
 		var row = new MessageActionRow().addComponents(buttonList);
-		var singleRow = new MessageActionRow().addComponents(buttonList[1]);
+		var singleRow = new MessageActionRow().addComponents(buttonList[3]);
 		
 		if(alternateImages[page] != "Not owned"){
 			pages[page].setThumbnail(alternateImages[page]);
@@ -1004,6 +1008,7 @@ module.exports = {
 	  
 		  	const filter = (i) =>
 				(i.customId === buttonList[0].customId ||
+				i.customId === buttonList[1].customId ||
 				i.customId === buttonList[2].customId ||
 				i.customId === extraButtons[page].customId) &&
 				i.member.user.id === msg.member.user.id;
@@ -1018,6 +1023,9 @@ module.exports = {
 				case buttonList[0].customId:
 					page = page > 0 ? --page : pages.length - 1;
 					break;
+				case buttonList[1].customId:
+					page = lib.rand(0, pages.length - 1);
+					break;
 				case buttonList[2].customId:
 					page = page + 1 < pages.length ? ++page : 0;
 					break;
@@ -1027,7 +1035,7 @@ module.exports = {
 				default:
 					break;
 				}
-				buttonList[1] = new MessageButton()
+				buttonList[3] = new MessageButton()
 					.setCustomId(msg.member.user.id + '|captures favorite ' + pages[page].title.trim())
 					.setLabel('Favorite')
 					.setStyle('SUCCESS');
@@ -1052,7 +1060,8 @@ module.exports = {
 				const row = new MessageActionRow().addComponents(
 					buttonList[0].setDisabled(true),
 					buttonList[1].setDisabled(true),
-					buttonList[2].setDisabled(true)
+					buttonList[2].setDisabled(true),
+					buttonList[3].setDisabled(true)
 				);
 				curPage.edit({
 					embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
@@ -1066,8 +1075,8 @@ module.exports = {
 	},
 	
 	// Input: Object, array, array, integer, integer
-    // Function: Creates an interactive embed message with several pages that can be switched between
-	async paginationNight(msg, pages, buttonList, startingId, timeout = 120000){
+    // Function: Creates an interactive message with several pages that can be switched between
+	async embedlessPagination(msg, pages, buttonList, startingId, timeout = 120000){
 		const {MessageActionRow} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");

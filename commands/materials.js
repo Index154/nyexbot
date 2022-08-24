@@ -313,7 +313,7 @@ module.exports = {
 			var embedTemplate = new Discord.MessageEmbed()
 				.setColor('#0099ff')
             	.setTitle(username + "'s Materials")
-			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir);
+			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
                 
         }
         

@@ -365,7 +365,7 @@ module.exports = {
 				var startingId = uniq_array.indexOf(monster_key_groups[key]);
 				
 				// Create custom paged embed with all monsters (sorted)
-				lib.createPagedEmbedAlt(uniq_array, outputEmbed, startingId, message, monster_groups, monster_names2, items, username, monster_info[0], button4, firstAltImage);
+				lib.createPagedMonsterEmbed(uniq_array, outputEmbed, startingId, message, monster_groups, monster_names2, items, username, monster_info[0], button4, firstAltImage);
 				
 			}else{
 				// Error, monster not found
@@ -384,7 +384,7 @@ module.exports = {
             	.setTitle(username + "'s Captures")
 				.setDescription("Use \"" + prefix + "caps [monster name]\" to view a monster's details!")
             	.setThumbnail(lib.readFile(dir + "/main_monster.txt"))
-			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir);
+			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
 			
         }
 	},

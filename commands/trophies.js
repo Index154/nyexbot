@@ -188,7 +188,7 @@ module.exports = {
 			var embedTemplate = new Discord.MessageEmbed()
 				.setColor('#0099ff')
             	.setTitle("Global Trophy Scoreboard");
-			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir);
+			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
             return;
         }
         
@@ -223,7 +223,7 @@ module.exports = {
 			.setColor('#0099ff')
         	.setTitle(username + "'s Trophies")
         	.setThumbnail(lib.readFile(dir + "/main_monster.txt"))
-		lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message, dir);
+		lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
         
 	},
 };
