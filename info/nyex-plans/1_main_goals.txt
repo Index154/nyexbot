@@ -3,5 +3,5 @@ __**Main goals:**__
 - Unique images for all shinies
 - More quests (Next: C)
 - More equipment upgrades along with recipes (Next: C to B)
-- SQL database implementation (also includes monster dex numbering and more trophies) + full code rewrite including centralization of common operations as functions
 - More unique realms (= new exclusive monsters)
+- SQL database implementation (also includes monster dex numbering and more trophies) + full code rewrite including centralization of common operations as functions

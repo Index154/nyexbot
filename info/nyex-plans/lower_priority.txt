@@ -5,6 +5,7 @@ __**Lower priority:**__
 - A cooldown between bosses spawning
 - Bosses being able to replace each other (sort of adding a possibility of failure for the players if they take too long)
 - .rec craftable being sorted by icons
+- .rec showing all recipes in Discord instead of linking to the website
 - Radar values being updated whenever quests are completed or monsters are obtained
 - More regular realms and corresponding vortexes
 - Review of monster luck in items

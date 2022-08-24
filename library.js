@@ -562,6 +562,139 @@ module.exports = {
 		lib.embedlessPagination(message, pages, buttonList, startingId, 30000);
 	},
 	
+	createPagedItemEmbed(dir, items, allItems, startingId, message, user, itemList){
+		const { MessageEmbed, MessageButton } = require('discord.js');
+
+		// Important variables
+		var equipRarities = lib.readFile(dir + "/equip_modifiers.txt").split("\n");
+		var statNames = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Type Bonus"];
+
+		// Create embeds
+		var embeds = [];
+		for(i = startingId; !lib.exists(embeds[i]); ){
+			var itemData = itemList[items[i]].split("|");
+			var itemTitle = itemData[0];
+			var itemType = "\uD83C\uDF6F Consumable";
+			var itemAbilityOrUseAmount = "";
+			var itemValue = "\u200b";
+			var itemAmount = "\u200b";
+
+			// Assemble embed
+            var embed = new MessageEmbed()
+            	.setColor('#0099ff');
+
+			// Apply modifier stats
+			var modifierData = equipRarities[0].split("|");
+			if(itemData[10] == "Defense" || itemData[10] == "Tool" || itemData[10] == "Weapon"){
+				if(itemData[10] == "Defense"){modifierData = equipRarities[1].split("|");}else
+				if(itemData[10] == "Tool"){modifierData = equipRarities[2].split("|");}
+				// Also re-format the modifier data for displaying later
+				for(o = 1; o < modifierData.length; o++){
+					itemData[i] = (parseInt(itemData[i]) + parseInt(modifierData[o])).toString();
+					if(parseInt(modifierData[o]) === 0){modifierData[o] = "";}
+					else{
+						if(modifierData[o].includes("-")){modifierData[o] = "(" + modifierData[o] + ")";}
+						else{modifierData[o] = "(+" + modifierData[o] + ")";}
+					}
+				}
+				
+				// Prepare ability variables
+				var abilities = lib.readFile("data/abilities.txt").split("######################################\n");
+			}
+
+			if(itemData[10] == "Weapon"){
+				itemTitle = equipRarities[0].split("|")[0] + itemTitle;
+				itemType = "\u2694 Weapon";
+
+				// Add ability if needed
+				var itemAbilities = abilities[0].split(";\n");
+				var abilityName = itemAbilities[parseInt(itemData[11])];
+				if(abilityName != "None"){
+					itemAbilityOrUseAmount = "**Ability:** " + abilityName;
+				}
+					
+			}else if(itemData[10] == "Defense"){
+				itemTitle = equipRarities[1].split("|")[0] + itemTitle;
+				itemType = "\uD83D\uDEE1 Defensive equipment";
+
+				// Add ability if needed
+				var itemAbilities = abilities[1].split(";\n");
+				var abilityName = itemAbilities[parseInt(itemData[11])];
+				if(parseInt(abilityName) !== 0){
+					itemAbilityOrUseAmount = "**Ability Modifier:** " + abilityName;
+				}
+				
+			}else if(itemData[10] == "Tool"){
+				itemTitle = equipRarities[2].split("|")[0] + itemTitle;
+				itemType = "\uD83D\uDCA0 Divine tool";
+
+				// Add ability
+				var itemAbilities = abilities[2].split(";\n");
+				var abilityName = itemAbilities[parseInt(itemData[11])];
+				itemAbilityOrUseAmount = "**Ability activation:** " + abilityName;
+					
+			}else{
+				// It is a consumable (possibly a special one though)
+					
+				var item_subinfo = itemData[10].split(",");
+				if(itemData[10].includes("Ability") || itemData[10].includes("Vortex") || itemData[10].includes("Realm") || itemData[10].includes("Stasis") || itemData[10].includes("Mindwipe") || itemData[10].includes("Shifter")){
+					itemAbilityOrUseAmount = "(Instant effect)";
+				}else{
+					// Add use duration / charge amount otherwise
+					if(itemData[10].includes("Charge")){
+						itemAbilityOrUseAmount = "**Charge Amount:** ";
+					}else if(itemData[10].includes("Token")){
+						itemAbilityOrUseAmount = "**Token Value:** ";
+					}else{
+						itemAbilityOrUseAmount = "**Use Duration:** ";
+					}
+					itemAbilityOrUseAmount += item_subinfo[1];
+				}
+				
+				// Add price and item count
+				itemValue =  "**Value:** " + itemData[11] + " Gold";
+				var itemCounts = new adc(allItems).count();
+				itemAmount = "**Your amount:** " + itemCounts[items[i]].toString();
+			}
+			
+			var itemStats = "";
+			for(x = 1; x < 7; x++){
+				statDetails = "\u200b\n";
+				if(parseInt(itemData[x]) != 0){statDetails = statNames[x] + ": " + itemData[x] + "\n";}
+				itemStats += statDetails;
+			}
+			if(itemStats.split("\u200b").length == 7){
+				itemStats = "\u200b\n\u200b\nNone! This item will not grant a buff\n\u200b\n\u200b\n\u200b\n";
+			}
+
+			embed
+				.setDescription(itemData[9] + "\n\n**Type:** " + itemType + "\n" + itemAbilityOrUseAmount + "\n" + itemValue + "\n" + itemAmount + "\n\n__**Stats**__" + "```\n" + itemStats + "\n```")
+				.setTitle(itemTitle);
+
+			embeds[i] = embed;
+			i++;
+			if(i >= items.length){i = 0;}
+		}
+
+		// Create buttons
+		const button1 = new MessageButton()
+			.setCustomId('previousbtn')
+			.setLabel('Previous')
+			.setStyle('SECONDARY');
+		const button2 = new MessageButton()
+			.setCustomId('randbtn')
+			.setLabel('Random')
+			.setStyle('PRIMARY');
+		const button3 = new MessageButton()
+			.setCustomId('nextbtn')
+			.setLabel('Next')
+			.setStyle('SECONDARY');
+		buttonList = [ button1, button2, button3 ];
+
+		// Go to secondary function
+		lib.preparedEmbedPagination(user, message, embeds, buttonList, startingId, 30000);
+	},
+
 	// Input: Object, object, array
     // Function: Sends a message with command buttons that time out
 	async buttonReply(message, embeds, buttons){
@@ -1074,6 +1207,89 @@ module.exports = {
 		return curPage;
 	},
 	
+	async preparedEmbedPagination(user, msg, pages, buttonList, startingId, timeout = 120000){
+		const {MessageActionRow, MessageButton} = require("discord.js");
+
+		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
+		if (!pages) throw new Error("Pages are not given.");
+		if (!buttonList) throw new Error("Buttons are not given.");
+		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+		  	throw new Error(
+				"Link buttons are not supported with discordjs-button-pagination"
+		  	);
+		if (buttonList.length !== 3) throw new Error("Need three buttons.");
+		
+		let page = startingId;
+		buttonList.push(
+			new MessageButton()
+				.setCustomId(user.id + "|use " + pages[page].title)
+				.setLabel('Use')
+				.setStyle('PRIMARY')
+		);
+
+		var row = new MessageActionRow().addComponents(buttonList);
+
+		var curPage = await msg.reply({
+			embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+			components: [row],
+			allowedMentions: { repliedUser: false },
+			fetchReply: true
+		});
+	
+		const filter = (i) =>
+			(i.customId === buttonList[0].customId ||
+			i.customId === buttonList[1].customId ||
+			i.customId === buttonList[2].customId) &&
+			i.member.user.id === msg.member.user.id;
+	
+		const collector = await curPage.createMessageComponentCollector({
+			filter,
+			time: timeout,
+		});
+	
+		collector.on("collect", async (i) => {
+			switch (i.customId) {
+			case buttonList[0].customId:
+				page = page > 0 ? --page : pages.length - 1;
+				break;
+			case buttonList[1].customId:
+				page = lib.rand(0, pages.length - 1);
+				break;
+			case buttonList[2].customId:
+				page = page + 1 < pages.length ? ++page : 0;
+				break;
+			default:
+				break;
+			}
+			buttonList[3] = new MessageButton()
+				.setCustomId(user.id + "|use " + pages[page].title)
+				.setLabel('Use')
+				.setStyle('PRIMARY')
+			row = new MessageActionRow().addComponents(buttonList);
+			await i.deferUpdate();
+			await i.editReply({
+				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+				components: [row],
+			});
+			collector.resetTimer();
+		});
+		
+		collector.on("end", () => {
+			const row = new MessageActionRow().addComponents(
+				buttonList[0].setDisabled(true),
+				buttonList[1].setDisabled(true),
+				buttonList[2].setDisabled(true),
+				buttonList[3].setDisabled(true)
+			);
+			curPage.edit({
+				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+				components: [row],
+			});
+		});
+		
+		return curPage;
+	},
+
 	// Input: Object, array, array, integer, integer
     // Function: Creates an interactive message with several pages that can be switched between
 	async embedlessPagination(msg, pages, buttonList, startingId, timeout = 120000){

@@ -14,3 +14,4 @@ __**Possibilities:**__
 - Every equipment item being assigned to a specific class (or class group) so players don't have an overwhelming amount of choices? (Make it either impossible to get one that doesn't match your class or make it have debuffed stats?)
 - A way to browse through all available equipment items so you can choose a goal to work towards?
 - A gather command that lets you get environmental materials based on current area (and maybe rank?) with a cooldown? Perhaps it involves sending captured monsters on expeditions too?
+- The ability to check item details without owning them? Maybe at least in the shop?

@@ -30,22 +30,27 @@ module.exports = {
         }
 
         // Pull nyex-plans content from Discord if I want to
-        if(lib.exists(args[0]) && args[0].toLowerCase() == "pull"){
+        if(lib.exists(args[0]) && (args[0].toLowerCase() == "pull" || args[0].toLowerCase() == "push")){
             message.client.channels.cache.get('846802831322775562').messages.fetch('846804108936871997')
-                .then(message => lib.saveFile("./data/nyex-plans/1_main_goals.txt", message.content))
+                .then(message => lib.saveFile("./info/nyex-plans/1_main_goals.txt", message.content))
                 .catch(console.error);
 
             message.client.channels.cache.get('846802831322775562').messages.fetch('983429707360006144')
-                .then(message => lib.saveFile("./data/nyex-plans/additional_goals.txt", message.content))
+                .then(message => lib.saveFile("./info/nyex-plans/additional_goals.txt", message.content))
                 .catch(console.error);
             
             message.client.channels.cache.get('846802831322775562').messages.fetch('983429732727156817')
-                .then(message => lib.saveFile("./data/nyex-plans/lower_priority.txt", message.content))
+                .then(message => lib.saveFile("./info/nyex-plans/lower_priority.txt", message.content))
                 .catch(console.error);
             
             message.client.channels.cache.get('846802831322775562').messages.fetch('983429746782248960')
-                .then(message => lib.saveFile("./data/nyex-plans/possibilities.txt", message.content))
+                .then(message => lib.saveFile("./info/nyex-plans/possibilities.txt", message.content))
                 .catch(console.error);
+
+            message.client.channels.cache.get('846802831322775562').messages.fetch('1012060594918141982')
+                .then(message => lib.saveFile("./info/nyex-plans/z-known_issues.txt", message.content))
+                .catch(console.error);
+            
             
             message.reply({ content: "Nyex-plans fetched successfully!", allowedMentions: { repliedUser: false }});
             return;
