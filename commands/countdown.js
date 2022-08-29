@@ -36,11 +36,11 @@ module.exports = {
         	.setTitle('Time left until...')
 
         // Function for determining the epoch of the next recurrence of a date
-        function getNextAnniversaryEpoch(currentDate, month, day, setYear){
+        function getNextAnniversaryEpoch(currentDate, day, month, setYear){
             var thisYearAnniversary = new Date(currentDate.getFullYear(), month - 1, day);
             if(thisYearAnniversary < currentDate){
                 if(setYear != 'no'){
-                    return 0;
+                    return (new Date(setYear, month - 1, day)).getTime() / 1000;
                 }
                 return (new Date(currentDate.getFullYear() + 1, month - 1, day)).getTime() / 1000;
             }else{
@@ -49,14 +49,14 @@ module.exports = {
         }
         
         // Set countdown goals
-        var eventNames = ['Nyexbot Anniversary', 'Slime Rancher 2 release', 'New global crisis'];
-        var targetEpochs = [getNextAnniversaryEpoch(d, 2, 1, 'no'), getNextAnniversaryEpoch(d, 9, 22, 2022), getNextAnniversaryEpoch(d, 4, 1, 2023)];
+        var eventNames = ['Nyexbot anniversary', 'Slime Rancher 2 release', 'New global crisis'];
+        var targetEpochs = [getNextAnniversaryEpoch(d, 1, 2, 'no'), getNextAnniversaryEpoch(d, 22, 9, 2022), getNextAnniversaryEpoch(d, 1, 4, 2023)];
 
         // Add the stuff to the embed
         for(i = 0; i < eventNames.length; i++){
             var timeRemaining = targetEpochs[i] - currentEpoch;
             timeRemaining = lib.secondsToTime(timeRemaining);
-            outputEmbed.addFields( { name: eventNames[i], value: timeRemaining, inline: true } );
+            outputEmbed.addFields( { name: eventNames[i], value: timeRemaining, inline: false } );
         }
         
         // Output

@@ -27,7 +27,7 @@ module.exports = {
         
         // If the user isn't registered yet, stop the command
         if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
+            message.reply({ content: "\u274C @ __**" + username + "**__, use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
             return;
         }
 	    
@@ -35,7 +35,7 @@ module.exports = {
 	    var boss = lib.readFile("data/worldboss.txt");
 	    if(boss === "" || boss === undefined){
 	        // There is no boss
-	        message.reply({ content: "\u274C There is no active world boss to fight!", allowedMentions: { repliedUser: false }});
+	        message.reply({ content: "\u274C @ __**" + username + "**__, there is no active world boss to fight!", allowedMentions: { repliedUser: false }});
 	        return;
 	    }
 	    if(boss == "D" || boss == "C" || boss == "B" || boss == "A" || boss == "S" || boss == "SS"){
@@ -60,24 +60,34 @@ module.exports = {
 				var vowels = ['e','u','i','o','a'];
 				var previousChar = "r";     // Set this to r to avoid errors and to allow all starting chars
 				var wordLength = lib.rand(3, 4);
+				var consonantStart = false;
 				for(x = 0; x < wordLength; x++){
-					if(lib.rand(0, 1) === 1){
+					// 50-50 chance to have only one character in the first segment
+					var odd = false;
+					if(x === 0){if(lib.rand(0, 1) === 1){odd = true;}}
+					if(lib.rand(0, 1) === 1 && !(consonantStart && x === 1)){
 						var newChar = getNextChar(consonants, previousChar);
 						tempOutput += newChar;
 						previousChar = newChar;
+						consonantStart = true;
 
-						newChar = getNextChar(vowels, previousChar);
-						tempOutput += newChar;
-						previousChar = newChar;
+						if(!odd){
+							newChar = getNextChar(vowels, previousChar);
+							tempOutput += newChar;
+							previousChar = newChar;
+							consonantStart = false;
+						}
 					}
 					else{
 						var newChar = getNextChar(vowels, previousChar);
 						tempOutput += newChar;
 						previousChar = newChar;
 
-						newChar = getNextChar(consonants, previousChar);
-						tempOutput += newChar;
-						previousChar = newChar;
+						if(!odd){
+							newChar = getNextChar(consonants, previousChar);
+							tempOutput += newChar;
+							previousChar = newChar;
+						}
 					}
 				}
 				// Function for rerolling characters if they are not allowed to come after the previous character

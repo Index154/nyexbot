@@ -120,24 +120,34 @@ module.exports = {
                     var vowels = ['e','u','i','o','a'];
                     var previousChar = "r";     // Set this to r to avoid errors and to allow all starting chars
                     var wordLength = lib.rand(3, 4);
+                    var consonantStart = false;
                     for(x = 0; x < wordLength; x++){
-                        if(lib.rand(0, 1) === 1){
+                        // 50-50 chance to have only one character in the first segment
+                        var odd = false;
+                        if(x === 0){if(lib.rand(0, 1) === 1){odd = true;}}
+                        if(lib.rand(0, 1) === 1 && !(consonantStart && x === 1)){
                             var newChar = getNextChar(consonants, previousChar);
                             tempOutput += newChar;
                             previousChar = newChar;
-
-                            newChar = getNextChar(vowels, previousChar);
-                            tempOutput += newChar;
-                            previousChar = newChar;
+                            consonantStart = true;
+    
+                            if(!odd){
+                                newChar = getNextChar(vowels, previousChar);
+                                tempOutput += newChar;
+                                previousChar = newChar;
+                                consonantStart = false;
+                            }
                         }
                         else{
                             var newChar = getNextChar(vowels, previousChar);
                             tempOutput += newChar;
                             previousChar = newChar;
 
-                            newChar = getNextChar(consonants, previousChar);
-                            tempOutput += newChar;
-                            previousChar = newChar;
+                            if(!odd){
+                                newChar = getNextChar(consonants, previousChar);
+                                tempOutput += newChar;
+                                previousChar = newChar;
+                            }
                         }
                     }
                     // Function for rerolling characters if they are not allowed
