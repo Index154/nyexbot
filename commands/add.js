@@ -26,7 +26,7 @@ module.exports = {
             message.reply({ content: "\u274C This subcommand can only be used by Index!", allowedMentions: { repliedUser: false }});
             return;
         }
-        if(args[0] != "media" && args[0] != "clip" && args[0] != "quotes"){
+        if(args[0] != "media" && args[0] != "clip" && args[0] != "quote"){
             message.reply({ content: "\u274C Required argument [list name] is missing or unknown!", allowedMentions: { repliedUser: false }});
             return;
         }
