@@ -1,0 +1,8 @@
+__v0.19.10__
+- Added a fullradar button to the `radar` command output (if the user fulfills the fullradar level requirement)
+- Fixed `wb` breaking due to `nick` changes
+- Storing an encounter in the Stasis space using a Stasis Cube now breaks your active shiny chain
+- The boss spawning notification now also includes the prefix for `wb`
+
+__v0.19.9__
+...

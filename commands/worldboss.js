@@ -67,25 +67,25 @@ module.exports = {
 					if(x === 0){if(lib.rand(0, 1) === 1){odd = true;}}
 					if(lib.rand(0, 1) === 1 && !(consonantStart && x === 1)){
 						var newChar = getNextChar(consonants, previousChar);
-						tempOutput += newChar;
+						result += newChar;
 						previousChar = newChar;
 						consonantStart = true;
 
 						if(!odd){
 							newChar = getNextChar(vowels, previousChar);
-							tempOutput += newChar;
+							result += newChar;
 							previousChar = newChar;
 							consonantStart = false;
 						}
 					}
 					else{
 						var newChar = getNextChar(vowels, previousChar);
-						tempOutput += newChar;
+						result += newChar;
 						previousChar = newChar;
 
 						if(!odd){
 							newChar = getNextChar(consonants, previousChar);
-							tempOutput += newChar;
+							result += newChar;
 							previousChar = newChar;
 						}
 					}

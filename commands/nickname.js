@@ -134,7 +134,7 @@ module.exports = {
                     if(args[p] == "type4" || args[p] == "type3"){
                         wordTypes[position] = "type4";
 
-                    }else if(!customWordUsed && args[p] != "type2" && args[p] != "type1"){
+                    }else if(!customWordUsed && args[p] != "type2" && args[p] != "type1" && lib.exists(args[p])){
                         wordTypes[position] = "customWord";
 
                         // Modify the custom word
@@ -240,9 +240,14 @@ module.exports = {
                             randNum = 1;
                         }else if(wordTypes[p] == "customWord"){
                             randNum = 0;
+                        }else{
+
                         }
                         
                         // Determine result
+                        if(randNum >= 50 && p == 1){
+                            randNum = lib.rand(1, 49)
+                        }
                         if(randNum >= 50 && p == 0){
                             if(randNum >=65){
                                 var chosenList = adjectives;

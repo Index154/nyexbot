@@ -1,5 +1,6 @@
 __**Additional goals:**__
 (These can be done at any time in any order and are not super important. Usually QoL improvements, fixes and additional features)
+- Convert media and quote into SQL commands with tags, then make `add` also use SQL
 - Make .help a paged embed so it doesn't take away too much space
 - A daily task refresh countdown in relevant commands (Example: A timer to show when the next daily will be, visible in daily and todo)
 - More random events that can occur when using enc (being moved to a realm, getting a random buff, finding currencies, losing currencies, etc.)
@@ -14,5 +15,5 @@ __**Additional goals:**__
 - A function for captures that lets you check the monsters of another user which you are missing
 - List views for clip, media and such
 - List view sorting options (easier to implement with SQL)
-- A monster dex which shows how many monsters you're missing. Also has clues for how to obtain them (requires SQL)
+- A monster dex which shows how many monsters you're missing. Also with clues (area icons) for obtaining them (requires SQL)
 <:sp:860269564779429908>

@@ -139,9 +139,10 @@ client.on('interactionCreate', interaction => {
             // Alert users about the boss in all configured channels
             fs.readdir("./data/configs", (err, files) => {
                 for(i = 0; i < files.length; i++){
+                    var serverPrefix = lib.readFile("./data/configs/" + files[i] + "/prefix.txt");
                     var channelID = lib.readFile("./data/configs/" + files[i] + "/channel.txt");
                     if(channelID !== "Undefined"){
-                        client.channels.cache.get(channelID).send("**A world boss (rank " + rank + ") has spawned!**\nUse the command `wb` to deal damage to it and become eligible for rewards!");
+                        client.channels.cache.get(channelID).send("**A world boss (rank " + rank + ") has spawned!**\nUse the command `" + serverPrefix + "wb` to deal damage to it and become eligible for rewards!");
                     }
                 }
             });

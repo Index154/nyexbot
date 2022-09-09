@@ -5,7 +5,7 @@ module.exports = {
 	name: 'fullradar',
 	usages: [''],
 	descriptions: ['Channels all your radar charges into one encounter in exchange for Gold. Also claims your daily charges if eligible'],
-    shortDescription: 'Use all radar charges for Gold (level 15 required)',
+    shortDescription: 'Use all radar charges instantly for Gold (level 15 required)',
     weight: 10,
 	addendum: 'Can only be used after reaching level 15',
 	aliases: ['frad'],

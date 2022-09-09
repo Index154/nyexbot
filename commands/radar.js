@@ -128,9 +128,22 @@ module.exports = {
         }
         
         // Add fullradar info, only if the user is eligible for using it
-        if(parseInt(stats[10]) > 15){
+        if(parseInt(stats[10]) >= 15){
             var cost = Math.round(charges * 2.5);
             out = out + "Use `" + prefix + "fullradar` to channel all of your charges into a single encounter (costs **" + cost + "** Gold)";
+
+            // Add button
+            var button = new MessageButton()
+                .setCustomId("any|fullradar")
+                .setLabel('Fullradar')
+                .setStyle('SECONDARY');
+            var row = new MessageActionRow().addComponents([button]);
+
+            message.reply({ content: out, components: [row], allowedMentions: { repliedUser: false }});
+
+        }else{
+            // Regular output
+            message.reply({ content: out, allowedMentions: { repliedUser: false }});
         }
         
         // Save completion values for encounter modifiers
@@ -149,9 +162,6 @@ module.exports = {
             stats[y] = base - minus + plus;
         }       
         lib.saveFile(dir + "/stats.txt", stats.join("|"));
-        
-        // Output
-        message.reply({ content: out, allowedMentions: { repliedUser: false }});
         
 	},
 };

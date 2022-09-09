@@ -1,4 +1,4 @@
 __**Known issues to fix:**__
-- Stasis Cube doesn't reset the shiny chain on use
 - Transform can transform a Vortex into the same Vortex, making it sometimes useless
+- Missing and incorrect tags on `clip` entries
 <:sp:860269564779429908>

@@ -231,8 +231,9 @@ module.exports = {
                     		var row = new MessageActionRow().addComponents([button1]);
                             
                             // Output with needed confirmation
-                            message.reply({ content: "@ __**" + username + "**__, you're about to store your encounter in the stasis space. **Anything already inside the space will be overwritten!**\nUse the same command again or press the button to confirm this action!\nFinish your current encounter first if you want to resume a stored encounter instead!", components: [row], allowedMentions: { repliedUser: false }});
+                            message.reply({ content: "@ __**" + username + "**__, you're about to store your encounter in the stasis space. **Anything already inside the space will be overwritten! Your current shiny chain will also be lost!**\nUse the same command again or press the button to confirm this action.\nFinish your current encounter first if you want to resume a stored encounter instead!", components: [row], allowedMentions: { repliedUser: false }});
                             lib.saveFile(dir + "/confirm.txt", "confirmed");
+                            lib.saveFile(dir + "/chain.txt", "0|0");
                             return;
                         }
                         
