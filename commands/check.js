@@ -117,9 +117,12 @@ module.exports = {
 		// If there is only one drop, create the array differently
 		if (drop_pool[0].includes(",")) {
             var drops_array = drop_pool[0].split(",");
+            var drop_chances = drop_pool[1].split(",");
         }else{
             var drops_array = [drop_pool[0]];
+            var drop_chances = [drop_pool[1]];
         }
+
         var drops = "";
         for(x = 0; x < drops_array.length; x++){
             var item_key = parseInt(drops_array[x]);
@@ -127,11 +130,11 @@ module.exports = {
             if(x > 0){
                 drops = drops + "\n";
             }
-            drops = drops + item_data[0];
+            drops = drops + item_data[0] + ": " + drop_chances[x] + "%";
         }
         
         outputEmbed
-            .addFields( { name: "Drops", value: drops, inline: true } );
+            .addFields( { name: "Drops (with base drop rates)", value: drops, inline: true } );
             
 		// Get captured count
 		var captures_array = lib.readFile(dir + "/captures.txt").split(";");

@@ -225,7 +225,7 @@ Slime Moss|0|0|0|0|0|0|0|0|A chaotic plant with many different components. It gr
 Enchanted Metal|0|0|0|0|0|0|0|0|Ancient metal that has been empowered by magic|Material|9|B;
 Magma Carapace|0|0|0|0|0|0|0|0|The shell of a Magma Beetle. It's resistant to fire and very hard|Material|10|B;
 Nebula Mist|0|0|0|0|0|0|0|0|The strange material making up the majority of the Nebula Wraith's body. It's not solid but can still be used for crafting|Material|8|B;
-Stasis Cube|0|0|0|0|0|0|0|0|An advanced device that can be used to trap a wild monster in a virtual space without capturing it, effectively "storing" the encounter for later. However, only one monster can be stored at a given time. The cube is only lost upon releasing a stored monster|Stasis,0|400|Special;
+Stasis Cube|0|0|0|0|0|0|0|0|An advanced device that can be used to trap a wild monster in a virtual space without capturing it, effectively "storing" the encounter for later. However, only one monster can be stored at a given time. The cube is only lost upon releasing a stored monster. (You can see the contents of your Stasis Space with the `inventory` command)|Stasis,0|400|Special;
 Dracolisk Egg|0|0|0|0|0|0|0|0|This infertile egg contains a rare essence, making it a desirable material|Material|9|B;
 Slime Vortex (Rare)|0|0|0|0|0|0|0|0|This strange wormhole seems to be linked to a monster den from a different world. Perhaps some items could be extracted from it|Vortex,4|300|Vortex;
 Slime Vortex (Ultra rare)|0|0|0|0|0|0|0|0|This strange wormhole seems to be linked to a monster den from a different world. Perhaps some items could be extracted from it|Vortex,5|350|Vortex;

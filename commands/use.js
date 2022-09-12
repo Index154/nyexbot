@@ -215,7 +215,7 @@ module.exports = {
                             lib.saveFile(dir + "/saved_encounter.txt", current_enc);
                             lib.saveFile(dir + "/current_encounter.txt", "");
                             lib.saveFile(dir + "/confirm.txt", "");
-                            var special_extra = " You stored the encounter in your Stasis space!";
+                            var special_extra = " You stored the encounter in your Stasis space! Tip: You can see your Stasis Space with `" + prefix + "inv`.";
                             // Prevent the Stasis Cube from being removed (since it should only get removed when reactivating or overwriting an encounter)
                             keep_item_2 = true;
                             if(saved_enc !== ""){

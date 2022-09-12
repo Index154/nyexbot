@@ -28,6 +28,7 @@ module.exports = {
 
         // Repeatable function for performing the actual command
         var nickResult = generateNicks(allArgs);
+        if(nickResult[0] == "error"){return;}
         var output = nickResult[0];
         var dailyFlag = nickResult[1];
         var d = new Date();
@@ -79,7 +80,7 @@ module.exports = {
                     if(parseInt(args[0]) > 20 || parseInt(args[0]) < 1){
                         // Bad number
                         message.reply({ content: "\u274C You may only generate between 1 and 20 nicknames at a time!", allowedMentions: { repliedUser: false }});
-                        return;
+                        return ["error", "error"];
                     }
                     count = parseInt(args[0]);
                     args.splice(0, 1);

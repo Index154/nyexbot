@@ -177,7 +177,7 @@ module.exports = {
 		            if(parseInt(newModifier[y]) === 0){
 		                stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y];
 		            }else{
-                        stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y] + " (" + newModifier[y] + ")";
+                        stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y] + " (New modifier: " + newModifier[y] + ")";
 		            }
 		        }
 		    }
@@ -198,6 +198,9 @@ module.exports = {
 		    stat_comparison = stat_comparison + "\n" + abilityTitle + ":\n" + oldAbility + " => " + newAbility;
 		}
 		stat_comparison = stat_comparison + "```";
+
+		// Fix for same stats comparison
+		if(stat_comparison == "```diff```"){stat_comparison = "There are no differences! You should convert this item";}
 		
 		// Finalize embed
 	    outputEmbed

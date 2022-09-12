@@ -343,7 +343,7 @@ module.exports = {
                 // Calculate the average drop chance
                 var averageChance = 0;
                 for(x = 0; x < drop_count; x++){
-                    averageChance += chances[x];
+                    averageChance += parseInt(chances[x]);
                 }
                 averageChance = averageChance / chances.length;
 
@@ -357,13 +357,14 @@ module.exports = {
                         negCount++;
                     }
                 }
-                var gPlus = (g_luck / 2) / posCount;
-                var gMinus = (-1 * (g_luck / 2)) / negCount;
+                var gPlus = parseInt((g_luck / 2) / posCount);
+                var gMinus = parseInt((-1 * (g_luck / 2)) / negCount);
                 
                 // Main loop for determining the result
                 // Items below the average drop chance will have their drop rate increased while items above it will have it reduced by an equivalent amount
                 var add_chance = 0;
                 for(i = 0; i < drop_count && !dropped; i++){
+                    chances[i] = parseInt(chances[i]);
                     if(chances[i] <= averageChance){
                         chances[i] = chances[i] + gPlus;
                     }else if(chances[i] > averageChance){

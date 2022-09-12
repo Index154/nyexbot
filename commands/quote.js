@@ -23,6 +23,6 @@ module.exports = {
             }
         }
         
-        lib.searchableList("quotes", message, args);
+        lib.searchableList("quote", message, args);
 	},
 };

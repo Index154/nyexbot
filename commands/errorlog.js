@@ -29,6 +29,19 @@ module.exports = {
             return;
         }
 
+        // Prepare update message and save it to history if I want to
+        if(lib.exists(args[0]) && args[0].toLowerCase() == "update"){            
+            var currentPatch = lib.readFile("./info/nyex-plans/zz-current_patch.txt");
+            var history = lib.readFile("./info/nyex-plans/zzz-patch_history.txt");
+            
+            message.client.channels.cache.get("516288921127092234").send(currentPatch);
+            lib.saveFile("./info/nyex-plans/zzz-patch_history.txt", currentPatch + "\n\n" + history);
+            lib.saveFile("./info/nyex-plans/zz-current_patch.txt", "");
+
+            message.reply({ content: "Update text successfully pushed to your channel and saved to history!", allowedMentions: { repliedUser: false }});
+            return;
+        }
+
         // Pull nyex-plans content from Discord if I want to
         if(lib.exists(args[0]) && (args[0].toLowerCase() == "pull" || args[0].toLowerCase() == "push")){
             message.client.channels.cache.get('846802831322775562').messages.fetch('846804108936871997')
