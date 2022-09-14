@@ -324,12 +324,26 @@ module.exports = {
 	        if(buff_extra !== ""){buff_extra = "\n" + buff_extra;}
 	        message.reply({ content: "You dealt **" + damage + "** damage to the boss, successfully defeating it! You've received **20 Gold**!" + buff_extra, allowedMentions: { repliedUser: false }});
 	        var global_message = "**The world boss [" + name + "] has been defeated!**\nAll participants have received one **[Unstable Vortex]**!\nThe following players have received trophies for being the top contributors:```\n" + top_players + "```";
+
 	        // Alert users in all configured channels
             fs.readdir("data/configs", (err, files) => {
                 for(i = 0; i < files.length; i++){
                     var channelID = lib.readFile("data/configs/" + files[i] + "/channel.txt");
                     if(channelID !== "Undefined"){
                         message.client.channels.cache.get(channelID).send(global_message);
+                    }
+                }
+            });
+
+            // Also alert the signed-up users in DMs
+            fs.readdir("userdata", (err, files) => {
+                for(x = 0; x < files.length; x++){
+                    // Check if a user wants to receive announcements in DMs
+                    var userDMSetting = lib.readFile("./userdata/" + files[x] + "/dmupdates.txt");
+                    if(userDMSetting == "yes"){
+                        client.users.fetch(files[x], false).then((tempUser) => {
+                            tempUser.send(global_message);
+                        });
                     }
                 }
             });
