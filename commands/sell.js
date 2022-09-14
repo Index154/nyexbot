@@ -77,9 +77,6 @@ module.exports = {
             }
         }
         
-        // Get popularity price fluctuations
-        var popularities = lib.readFile("./data/item_popularity.txt").split("\n");
-        
         // Go through the item names and join them into a list
         var item_names = "";
 		var key_count = item_keys.length;
@@ -156,11 +153,6 @@ module.exports = {
             var user_data = lib.readFile(dir + "/stats.txt").split("|");
             user_data[12] = parseInt(user_data[12]) + selling_price;
             lib.saveFile(dir + "/stats.txt", user_data.join("|"));
-            
-            // Change the item's value
-            popularities[result_key] = parseInt(popularities[result_key]) - count;
-            if(popularities[result_key] < -10){popularities[result_key] = -10;}
-            lib.saveFile("./data/item_popularity.txt", popularities.join("\n"));
             
             //Output
             message.reply({ content: "You sold **[" + result_item_data[0] + " x " + count + "]** for **" + selling_price + "** Gold!", allowedMentions: { repliedUser: false }});

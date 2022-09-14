@@ -1,15 +1,16 @@
 __**Possibilities:**__
 (Might not ever be implemented - Rough ideas)
+- Removal of consumable crafting (recipes in general)?
+- Removal of release?
+- A new player stat called Chaos: Affects many events in the game, making them "more random" the higher the stat is?
+- Material research projects that grant random materials of the player's rank?
+- Being able to preview the loot tables of vortexes?
+- The ability to bet Gold on a fight with possible rewards corresponding to the winning chance?
 - Check being tied to the active encounter again?
 - Equipment being put into the equipping queue when replaced so you can switch back?
-- Life-ruining gambling mechanics (a mode that makes enc riskier?)
 - Seasonal events / anniversary?
 - Some sort of difficulty increase after unlocking the level cap?
 - NG+ mechanics? Maybe let the player reset their level back to 1 and pick an additional class after reaching level 10 again?
 - Public availability of the bot?
 - A command to reset your account? (Except for trophies? Maybe combine this with the NG+ idea?)
 - Release blessings not all being buffs?
-- Every equipment item being assigned to a specific class (or class group) so players don't have an overwhelming amount of choices? (Make it either impossible to get one that doesn't match your class or make it have debuffed stats?)
-- A way to browse through all available equipment items so you can choose a goal to work towards?
-- A gather command that lets you get environmental materials based on current area (and maybe rank?) with a cooldown? Perhaps it involves sending captured monsters on expeditions too?
-- The ability to check item details without owning them? Maybe at least in the shop?

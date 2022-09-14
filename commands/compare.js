@@ -113,75 +113,28 @@ module.exports = {
         var stat_diffs = [0, attack_dif, speed_dif, cap_dif, mluck_dif, iluck_dif, gluck_dif];
 
         // Differentiate between item types and send an embed
-		var stat_names = ["Filler", "Attack/Defense", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Type Bonus Value"];
+		var stat_names = ["Filler", "Attack/Defense", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Unnamed"];
 		// Create output embed
 		var outputEmbed = new Discord.MessageEmbed()
             	.setColor('#0099ff')
             	.setTitle("@ __**" + username + "**__, comparing your [" + modifier[0] + item_data[0] + "] with [" + newModifier[0] + new_item_data[0] + "]")
+		
 		// Create stat comparison field
 		stat_comparison = "```diff";
-		for(y = 1; y < 8; y++){
-		    if(y == 7){
-		        // Add type bonus if there is one
-		        if(new_item_data[7] != "0"){
-		            // There is a new type bonus, display it as being added unless the user already had the same exact one
-		            if(new_item_data[7] != user_stats[7] && new_item_data[8] != user_stats[8]){
-		                stat_comparison = stat_comparison + "\nType Bonus:";
-        	            var plus_extra = "";
-        	            if(new_item_data[7] > 0){plus_extra = "+";}
-        	            stat_comparison = stat_comparison + "\n" + plus_extra + new_item_data[7] + " against [" + new_item_data[8] + "]";
-        	            
-        	            if(user_stats[7] != "0"){
-        	                // The user had an active type bonus so display it as being removed
-            	            var lost_type_bonus = parseInt(user_stats[7]) * -1;
-            	            var plus_extra = "";
-            	            if(lost_type_bonus > 0){plus_extra = "+";}
-            	            stat_comparison = stat_comparison + "\n" + plus_extra + lost_type_bonus + " against [" + user_stats[8] + "]";
-            	        }
-		            }
-    	        }else{
-    	            // There is no new type bonus
-    	            if(user_stats[7] != "0"){
-    	                if(user_stats[7] == item_data[7] && user_stats[8] == item_data[8]){
-    	                    // The item being replaced has the user's current type bonus so remove it
-    	                    stat_comparison = stat_comparison + "\nType Bonus:";
-    	                    var lost_type_bonus = parseInt(user_stats[7]) * -1;
-            	            var plus_extra = "";
-            	            if(lost_type_bonus > 0){plus_extra = "+";}
-            	            stat_comparison = stat_comparison + "\n" + plus_extra + lost_type_bonus + " against [" + user_stats[8] + "]";
-            	            
-            	            // Check if a different equipment item's type bonus will replace the otherwise empty value
-            	            var item_2_data = item_list[item_2].split("|");
-                            var item_3_data = item_list[item_3].split("|");
-            	            if(item_2_data[7] != "0"){
-            	                var plus_extra = "";
-            	                if(item_2_data[7] > 0){plus_extra = "+";}
-            	                stat_comparison = stat_comparison + "\n" + plus_extra + item_2_data[7] + " against [" + item_2_data[8] + "] (" + item_2_data[0] + ")";
-            	            }else
-            	            if(item_3_data[7] != "0"){
-            	                var plus_extra = "";
-            	                if(item_3_data[7] > 0){plus_extra = "+";}
-            	                stat_comparison = stat_comparison + "\n" + plus_extra + item_3_data[7] + " against [" + item_3_data[8] + "] (" + item_3_data[0] + ")";
-            	            }
-            	            
-    	                }
-        	        }
-    	        }
-
-		    }else{
-		        // Add other stat differences if they exist
-		        if(stat_diffs[y] !== 0 || parseInt(newModifier[y]) !== 0){
-		            if(newModifier[y] > 0){newModifier[y] = "+" + newModifier[y];}
-		            var plus_extra = "";
-		            if(stat_diffs[y] >= 0){plus_extra = "+";}
-		            if(parseInt(newModifier[y]) === 0){
-		                stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y];
-		            }else{
-                        stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y] + " (New modifier: " + newModifier[y] + ")";
-		            }
-		        }
-		    }
+		for(y = 1; y < 7; y++){
+			// Add stat differences if they exist
+			if(stat_diffs[y] !== 0 || parseInt(newModifier[y]) !== 0){
+				if(newModifier[y] > 0){newModifier[y] = "+" + newModifier[y];}
+				var plus_extra = "";
+				if(stat_diffs[y] >= 0){plus_extra = "+";}
+				if(parseInt(newModifier[y]) === 0){
+					stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y];
+				}else{
+					stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y] + " (New modifier: " + newModifier[y] + ")";
+				}
+			}
 		}
+
 		// Add ability if it is different
 		var abilityRaw = lib.readFile(dir + "/ability.txt").split("|");
         item_data[11] = abilityRaw[key];

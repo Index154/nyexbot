@@ -567,7 +567,7 @@ module.exports = {
 
 		// Important variables
 		var equipRarities = lib.readFile(dir + "/equip_modifiers.txt").split("\n");
-		var statNames = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Type Bonus"];
+		var statNames = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Unnamed"];
 
 		// Create embeds
 		var embeds = [];

@@ -180,12 +180,6 @@ module.exports = {
             }
         }
         
-        // Apply popularity price fluctuations
-        var popularities = lib.readFile("./data/item_popularity.txt").split("\n");
-        for(y = 0; y < prices.length; y++){
-            prices[y] = Math.round(parseInt(prices[y]) * (1 + (parseInt(popularities[shopItems[y]]) * 0.01)));
-        }
-        
         // Fetch item names
         var icon_array = {D: "<:real_black_circle:856189638153338900>", C: "\uD83D\uDD35", B: "\uD83D\uDFE2", A: "\uD83D\uDD34", S: "\uD83D\uDFE1", SS: "\uD83D\uDFE0", Special: "\u2728", Vortex: "\uD83C\uDF00"};
         var area_names = lib.readFile("data/area_names.txt").split(",");

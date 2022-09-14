@@ -308,12 +308,6 @@ module.exports = {
         	)
         	.setThumbnail(lib.readFile(dir + "/main_monster.txt"));
         
-        // Add a type bonus if there is one
-        if(stat_data[7] != "0"){
-            outputEmbed
-                .addFields( { name: "Type Bonus", value: stat_data[7] + " against [" + stat_data[8] + "]", inline: true } );
-        }
-        
         // Add realm HP if in a realm
         var hp = lib.readFile(dir + "/hp.txt");
         if(parseInt(area_key) > 13){

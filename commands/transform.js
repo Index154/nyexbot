@@ -280,72 +280,24 @@ module.exports = {
                 var gluck_dif = parseInt(new_item_data[6]) - parseInt(old_item_data[6]) - parseInt(modifier[6]);
                 
                 var stat_diffs = [0, attack_dif, speed_dif, cap_dif, mluck_dif, iluck_dif, gluck_dif];
-                var stat_names = ["Filler", "Attack/Defense", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Type Bonus Value"];
+                var stat_names = ["Filler", "Attack/Defense", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Unnamed"];
                 
                 // Create stat comparison field
         		stat_comparison = "```diff";
-        		for(y = 1; y < 8; y++){
-        		    if(y == 7){
-        		        // Add type bonus if there is one
-        		        if(new_item_data[7] != "0"){
-        		            // There is a new type bonus, display it as being added unless the user already had the same exact one
-        		            if(new_item_data[7] != stats[7] && new_item_data[8] != stats[8]){
-        		                stat_comparison = stat_comparison + "\nType Bonus:";
-                	            var plus_extra = "";
-                	            if(new_item_data[7] > 0){plus_extra = "+";}
-                	            stat_comparison = stat_comparison + "\n" + plus_extra + new_item_data[7] + " against [" + new_item_data[8] + "]";
-                	            
-                	            if(stats[7] != "0"){
-                	                // The user had an active type bonus so display it as being removed
-                    	            var lost_type_bonus = parseInt(stats[7]) * -1;
-                    	            var plus_extra = "";
-                    	            if(lost_type_bonus > 0){plus_extra = "+";}
-                    	            stat_comparison = stat_comparison + "\n" + plus_extra + lost_type_bonus + " against [" + stats[8] + "]";
-                    	        }
-        		            }
-            	        }else{
-            	            // There is no new type bonus
-            	            if(stats[7] != "0"){
-            	                if(stats[7] == item_data[7] && stats[8] == item_data[8]){
-            	                    // The item being replaced has the user's current type bonus so remove it
-            	                    stat_comparison = stat_comparison + "\nType Bonus:";
-            	                    var lost_type_bonus = parseInt(stats[7]) * -1;
-                    	            var plus_extra = "";
-                    	            if(lost_type_bonus > 0){plus_extra = "+";}
-                    	            stat_comparison = stat_comparison + "\n" + plus_extra + lost_type_bonus + " against [" + stats[8] + "]";
-                    	            
-                    	            // Check if a different equipment item's type bonus will replace the otherwise empty value
-                    	            var item_2_data = item_array[old_item_key_2].split("|");
-                                    var item_3_data = item_array[old_item_key_3].split("|");
-                    	            if(item_2_data[7] != "0"){
-                    	                var plus_extra = "";
-                    	                if(item_2_data[7] > 0){plus_extra = "+";}
-                    	                stat_comparison = stat_comparison + "\n" + plus_extra + item_2_data[7] + " against [" + item_2_data[8] + "] (" + item_2_data[0] + ")";
-                    	            }else
-                    	            if(item_3_data[7] != "0"){
-                    	                var plus_extra = "";
-                    	                if(item_3_data[7] > 0){plus_extra = "+";}
-                    	                stat_comparison = stat_comparison + "\n" + plus_extra + item_3_data[7] + " against [" + item_3_data[8] + "] (" + item_3_data[0] + ")";
-                    	            }
-                    	            
-            	                }
-                	        }
-            	        }
-        
-        		    }else{
-        		        // Add other stat differences if they exist
-        		        if(stat_diffs[y] !== 0 || parseInt(modifier[y]) !== 0){
-        		            if(modifier[y] > 0){modifier[y] = "+" + modifier[y];}
-        		            var plus_extra = "";
-        		            if(stat_diffs[y] >= 0){plus_extra = "+";}
-        		            if(parseInt(modifier[y]) === 0){
-        		                stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y];
-        		            }else{
-                                stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y] + " (" + modifier[y] + ")";
-        		            }
-        		        }
-        		    }
+        		for(y = 1; y < 7; y++){
+                    // Add stat differences if they exist
+                    if(stat_diffs[y] !== 0 || parseInt(modifier[y]) !== 0){
+                        if(modifier[y] > 0){modifier[y] = "+" + modifier[y];}
+                        var plus_extra = "";
+                        if(stat_diffs[y] >= 0){plus_extra = "+";}
+                        if(parseInt(modifier[y]) === 0){
+                            stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y];
+                        }else{
+                            stat_comparison = stat_comparison + "\n" + stat_names[y] + ":\n" + plus_extra + stat_diffs[y] + " (" + modifier[y] + ")";
+                        }
+                    }
         		}
+
         		// Add ability if it is different
         		var abilityRaw = lib.readFile(dir + "/ability.txt").split("|");
         		old_item_data[11] = abilityRaw[key - 1];
@@ -365,30 +317,11 @@ module.exports = {
         		
         		// Recalculate the user's stats
                 // Remove old item's values from the user's stats and add the new ones
-                for(y = 1; y < 8; y++){
-                    if(y == 7 && (old_item_data[8] == stats[8] || new_item_data[8] != "0")){
-                        stats[7] = new_item_data[7];
-                        stats[8] = new_item_data[8];
-                    }else if(y != 7){
-                        var base = parseInt(stats[y]);
-                        var minus = parseInt(old_item_data[y]) + parseInt(modifier[y]);
-                        var plus = parseInt(new_item_data[y]);
-                        stats[y] = base - minus + plus;
-                    }
-                }
-                
-                // Check the other equipped items for a type bonus to apply if the new item has none
-                if(stats[7] == "0"){
-                    var old_item_2 = item_array[old_item_key_2];
-                    var old_item_data_2 = old_item_2.split("|");
-                    stats[7] = old_item_data_2[7];
-                    stats[8] = old_item_data_2[8];
-                }
-                if(stats[7] == "0"){
-                    var old_item_3 = item_array[old_item_key_3];
-                    var old_item_data_3 = old_item_3.split("|");
-                    stats[7] = old_item_data_3[7];
-                    stats[8] = old_item_data_3[8];
+                for(y = 1; y < 7; y++){
+                    var base = parseInt(stats[y]);
+                    var minus = parseInt(old_item_data[y]) + parseInt(modifier[y]);
+                    var plus = parseInt(new_item_data[y]);
+                    stats[y] = base - minus + plus;
                 }
                 
                 // Save stats

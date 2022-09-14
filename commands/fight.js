@@ -52,24 +52,10 @@ module.exports = {
 		}
 		var monster_title = shiny + monster_data[0];
 		
-		//Check if the user has a type bonus and add it to the calculations if applicable
+		// Get user stats
         var user_stats = lib.readFile(dir + "/stats.txt").split("|");
         var user_attack = parseInt(user_stats[1]);
         var user_speed = parseInt(user_stats[2]);
-        if(user_stats[7] != "0"){
-            if(monster_data[3].includes(",")){
-                var monster_types = monster_data[3].split(",");
-            }else{
-                var monster_types = [monster_data[3]];
-            }
-            for(y = 0; y < monster_types.length - 1; y++){
-                if(monster_types[y] == user_stats[8]){
-                    var type_bonus = parseInt(user_stats[7]) / 2;
-                    user_attack = user_attack + type_bonus;
-                    user_speed = user_speed + type_bonus;
-                }
-            }
-        }
         
         // Check for ability activation
         var abilityData = lib.readFile(dir + "/ability.txt").split("|");

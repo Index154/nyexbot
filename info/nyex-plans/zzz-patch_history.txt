@@ -1,3 +1,9 @@
+__v0.19.13__
+- Removed item prices changing based on how often they are bought and sold. It was a pretty meaningless feature
+- Increased the use duration of many consumables to make them hopefully actually worth using every now and then
+- Removed equipment crafting recipes and equipment upgrades. Planning to add a more interesting alternate use for materials later on!
+- Removed type bonus values. They basically didn't matter anyway lol
+
 __v0.19.12__
 - Update and boss announcements can now be received in DMs if you sign up for it. You can enable DM announcements for yourself with `set updates` (you can disable again with the same command). The default setting is to not receive them
 - Renamed errorlog command to doadmin since it can do like 7 different things that have nothing to do with error logs

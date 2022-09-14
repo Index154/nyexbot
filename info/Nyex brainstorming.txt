@@ -1,0 +1,67 @@
+What are the main appeals of the game?
+    - Random events (gambling)
+    - Collecting cool monsters and rare stuff (collecting)
+    - Getting better results as you keep playing or make smarter decisions (feeling of growth + superiority over new players)
+
+
+What features does the bot have and what do they accomplish?
+    - Item drops, EXP & Gold: Rewards for being lucky
+    - Items: Can be used to gain various advantages (gives the user more control)
+    - EXP: Indirectly gives other rewards + serves as a progress gauge
+    - Gold: Indirectly gives other rewards + provides a way to benefit from things you don't actually need => Makes items more useful
+    - Monsters: Can be collected or fought (turning them into something like loot boxes for items)
+        - Shinies: Serve as very rare, unique and valuable targets to collect
+        - Monster stats & types: Make monsters feel a tiny bit more complex / interesting / unique
+        - Monster ranks: Control the base rarity of monsters and how hard they are to obtain
+    - Equipment: Grants various advantages and a clear feeling of progress + gives the user control through decision-making
+    - Scrap: Limits the usefulness of Gold + provides a way to benefit from things you got that you don't actually need => Makes items more useful
+    - Stats:
+        - Attack / Speed: Used to gain increased success chances and progress
+        - Capture Efficiency: Used to gain increased success chances and progress
+        - Monster Luck: Used to manipulate rarity of monsters
+        - Item Luck: Used to manipulate item drop chances
+        - Greater Item Luck: Used to manipulate rarity of items
+        - Type Bonus: USELESS => REMOVE
+    - Equipment abilities: Give users a feeling of being special + sometimes add extra strategy and variety to encounters + add more variety and complexity to equipment itself => Possibility for more thoughtful decision-making
+    - Classes: Serve as important long-term decisions + give various advantages + give a feeling of being unique + add more interesting rewards for gathering EXP
+    - Areas: Necessary for splitting up the monsters so it's easier for the user to get the ones they're looking for + limits the variety to not overwhelm the user
+    - Realms: Add a way for the user to obtain specific things more easily (due to reduced variety)
+    - Limited HP in realms: Make the realms feel more exciting and more exclusive + limits the amount of farming a user can do
+    - Unique realms: Add neat references to other franchises + give a reason to return to the game + make special monsters feel rarer
+    - Items with short durations: Can be used when experiencing a rare event to increase the chances of success for that event by a lot
+    - Items with long durations: Can be used at any time to increase the chances of success slightly for many events
+    - Materials: Filler items to add more drops to the game without oversaturating the pool of consumables
+        => Actual uses?
+            - Crafting: A way to limit the user's progress based on which materials they can obtain consistently BUT this is not necessary because equipment drops already do this naturally even though the user can get lucky and obtain high level equipment too early. But if it's only one piece of equipment then it's not too bad. Also getting something very strong early on is fun anyway and the game doesn't need to be very balanced + adds more opportunities for decision-making BUT that's not really the case because deciding which equipment to craft is too cumbersome to really get into + Kinda overcomplicates the game
+            - Obtaining Scrap is NOT a use of materials. Scrapping something is admitting that it is useless
+    - Special items:
+        - Mindwipe tonic: Allows the user to redo past decisions after having gained new knowledge
+        - Vortexes: Loot boxes
+        - Monster tokens: Make daily quests more valuable + monster gacha
+        - Stasis cube: Very useful for preserving rare events the user isn't ready for
+        - Reality shifter: For rerolling rare monsters into other rare monsters (a way to benefit from things you got that you don't actually need)
+    - Stat points: Give the user more freedom of choice + serve as great rewards for quests
+    - User rank: Simple indicator of progress
+    - Shop: Main use for Gold
+    - Release blessings: Serve as a way to benefit from monsters you don't actually need
+    - Random encounter events: Add more variety and fun due to randomness
+    - World bosses: Add temporary limited ways to gain rewards for free and might make a user come back frequently
+    - Radar: Extra use for Gold + shiny hunting method
+    - Daily quests: Keep a user coming back + make user go to specific areas and hunt for specific monsters + give temporary goals to a user
+    - Quests: Progression system with good rewards + tutorial + clear goals to work towards
+    - Monster command: Free random rewards that keep a user coming back
+    - Trophies: Extra things for users to collect + a way to measure yourself against others
+    - Research projects: Main use for Scrap + allows for some decision-making + basically "free" stuff + keep you coming back
+    - Transform command: Extra use for Scrap + a way to reroll equipment and loot boxes randomly => Fun
+    - Todo command: Quality of life command giving an overview of things to do
+    - Trading: Adds player interaction + a way to get things you want from someone else who has but doesn't need them
+    - Shiny chains: Shiny hunting method requiring dedication but offering consistent payoff
+    - Drop rate nerfs with high win rates: Makes easy item farming harder
+
+
+Conclusions and ideas:
+    - Chaos stat: A stat that makes the game "riskier" the higher it is (more extreme fluctuations of results)
+        => Allows for more interesting and thoughtful decisions + gives the user more control over their experience + makes the game more of a gamble which is funny
+    - Type Bonus stat is useless because it doesn't actually affect your decisions => Remove it
+    - Weak items should basically all have medium to long durations (10+ turns) to make them actually useful => Audit and change them
+    - Allow browsing the details of items in the shop

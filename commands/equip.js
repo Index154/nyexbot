@@ -113,30 +113,11 @@ module.exports = {
         var old_item = item_list[old_item_key];
         var old_item_data = old_item.split("|");
         // Remove old item's values from the user's stats and add the new ones
-        for(y = 1; y < 8; y++){
-            if(y == 7 && (old_item_data[8] == stats[8] || new_item_data[8] != "0")){
-                stats[7] = new_item_data[7];
-                stats[8] = new_item_data[8];
-            }else if(y != 7){
-                var base = parseInt(stats[y]);
-                var minus = parseInt(old_item_data[y]) + parseInt(modifier[y]);
-                var plus = parseInt(new_item_data[y]) + parseInt(newModifier[y]);
-                stats[y] = base - minus + plus;
-            }
-        }
-        
-        // Check the other equipped items for a type bonus to apply if the new item has none
-        if(stats[7] == "0"){
-            var old_item_2 = item_list[old_item_key_2];
-            var old_item_data_2 = old_item_2.split("|");
-            stats[7] = old_item_data_2[7];
-            stats[8] = old_item_data_2[8];
-        }
-        if(stats[7] == "0"){
-            var old_item_3 = item_list[old_item_key_3];
-            var old_item_data_3 = old_item_3.split("|");
-            stats[7] = old_item_data_3[7];
-            stats[8] = old_item_data_3[8];
+        for(y = 1; y < 7; y++){
+            var base = parseInt(stats[y]);
+            var minus = parseInt(old_item_data[y]) + parseInt(modifier[y]);
+            var plus = parseInt(new_item_data[y]) + parseInt(newModifier[y]);
+            stats[y] = base - minus + plus;
         }
         
         // Save stats

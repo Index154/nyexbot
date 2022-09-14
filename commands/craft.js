@@ -321,7 +321,7 @@ module.exports = {
         var abilities = lib.readFile("data/abilities.txt").split("######################################\n");
 		
 		// Further differentiate between item types and add item details to the output
-		var stat_names = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Type Bonus"];
+		var stat_names = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Unnamed"];
 		// Modify embed
 		outputEmbed
         	.setDescription(result_item[9])
@@ -343,16 +343,10 @@ module.exports = {
             		{ name: 'Speed', value: result_item[2], inline: true }
             	);
             	
-            for(o = 3; o < 8; o++){
+            for(o = 3; o < 7; o++){
                 if(parseInt(result_item[o]) !== 0){
-                    if(o == 7){
-                        // Special kind of field for type bonus
-                        outputEmbed
-                            .addFields( { name: 'Type Bonus', value: result_item[7] + ' against [' + result_item[8] + ']', inline: true } );
-                    }else{
-                        outputEmbed
-                            .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
-                    }
+                    outputEmbed
+                        .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
                 }
             }
 		}else if(result_item[10] == "Defense"){
@@ -375,16 +369,10 @@ module.exports = {
             		{ name: 'Weight', value: weight + " (+" + result_item[2] + " Speed)", inline: true }
             	)
             
-            for(o = 3; o < 8; o++){
+            for(o = 3; o < 7; o++){
                 if(parseInt(result_item[o]) !== 0){
-                    if(o == 7){
-                        // Special kind of field for type bonus
-                        outputEmbed
-                            .addFields( { name: 'Type Bonus', value: result_item[7] + ' against [' + result_item[8] + ']', inline: true } );
-                    }else{
-                        outputEmbed
-                            .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
-                    }
+                    outputEmbed
+                        .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
                 }
             }
 		}else if(result_item[10] == "Tool"){
@@ -397,16 +385,10 @@ module.exports = {
             outputEmbed
             	.addFields( { name: 'Ability Activation', value: abilityName, inline: true } );
             	
-            for(o = 1; o < 8; o++){
+            for(o = 1; o < 7; o++){
                 if(parseInt(result_item[o]) !== 0){
-                    if(o == 7){
-                        // Special kind of field for type bonus
-                        outputEmbed
-                            .addFields( { name: 'Type Bonus', value: result_item[7] + ' against [' + result_item[8] + ']', inline: true } );
-                    }else{
-                        outputEmbed
-                            .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
-                    }
+                    outputEmbed
+                        .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
                 }
             }
 		}else{
@@ -419,14 +401,8 @@ module.exports = {
             	
             for(o = 1; o < 8; o++){
                 if(parseInt(result_item[o]) !== 0){
-                    if(o == 7){
-                        // Special kind of field for type bonus
-                        outputEmbed
-                            .addFields( { name: 'Type Bonus', value: result_item[7] + ' against [' + result_item[8] + ']', inline: true } );
-                    }else{
-                        outputEmbed
-                            .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
-                    }
+                    outputEmbed
+                        .addFields( { name: stat_names[o], value: result_item[o], inline: true } );
                 }
             }
             var item_subinfo = result_item[10].split(",");

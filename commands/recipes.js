@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'recipes',
 	usages: ['', 'craftable', '[item name]'],
-	descriptions: ['Posts a link to the list of recipes', 'Displays a list of items you are currently able to craft', 'Displays a list of items that can be crafted with the given item. Also lists the item itself if it can be crafted'],
+	descriptions: ['Posts a list of all recipes', 'Displays a list of items you are currently able to craft', 'Displays a list of items that can be crafted with the given item. Also lists the item itself if it can be crafted'],
     shortDescription: 'Look at crafting recipes',
     weight: 15,
 	aliases: ["rec"],
@@ -195,7 +195,7 @@ module.exports = {
             
         }else{
             // Default output message
-            message.reply({ content: 'Visit the official website for a complete list of crafting recipes:\n<https://indexnight.com/rpg_recipes.php>\nYou can also use `' + prefix + 'recipes craftable` to see which items you are able to craft right now.', allowedMentions: { repliedUser: false }});
+            message.reply({ content: 'The full crafting recipe list is currently unavailable.\nYou may instead use `' + prefix + 'recipes craftable` to see which items you are able to craft right now.', allowedMentions: { repliedUser: false }});
         }
         
 	},

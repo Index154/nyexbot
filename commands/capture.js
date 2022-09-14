@@ -191,22 +191,9 @@ module.exports = {
             }
         }
 		
-		//Check if the user has a type bonus and add it to the calculations if applicable
+		// Get user stats and add bonus from ability
         var user_stats = lib.readFile(dir + "/stats.txt").split("|");
         var cap_eff = parseInt(user_stats[3]) + capBonus;
-        if(user_stats[7] != "0"){
-            if(monster_data[3].includes(",")){
-                var monster_types = monster_data[3].split(",");
-            }else{
-                var monster_types = [monster_data[3]];
-            }
-            for(y = 0; y < monster_types.length - 1; y++){
-                if(monster_types[y] == user_stats[8]){
-                    var type_bonus = parseInt(user_stats[7]) / 2;
-                    cap_eff += type_bonus;
-                }
-            }
-        }
 		
 		// Determine capture result by comparing stats
 		var win = false;

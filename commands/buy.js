@@ -287,10 +287,6 @@ module.exports = {
                 }
             }
 			
-			// Modify price with fluctuation
-			var popularities = lib.readFile("./data/item_popularity.txt").split("\n");
-			result_price = Math.round(result_price * (1 + (parseInt(popularities[result_key]) * 0.01)));
-			
 			// Check if the user has enough Gold for the purchase
 			result_price = result_price * buyCount;
             if(parseInt(user_data[12]) >= result_price){
@@ -309,11 +305,6 @@ module.exports = {
                     }
                 }
                 lib.saveFile(inv_path, old_inventory);
-                
-                // Change the item's value for the future
-                popularities[result_key] = parseInt(popularities[result_key]) + buyCount;
-                if(popularities[result_key] > 10){popularities[result_key] = 10;}
-                lib.saveFile("./data/item_popularity.txt", popularities.join("\n"));
                 
                 // Output
                 message.reply({ content: "You purchased **[" + offer_names[key] + "] x " + buyCount + "** for **" + result_price + "** Gold!", allowedMentions: { repliedUser: false }});
