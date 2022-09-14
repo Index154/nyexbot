@@ -1,5 +1,6 @@
 __**Additional goals:**__
 (These can be done at any time in any order and are not super important. Usually QoL improvements, fixes and additional features)
+- A button for starting a new research right after finishing one
 - Convert media and quote into SQL commands with tags, then make `add` also use SQL
 - Make .help a paged embed so it doesn't take away too much space
 - A daily task refresh countdown in relevant commands (Example: A timer to show when the next daily will be, visible in daily and todo)
@@ -10,6 +11,7 @@ __**Additional goals:**__
 - Renaming of the luck stats to better represent their uses
 - Descriptions for the newer equipment and monsters
 - The ability to craft multiple consumables at once
+- A special (shop) item that lets you save a shiny chain for later
 - Transforming materials into others of your choosing (must be same rank, conversion rate of maybe like 5 to 1)
 - Information about the areas a monster can be found in in check and caps
 - A function for captures that lets you check the monsters of another user which you are missing

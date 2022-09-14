@@ -1,12 +1,12 @@
 var { prefix } = require('../config.json');
 
 module.exports = {
-	name: 'errorlog',
-	usages: ['', 'clear', 'restart', 'pull'],
-	descriptions: ["Generates a viewable copy of the bot's error log", "Clears the main error log. The most recently generated copy is left untouched", "Restarts the whole bot (for applying changes made to the main functions)", "Fetches the contents of the messages in the nyex-plans channel on the main server and saves them"],
+	name: 'doadmin',
+	usages: ['log', 'clear', 'restart', 'pull/push', 'update', 'pop', 'query'],
+	descriptions: ["Generates a viewable copy of the bot's error log", "Clears the main error log. The most recently generated copy is left untouched", "Restarts the whole bot (for applying changes made to the main functions)", "Fetches the contents of the messages in the nyex-plans channel on the main server and saves them", "Posts update text to my channel and moves it to the history file", "Populates a new database table using manually defined logic. Edit this command first!", "Performs a custom SQL query for debugging purposes"],
     shortDescription: 'Many functions',
     weight: 5,
-	aliases: ['el'],
+	aliases: ['da'],
 	addendum: ['Can only be used by Index154'],
     category: 'admin',
 	
@@ -136,34 +136,42 @@ module.exports = {
             }
             botRestart();
         }
-            
-        // Get error log
-        var log = lib.readFile("/root/.pm2/logs/app-error.log");
-        if(!lib.exists(log)){log = "Empty";}
         
-        // If I want to clear the error log, do it
-        if(args[0] == "clear"){
+        // Get error log if I want to
+        if(lib.exists(args[0]) && args[0].toLowerCase() == "log"){
+            // Get error log
+            var log = lib.readFile("/root/.pm2/logs/app-error.log");
+            if(!lib.exists(log)){log = "Empty";}
+            
+            // Split log into lines
+            var log_array = log.split("\n");
+            
+            // If the log is empty, don't do anything
+            if(log_array.length < 2){
+                message.reply({ content: "\u274C The error log is empty!", allowedMentions: { repliedUser: false }});
+                return;
+            }
+
+            // Get link
+            var log_out = log_array.join("\n");
+            lib.saveFile("../indexnight/nyexbot_logs/error-0_log", log_out);
+            var output = "Created temporary log file:\nhttps://indexnight.com/nyexbot_logs/error-0_log";
+
+            // Output
+            message.reply({ content: output, allowedMentions: { repliedUser: false }});
+            return;
+        }
+
+        // Clear error log if I want to
+        if(lib.exists(args[0]) && args[0].toLowerCase() == "clear"){
             lib.saveFile("/root/.pm2/logs/app-error.log", "Cleared");
             message.reply({ content: "Error log cleared!", allowedMentions: { repliedUser: false }});
             return;
         }
-        
-        // Split log into lines
-        var log_array = log.split("\n");
-        
-        // If the log is empty, don't do anything
-        if(log_array.length < 2){
-            message.reply({ content: "\u274C The error log is empty!", allowedMentions: { repliedUser: false }});
-            return;
-        }
 
-        // Get link
-        var log_out = log_array.join("\n");
-        lib.saveFile("../indexnight/nyexbot_logs/error-0_log", log_out);
-        var output = "Created temporary log file:\nhttps://indexnight.com/nyexbot_logs/error-0_log";
+        // Failed
+        message.reply({ content: "\u274C Try using an argument next time, donut", allowedMentions: { repliedUser: false }});
+        return;
 
-        // Output
-        message.reply({ content: output, allowedMentions: { repliedUser: false }});
-        
 	},
 };

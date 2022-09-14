@@ -107,7 +107,7 @@ module.exports = {
 		// Get item drops and add them
 		if(monster_keys_array[2] == "1"){
 		    // Shiny drop item
-		    var drop_pool = ["106"];
+		    var drop_pool = ["106", "100"];
 		}else{
 		    var drop_pool_groups = lib.readFile("data/drops.txt").split("#######################\n");
 		    var drop_pools = drop_pool_groups[monster_keys_array[0]].split(";\n");
@@ -134,7 +134,7 @@ module.exports = {
         }
         
         outputEmbed
-            .addFields( { name: "Drops (with base drop rates)", value: drops, inline: true } );
+            .addFields( { name: "Drops", value: drops, inline: true } );
             
 		// Get captured count
 		var captures_array = lib.readFile(dir + "/captures.txt").split(";");

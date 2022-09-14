@@ -48,6 +48,7 @@ module.exports = {
             lib.saveFile(dir + "/current_quest.txt", "0");
             lib.saveFile(dir + "/daily.txt", "1|0");
             lib.saveFile(dir + "/daily_radar.txt", "1");
+            lib.saveFile(dir + "/dmupdates.txt", "no");
             lib.saveFile(dir + "/equipment.txt", "0,1,2");
 			lib.saveFile(dir + "/equip_modifiers.txt", "|0|0|0|0|0|0\n|0|0|0|0|0|0\n|0|0|0|0|0|0");
             lib.saveFile(dir + "/fav_mats.txt", "");

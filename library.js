@@ -1034,7 +1034,7 @@ module.exports = {
 		const row = new MessageActionRow().addComponents(buttonList);
 		var curPage = "";
 		if(pages.length == 1){
-		  	embed.fields[0].value = pages[page];
+			embed.fields[embed.fields.length - 1].value = pages[page];
 		  	curPage = await msg.reply({
 				embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				allowedMentions: { repliedUser: false },

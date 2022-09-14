@@ -301,8 +301,9 @@ module.exports = {
                 return;
             }else{
                 // The user is not in the same server, send a DM
-                var otherUser = message.client.users.cache.get(trade[0]);
-                otherUser.send({ content: "**The trade has been completed successfully!**\nPlease make sure that everything has been received correctly" + trophyMessages[0] });
+                message.client.users.fetch(trade[0], false).then((tempUser) => {
+                    tempUser.send("**The trade has been completed successfully!**\nPlease make sure that everything has been received correctly" + trophyMessages[0]);
+                });
             }
             
             message.reply({ content: "**The trade has been completed successfully!**\nPlease make sure that everything has been received correctly" + trophyMessages[1], allowedMentions: { repliedUser: false }});
@@ -331,8 +332,9 @@ module.exports = {
                             return;
                         }else{
                             // The user is not in the same server
-                            var otherUser = message.client.users.cache.get(oldTradeData[0]);
-                            otherUser.send({ content: "__**" + username + "** has cancelled the trade!__" });
+                            message.client.users.fetch(oldTradeData[0], false).then((tempUser) => {
+                                tempUser.send({ content: "__**" + username + "** has cancelled the trade!__" });
+                            });
                         }
                     }
                 }
@@ -589,8 +591,9 @@ module.exports = {
                                 message.reply({ content: `<${oldTradeData[0]}>\n__**` + username + "** has cancelled their trade with you!__", allowedMentions: { repliedUser: false } });
                             }else{
                                 // The user is not in the same server
-                                var otherUser = message.client.users.cache.get(oldTradeData[0]);
-                                otherUser.send({ content: "__**" + username + "** has cancelled their trade with you!__" });
+                                message.client.users.fetch(oldTradeData[0], false).then((tempUser) => {
+                                    tempUser.send({ content: "__**" + username + "** has cancelled their trade with you!__" });
+                                });
                             }
                         }
                     }
@@ -633,8 +636,9 @@ module.exports = {
                     return;
                 }else{
                     // The user is not in the same server
-                    var otherUser = message.client.users.cache.get(otherId);
-                    otherUser.send({ content: "__**" + username + "** has sent you a trade offer:__" + offerList + "\nUse the command `" + prefix + "trade " + username + " [offer]` to reply to their offer!" });
+                    message.client.users.fetch(otherId, false).then((tempUser) => {
+                        tempUser.send({ content: "__**" + username + "** has sent you a trade offer:__" + offerList + "\nUse the command `" + prefix + "trade " + username + " [offer]` to reply to their offer!" });
+                    });
                 }
             }else{
                 // Create buttons
@@ -654,8 +658,9 @@ module.exports = {
                     return;
                 }else{
                     // The user is not in the same server
-                    var otherUser = message.client.users.cache.get(otherId);
-                    otherUser.send({ content: "__**" + username + "** has sent you a counteroffer:__" + offerList, components: [row] });
+                    message.client.users.fetch(otherId, false).then((tempUser) => {
+                        tempUser.send({ content: "__**" + username + "** has sent you a counteroffer:__" + offerList, components: [row] });
+                    });
                 }
             }
             

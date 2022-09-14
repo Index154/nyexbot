@@ -4,21 +4,15 @@ const { Permissions } = require('discord.js');
 
 module.exports = {
 	name: 'set',
-	usages: ['channel', 'prefix [text]'],
-	descriptions: ["Sets the current channel as the server's NyexBot announcement channel", "Sets a new server-side prefix for the bot"],
-    shortDescription: 'Set the prefix or announcements channel',
+	usages: ['updates', 'channel', 'prefix [text]'],
+	descriptions: ["Enables or disables whether you will receive announcements in DMs", "Sets the current channel as the server's NyexBot announcement channel", "Sets a new server-side prefix for the bot"],
+    shortDescription: 'Set the server prefix or announcements channel or enable update DMs',
     weight: 5,
-	addendum: 'Can only be used by users with the permission "Manage Server".\nAnnouncements include update and worldboss notices',
+	addendum: 'Announcement channel and prefix can only be controlled by users with the permission "Manage Server".\nAnnouncements include update and worldboss notices',
     category: 'settings',
 	
 	execute(message, user, args) {
-        
-        // Stop if the command is not being executed in a server
-        if(message.guild === null){
-            message.reply({ content: "\u274C This command can only be used in servers!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
+
         // Check if the server has a custom prefix and load it
         if(message.guild !== null){
             var serverID = message.guildId;
@@ -30,6 +24,36 @@ module.exports = {
         // Set important variables
         var username = user.username;
         var dir = "userdata/" + user.id;
+
+        // Special use case: updates for DM control
+        if(args[0] == "updates"){
+            // Get current setting
+            var updateSetting = lib.readFile(dir + "/dmupdates.txt");
+
+            // Switch the setting
+            if(updateSetting == "yes"){
+                updateSetting = "no";
+                message.reply({ content: "You will no longer receive update and boss announcements in DMs!", allowedMentions: { repliedUser: false }});
+            }else{
+                updateSetting = "yes";
+                message.reply({ content: "From now on you will receive update and boss announcements in DMs!", allowedMentions: { repliedUser: false }});
+            }
+
+            lib.saveFile(dir + "/dmupdates.txt", updateSetting);
+            return;
+        }
+
+        // No matching argument error
+        if(args[0] != "prefix" && args[0] != "channel"){
+            message.reply({ content: "\u274C Please make sure the first argument is either `updates`, `prefix` or `channel`!", allowedMentions: { repliedUser: false }});
+            return;
+        }
+
+        // Stop if the command is not being executed in a server
+        if(message.guild === null){
+            message.reply({ content: "\u274C This command can only be used in servers!", allowedMentions: { repliedUser: false }});
+            return;
+        }
         
         // If the user doesn't have server admin rights, stop the command
         var member = (message.client.guilds.cache.get(message.guildId)).members.cache.get(user.id);
@@ -40,12 +64,6 @@ module.exports = {
         
         // Get the server ID for later
         var serverID = message.guildId;
-        
-        // Check the first argument for prefix or channel
-        if(args[0] != "channel" && args[0] != "prefix"){
-            message.reply({ content: "\u274C Please make sure the first argument is either `prefix` or `channel`!", allowedMentions: { repliedUser: false }});
-            return;
-        }
         
         // Save the second argument as the new prefix or save the channel
         var change_path = "data/configs/" + serverID + "/prefix.txt";

@@ -3,8 +3,10 @@ __**Lower priority:**__
 - The addition and improvement of some of the fun commands from Nightbot (ability, comment, decipher, actitle, mhshuffle, vietmon)
 - Equipment being scrapped when replaced
 - A cooldown between bosses spawning
+- Material details also being shown in paged embeds
+- Crafting uses in item and material details so you can have a general idea of how useful it will be later (Example: "Used for crafting: C Weapon, C Tool upgrade, B Consumable")
 - Bosses being able to replace each other (sort of adding a possibility of failure for the players if they take too long)
-- .rec craftable being sorted by icons
+- .rec craftable being sorted by icons (so mostly by rank)
 - .rec showing all recipes in Discord instead of linking to the website
 - Radar values being updated whenever quests are completed or monsters are obtained
 - More regular realms and corresponding vortexes
@@ -16,4 +18,5 @@ __**Lower priority:**__
 - Monster type effects (favorited monster effects) (maybe wait for SQL)
 - Monster modifiers (fight/capture reward variety) (maybe wait for SQL)
 - Counters for various stats (requires SQL)
+- Another rework of the quest tutorials with explanations for new commands, changes and features
 <:sp:860269564779429908>

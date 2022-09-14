@@ -339,7 +339,7 @@ module.exports = {
 			var output = "You dealt **" + damage + " damage** to the boss and received **20 Gold**! Here is the monster's current status:```\n[" + name + "] (Rank " + rank + "X)\n" + hp + " HP remaining```" + buff_extra;
 
 			// Determine if Gold should be taken away or given
-			if(lib.rand(1, 6) == 1){
+			if(lib.rand(1, 8) == 1){
 				// Unlucky!
 				user_data[12] = parseInt(user_data[12]);
 				var loss = 50;

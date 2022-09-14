@@ -264,12 +264,31 @@ client.on('messageCreate', async message => {
     }
     
     // If the message was sent in the updates channel on the main server and is not a minor patch then crosspost it to all other configured announcement channels (except the one on the main server)
+    // Also send it to all signed-up users in DMs
     if(message.channel.id == "731236740974510100" && !message.content.toLowerCase().includes("[minor patch]")){
+        // Define embed
+        var updateEmbed = new Discord.MessageEmbed()
+                .setTitle("New bot update")
+                .setDescription(message.content.trim());
+
         fs.readdir("./data/configs", (err, files) => {
             for(i = 0; i < files.length; i++){
                 var channelID = lib.readFile("./data/configs/" + files[i] + "/channel.txt");
                 if(channelID !== "Undefined" && channelID !== "516038839949852695"){
-                    client.channels.cache.get(channelID).send("__**Update:**__ " + message.content.trim());
+                    client.channels.cache.get(channelID).send({ embeds: [updateEmbed] });
+                }
+            }
+        });
+
+        fs.readdir("./userdata", (err, files) => {
+            for(x = 0; x < files.length; x++){
+                // Check if a user wants to receive announcements in DMs
+                var userDMSetting = lib.readFile("./userdata/" + files[x] + "/dmupdates.txt");
+                if(userDMSetting == "yes"){
+                    console.log(files[x]);
+                    client.users.fetch(files[x], false).then((tempUser) => {
+                        tempUser.send({ embeds: [updateEmbed] });
+                    });
                 }
             }
         });

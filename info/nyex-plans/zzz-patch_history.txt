@@ -1,3 +1,8 @@
+__v0.19.12__
+- Update and boss announcements can now be received in DMs if you sign up for it. You can enable DM announcements for yourself with `set updates` (you can disable again with the same command). The default setting is to not receive them
+- Renamed errorlog command to doadmin since it can do like 7 different things that have nothing to do with error logs
+- Fixed `check` showing the item drop chance as "undefined%" for shiny monsters
+
 __v0.19.11__
 - Added some additional information to the Stasis Cube and the messages you get when you use it
 - Added item drop rates to `check`

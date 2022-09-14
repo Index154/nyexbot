@@ -258,10 +258,10 @@ module.exports = {
     				// Create output embed
     				var outputEmbed = new Discord.MessageEmbed()
                         	.setColor('#0099ff')
-                        	.addField("Type", "Material")
-                        	.addField("Value", item_info[11])
+                        	.addFields( { name: "Scrap value", value: item_info[11], inline: true } )
                         	.setTitle(item_info[0])
-                        	.setDescription(item_info[9]);
+                        	.setDescription(item_info[9])
+                            .setFooter("Use the command `" + prefix + "mats convert [amount] [material name]` to convert materials into Scrap");
                             
                     // Set item count and add it to the output
     				var itemCounts = new adc(item_keys).count();
