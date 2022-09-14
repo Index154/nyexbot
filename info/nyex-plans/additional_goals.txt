@@ -1,7 +1,6 @@
 __**Additional goals:**__
 (These can be done at any time in any order and are not super important. Usually QoL improvements, fixes and additional features)
 - A button for starting a new research right after finishing one
-- Item use duration review (weak items should all last a while)
 - Crafting system rework: No more equipment upgrades or set recipes for equipment. Instead every material has certain attributes (but no specific numbers) and you can craft custom equipment using a certain number of them (3 to 5?). The attributes of the ingredients then determine the resulting equipment item's stats and so on. The rank and values of the stats will be determined based on the average rank of the ingredients and how often each attribute is present. Example: Using 4 D-Rank materials with only attack attributes will make an equipment with 10 Attack (plus some random fluctuation). If one of them had speed instead of attack then it would maybe have 8 attack and 2 speed on average
 - The ability to browse the details of items in the shop (like inventory embeds)
 - Convert media and quote into SQL commands with tags, then make `add` also use SQL

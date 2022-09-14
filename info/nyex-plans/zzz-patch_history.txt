@@ -13,6 +13,7 @@ __v0.19.11__
 - Added some additional information to the Stasis Cube and the messages you get when you use it
 - Added item drop rates to `check`
 - Fixed item drop rates being way too high because of a bug (why does it feel like this is not the first time)
+- Increased prices / values of some special items significantly
 
 __v0.19.10__
 - Added a fullradar button to the `radar` command output (if the user fulfills the fullradar level requirement)
@@ -21,4 +22,105 @@ __v0.19.10__
 - The boss spawning notification now also includes the prefix for `wb`
 
 __v0.19.9__
-...
+- Removed type3 from nick
+- You can now combine  type4 with the other types, a custom word or also with itself
+Examples: nick monkey type4
+nick type4 type4
+nick type4 type2
+
+v0.19.8
+- You can now browse through your items with buttons after using inv [item name] or ìnv random
+- I've also improved the embeds by making the spacing more consistent so all of the item details are always in the same spots
+
+v0.19.7
+- Added a "Random" button to the captures embed
+- New command: countdown. It tracks some countdowns for cool stuff
+
+v0.19.6
+- Bosses now generate with a unique name (using the logic of truename from nick)
+
+[Minor Patch]
+- Greater Item Luck now operates based on average drop chance and brings the drop chances of all of a monster's drops closer to that value without changing the overall average itself 
+
+v0.19.5
+- nick now has a more detailed help page, explaining all the possible arguments
+- The results obtained with nick can now be rerolled as often as you want with a simple button press!
+- nick now also has a new argument called truename. If you use this argument then the command will generate a word that (usually) didn't exist before instead of a normal nickname
+
+v0.19.4
+- help has been reworked to show commands sorted by categories. It also has short descriptions for what each command does
+
+v0.19.3
+- New variety command: scp
+Use it to get a random scp article. You can also do scp [number] to get a specific one
+
+v0.19.2
+- Minor fixes
+- Removed the treasure feature & command (it was lame)
+
+v0.19.1
+- Fixed various minor things, including usernames with special characters in them breaking the formatting in most bot messages. For now the special characters are simply removed from the username. This might cause other issues later, let's find out lol
+
+[Minor Patch]
+- Added a new consumable: Glowing Bulb. It is dropped by Abyssal Eels (rank B, found in Ocean) very frequently and can be used to greatly lower your monster luck. I made this item so high rank players can still encounter lots of low rank monsters
+- Fixed negative monster luck making shinies impossible to spawn in some cases 
+
+v0.19.0
+- Added about 130 shiny monster images, including all D-Rank shinies
+- Shinies which I haven't made images for will all have the same placeholder image from now on
+- Removed all shiny monster descriptions
+- Increased prices for shinies in the shop
+
+v0.18.0
+- Added capture chains: A new shiny hunting method that allows you to hunt for specific monsters
+- Simply use capture on one species of monster several times in a row to build up a chain
+- The higher the chain gets, the higher the shiny chance for that particular monster will become
+- The chain will only break if you try to capture any other monster (including any shiny). Fight and encounter have no effect on it
+- The chain only boosts the shiny chance when you use encounter so fullradar for example will not benefit from it
+- For monsters of lower ranks the chains will generally need to be longer to reach high shiny chances 
+
+v0.17.0
+- If you have a monster's alternate form (so shiny or non shiny) then it will appear as a thumbnail in captures when viewing the monster
+
+[Minor Patch]
+- Fixed typo in the code that caused some embeds to fail after being posted initially
+
+v0.16.0
+- clip now no longer considers arguments as regular expressions
+- However I've added tags to each clip (examples: funny, spelunky)
+- When you use the command, every argument (separated by empty spaces) will be used to match either the title or a tag of the clips. Results are only chosen if all of the arguments match something for them
+- Also added a "random" button to commands like clip so you can reroll from the list of results
+- clip is the first command useable by everyone to use SQL queries! 
+
+[Minor Patch]
+- Fixed some nick options having line breaks in them
+- Fixed inv sometimes displaying incorrect item values
+
+v0.15.0
+Renamed isaac to fate (it might include other things besides isaac some day)
+Also added characters, trinkets and pocket items to it as additional categories 
+
+v0.14.0
+Added command isaac which picks an item based on your user Id (your soul mate item)
+
+v0.13.0
+Worldboss is now sometimes funny (1/6 chance to make you lose Gold instead of gaining it) 
+
+v0.12.0
+Added a new fun command: http
+It will post a random http status code with a cat or dog image when used
+
+v0.11.0
+From now on I will mark small and unimportant changes (such as the previous) as minor updates.
+I've made it so the bot doesn't crosspost these to any other servers.
+I will also make an effort of having version numbers again. 
+
+[Minor Patch]
+Fixed * without a character in front of it throwing an error in clip, media, etc. 
+Fixed embeds allowing all users to press some buttons
+
+I've imported a new command from Nightbot: pokegory (alias: pg)
+- Use pg to start a prompt which will tell you a pokemon category and ask you to guess one of the pokemon in it
+- Submit a guess using pg [your guess]
+- A prompt will expire after three guesses (they are shared globally across all users and servers)
+- For now there is no real point to using the command but I want to add rewards one day (in the same way that guess gives you scrap) 
