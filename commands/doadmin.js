@@ -2,8 +2,8 @@ var { prefix } = require('../config.json');
 
 module.exports = {
 	name: 'doadmin',
-	usages: ['log', 'clear', 'restart', 'pull/push', 'update', 'pop', 'query'],
-	descriptions: ["Generates a viewable copy of the bot's error log", "Clears the main error log. The most recently generated copy is left untouched", "Restarts the whole bot (for applying changes made to the main functions)", "Fetches the contents of the messages in the nyex-plans channel on the main server and saves them", "Posts update text to my channel and moves it to the history file", "Populates a new database table using manually defined logic. Edit this command first!", "Performs a custom SQL query for debugging purposes"],
+	usages: ['log', 'clear', 'restart', 'pull/push', 'update', 'pop', 'query', 'sendme'],
+	descriptions: ["Generates a viewable copy of the bot's error log", "Clears the main error log. The most recently generated copy is left untouched", "Restarts the whole bot (for applying changes made to the main functions)", "Fetches the contents of the messages in the nyex-plans channel on the main server and saves them", "Posts update text to my channel and moves it to the history file", "Populates a new database table using manually defined logic. Edit this command first!", "Performs a custom SQL query for debugging purposes", "Sends the bot owner a pre-defined DM"],
     shortDescription: 'Many functions',
     weight: 5,
 	aliases: ['da'],
@@ -26,6 +26,19 @@ module.exports = {
         // If the user isn't me, end the command
         if(id != "214754022832209921"){
             message.reply({ content: "\u274C This command is only useable by Index154", allowedMentions: { repliedUser: false }});
+            return;
+        }
+
+        // Send text to me if I want to
+        if(lib.exists(args[0]) && (args[0].toLowerCase() == "sendme" || args[0].toLowerCase() == "send")){
+            message.client.users.fetch(id, false).then((tempUser) => {
+                var sendContent = "```\n";
+                sendContent += "STUFF";
+                sendContent += "```"
+
+                tempUser.send(sendContent);
+            });
+            message.reply({ content: "DM sent!", allowedMentions: { repliedUser: false }});
             return;
         }
 

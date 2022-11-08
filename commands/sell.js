@@ -20,7 +20,6 @@ module.exports = {
         }
         
         // Set important variables
-        var username = user.username;
         var dir = "userdata/" + user.id;
         
         // If the user isn't registered yet, stop the command
@@ -123,15 +122,15 @@ module.exports = {
 			result_key = inventory_array[key];
             
             
-            //Modify the item's selling price based on the shop values
+            // Modify the item's selling price based on the shop values
             var result_item = item_array[result_key];
             var result_item_data = result_item.split("|");
             var fluctuation = 1 + (parseInt(popularities[result_key]) * 0.01);
             var selling_price = Math.round(parseInt(result_item_data[11]) * 0.75 * buying * merch_mod * fluctuation);
             
-            //If the user specified an item count, attempt to sell it multiple times, otherwise stop
+            // If the user specified an item count, attempt to sell it multiple times, otherwise stop
             if(count > 1){
-                //Check if the user has the item often enough
+                // Check if the user has the item often enough
                 var adc  = require('adc.js');
                 var counted = new adc(inventory_array).count();
                 var amount = counted[result_key];
@@ -143,18 +142,18 @@ module.exports = {
                 }
             }
             
-            //Remove the item/s from the user's inventory
+            // Remove the item/s from the user's inventory
             for(i = 0; i < count; i++){
                 inventory_array.splice(inventory_array.indexOf(result_key), 1);
             }
             lib.saveFile(dir + "/inventory.txt", inventory_array);
             
-            //Give the user their gold
+            // Give the user their gold
             var user_data = lib.readFile(dir + "/stats.txt").split("|");
             user_data[12] = parseInt(user_data[12]) + selling_price;
             lib.saveFile(dir + "/stats.txt", user_data.join("|"));
             
-            //Output
+            // Output
             message.reply({ content: "You sold **[" + result_item_data[0] + " x " + count + "]** for **" + selling_price + "** Gold!", allowedMentions: { repliedUser: false }});
             
 		}else{

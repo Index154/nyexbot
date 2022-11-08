@@ -11,10 +11,6 @@ module.exports = {
 	
 	execute(message, user, args) {
         
-        function onlyUnique(value, index, self) {
-            return self.indexOf(value) === index;
-        }
-        
         // Check if the server has a custom prefix and load it
         if(message.guild !== null){
             var serverID = message.guildId;
@@ -24,7 +20,6 @@ module.exports = {
         }
         
         // Set important variables
-        var username = user.username;
         var dir = "userdata/" + user.id;
         
         // If the user isn't registered yet, stop the command

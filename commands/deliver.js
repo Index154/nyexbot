@@ -170,7 +170,7 @@ module.exports = {
                     lib.saveFile(dir + "/inventory.txt", inventory);
                     
                 }else{
-                    // The reward is a stat upgrade - Add it to the user's stats
+                    // The reward is either stat points or exp and gold - Add them
                     // If the reward is experience, check for a levelup
                     if(reward == "11" || reward == "exp&gold"){
                         stats[11] = parseInt(stats[11]) + reward_amount;

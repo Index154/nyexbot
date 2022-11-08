@@ -4,7 +4,16 @@ const Discord = require('discord.js');
 fs = require('fs');
 lib = require("./library.js");
 mysql = require('mysql2/promise');
+const {token, prefix, SQLiv, hashedSQLpass} = require('./config.json');
 maintenance = false;
+
+// Decrypt stored database password
+const crypto = require('crypto');
+var algorithm = 'aes-256-ctr';
+var SQLsecretKey = "Iu8pe2kdN0w75vpAHUK5qisRb4RoFfvW";
+var decipher = crypto.createDecipheriv(algorithm, SQLsecretKey, Buffer.from(SQLiv, 'hex'));
+var decrpyted = Buffer.concat([decipher.update(Buffer.from(hashedSQLpass, 'hex')), decipher.final()]);
+var SQLpassword = decrpyted.toString();
 
 // Connect to MySQL database
 con = mysql.createPool({
@@ -19,7 +28,6 @@ con = mysql.createPool({
 });
 
 // Create a new Discord client, also set some variables
-const {token, prefix} = require('./config.json');
 Intents = Discord.Intents;
 MessageActionRow = Discord.MessageActionRow;
 MessageButton = Discord.MessageButton;

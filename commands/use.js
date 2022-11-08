@@ -402,7 +402,7 @@ module.exports = {
                 
                 // Disallow numbers unless vortexes, buff items, tokens or chargers are being used
                 if(amountNum > 1 && !vortex_flag && !charge_flag && !token_flag && no_buff){
-                    message.reply({ content: "\u274C You can't use multiple items at once except for vortexes, tokens and radar charge items!", allowedMentions: { repliedUser: false }});
+                    message.reply({ content: "\u274C You can't use multiple copies of this item at once!", allowedMentions: { repliedUser: false }});
                     return;
                 }
 				
@@ -586,7 +586,7 @@ module.exports = {
                     new_item_data[10] = "Item," + new_item_data_2[1];
                 }
                 
-				// Reduce use duration if there is an active encounter at the time of using this command
+				// Reduce use duration by one if there is an active encounter at the time of using this command
                 var current_enc = lib.readFile(dir + "/current_encounter.txt");
                 if(new_item_data_2[0] == "Item" && current_enc !== ""){
                     new_item_data_2[1] = parseInt(new_item_data_2[1]) - 1;

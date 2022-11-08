@@ -5,7 +5,7 @@ __**Additional goals:**__
 - The ability to browse the details of items in the shop (like inventory embeds)
 - Convert media and quote into SQL commands with tags, then make `add` also use SQL
 - Make .help a paged embed so it doesn't take away too much space
-- A daily task refresh countdown in relevant commands (Example: A timer to show when the next daily will be, visible in daily and todo)
+- A daily and weekly refresh countdown in relevant commands (Example: A timer to show when the next daily will be, visible in daily and todo. Or a countdown to the next shop reset in the shop footer)
 - More random events that can occur when using enc (being moved to a realm, getting a random buff, finding currencies, losing currencies, etc.)
 - An option (or permanent change) for captures to only show matching results (Example: `.caps slime` => Then you can browse through all the Slime results with the buttons) | Similar to how media, clip and such work currently
 - New funny mode activation method

@@ -20,10 +20,6 @@ module.exports = {
                 prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
             }
         }
-        
-        // Set important variables
-        var username = user.username;
-        var dir = "userdata/" + user.id;
 
         // Important setting variables
         var maxSCP = 6000;
@@ -69,6 +65,18 @@ module.exports = {
 
         // Fetch the SCP and post the result
         getSCP(SCP, seriesURL);
+
+        async function submitSCPError(SCPNumber, customString){
+            var errors = lib.readFile("./data/imported/SCPErrors.txt").split("\n");
+            var errorToSave = SCPNumber + " | " + customString;
+
+            if(!errors.includes(errorToSave)){
+                errors.push(errorToSave);
+                lib.saveFile("./data/imported/SCPErrors.txt", errors.join("\n"));
+            }
+            
+        }
+
         async function getSCP(SCPNumber, seriesURL) {
             try {
                 // HTML decoding function
@@ -85,9 +93,14 @@ module.exports = {
                 var reg = "\<a href=\"\/scp-" + SCPNumber + "\"\>.*?\<\/a\> - .*?\<\/li\>";
                 reg = new RegExp(reg, "g");
                 var title = body.match(reg);
-                title = decodeHtmlEntity(title[0].replace(/\<a href=\"\/scp-.*?\"\>/g, "").replace(/\<\/a\>/g, "").replace(/\<\/li\>/g, "").replace(/\<.*?\>/g, ""));
-                if(title.length > 255){
-                    title = title.substring(0, 250) + "...";
+                if(!lib.exists(title)){
+                    title = "No title found...";
+                    submitSCPError(SCPNumber, "title");
+                }else{
+                    title = decodeHtmlEntity(title[0].replace(/\<a href=\"\/scp-.*?\"\>/g, "").replace(/\<\/a\>/g, "").replace(/\<\/li\>/g, "").replace(/\<.*?\>/g, ""));
+                    if(title.length > 255){
+                        title = title.substring(0, 250) + "...";
+                    }
                 }
 
                 // Get the body of the SCP article
@@ -98,7 +111,10 @@ module.exports = {
                 reg = "\<p\>\<strong\>Description:\<\/strong\> .*?\<\/p\>";
                 reg = new RegExp(reg, "g");
                 var description = body.match(reg);
-                if(!lib.exists(description)){description = "No description found...";}else{
+                if(!lib.exists(description)){
+                    description = "No description found...";
+                    submitSCPError(SCPNumber, "description");
+                }else{
                     description = decodeHtmlEntity(description[0].replace(/\<sup class.*?\<\/sup\>/, "").replace(/\<p\>\<strong\>Description:/g, "").replace(/\<\/strong\> /g, "").replace(/\<\/p\>/g, "").replace(/\<.*?\>/g, ""));
                     if(description.length > 300){
                         description = description.substring(0, 300) + "...";
@@ -114,7 +130,7 @@ module.exports = {
 
                 // Embed
                 var outputEmbed = new Discord.MessageEmbed()
-                    .setColor("#0099ff")
+                    .setColor("#ffffff")
                     .setTitle(title)
                     .setDescription(description);
 
@@ -123,7 +139,8 @@ module.exports = {
 
             }
             catch(exception){
-                message.reply({ content: "\u274C There was an error fetching the SCP! Please try again", allowedMentions: { repliedUser: false }});
+                message.reply({ content: "\u274C There was an error fetching SCP-" + SCPNumber + "!\n```javascript\n" + exception + "```", allowedMentions: { repliedUser: false }});
+                console.log("Error fetching SCP-" + SCPNumber + ":");
                 console.log(exception);
             }
         }

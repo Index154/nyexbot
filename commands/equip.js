@@ -82,24 +82,18 @@ module.exports = {
         // Replace value in equipment array
         if(new_type == "Weapon"){
             var old_item_key = equipment_array[0];
-            var old_item_key_2 = equipment_array[1];
-            var old_item_key_3 = equipment_array[2];
 			modifier = equipModifiers[0].split("|");
 			equipModifiers[0] = newModifier.join("|");
             equipment_array[0] = new_equip_key;
             var key = 0;
         }else if(new_type == "Defense"){
             var old_item_key = equipment_array[1];
-            var old_item_key_2 = equipment_array[0];
-            var old_item_key_3 = equipment_array[2];
 			modifier = equipModifiers[1].split("|");
 			equipModifiers[1] = newModifier.join("|");
             equipment_array[1] = new_equip_key;
             var key = 1;
         }else{
             var old_item_key = equipment_array[2];
-            var old_item_key_2 = equipment_array[0];
-            var old_item_key_3 = equipment_array[1];
 			modifier = equipModifiers[2].split("|");
 			equipModifiers[2] = newModifier.join("|");
             equipment_array[2] = new_equip_key;

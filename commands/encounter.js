@@ -90,8 +90,8 @@ module.exports = {
         lib.saveFile(dir + "/crafting_queue.txt", "");
         
         // Add a chance to find a random item from the treasure pool instead of encountering a monster
-        var itemRand = lib.rand(1, 150);
-        if(itemRand == 1){
+        var specialRand = lib.rand(1, 300);
+        if(specialRand <= 2){
             // Get treasure loot data
             var icon_array = {D: "<:real_black_circle:856189638153338900>", C: "🔵", B: "🟢", A: "🔴", S: "🟡", SS: "🟠", Special: "✨", Vortex: "🌀"};
             var items = lib.readFile("data/items.txt").split(";\n");
@@ -131,11 +131,50 @@ module.exports = {
             message.reply({ content: "@ __**" + username + "**__, you stumbled upon a hidden chest and found... " + icon_array[item[12]] +"**" + item[0] + "** (" + rarity_text + " treasure)!", allowedMentions: { repliedUser: false }});
             return;
         }
-        
+
         // Set current area path
         var area_raw = lib.readFile(dir + "/area.txt");
         var area = "_" + area_raw;
         if(area == "_"){area = "_0";}
+
+        // Add a chance to get a random buff instead of encountering a monster
+        if(specialRand <= 4){
+            // Generate random buff
+
+
+            // Apply buff
+
+
+            // Output and end command
+            //message.reply({ content: "@ __**" + username + "**__, you are suddenly enveloped by a cloud of magic, altering your stats for a while!", allowedMentions: { repliedUser: false }});
+            //return;
+        }
+
+        // Add a chance to gain or lose Gold or Scrap instead of encountering a monster
+        if(specialRand <= 6){
+            // Determine exact change and message
+
+
+            // Update amount
+
+
+            // Output and end command
+            //message.reply({ content: "@ __**" + username + "**__, you ", allowedMentions: { repliedUser: false }});
+            //return;
+        }
+
+        // Add a chance to be taken to a realm instead of encountering a monster
+        if(specialRand == 7){
+            // Determine realm
+
+
+            // Move user
+
+
+            // Output and end command
+            //message.reply({ content: "@ __**" + username + "**__, a rift suddenly opened up and swallowed you, taking you to the " + "!", allowedMentions: { repliedUser: false }});
+            //return;
+        }
         
         // Load unique realm list and get event realm
         var unique_realms = lib.readFile("data/unique_realms.txt").split(",");

@@ -11,9 +11,8 @@ module.exports = {
 	addendum: 'Has an increased cooldown of 2.5 seconds',
     category: 'main',
 	
-	    execute(message, user, args) {
-		var allArgs = args.join(" ");
-        
+	execute(message, user, args) {
+
         // Check if the server has a custom prefix and load it
         if(message.guild !== null){
             var serverID = message.guildId;

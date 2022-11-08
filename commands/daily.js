@@ -24,7 +24,7 @@ module.exports = {
         
         // If the user isn't registered yet, stop the command
         if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
+            message.reply({ content: "@ __**" + username + "**__ \u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
             return;
         }
         
@@ -81,7 +81,7 @@ module.exports = {
         // If the user has already completed the daily quest, stop the command
         var done = parseInt(lib.readFile(dir + "/daily.txt").split("|")[0]);
         if(done == day){
-            message.reply({ content: "You've already completed your daily " + rank + "-Rank quest!\nA new daily quest will become available at midnight GMT+1!" + streakInfo, allowedMentions: { repliedUser: false }});
+            message.reply({ content: "@ __**" + username + "**__ You've already completed your daily " + rank + "-Rank quest!\nA new daily quest will become available at midnight GMT+1!" + streakInfo, allowedMentions: { repliedUser: false }});
             return;
         }
         
@@ -130,7 +130,7 @@ module.exports = {
         }
         
     	// Show the user info about their current quest
-        var output = "Today's " + rank + "-Rank quest is... ```\nDeliver [" + target_name + "]!" + capped + "```" + display_text + streakInfo;
+        var output = "@ __**" + username + "**__ Today's " + rank + "-Rank quest is... ```\nDeliver [" + target_name + "]!" + capped + "```" + display_text + streakInfo;
         message.reply({ content: output, allowedMentions: { repliedUser: false }, components: [row] });
 	},
 };

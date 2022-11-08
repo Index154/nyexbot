@@ -79,29 +79,20 @@ module.exports = {
 		var modifier = "";
         if(new_item_data[10] == "Weapon"){
             var item = equipment[0].split("|");
-            var item_2 = equipment[1].split("|");
-            var item_3 = equipment[2].split("|");
 			modifier = oldModifiers[0].split("|");
             var key = 0;
         }
         else if(new_item_data[10] == "Defense"){
             var item = equipment[1].split("|");
-            var item_2 = equipment[0].split("|");
-            var item_3 = equipment[2].split("|");
 			modifier = oldModifiers[1].split("|");
             var key = 1;
         }
         else{
             var item = equipment[2].split("|");
-            var item_2 = equipment[0].split("|");
-            var item_3 = equipment[1].split("|");
 			modifier = oldModifiers[2].split("|");
             var key = 2;
         }
         var item_data = item_list[item].split("|");
-        
-        // Get user's current stats
-        var user_stats = lib.readFile(dir + "/stats.txt").split("|");
         
         // Compare item stats between the two items
         var attack_dif = parseInt(new_item_data[1]) - parseInt(item_data[1]) - parseInt(modifier[1]) + parseInt(newModifier[1]);

@@ -303,7 +303,6 @@ module.exports = {
             );
 		
         // If the user is able to craft the item, ask for confirmation and save important values temporarily
-        var confirmation = "";
         if(craftable){
             // Create button
             var button1 = new MessageButton()

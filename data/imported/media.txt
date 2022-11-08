@@ -367,3 +367,10 @@ cockroach_in_bed https://cdn.discordapp.com/attachments/1014215995826655454/1015
 kicker_cat https://cdn.discordapp.com/attachments/1014215995826655454/1015725505149943848/buAaqHXR.gif
 struggle_cat https://cdn.discordapp.com/attachments/1014215995826655454/1015725623496425532/let-me.gif
 stomper_cat https://cdn.discordapp.com/attachments/1014215995826655454/1017494169113079818/ezgif-2-c2d5653710.gif
+goodnight https://cdn.discordapp.com/attachments/1014215995826655454/1020056729003765771/gn.gif
+hello https://cdn.discordapp.com/attachments/1014215995826655454/1020056775380193310/hello.gif
+uphead_and_mugma https://cdn.discordapp.com/attachments/548933510505955334/1025887193614520492/uphead_and_mugma.png
+lazy https://cdn.discordapp.com/attachments/548933510505955334/1025889579775033414/lazy.png
+cheeto_penis https://cdn.discordapp.com/attachments/548933510505955334/1025890307998482442/penis_cheeto.png
+dr_roach https://cdn.discordapp.com/attachments/548933510505955334/1025890287836471396/dr_roach.webp
+ant_meat https://cdn.discordapp.com/attachments/548933510505955334/1025890282799120544/ants_meat.webp

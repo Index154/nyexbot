@@ -22,7 +22,6 @@ module.exports = {
         }
         
         // Set important variables
-        var username = user.username;
         var dir = "userdata/" + user.id;
         
         // If the user isn't registered yet, stop the command
@@ -59,7 +58,6 @@ module.exports = {
         var equipment_array = equipment.split(",");
         var items = lib.readFile("data/items.txt");
         var item_array = items.split(";\n");
-        var no_items = false;
         if(inventory.includes(",")){
             var inventory_array = inventory.split(",");
             var item_keys = (equipment + "," + inventory).split(",");
@@ -242,22 +240,16 @@ module.exports = {
                 // Replace value in equipment array
                 if(key == 1){
                     var old_item_key = equipment_array[0];
-                    var old_item_key_2 = equipment_array[1];
-                    var old_item_key_3 = equipment_array[2];
                     modifier = oldModifiers[0].split("|");
                     oldModifiers[0] = newModifier;
                     equipment_array[0] = transformed;
                 }else if(key == 2){
                     var old_item_key = equipment_array[1];
-                    var old_item_key_2 = equipment_array[0];
-                    var old_item_key_3 = equipment_array[2];
                     modifier = oldModifiers[1].split("|");
                     oldModifiers[1] = newModifier;
                     equipment_array[1] = transformed;
                 }else{
                     var old_item_key = equipment_array[2];
-                    var old_item_key_2 = equipment_array[0];
-                    var old_item_key_3 = equipment_array[1];
                     modifier = oldModifiers[2].split("|");
                     oldModifiers[2] = newModifier;
                     equipment_array[2] = transformed;

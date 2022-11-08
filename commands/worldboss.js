@@ -341,7 +341,7 @@ module.exports = {
                     // Check if a user wants to receive announcements in DMs
                     var userDMSetting = lib.readFile("./userdata/" + files[x] + "/dmupdates.txt");
                     if(userDMSetting == "yes"){
-                        client.users.fetch(files[x], false).then((tempUser) => {
+                        message.client.users.fetch(files[x], false).then((tempUser) => {
                             tempUser.send(global_message);
                         });
                     }

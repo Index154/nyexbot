@@ -22,7 +22,6 @@ module.exports = {
         }
         
         // Set important variables
-        var username = user.username;
         var dir = "userdata/" + user.id;
         
         // If the user isn't registered yet, stop the command
