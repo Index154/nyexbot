@@ -61,6 +61,7 @@ module.exports = {
             lib.saveFile(dir + "/projects.txt", "");
             lib.saveFile(dir + "/radar_values.txt", "0,0");
             lib.saveFile(dir + "/research.txt", "");
+            lib.saveFile(dir + "/saved_chain.txt", "");
             lib.saveFile(dir + "/saved_encounter.txt", "");
             lib.saveFile(dir + "/scrap.txt", "0");
             lib.saveFile(dir + "/stats.txt", "Classless|5|5|3|0|0|0|0|0|D|1|0|0|0");
@@ -408,7 +409,7 @@ module.exports = {
         // 1.2 = 42 | 1.3 = 31 | 1.4 = 25 | 1.5 = 21 | 1.6 = 18 | 1.8 = 15 | 2 = 12
         var chainModifiers = [1.3, 1.33, 1.4, 1.5, 1.6, 2];
         if(chain[0] == chosen_group + "," + monster_key + ",0"){
-            chainInfo = "\n❗ ❗ This monster is your current chain target ❗ ❗";
+            chainInfo = "\n❗ ❗ This is your current chain target ❗ ❗";
             for(i = 0; i < parseInt(chain[1]); i++){
                 shinyRate = Math.floor(shinyRate / chainModifiers[chosen_group]);
                 if(shinyRate < 1){shinyRate = 1;}
@@ -437,6 +438,14 @@ module.exports = {
         monster_info = monsters_all[monster_key].split("|");
         var monster_name = monster_info[0];
         
+        // Current chain info for footer
+        if(chain[1] != "0"){
+            var chainMonsterKeys = chain[0].split(",");
+            var chainMonsters = monster_groups_all[chainMonsterKeys[0]].split(";\n");
+            var chainMonster = chainMonsters[chainMonsterKeys[1]].split("|");
+            var chainData = chainMonster[0] + " (" + chain[1] + ")";
+        }
+
         // Shiny check
         var shiny_extra = "";
         if(shiny_key == 1){
@@ -497,6 +506,12 @@ module.exports = {
         	.setTitle("@ __**" + username + "**__")
         	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5]) //Alternative source (server): "https://indexnight.com/monsters/" + monster_name.toLowerCase().replace(/ /g, "_") + ".png"
         	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + chainInfo + "```" + newInfo + buff_extra + abilityOutput);
+
+        // Add footer if necessary
+        if(chain[1] != "0"){
+            outputEmbed.setFooter({ text: "Current chain: " + chainData });
+        }
+
 		// Real output
 		message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
 		//lib.buttonReply(message, [outputEmbed], buttonList1, buttonList2)     This would make the capture and fight buttons timeout after a while and disable after one click

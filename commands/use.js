@@ -215,6 +215,7 @@ module.exports = {
                             lib.saveFile(dir + "/saved_encounter.txt", current_enc);
                             lib.saveFile(dir + "/current_encounter.txt", "");
                             lib.saveFile(dir + "/confirm.txt", "");
+                            lib.saveFile(dir + "/chain.txt", "0|0");
                             var special_extra = " You stored the encounter in your Stasis space! Tip: You can see your Stasis Space with `" + prefix + "inv`.";
                             // Prevent the Stasis Cube from being removed (since it should only get removed when reactivating or overwriting an encounter)
                             keep_item_2 = true;
@@ -231,9 +232,8 @@ module.exports = {
                     		var row = new MessageActionRow().addComponents([button1]);
                             
                             // Output with needed confirmation
-                            message.reply({ content: "@ __**" + username + "**__, you're about to store your encounter in the stasis space. **Anything already inside the space will be overwritten! Your current shiny chain will also be lost!**\nUse the same command again or press the button to confirm this action.\nFinish your current encounter first if you want to resume a stored encounter instead!", components: [row], allowedMentions: { repliedUser: false }});
+                            message.reply({ content: "@ __**" + username + "**__, you're about to store your encounter in the stasis space. **Anything already inside the space will be overwritten! Your current capture chain will also be lost!**\nUse the same command again or press the button to confirm this action.\nFinish your current encounter first if you want to resume a stored encounter instead!", components: [row], allowedMentions: { repliedUser: false }});
                             lib.saveFile(dir + "/confirm.txt", "confirmed");
-                            lib.saveFile(dir + "/chain.txt", "0|0");
                             return;
                         }
                         
@@ -263,6 +263,76 @@ module.exports = {
                             
                         }else{
                             message.reply({ content: "@ __**" + username + "**__ \u274C You have no stored encounter to release!", allowedMentions: { repliedUser: false }});
+                            return;
+                        }
+                        
+                    }
+                    
+                    // No buff
+                    no_buff = true;
+                }
+
+                // If the item is a Memory Link then check if the user has a chain and save it for later. Also don't apply regular buffs further down
+                var keep_item_2 = false;
+                if(new_item_data_2[0] == "Memory"){
+                    
+                    // Check if the user has a chain (higher than 0)
+                    var chain = lib.readFile(dir + "/chain.txt");
+                    var savedChain = lib.readFile(dir + "/saved_chain.txt");
+                    if(chain !== "" && chain.split("|")[1] != "0"){
+                        // There is a chain. Ask for confirmation and then save it
+                        var confirmation = lib.readFile(dir + "/confirm.txt");
+                        if(confirmation == "chainConfirmed"){
+                            lib.saveFile(dir + "/saved_chain.txt", chain);
+                            lib.saveFile(dir + "/chain.txt", "");
+                            lib.saveFile(dir + "/confirm.txt", "");
+                            var special_extra = " You saved the capture chain! Tip: You can see your saved chain with `" + prefix + "inv`.";
+                            // Prevent the Memory Link from being removed (since it should only get removed when reactivating or overwriting a chain)
+                            keep_item_2 = true;
+                            if(savedChain !== ""){
+                                special_extra = special_extra + "\nThe Memory Link broke in the process of overwriting your previously stored chain!";
+                                keep_item_2 = false;
+                            }
+                        }else{
+                            // Confirmation button
+                            var button1 = new MessageButton()
+                    			.setCustomId(user.id + "|use memory link")
+                    			.setLabel('Confirm')
+                    			.setStyle('DANGER')
+                    		var row = new MessageActionRow().addComponents([button1]);
+                            
+                            // Output with needed confirmation
+                            message.reply({ content: "@ __**" + username + "**__, you're about to save your capture chain. **If you already have a saved chain then it will be overwritten!**\nUse the same command again or press the button to confirm this action.\nFinish your current chain first if you want to resume a saved chain instead!", components: [row], allowedMentions: { repliedUser: false }});
+                            lib.saveFile(dir + "/confirm.txt", "chainConfirmed");
+                            return;
+                        }
+                        
+                    }else{
+                        // There is no chain. Check if there already is a saved chain
+                        if(savedChain !== ""){
+                            // There is a saved chain. Ask for confirmation and then restore it!
+                            var confirmation = lib.readFile(dir + "/confirm.txt");
+                            if(confirmation == "chainConfirmed2"){
+                                lib.saveFile(dir + "/chain.txt", savedChain);
+                                lib.saveFile(dir + "/saved_chain.txt", "");
+                                lib.saveFile(dir + "/confirm.txt", "");
+                                var special_extra = " You resumed your saved capture chain!\nThe Memory Link broke!";
+                            }else{
+                                // Confirmation button
+                                var button1 = new MessageButton()
+                        			.setCustomId(user.id + "|use memory link")
+                        			.setLabel('Confirm')
+                        			.setStyle('DANGER')
+                        		var row = new MessageActionRow().addComponents([button1]);
+                                
+                                //Output requiring confirmation
+                                message.reply({ content: "@ __**" + username + "**__, you're about to resume your stored capture chain!\nUse the same command again or press the button to confirm!", components: [row], allowedMentions: { repliedUser: false }});
+                                lib.saveFile(dir + "/confirm.txt", "chainConfirmed2");
+                                return;
+                            }
+                            
+                        }else{
+                            message.reply({ content: "@ __**" + username + "**__ \u274C You have no stored capture chain to resume!", allowedMentions: { repliedUser: false }});
                             return;
                         }
                         
@@ -680,7 +750,7 @@ module.exports = {
                 }
                 
                 // For Vortexes, Mindwipes, Tokens, Cubes and Fragments, give a special output
-                if(new_item_data_2[0] == "Ability" || new_item_data_2[0] == "Vortex" || new_item_data_2[0] == "Realm" || new_item_data_2[0] == "Stasis" || new_item_data_2[0] == "Mindwipe" || new_item_data_2[0] == "Token"){
+                if(new_item_data_2[0] == "Ability" || new_item_data_2[0] == "Vortex" || new_item_data_2[0] == "Realm" || new_item_data_2[0] == "Stasis" || new_item_data_2[0] == "Mindwipe" || new_item_data_2[0] == "Token" || new_item_data_2[0] == "Memory"){
                     // Get item name again
                     new_item_data = items_array[result_key].split("|");
                     if(amountNum > 1){new_item_data[0] += " x " + amountNum;}

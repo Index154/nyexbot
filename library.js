@@ -637,7 +637,7 @@ module.exports = {
 				// It is a consumable (possibly a special one though)
 					
 				var item_subinfo = itemData[10].split(",");
-				if(itemData[10].includes("Ability") || itemData[10].includes("Vortex") || itemData[10].includes("Realm") || itemData[10].includes("Stasis") || itemData[10].includes("Mindwipe") || itemData[10].includes("Shifter")){
+				if(itemData[10].includes("Ability") || itemData[10].includes("Vortex") || itemData[10].includes("Realm") || itemData[10].includes("Stasis") || itemData[10].includes("Mindwipe") || itemData[10].includes("Shifter") || itemData[10].includes("Memory")){
 					itemAbilityOrUseAmount = "(Instant effect)";
 				}else{
 					// Add use duration / charge amount otherwise
@@ -664,7 +664,7 @@ module.exports = {
 				itemStats += statDetails;
 			}
 			if(itemStats.split("\u200b").length == 7){
-				itemStats = "\u200b\n\u200b\nNone! This item will not grant a buff\n\u200b\n\u200b\n\u200b\n";
+				itemStats = "\u200b\n\u200b\nThis item does not grant a stat buff\n\u200b\n\u200b\n\u200b\n";
 			}
 
 			embed

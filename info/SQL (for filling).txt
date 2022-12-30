@@ -1,5 +1,5 @@
 Missing SQL plans for everything listed in the patch_history file
-Also make sure not to forget about shiny chains and updating the website info page? (or remove it lol)
+Also make sure not to forget about capture chains and updating the website info page? (or remove it lol)
 
 insert into  () values 
 (),

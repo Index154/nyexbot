@@ -232,6 +232,19 @@ module.exports = {
 				}
 				stasis_info = shiny + monster_data[0];
 			}
+
+			// Fetch saved capture chain
+            var chain = lib.readFile(dir + "/saved_chain.txt");
+			var chainInfo = "None";
+			if(chain !== ""){
+				// There is a saved chain. Get the monster's name and chain value
+				var monster_groups = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
+				var chainData = chain.split("|");
+				var monster_keys_array = chainData[0].split(",");
+				var monsters = monster_groups[monster_keys_array[0]].split(";\n");
+				var monster_data = monsters[monster_keys_array[1]].split("|");
+				chainInfo = monster_data[0] + " (" + chainData[1] + ")";
+			}
             
             // Fetch token counter
             var tokens = lib.readFile(dir + "/token_state.txt");
@@ -263,6 +276,7 @@ module.exports = {
                 		{ name: 'Equipment', value: name0 + "\n" + name1 + "\n" + name2 },
                 		{ name: 'Gold', value: user_data[12], inline: true },
                 		{ name: 'Stasis Space', value: stasis_info, inline: true },
+						{ name: 'Saved chain', value: chainInfo, inline: true}
 					)
 				
 				// Add token points if there are any
@@ -281,7 +295,8 @@ module.exports = {
                 	.addFields(
                 		{ name: 'Equipment', value: name0 + "\n" + name1 + "\n" + name2 },
                 		{ name: 'Gold', value: user_data[12], inline: true },
-                		{ name: 'Stasis Space', value: stasis_info, inline: true }
+                		{ name: 'Stasis Space', value: stasis_info, inline: true },
+						{ name: 'Saved chain', value: chainInfo, inline: true}
                 	)
                 	.setFooter({ text: "Use \"" + prefix + "inv [item name]\" to view an item's details!" })
                 	.setThumbnail(lib.readFile(dir + "/main_monster.txt"));

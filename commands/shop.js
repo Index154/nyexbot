@@ -140,7 +140,7 @@ module.exports = {
         var item5 = shop_data[10];
         var price5 = shop_data[11];
         
-        // Always set the 6th item as Unique Fragment, the 7th as Mindwipe Tonic, the 8th as Reality Shifter, the 9th as Dimensional Fragment and the 10th as Stasis Cube
+        // Always set the 6th item as Unique Fragment, the 7th as Mindwipe Tonic, the 8th as Reality Shifter, the 9th as Dimensional Fragment, the 10th as Stasis Cube and the 11th as Memory Fragment
         var item6 = 324;
         var item6_data = item_array[item6].split("|");
         var price6 = item6_data[11];
@@ -156,10 +156,13 @@ module.exports = {
         var item10 = 227;
         var item10_data = item_array[item10].split("|");
         var price10 = item10_data[11];
+        var item11 = 162;
+        var item11_data = item_array[item11].split("|");
+        var price11 = item11_data[11];
         
         // If the user is a Merchant, check for abilities
-        var prices = [price1, price2, price3, price4, price5, price6, price7, price8, price9, price10];
-        var shopItems = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10];
+        var prices = [price1, price2, price3, price4, price5, price6, price7, price8, price9, price10, price11];
+        var shopItems = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11];
 		var user_data = lib.readFile(dir + "/stats.txt").split("|");
 		var prices_column = "Prices";
         if(user_data[0] == "Merchant" && user_data[10] >= 30){
@@ -193,11 +196,12 @@ module.exports = {
         var item8_name = icon_array[item8_data[12]] + item8_data[0];
         var item9_name = icon_array[item9_data[12]] + item9_data[0];
         var item10_name = icon_array[item10_data[12]] + item10_data[0];
+        var item11_name = icon_array[item11_data[12]] + item11_data[0];
         
         //Change price fluctuation format to %
         buying = Math.round(buying * 100 * 0.75);
         selling = Math.round(selling * 100);
-        var t_buying = Math.round(buying * 0.35);
+        var t_buying = Math.round(buying * 0.35); // ???
         
         // Get current shiny
 	    var monster_keys_array = monster_keys.split(",");
@@ -212,8 +216,8 @@ module.exports = {
         	.setTitle("This week's shop")
         	.setDescription("Buying regular consumable items at **" + buying + "%** price!\nSelling regular items at **" + selling + "%** price!\n**Weekly unique realm: " + area_names[parseInt(current_event)] + "**\n**Current shiny: " + monster_data[0] + "**")
         	.addFields(
-        		{ name: 'Items for sale', value: item1_name + "\n" + item2_name + "\n" + item3_name + "\n" + item4_name + "\n" + item5_name + "\n\u200B\n" + item6_name + "\n" + item7_name + "\n" + item8_name + "\n" + item9_name + "\n" + item10_name, inline: true },
-        		{ name: prices_column, value: prices[0] + " Gold\n" + prices[1] + " Gold\n" + prices[2] + " Gold\n" + prices[3] + " Gold\n" + prices[4] + " Gold\n\u200B\n" + prices[5] + " Gold\n" + prices[6] + " Gold\n" + prices[7] + " Gold\n" + prices[8] + " Gold\n" + prices[9] + " Gold", inline: true }
+        		{ name: 'Items for sale', value: item1_name + "\n" + item2_name + "\n" + item3_name + "\n" + item4_name + "\n" + item5_name + "\n\u200B\n" + item6_name + "\n" + item7_name + "\n" + item8_name + "\n" + item9_name + "\n" + item10_name + "\n" + item11_name, inline: true },
+        		{ name: prices_column, value: prices[0] + " Gold\n" + prices[1] + " Gold\n" + prices[2] + " Gold\n" + prices[3] + " Gold\n" + prices[4] + " Gold\n\u200B\n" + prices[5] + " Gold\n" + prices[6] + " Gold\n" + prices[7] + " Gold\n" + prices[8] + " Gold\n" + prices[9] + " Gold\n" + prices[10] + " Gold", inline: true }
         	);
         
         //Send embed output

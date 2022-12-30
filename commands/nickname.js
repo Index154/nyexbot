@@ -104,6 +104,7 @@ module.exports = {
             var userWords = wordLists[3].split("\n");
             
             // Go through a loop generating random nicknames
+            var usableNick = "";
             for(i = 0; i < count; i++){
 
                 // Deconstruct a maximum of 2 args, preparing the word order
@@ -282,13 +283,19 @@ module.exports = {
                     output = output + "\n";
                 }
                 output = output + tempOutput;
+
+                // Use this as the main nick if there is only one being generated
+                if(count == 1){
+                    usableNick = tempOutput;
+                }
                 
             }
 
-            return [output, dailyFlag];
+            return [output, dailyFlag, usableNick];
         };
         
         // Daily condition
+        var footer = "";
         if(dailyFlag){
             // Save daily
             lib.saveFile("./data/imported/dailyart.txt", day + "|" + output);
@@ -308,16 +315,24 @@ module.exports = {
                 .setLabel('Reroll')
                 .setStyle('PRIMARY');
 
+            // Include footer text if needed
+            if(nickResult[2] != ""){
+                footer = "/nick new_nick:" + nickResult[2];
+            }
+
             // Build rerollable output
-            nickButtonReply(message, output, [button], allArgs);
+            nickButtonReply(message, output, [button], allArgs, footer);
         }
 
-        async function nickButtonReply(message, content, buttons, allArgs){
-            const row = new MessageActionRow().addComponents(buttons);
+        async function nickButtonReply(message, content, buttons, allArg, footer){
+            var row = new MessageActionRow().addComponents(buttons);
             var outputEmbed = new Discord.MessageEmbed()
                 .setColor("#0099ff")
                 .setTitle("Here you go:")
                 .setDescription(content);
+            if(footer != ""){
+                outputEmbed.setFooter({ text: footer });
+            }
 
             const newMessage = await message.reply({
                 embeds: [outputEmbed],
@@ -327,7 +342,7 @@ module.exports = {
             });
     
             const filter = (i) =>
-                i.member.user.id === message.member.user.id &&
+                i.member.user.id === message.member.user.id && 
                 i.customId === buttons[0].customId;
     
             const collector = await newMessage.createMessageComponentCollector({
@@ -336,10 +351,16 @@ module.exports = {
             });
     
             collector.on("collect", async (i) => {
+                var nickResult = generateNicks(allArgs);
+
                 outputEmbed = new Discord.MessageEmbed()
                     .setColor("#0099ff")
                     .setTitle("Here you go:")
-                    .setDescription(generateNicks(allArgs)[0]);
+                    .setDescription(nickResult[0]);
+
+                if(nickResult[2] != ""){
+                    outputEmbed.setFooter({ text: "/nick new_nick:" + nickResult[2] });
+                }
 
                 await i.deferUpdate();
                 await i.editReply({

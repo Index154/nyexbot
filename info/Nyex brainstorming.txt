@@ -40,6 +40,7 @@ What features does the bot have and what do they accomplish?
         - Monster tokens: Make daily quests more valuable + monster gacha
         - Stasis cube: Very useful for preserving rare events the user isn't ready for
         - Reality shifter: For rerolling rare monsters into other rare monsters (a way to benefit from things you got that you don't actually need)
+        - Memory Link: QoL item for preserving progress of a shiny hunt so it can be continued later
     - Stat points: Give the user more freedom of choice + serve as great rewards for quests
     - User rank: Simple indicator of progress
     - Shop: Main use for Gold
@@ -55,7 +56,7 @@ What features does the bot have and what do they accomplish?
     - Transform command: Extra use for Scrap + a way to reroll equipment and loot boxes randomly => Fun
     - Todo command: Quality of life command giving an overview of things to do
     - Trading: Adds player interaction + a way to get things you want from someone else who has but doesn't need them
-    - Shiny chains: Shiny hunting method requiring dedication but offering consistent payoff
+    - Shiny chains / Capture chains: Shiny hunting method requiring dedication but offering consistent payoff
     - Drop rate nerfs with high win rates: Makes easy item farming harder
 
 

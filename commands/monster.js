@@ -63,6 +63,7 @@ module.exports = {
             lib.saveFile(dir + "/projects.txt", "");
             lib.saveFile(dir + "/radar_values.txt", "0,0");
             lib.saveFile(dir + "/research.txt", "");
+            lib.saveFile(dir + "/saved_chain.txt", "");
             lib.saveFile(dir + "/saved_encounter.txt", "");
             lib.saveFile(dir + "/scrap.txt", "0");
             lib.saveFile(dir + "/stats.txt", "Classless|5|5|3|0|0|0|0|0|D|1|0|0|0");

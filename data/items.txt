@@ -160,7 +160,7 @@ Ashen Feather|-25|-25|0|30|100|40|0|0|Whenever a Phoenix is reborn, one of its f
 Golden Slime Gel|-15|-15|-30|1000|0|-20|0|0|This incredibly rare type of Slime Gel is a delicacy among monsters. And although it's not exactly suited for human consumption, it may be used to attract an extremely powerful creature|Item,5|1436|SS;
 Draconic Soul Stone|0|0|30|0|50|20|0|0|The core of the Soul Dragon is a special kind of mana stone that's been enchanted with ancient runic symbols. These allow the ghostly dragon to retain the shape of its body|Item,14|454|SS;
 Crystallized Gel|0|-10|0|0|60|-40|0|0|After a Crystal Slime dies, its body slowly solidifies as its mana fades. While the outside of this piece is brittle, the inside is still soft|Item,16|266|A;
-REPLACE|2|2|26|2|4|4|0|0|REPLACE|Tool|0|S;
+Memory Link|0|0|0|0|0|0|0|0|An intricate device that can be used to store a capture chain or to resume the currently stored chain. It's only lost upon resuming a stored chain|Memory,0|1000|Special;
 Red Slime Gel|-10|-10|-10|10|20|40|0|0|A purer variant of the common Slime's gel. It's still not exactly healthy|Item,17|110|C;
 Frozen Halberd|20|15|0|0|0|0|0|0|A weapon made of ice created through magic. Any heat that it absorbs is automatically used as energy to cast cooling magic on itself, preventing it from melting|Weapon|10|SS;
 Gemstone Necklace|0|0|12|0|30|20|0|0|Bringing all three types of mana gem together makes it possible to trigger them all at the same time|Item,19|310|B;

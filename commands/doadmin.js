@@ -47,7 +47,7 @@ module.exports = {
             var currentPatch = lib.readFile("./info/nyex-plans/zz-current_patch.txt");
             var history = lib.readFile("./info/nyex-plans/zzz-patch_history.txt");
             
-            message.client.channels.cache.get("516288921127092234").send(currentPatch);
+            message.client.channels.cache.get("516288921127092234").send("```\n" + currentPatch + "```");
             lib.saveFile("./info/nyex-plans/zzz-patch_history.txt", currentPatch + "\n\n" + history);
             lib.saveFile("./info/nyex-plans/zz-current_patch.txt", "");
 

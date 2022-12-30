@@ -405,7 +405,7 @@ module.exports = {
                 }
             }
             var item_subinfo = result_item[10].split(",");
-            if(result_item[10].includes("Ability") || result_item[10].includes("Vortex") || result_item[10].includes("Realm") || result_item[10].includes("Stasis") || result_item[10].includes("Mindwipe") || result_item[10].includes("Shifter")){
+            if(result_item[10].includes("Ability") || result_item[10].includes("Vortex") || result_item[10].includes("Realm") || result_item[10].includes("Stasis") || result_item[10].includes("Mindwipe") || result_item[10].includes("Shifter") || result_item[10].includes("Memory")){
                 // Do nothing for some special items
             }else{
                 // Add use duration / charge amount otherwise

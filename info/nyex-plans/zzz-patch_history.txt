@@ -1,3 +1,10 @@
+__v0.19.15__
+- Changed `fate` to require an argument and added the new argument "pokemon" to it
+- New special item (sold in the shop): Memory Link. This allows you to store your current shiny chain or resume your currently stored chain. Just like the Stasis Cube each of these can be used twice before disappearing
+- `inv` now also displays your saved chain
+- Fixed a bug which caused your shiny chain to be lost when you try to use a Stasis Cube (rather than when you actually use it by pressing confirm)
+- When you have an active capture chain then it will now be shown on every encounter embed
+
 __v0.19.14_
 - Improved the bot's security
 - `scp` should no longer run into errors (ideally) and if the bot fails to find a title or description then the number of the SCP with the issue will be saved so I can check it later

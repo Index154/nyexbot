@@ -12,7 +12,6 @@ __**Additional goals:**__
 - Renaming of the luck stats to better represent their uses
 - Descriptions for the newer equipment and monsters
 - The ability to craft multiple consumables at once
-- A special (shop) item that lets you save a shiny chain for later
 - Transforming materials into others of your choosing (must be same rank, conversion rate of maybe like 5 to 1)
 - Information about the areas a monster can be found in in check and caps
 - A function for captures that lets you check the monsters of another user which you are missing

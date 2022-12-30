@@ -7,7 +7,7 @@ mysql = require('mysql2/promise');
 const {token, prefix, SQLiv, hashedSQLpass} = require('./config.json');
 maintenance = false;
 
-// Decrypt stored database password
+// Decrypt database password
 const crypto = require('crypto');
 var algorithm = 'aes-256-ctr';
 var SQLsecretKey = "Iu8pe2kdN0w75vpAHUK5qisRb4RoFfvW";

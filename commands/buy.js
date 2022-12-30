@@ -211,7 +211,7 @@ module.exports = {
         var item5 = shop_data[10];
         var price5 = shop_data[11];
         
-        // Always set the 6th item as Unique Fragment, the 7th as Mindwipe Tonic, the 8th as Reality Shifter, the 9th as Dimensional Fragment and the 10th as Stasis Cube
+        // Always set the 6th item as Unique Fragment, the 7th as Mindwipe Tonic, the 8th as Reality Shifter, the 9th as Dimensional Fragment, the 10th as Stasis Cube and the 11th as Memory Link
         var item6 = 324;
         var item6_data = item_array[item6].split("|");
         var price6 = item6_data[11];
@@ -227,6 +227,9 @@ module.exports = {
         var item10 = 227;
         var item10_data = item_array[item10].split("|");
         var price10 = item10_data[11];
+        var item11 = 162;
+        var item11_data = item_array[item11].split("|");
+        var price11 = item11_data[11];
         
         // Fetch item names
         var item1_data = item_array[item1].split("|");
@@ -244,12 +247,13 @@ module.exports = {
         var item8_name = item8_data[0];
         var item9_name = item9_data[0];
         var item10_name = item10_data[0];
+        var item11_name = item11_data[0];
         
         //Merge sold items into a list
-        var offer_names = [item1_name, item2_name, item3_name, item4_name, item5_name, item6_name, item7_name, item8_name, item9_name, item10_name];
+        var offer_names = [item1_name, item2_name, item3_name, item4_name, item5_name, item6_name, item7_name, item8_name, item9_name, item10_name, item11_name];
         var offers = offer_names.join("|").toLowerCase();
-        var offer_keys = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10];
-        var prices = [price1, price2, price3, price4, price5, price6, price7, price8, price9, price10];
+        var offer_keys = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11];
+        var prices = [price1, price2, price3, price4, price5, price6, price7, price8, price9, price10, price11];
         
         // Check if the user included an amount of items to buy
         var buyCount = 1;
