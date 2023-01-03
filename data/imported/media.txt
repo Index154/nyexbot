@@ -367,7 +367,7 @@ cockroach_in_bed https://cdn.discordapp.com/attachments/1014215995826655454/1015
 kicker_cat https://cdn.discordapp.com/attachments/1014215995826655454/1015725505149943848/buAaqHXR.gif
 struggle_cat https://cdn.discordapp.com/attachments/1014215995826655454/1015725623496425532/let-me.gif
 stomper_cat https://cdn.discordapp.com/attachments/1014215995826655454/1017494169113079818/ezgif-2-c2d5653710.gif
-goodnight https://cdn.discordapp.com/attachments/1014215995826655454/1020056729003765771/gn.gif
+goodnight https://cdn.discordapp.com/attachments/548933510505955334/1058497728159682580/good_night.gif
 hello https://cdn.discordapp.com/attachments/1014215995826655454/1020056775380193310/hello.gif
 uphead_and_mugma https://cdn.discordapp.com/attachments/548933510505955334/1025887193614520492/uphead_and_mugma.png
 lazy https://cdn.discordapp.com/attachments/548933510505955334/1025889579775033414/lazy.png

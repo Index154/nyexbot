@@ -133,7 +133,7 @@ client.on('interactionCreate', interaction => {
         var wResult = Math.floor(Math.random() * (Math.floor(bossChance) - min + 1)) + min;
         if(wResult <= min){
             // Spawn a boss with a random rank!
-            var rankRand = Math.floor(Math.random() * (Math.floor(100) - min + 1)) + min
+            var rankRand = lib.rand(1, 100);
             var add_previous = 0;
             var rank = "";
             for(y = 0; y < 6 && rank === ""; y++){

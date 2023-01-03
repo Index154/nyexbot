@@ -1,3 +1,6 @@
+__v0.19.16__
+- Added shiny images for ALL MONSTERS except 12 of them
+
 __v0.19.15__
 - Changed `fate` to require an argument and added the new argument "pokemon" to it
 - New special item (sold in the shop): Memory Link. This allows you to store your current shiny chain or resume your currently stored chain. Just like the Stasis Cube each of these can be used twice before disappearing
