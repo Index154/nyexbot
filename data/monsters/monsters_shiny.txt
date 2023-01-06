@@ -264,7 +264,7 @@ Shiny Corrupted Mimic|66|50|Dark||985159403273584680/shiny_corrupted_mimic.png|4
 Shiny Glass Golem|62|59|Holy||884138451593728021/shiny_glass_golem.png|5,6,2;
 Shiny Soul Eater|58|56|Dark,Spirit||1059945219296067634/shiny_soul_eater.png|3,6,2;
 Shiny Iron Golem|103|13|Armored||1059944075542929528/shiny_iron_golem.png|1,6,2;
-Shiny Crystal Guardian|57|64|Legendary||985159529845129286/shiny_crystal_guardian.webp|4,5,2;
+Shiny Crystal Warden|57|64|Legendary||1059960589000134676/shiny_crystal_warden.png|4,5,2;
 Shiny Skeleton Champion|68|55|Undead,Armored||1059945179815092294/shiny_skeleton_champion.png|6,4,2;
 Shiny Frost Drake|53|70|Frost,Flying||1059943648311124088/shiny_frost_drake.png|4,5,2;
 Shiny Sand Golem|109|12|/ ||1059944996716937308/shiny_sand_golem.png|5,6,2;
