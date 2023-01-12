@@ -59,6 +59,7 @@ client.once('ready', async () => {
     })
     
     // Deploy slash commands (WIP)
+    /*
     for(i = 0; i < 1; i++){
         const data = {
     		name: 'captures',
@@ -74,6 +75,7 @@ client.once('ready', async () => {
 	
 	    const command = await client.guilds.cache.get('516031666456887312')?.commands.create(data);
     }
+    */
     
     // Leave a specific server if necessary
     // client.guilds.cache.get("ID").leave();
