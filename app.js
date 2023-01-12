@@ -1,11 +1,19 @@
 ﻿// New link with slash command scope: https://discord.com/api/oauth2/authorize?client_id=445030573904363540&permissions=321600&scope=bot%20applications.commands
+// Test branch invite link: https://discord.com/api/oauth2/authorize?client_id=1063139030545485905&permissions=321600&scope=bot%20applications.commands
 // Require dependencies
 const Discord = require('discord.js');
 fs = require('fs');
 lib = require("./library.js");
 mysql = require('mysql2/promise');
-const {token, prefix, SQLiv, hashedSQLpass} = require('./config.json');
+var {token, prefix, testToken, testPrefix, SQLiv, hashedSQLpass} = require('./config.json');
 maintenance = false;
+
+// Change some values if the bot is on the test branch
+const branch = lib.readFile("./isTestBranch.txt");
+if(branch == "YES"){
+    prefix = testPrefix;
+    token = testToken;
+}
 
 // Decrypt database password
 const crypto = require('crypto');
@@ -121,6 +129,10 @@ client.on('interactionCreate', interaction => {
     var user = interaction.user;
     message = interaction;
     user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "").replace(/[\r\n]/gm, "");
+    
+    // On the test branch: Only react to the bot owner
+    if(branch == "YES" && user.id != "214754022832209921") return;
+    
     // Maintenance mode: Only allow Index to use the bot!
     if(maintenance){
         if(user.id != "214754022832209921"){
@@ -246,6 +258,9 @@ client.on('interactionCreate', interaction => {
 client.on('messageCreate', async message => {
 	var user = message.author;
     user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "");
+
+    // On the test branch: Only react to the bot owner
+    if(branch == "YES" && user.id != "214754022832209921") return;
 
     // Check whether a world boss should spawn or not
     var worldboss = lib.readFile("./data/worldboss.txt");
