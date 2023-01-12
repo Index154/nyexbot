@@ -48,7 +48,7 @@ module.exports = {
         var shiny_extra = "";
         monster_name = monster_data[0];
         
-        var color_modifiers = ["\n", "markdown\n# ", "yaml\n", "glsl\n# ", "fix\n", "fix\n"];
+        var color_modifiers = ["\n", "fix\n", "hy\n", "dust\n{ ", "1c\n~ ", "1c\n~ "];
         var color_mod = color_modifiers[monster_keys_array[0]];
         
         // Check if the user has the monster in their captures
@@ -65,6 +65,7 @@ module.exports = {
         // Shiny check
         if(monster_keys_array[2] == "1"){
             rarity = rarity + "++";
+            color_mod = "ruby\n";
             
             var shinies = lib.readFile("data/monsters/monsters_shiny.txt");
 			var shiny_groups = shinies.split("#################################################################################\n");

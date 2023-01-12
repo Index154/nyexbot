@@ -539,7 +539,7 @@ module.exports = {
                         monster_key = lib.rand(0, monsters.length - 2);
                     }
                     enc_keys[1] = monster_key;
-                    var color_modifiers = ["\n", "markdown\n# ", "yaml\n", "glsl\n# ", "fix\n", "fix\n"];
+                    var color_modifiers = ["\n", "fix\n", "hy\n", "dust\n{ ", "1c\n~ ", "1c\n~ "];
                     var embed_colors = ["#b0b0b0", "#0099ff", "#2AA189", "#b80909", "#e3b712", "#e39f0e"];
                     var embed_color = embed_colors[enc_keys[0]];
                     var color_mod = color_modifiers[enc_keys[0]];
@@ -583,6 +583,7 @@ module.exports = {
                     if(enc_keys[2] == "1"){
                         shiny_extra = "\u2728";
                         rarity = rarity + "++";
+                        color_mod = "ruby\n";
                         monster_name = "Shiny " + monster_name;
                         embed_color = "#8f1ee6";
                         

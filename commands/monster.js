@@ -257,7 +257,7 @@ module.exports = {
         chosen_group = inverted_ids[chosen_group];
         var monsters = monster_groups[chosen_group].split(";\n");
         var monster_key = lib.rand(0, monsters.length - 2);
-        var color_modifiers = ["\n", "markdown\n# ", "yaml\n", "glsl\n# ", "fix\n", "fix\n"];
+        var color_modifiers = ["\n", "fix\n", "hy\n", "dust\n{ ", "1c\n~ ", "1c\n~ "];
         var embed_colors = ["#b0b0b0", "#0099ff", "#2AA189", "#b80909", "#e3b712", "#e39f0e"];
         var embed_color = embed_colors[chosen_group];
         var color_mod = color_modifiers[chosen_group];
@@ -369,6 +369,7 @@ module.exports = {
         if(shiny_key == 1){
             shiny_extra = "\u2728";
             rarity = rarity + "++";
+            color_mod = "ruby\n";
             monster_name = "Shiny " + monster_name;
             embed_color = "#8f1ee6";
             
