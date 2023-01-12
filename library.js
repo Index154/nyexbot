@@ -1173,7 +1173,7 @@ module.exports = {
 				i.customId === buttonList[1].customId ||
 				i.customId === buttonList[2].customId ||
 				i.customId === extraButtons[page].customId) &&
-				ii.user.id === msg.author.id;
+				i.user.id === msg.author.id;
 	  
 		  	const collector = await curPage.createMessageComponentCollector({
 				filter,
