@@ -20,7 +20,7 @@ module.exports = {
     },
     
     // Input: String
-    // Dependency: fs
+    // Dependencies: fs and lib itself
     // Function: Reads the file in the filepath
     // Output: String (?)
     readFile(path){
@@ -29,7 +29,9 @@ module.exports = {
             return data
         } catch (err) {
             console.log(Date());
-            console.error(err)
+            console.log("readFile warning: File [" + path + "] was not found! Attempting to create file...");
+			lib.saveFile(path, "");
+			return "";
         }
     },
     

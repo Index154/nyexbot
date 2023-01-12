@@ -109,6 +109,7 @@ client.on("guildCreate", guild => {
 
 // If the bot leaves a server, set the channel config there to Undefined and remove the server from the list
 client.on("guildDelete", guild => {
+
     // Check if the server had a config folder and update it
     var serverID = guild.id;
     if(fs.existsSync("./data/configs/" + serverID)){
@@ -143,7 +144,7 @@ client.on('interactionCreate', interaction => {
 
     // Check whether a world boss should spawn or not
     var worldboss = lib.readFile("./data/worldboss.txt");
-    if(worldboss === ""){
+    if(branch != "YES" && worldboss === ""){
         var wResult = Math.floor(Math.random() * (Math.floor(bossChance) - min + 1)) + min;
         if(wResult <= min){
             // Spawn a boss with a random rank!
@@ -239,7 +240,6 @@ client.on('interactionCreate', interaction => {
 	} catch (error) {
 		console.error("\nUser: " + user.username + "\nTrigger: " + message.customId + "\nServer: " + message.guild + "\nTime: " + message.createdAt);
 		console.error(error);
-		message.reply({ content: "@ __**" + user.username + "**__```glsl\n# An error has occurred!```All relevant details have automatically been sent to the main server for further investigation", allowedMentions: { repliedUser: false }})
 	    
 	    // Create submission message
         var outputEmbed = new Discord.MessageEmbed()
@@ -248,8 +248,13 @@ client.on('interactionCreate', interaction => {
         	.setDescription("```\nCause of error:\n" + user.tag + " (" + user.id + ")" + " used this interaction:\n" + message.customId + "```")
         	.setFooter({ text: "Sent from server with ID " + message.guild + "\n" + message.createdAt });
         
-        // Send the error text to the main server
-        client.channels.cache.get("859477509178654792").send({ embeds: [outputEmbed] });
+        // Notify about the error
+        if(branch == "YES"){
+            message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
+        }else{
+            message.reply({ content: "@ __**" + user.username + "**__```glsl\n# An error has occurred!```All relevant details have automatically been sent to the main server for further investigation", allowedMentions: { repliedUser: false }});
+            if(!maintenance){client.channels.cache.get("859477509178654792").send({ embeds: [outputEmbed] });}
+        }
 	}
 	
 });
@@ -264,7 +269,7 @@ client.on('messageCreate', async message => {
 
     // Check whether a world boss should spawn or not
     var worldboss = lib.readFile("./data/worldboss.txt");
-    if(worldboss === ""){
+    if(branch != "YES" && worldboss === ""){
         var wResult = Math.floor(Math.random() * (Math.floor(bossChance) - min + 1)) + min;
         if(wResult <= min){
             // Spawn a boss with a random rank!
@@ -317,7 +322,7 @@ client.on('messageCreate', async message => {
     
     // If the message was sent in the updates channel on the main server and is not a minor patch then crosspost it to all other configured announcement channels (except the one on the main server)
     // Also send it to all signed-up users in DMs
-    if(message.channel.id == "731236740974510100" && !message.content.toLowerCase().includes("[minor patch]")){
+    if(branch != "YES" && message.channel.id == "731236740974510100" && !message.content.toLowerCase().includes("[minor patch]")){
         // Define embed
         var updateEmbed = new Discord.MessageEmbed()
                 .setTitle("New bot update")
@@ -389,7 +394,6 @@ client.on('messageCreate', async message => {
     } catch (error) {
 	    console.error("\nUser: " + user.username + "\nTrigger: " + message.content + "\nServer: " + message.guild + "\nTime: " + message.createdAt);
 	    console.error(error);
-		message.reply({ content: "@ __**" + user.username + "**__```glsl\n# An error has occurred!```All relevant details have automatically been sent to the main server for further investigation", allowedMentions: { repliedUser: false }})
 	    
 	    // Create submission message
         var outputEmbed = new Discord.MessageEmbed()
@@ -398,9 +402,13 @@ client.on('messageCreate', async message => {
         	.setDescription("```\nCause of error:\n" + user.tag + " (" + user.id + ")" + " sent this message:\n" + message.content + "```")
         	.setFooter({ text: "Sent from server with ID " + message.guild + "\n" + message.createdAt });
         
-        // Send the error text to the main server
-        if(!maintenance){client.channels.cache.get("859477509178654792").send({ embeds: [outputEmbed] });}
-        
+        // Notify about the error
+        if(branch == "YES"){
+            message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
+        }else{
+            message.reply({ content: "@ __**" + user.username + "**__```glsl\n# An error has occurred!```All relevant details have automatically been sent to the main server for further investigation", allowedMentions: { repliedUser: false }});
+            if(!maintenance){client.channels.cache.get("859477509178654792").send({ embeds: [outputEmbed] });}
+        }        
 	}
 
 });
