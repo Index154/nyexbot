@@ -24,6 +24,7 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         var server = message.guildId;
+        var serverConfigPath = "data/guess/servers/";
         
         // If the user isn't registered yet, stop the command
         if(!fs.existsSync(dir)){
@@ -32,19 +33,19 @@ module.exports = {
         }
         
         // If the server doesn't have a directory yet, create it along with the files
-        if(!fs.existsSync("data/guess/" + server)){
-            fs.mkdirSync("data/guess/" + server);
-            lib.saveFile("data/guess/" + server + "/replies.txt", "Base reply");
-            lib.saveFile("data/guess/" + server + "/users.txt", "Base user");
-            lib.saveFile("data/guess/" + server + "/status.txt", "no");
-            lib.saveFile("data/guess/" + server + "/user_ids.txt", "Base ID");
-            lib.saveFile("data/guess/" + server + "/current_topic.txt", "gungeon");
+        if(!fs.existsSync(serverConfigPath + server)){
+            fs.mkdirSync(serverConfigPath + server);
+            lib.saveFile(serverConfigPath + server + "/replies.txt", "Base reply");
+            lib.saveFile(serverConfigPath + server + "/users.txt", "Base user");
+            lib.saveFile(serverConfigPath + server + "/status.txt", "no");
+            lib.saveFile(serverConfigPath + server + "/user_ids.txt", "Base ID");
+            lib.saveFile(serverConfigPath + server + "/current_topic.txt", "gungeon");
             message.reply({ content: "`guess` has been used on this server for the first time!\nFiles have been generated... have fun!", allowedMentions: { repliedUser: false }});
             return;
         }
         
         // If there is at least one argument, check what whether it is a special argument or a reply
-        var status = lib.readFile("data/guess/" + server + "/status.txt");
+        var status = lib.readFile(serverConfigPath + server + "/status.txt");
         if(args.length > 0){
             var allArgs = args.join(" ").toLowerCase();
             
@@ -61,7 +62,7 @@ module.exports = {
             // Check if the input matches a topic name exactly (case-insensitive)
             if(check_topics.includes("," + allArgs + ",")){
                 // Switch to the matched topic
-                lib.saveFile("data/guess/" + server + "/current_topic.txt", allArgs);
+                lib.saveFile(serverConfigPath + server + "/current_topic.txt", allArgs);
                 message.reply({ content: "The guessing topic for the server has been changed to **" + allArgs + "**!", allowedMentions: { repliedUser: false }});
                 return;
             }
@@ -73,18 +74,18 @@ module.exports = {
             }
             
             // Fetch previous replies and users for the current game
-            var old_replies = lib.readFile("data/guess/" + server + "/replies.txt");
-            var old_users = lib.readFile("data/guess/" + server + "/users.txt");
-            var old_ids = lib.readFile("data/guess/" + server + "/user_ids.txt");
+            var old_replies = lib.readFile(serverConfigPath + server + "/replies.txt");
+            var old_users = lib.readFile(serverConfigPath + server + "/users.txt");
+            var old_ids = lib.readFile(serverConfigPath + server + "/user_ids.txt");
             
             // Check if the username is already in the list of replies. If they are, do not accept the reply. Otherwise update the relevant files with the new information
             // Also send an output message
             if (old_users.includes(username)) {
                 message.reply({ content: "\u274C You already submitted a response for this round!", allowedMentions: { repliedUser: false }});
             }else{
-                lib.saveFile("data/guess/" + server + "/users.txt", old_users + "," + username);
-                lib.saveFile("data/guess/" + server + "/user_ids.txt", old_ids + "," + user.id);
-                lib.saveFile("data/guess/" + server + "/replies.txt", old_replies + "," + allArgs);
+                lib.saveFile(serverConfigPath + server + "/users.txt", old_users + "," + username);
+                lib.saveFile(serverConfigPath + server + "/user_ids.txt", old_ids + "," + user.id);
+                lib.saveFile(serverConfigPath + server + "/replies.txt", old_replies + "," + allArgs);
                 message.reply({ content: "Response submitted for **" + username + "**!", allowedMentions: { repliedUser: false }});
             }
             
@@ -96,10 +97,10 @@ module.exports = {
 	        message.reply({ content: "\u274C There is already a game in progress!", allowedMentions: { repliedUser: false }});
 	        return;
 	    }
-        lib.saveFile("data/guess/" + server + "/status.txt", "yes");
+        lib.saveFile(serverConfigPath + server + "/status.txt", "yes");
 
         // Fetch topic and categories
-        var topic = lib.readFile("data/guess/" + server + "/current_topic.txt");
+        var topic = lib.readFile(serverConfigPath + server + "/current_topic.txt");
         var categories = lib.readFile("data/guess/topics/" + topic + "/prompts.txt");
         var category_array = categories.split(",");
         
@@ -136,12 +137,12 @@ module.exports = {
             // Executes after the timeout    
             
             // Fetch the submitted replies as well as the users
-            var replies_raw = lib.readFile("data/guess/" + server + "/replies.txt");
+            var replies_raw = lib.readFile(serverConfigPath + server + "/replies.txt");
             var replies_array = replies_raw.split(",");
-            var users_raw = lib.readFile("data/guess/" + server + "/users.txt");
+            var users_raw = lib.readFile(serverConfigPath + server + "/users.txt");
             var users_array = users_raw.split(",");
             var users = "";
-            var user_ids = lib.readFile("data/guess/" + server + "/user_ids.txt").split(",");
+            var user_ids = lib.readFile(serverConfigPath + server + "/user_ids.txt").split(",");
             
             // Go through all the replies and compare them to the solution
             for(y = 0; y < replies_array.length; y++){
@@ -176,10 +177,10 @@ module.exports = {
             message.reply({ content: "The result was: **" + solution + "**\n" + extra, allowedMentions: { repliedUser: false }});
             
             // Update status and empty submission caches
-            lib.saveFile("data/guess/" + server + "/replies.txt", "Base reply");
-            lib.saveFile("data/guess/" + server + "/users.txt", "Base user");
-            lib.saveFile("data/guess/" + server + "/status.txt", "no");
-            lib.saveFile("data/guess/" + server + "/user_ids.txt", "Base ID");
+            lib.saveFile(serverConfigPath + server + "/replies.txt", "Base reply");
+            lib.saveFile(serverConfigPath + server + "/users.txt", "Base user");
+            lib.saveFile(serverConfigPath + server + "/status.txt", "no");
+            lib.saveFile(serverConfigPath + server + "/user_ids.txt", "Base ID");
             
         }, 13000); // Timer = 13 seconds
         
