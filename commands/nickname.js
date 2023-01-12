@@ -324,7 +324,8 @@ module.exports = {
             nickButtonReply(message, output, [button], allArgs, footer);
         }
 
-        async function nickButtonReply(message, content, buttons, allArg, footer){
+        async function nickButtonReply(message, content, buttons, allArgs, footer){
+
             var row = new MessageActionRow().addComponents(buttons);
             var outputEmbed = new Discord.MessageEmbed()
                 .setColor("#0099ff")
@@ -340,16 +341,17 @@ module.exports = {
                 allowedMentions: { repliedUser: false },
                 fetchReply: true,
             });
-    
+
+            if(!lib.exists(message.author)){message.author = message.user;}
             const filter = (i) =>
-                i.member.user.id === message.member.user.id && 
+                i.user.id === message.author.id && 
                 i.customId === buttons[0].customId;
-    
+                
             const collector = await newMessage.createMessageComponentCollector({
                 filter,
                 time: 20000,
             });
-    
+
             collector.on("collect", async (i) => {
                 var nickResult = generateNicks(allArgs);
 

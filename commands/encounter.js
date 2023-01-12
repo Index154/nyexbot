@@ -404,7 +404,11 @@ module.exports = {
 
         // Chain calculations
         var shinyRate = 40000;
-        var chain = lib.readFile(dir + "/chain.txt").split("|");
+        var chainRaw = lib.readFile(dir + "/chain.txt");
+        var chain = ["0", "0"];
+        if(lib.exists(chainRaw)){
+            chain = chainRaw.split("|");
+        }
         var chainInfo = "";
         // 1.2 = 42 | 1.3 = 31 | 1.4 = 25 | 1.5 = 21 | 1.6 = 18 | 1.8 = 15 | 2 = 12
         var chainModifiers = [1.3, 1.33, 1.4, 1.5, 1.6, 2];

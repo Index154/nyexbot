@@ -3,9 +3,12 @@ Unspecified
 - Instead of having some values saved in files or tables, maybe it could be better to define them directly inside a function's code (if the only code that requires that data is the function itself) - example: convertToIcon => Check this while or after reworking the code (adding SQL and functions)
 - IMPORTANT: Always think about trophies and what sort of functions to build in order for the trophy check placements to work out the best
 - Function for sending a message (will take the content you wanna send and automatically chooses the correct discordjs function - Also make this determine whether the message should contain the "@username" text)
-- How to deal with things being removed or added multiple times from the same "lists" in one command? Do I need to worry or not?
-- Members.has (no cache) in trade?
-- How to best stop a higher level function (async)? Do I need to use an extra if-statement based on the value returned by the lower level function?
+- How to deal with things being removed or added multiple times from the same "lists" in one command? Do I need to worry or not once everything is SQL?
+- Members.has (removal of cache) in trade?
+- How to stop a higher level async function? Do I need to use an extra if-statement based on the return value? (I sort of forgot what I even meant by this question)
+- Put the dead ends (returns) of the code into the lower levels (nesting) and keep the main path close to the top to reduce nesting
+- Add additional comments that actually explain stuff that is unintuitive (like unique calculations)
+- Change where and how which functions are imported and from which module to improve performance?
 
 App
 - Worldboss spawning logic (happens in both message and interaction events)

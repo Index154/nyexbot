@@ -515,8 +515,9 @@ module.exports = {
 			.setCustomId('nextbtn')
 			.setLabel('Next')
 			.setStyle('SECONDARY');
+		if(!lib.exists(message.author)){message.author = message.user;}
 		const button4 = new MessageButton()
-			.setCustomId(message.member.user.id + '|captures favorite ' + startingName)
+			.setCustomId(message.author.id + '|captures favorite ' + startingName)
 			.setLabel('Favorite')
 			.setStyle('SUCCESS');
 		buttonList = [ button1, button2, button3, button4 ];
@@ -561,7 +562,9 @@ module.exports = {
 		// Send embed
 		lib.embedlessPagination(message, pages, buttonList, startingId, 30000);
 	},
-	
+
+	// Input: String, ?, ?, integer, object, object, ?
+	// Function: Creates a paged embed with a specific layout for the display of item details. The list of items has to be supplied by the calling function
 	createPagedItemEmbed(dir, items, allItems, startingId, message, user, itemList){
 		const { MessageEmbed, MessageButton } = require('discord.js');
 
@@ -695,6 +698,26 @@ module.exports = {
 		lib.preparedEmbedPagination(user, message, embeds, buttonList, startingId, 30000);
 	},
 
+	// Input: Message object, array of embed objects
+	// Function: Combines multiple different embeds into one message and allows switching through them with buttons
+	createSimplePagedEmbed(message, embeds){
+		const { MessageEmbed, MessageButton } = require('discord.js');
+
+		// Create buttons
+		const button1 = new MessageButton()
+			.setCustomId('previousbtn')
+			.setLabel('Previous')
+			.setStyle('SECONDARY');
+		const button2 = new MessageButton()
+			.setCustomId('nextbtn')
+			.setLabel('Next')
+			.setStyle('SECONDARY');
+		buttonList = [ button1, button2 ];
+
+		// Go to secondary function
+		lib.fullEmbedPagination(message, embeds, buttonList, timeout = 120000);
+	},
+
 	// Input: Object, object, array
     // Function: Sends a message with command buttons that time out
 	async buttonReply(message, embeds, buttons){
@@ -706,8 +729,9 @@ module.exports = {
 			fetchReply: true,
 		});
 
+		if(!lib.exists(message.author)){message.author = message.user;}
 		const filter = (i) =>
-			i.member.user.id === message.member.user.id;
+			i.user.id === message.author.id;
 
 		const collector = await newMessage.createMessageComponentCollector({
 			filter,
@@ -750,8 +774,9 @@ module.exports = {
 			fetchReply: true,
 		});
 
+		if(!lib.exists(message.author)){message.author = message.user;}
 		const filter = (i) =>
-			i.member.user.id === message.member.user.id;
+			i.user.id === message.author.id
 
 		const collector = await newMessage.createMessageComponentCollector({
 			filter,
@@ -1048,11 +1073,12 @@ module.exports = {
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
 		  	});
-	  
+			
+			if(!lib.exists(msg.author)){msg.author = msg.user;}
 			const filter = (i) =>
 				(i.customId === buttonList[0].customId ||
 				i.customId === buttonList[1].customId) &&
-				i.member.user.id === msg.member.user.id;
+				i.user.id === msg.author.id;
 	  
 		  	const collector = await curPage.createMessageComponentCollector({
 				filter,
@@ -1139,12 +1165,13 @@ module.exports = {
 				fetchReply: true
 		  	});
 	  
+			if(!lib.exists(msg.author)){msg.author = msg.user;}
 		  	const filter = (i) =>
 				(i.customId === buttonList[0].customId ||
 				i.customId === buttonList[1].customId ||
 				i.customId === buttonList[2].customId ||
 				i.customId === extraButtons[page].customId) &&
-				i.member.user.id === msg.member.user.id;
+				ii.user.id === msg.author.id;
 	  
 		  	const collector = await curPage.createMessageComponentCollector({
 				filter,
@@ -1168,11 +1195,13 @@ module.exports = {
 				default:
 					break;
 				}
+				if(!lib.exists(msg.author)){msg.author = msg.user;}
 				buttonList[3] = new MessageButton()
-					.setCustomId(msg.member.user.id + '|captures favorite ' + pages[page].title.trim())
+					.setCustomId(msg.author.id + '|captures favorite ' + pages[page].title.trim())
 					.setLabel('Favorite')
 					.setStyle('SUCCESS');
 				row = new MessageActionRow().addComponents(buttonList);
+
 				if(alternateImages[page] != "Not owned"){
 					pages[page].setThumbnail(alternateImages[page]);
 				}else if(pages[page].hasOwnProperty('thumbnail')){
@@ -1181,11 +1210,13 @@ module.exports = {
 				if(extraButtons[page].customId.split("|")[1] != "None"){
 					row.addComponents(extraButtons[page]);
 				}
+
 				await i.deferUpdate();
 				await i.editReply({
 					embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 					components: [row],
 				});
+
 				collector.resetTimer();
 			});
 			
@@ -1207,6 +1238,8 @@ module.exports = {
 		return curPage;
 	},
 	
+	// Input: Object, object, array, array, integer, integer
+	// Function: Creates an embed with an extra button for using items
 	async preparedEmbedPagination(user, msg, pages, buttonList, startingId, timeout = 120000){
 		const {MessageActionRow, MessageButton} = require("discord.js");
 
@@ -1236,11 +1269,12 @@ module.exports = {
 			fetchReply: true
 		});
 	
+		if(!lib.exists(msg.author)){msg.author = msg.user;}
 		const filter = (i) =>
 			(i.customId === buttonList[0].customId ||
 			i.customId === buttonList[1].customId ||
 			i.customId === buttonList[2].customId) &&
-			i.member.user.id === msg.member.user.id;
+			i.user.id === msg.author.id;
 	
 		const collector = await curPage.createMessageComponentCollector({
 			filter,
@@ -1290,6 +1324,76 @@ module.exports = {
 		return curPage;
 	},
 
+	// Input: Object, array, array, integer
+	// Function: Creates an embed with buttons for switching between pages. The pages have to be supplied by the parent function in their entirety
+	async fullEmbedPagination(msg, pages, buttonList, timeout = 120000){
+		const {MessageActionRow, MessageButton} = require("discord.js");
+
+		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
+		if (!pages) throw new Error("Pages are not given.");
+		if (!buttonList) throw new Error("Buttons are not given.");
+		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+		  	throw new Error(
+				"Link buttons are not supported with discordjs-button-pagination"
+		  	);
+		if (buttonList.length !== 2) throw new Error("Need two buttons.");
+		
+		let page = 0;
+		var row = new MessageActionRow().addComponents(buttonList);
+
+		var curPage = await msg.reply({
+			embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+			components: [row],
+			allowedMentions: { repliedUser: false },
+			fetchReply: true
+		});
+	
+		if(!lib.exists(msg.author)){msg.author = msg.user;}
+		const filter = (i) =>
+			(i.customId === buttonList[0].customId ||
+			i.customId === buttonList[1].customId) &&
+			i.user.id === msg.author.id;
+	
+		const collector = await curPage.createMessageComponentCollector({
+			filter,
+			time: timeout,
+		});
+	
+		collector.on("collect", async (i) => {
+			switch (i.customId) {
+			case buttonList[0].customId:
+				page = page > 0 ? --page : pages.length - 1;
+				break;
+			case buttonList[1].customId:
+				page = page + 1 < pages.length ? ++page : 0;
+				break;
+			default:
+				break;
+			}
+			
+			row = new MessageActionRow().addComponents(buttonList);
+			await i.deferUpdate();
+			await i.editReply({
+				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+				components: [row],
+			});
+			collector.resetTimer();
+		});
+		
+		collector.on("end", () => {
+			const row = new MessageActionRow().addComponents(
+				buttonList[0].setDisabled(true),
+				buttonList[1].setDisabled(true)
+			);
+			curPage.edit({
+				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+				components: [row],
+			});
+		});
+		
+		return curPage;
+	},
+
 	// Input: Object, array, array, integer, integer
     // Function: Creates an interactive message with several pages that can be switched between
 	async embedlessPagination(msg, pages, buttonList, startingId, timeout = 120000){
@@ -1323,11 +1427,12 @@ module.exports = {
 				fetchReply: true,
 			});
 	  
+			if(!lib.exists(msg.author)){msg.author = msg.user;}
 			const filter = (i) =>
 				(i.customId === buttonList[0].customId ||
 				i.customId === buttonList[1].customId ||
 				i.customId === buttonList[2].customId) &&
-				i.member.user.id === msg.member.user.id;
+				i.user.id === msg.author.id;
 	  
 			const collector = await curPage.createMessageComponentCollector({
 				filter,
@@ -1373,9 +1478,9 @@ module.exports = {
 		return curPage;
 	},
 
-	// Input: ?, String
+	// Input: String or integer, String
     // Dependency: lib itself
-    // Function: Gets a list entry based on the user Id
+    // Function: Deterministically picks a "random" element from a list based on a long number
     // Output: String
 	getFate(userId, listPath){
 		// Load item list

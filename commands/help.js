@@ -58,43 +58,52 @@ module.exports = {
             combined.sort((a, b) => {
                 return a.weight - b.weight;
             });
-            console.log(combined);
 
             // Set the list of categories in correct order and modified display names
             //var uniqueCategories = categories.filter(onlyUnique);
             var uniqueCategories = ["main", "tasks", "userinfo", "items", "info", "misc", "settings", "variety", "minigames", "admin"];
             var categoryNames = ["\u2757 Main commands", "\uD83D\uDDD2 Recurring tasks", "\uD83D\uDC64 User information", "\uD83D\uDC8E Item interactions", "\u2139 General information", "\uD83D\uDECD Miscellaneous", "\u2699 Settings / Feedback", "\u2753 Unrelated / Fun commands", "\uD83C\uDFAE Other minigames", "\uD83D\uDD27 Admin commands"];
             
-            // Assemble a basic embed
-    	    var outputEmbed = new Discord.MessageEmbed()
-            	.setColor('#0099ff')
-            	.setTitle("Command list:")
-            	.setDescription("Visit https://indexnight.com/rpg_info.php for in-depth explanations of everything there is to know about the game!\nIf you are interested in directly interacting with the bot's creator or want to know future update plans then join the main server: https://discord.gg/Sz72qan\nIf you have a problem with the bot then please use the command `" + prefix + "submit`!")
-                .setFooter({ text: `You can send \"${prefix}help [command name]\" to get info on a specific command!` });
-            
-            // Add commands as multiple fields
-            for(i = 0; i < uniqueCategories.length; i++){
-                var categoryCommands = "";
-                for(x = 0; x < names.length; x++){
-                    if(combined[x].category == uniqueCategories[i]){
-                        categoryCommands += "`" + combined[x].name + "` - " + combined[x].description + "\n";
+            // Assemble different versions of the same embed for each page
+            var categoriesPerPage = [3, 2, 2, 3];
+            var categoryTracker = 0;
+            var embeds = [];
+            for(x = 0; x < 4; x++){
+
+                var embedTemplate = new Discord.MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle("Command list:")
+                    .setDescription("Visit https://indexnight.com/rpg_info.php for in-depth explanations of everything there is to know about the game!\nIf you are interested in directly interacting with the bot's creator or want to know future update plans then join the main server: https://discord.gg/Sz72qan\nIf you have a problem with the bot then please use the command `" + prefix + "submit`!\n\n" + `By the way: You can send \"${prefix}help [command name]\" to get info on a specific command!`);
+
+                // Add commands as multiple fields
+                for(i = 0; i < categoriesPerPage[x]; i++){
+
+                    var categoryCommands = "";
+                    for(o = 0; o < names.length; o++){
+                        if(combined[o].category == uniqueCategories[categoryTracker]){
+                            categoryCommands += "`" + combined[o].name + "` - " + combined[o].description + "\n";
+                        }
                     }
+
+                    // Add empty field to create inline order
+                    /*if(i != 0 && i % 2 == 0){
+                        outputEmbed.addFields(
+                            { name: '\u200b', value: '\u200b', inline: false }
+                        );
+                    }*/
+
+                    embedTemplate.addFields(
+                        { name: categoryNames[categoryTracker], value: categoryCommands, inline: false }
+                    );
+                    categoryTracker++;
                 }
 
-                // Add empty field to create inline order
-                /*if(i != 0 && i % 2 == 0){
-                    outputEmbed.addFields(
-                        { name: '\u200b', value: '\u200b', inline: false }
-                    );
-                }*/
-
-                outputEmbed.addFields(
-            		{ name: categoryNames[i], value: categoryCommands, inline: false }
-                );
+                embeds[x] = embedTemplate;
             }
 
             // Output
-		    return message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }});
+            lib.createSimplePagedEmbed(message, embeds);
+            return;
         }
 	    
 		const name = args[0].toLowerCase();
