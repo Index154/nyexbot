@@ -353,7 +353,7 @@ client.on('messageCreate', async message => {
     // If the message is part of the bad messages list then react to it
     var badMessages = lib.readFile("./data/bad_messages.txt").split("\n");
     for(i = 0; i < badMessages.length; i++){
-        if(message.content.toLowerCase() == badMessages[i]){
+        if(message.content.toLowerCase().trim() == badMessages[i]){
             message.react("<a:jermapunch:855936170349166592>");
         }
     }
