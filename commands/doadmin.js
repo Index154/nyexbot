@@ -44,12 +44,12 @@ module.exports = {
 
         // Prepare update message and save it to history if I want to
         if(lib.exists(args[0]) && args[0].toLowerCase() == "update"){            
-            var currentPatch = lib.readFile("./info/nyex-plans/zz-current_patch.txt");
-            var history = lib.readFile("./info/nyex-plans/zzz-patch_history.txt");
+            var currentPatch = lib.readFile("../nyextest/info/nyex-plans/zz-current_patch.txt");
+            var history = lib.readFile("../nyextest/info/nyex-plans/zzz-patch_history.txt");
             
             message.client.channels.cache.get("516288921127092234").send("```\n" + currentPatch + "```");
-            lib.saveFile("./info/nyex-plans/zzz-patch_history.txt", currentPatch + "\n\n" + history);
-            lib.saveFile("./info/nyex-plans/zz-current_patch.txt", "");
+            lib.saveFile("../nyextest/info/nyex-plans/zzz-patch_history.txt", currentPatch + "\n\n" + history);
+            lib.saveFile("../nyextest/info/nyex-plans/zz-current_patch.txt", "");
 
             message.reply({ content: "Update text successfully pushed to your channel and saved to history!", allowedMentions: { repliedUser: false }});
             return;
@@ -58,23 +58,23 @@ module.exports = {
         // Pull nyex-plans content from Discord if I want to
         if(lib.exists(args[0]) && (args[0].toLowerCase() == "pull" || args[0].toLowerCase() == "push")){
             message.client.channels.cache.get('846802831322775562').messages.fetch('846804108936871997')
-                .then(message => lib.saveFile("./info/nyex-plans/1_main_goals.txt", message.content))
+                .then(message => lib.saveFile("../nyextest/info/nyex-plans/1_main_goals.txt", message.content))
                 .catch(console.error);
 
             message.client.channels.cache.get('846802831322775562').messages.fetch('983429707360006144')
-                .then(message => lib.saveFile("./info/nyex-plans/additional_goals.txt", message.content))
+                .then(message => lib.saveFile("../nyextest/info/nyex-plans/additional_goals.txt", message.content))
                 .catch(console.error);
             
             message.client.channels.cache.get('846802831322775562').messages.fetch('983429732727156817')
-                .then(message => lib.saveFile("./info/nyex-plans/lower_priority.txt", message.content))
+                .then(message => lib.saveFile("../nyextest/info/nyex-plans/lower_priority.txt", message.content))
                 .catch(console.error);
             
             message.client.channels.cache.get('846802831322775562').messages.fetch('983429746782248960')
-                .then(message => lib.saveFile("./info/nyex-plans/possibilities.txt", message.content))
+                .then(message => lib.saveFile("../nyextest/info/nyex-plans/possibilities.txt", message.content))
                 .catch(console.error);
 
             message.client.channels.cache.get('846802831322775562').messages.fetch('1012060594918141982')
-                .then(message => lib.saveFile("./info/nyex-plans/z-known_issues.txt", message.content))
+                .then(message => lib.saveFile("../nyextest/info/nyex-plans/z-known_issues.txt", message.content))
                 .catch(console.error);
             
             
