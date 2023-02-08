@@ -1,2 +1,3 @@
 __v0.19.19__
-- 
+The bot will now react to certain low-effort messages with a mocking emote (currently it is using <a:jermapunch:855936170349166592> as a placeholder).
+The list of messages it will react to currently includes: "lol", "uh oh", "damn", "pog", "nice", "yoo" and "sad" (case-insensitive)

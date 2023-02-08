@@ -350,6 +350,14 @@ client.on('messageCreate', async message => {
         });
     }
     
+    // If the message is part of the bad messages list then react to it
+    var badMessages = lib.readFile("./data/bad_messages.txt").split("\n");
+    for(i = 0; i < badMessages.length; i++){
+        if(message.content.toLowerCase() == badMessages[i]){
+            message.react("<a:jermapunch:855936170349166592>");
+        }
+    }
+
     // If the message was sent by a bot or doesn't start with the prefix, stop
     if (!message.content.startsWith(commandPrefix) || user.bot) return;
 
