@@ -6,7 +6,7 @@ module.exports = {
 	descriptions: ["Generates a viewable copy of the bot's error log", "Clears the main error log. The most recently generated copy is left untouched", "Restarts the whole bot (for applying changes made to the main functions)", "Fetches the contents of the messages in the nyex-plans channel on the main server and saves them", "Posts update text to my channel and moves it to the history file", "Populates a new database table using manually defined logic. Edit this command first!", "Performs a custom SQL query for debugging purposes", "Sends the bot owner a pre-defined DM"],
     shortDescription: 'Many functions',
     weight: 5,
-	aliases: ['da'],
+	aliases: ['da', 'do'],
 	addendum: ['Can only be used by Index154'],
     category: 'admin',
 	
