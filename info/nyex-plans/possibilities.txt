@@ -14,3 +14,4 @@ __**Possibilities:**__
 - Public availability of the bot?
 - A command to reset your account? (Except for trophies? Maybe combine this with the NG+ idea?)
 - Release blessings not all being buffs?
+- Custom reminders?
