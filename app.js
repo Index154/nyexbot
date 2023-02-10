@@ -354,7 +354,7 @@ client.on('messageCreate', async message => {
     var badMessages = lib.readFile("./data/bad_messages.txt").split("\n");
     for(i = 0; i < badMessages.length; i++){
         if(message.content.toLowerCase().trim() == badMessages[i]){
-            message.react("<a:jermapunch:855936170349166592>");
+            message.react("<:laghu:1072954386935975956>");
         }
     }
 
