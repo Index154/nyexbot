@@ -350,6 +350,8 @@ client.on('messageCreate', async message => {
         });
     }
     
+    // DISABLED
+    /*
     // If the message is part of the bad messages list then react to it
     var badMessages = lib.readFile("./data/bad_messages.txt").split("\n");
     for(i = 0; i < badMessages.length; i++){
@@ -357,6 +359,7 @@ client.on('messageCreate', async message => {
             message.react("<:laghu:1072954386935975956>");
         }
     }
+    */
 
     // If the message was sent by a bot or doesn't start with the prefix, stop
     if (!message.content.startsWith(commandPrefix) || user.bot) return;
