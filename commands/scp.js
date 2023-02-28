@@ -41,14 +41,15 @@ module.exports = {
         }
 
         // Determine which series the SCP belongs to (to know which link has to be used later)
-        var seriesList = ["", "-2", "-3", "-4", "-5", "-6", "-7", "-8", "-9", "-10"];
         var seriesURL = "https://scp-wiki.wikidot.com/scp-series";
         var seriesChosen = false;
         var seriesIncrement = 1000;
         for(i = 0; !seriesChosen; i++){
             if(SCP < seriesIncrement){
                 seriesChosen = true;
-                seriesURL += seriesList[i];
+                series = "-" + (i + 1);
+                if(i == 0){series = "";}
+                seriesURL += series;
             }else{
                 seriesIncrement += 1000;
             }
@@ -67,12 +68,12 @@ module.exports = {
         getSCP(SCP, seriesURL);
 
         async function submitSCPError(SCPNumber, customString){
-            var errors = lib.readFile("./data/imported/SCPErrors.txt").split("\n");
+            var errors = lib.readFile("../nyextest/data/imported/SCPErrors.txt").split("\n");
             var errorToSave = SCPNumber + " | " + customString;
 
             if(!errors.includes(errorToSave)){
                 errors.push(errorToSave);
-                lib.saveFile("./data/imported/SCPErrors.txt", errors.join("\n"));
+                lib.saveFile("../nyextest/data/imported/SCPErrors.txt", errors.join("\n"));
             }
             
         }
