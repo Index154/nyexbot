@@ -11,6 +11,11 @@ module.exports = {
     shortDescription: 'Check a user\'s trophies or the rankings',
     weight: 25,
 	aliases: ['tro'],
+    addendum: [
+        '- Trophies do not serve a concrete purpose for now besides providing an arbitrary score / ranking system',
+        '- Rarer trophies are usually displayed closer to the top of the list',
+        '- Boss trophies are usually placed at the bottom of the list as they are randomly generated to some extent'
+    ],
     category: 'userinfo',
 	
 	execute(message, user, args) {

@@ -8,6 +8,11 @@ module.exports = {
     shortDescription: 'Reroll equipment and vortexes',
     weight: 35,
 	aliases: ['tf'],
+    addendum: [
+        '- Scrap can be obtained by converting `{prefix}materials` or by winning a round of `{prefix}guess`',
+        '- Rerolling an equipment item will show you the stat changes that have taken place in the same way that `{prefix}compare` does',
+        '- Transforming an equipment item will remove its name modifier and all bonus stats'
+    ],
     category: 'items',
 	
 	execute(message, user, args) {

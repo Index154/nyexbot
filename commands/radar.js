@@ -7,7 +7,16 @@ module.exports = {
     shortDescription: 'Get more shinies with this buff (level 5 required)',
     weight: 20,
 	aliases: ['rad'],
-	addendum: 'Can only be used after reaching level 5',
+    addendum: [
+        '- The radar will increase your chance of encountering shinies while it is active',
+        '- Having a higher `{prefix}completion` will make the radar more effective',
+        '- Can only be used after reaching level 5',
+        '- The radar requires charges in order to be used. Every `{prefix}encounter` uses up one charge',
+        '- You get 40 free charges per day as long as you activate the radar without having any charges remaining',
+        '- The radar acts like a buff so it will be deactivated if you `{prefix}use` an item (you will keep your remaining charges)',
+        '- Some consumables can be used to directly gain radar charges',
+        '- You can use `{prefix}fullradar` to channel all of your radar charges into a single encounter in exchange for Gold (requires level 15)'
+    ],
     category: 'tasks',
 	
 	execute(message, user, args) {

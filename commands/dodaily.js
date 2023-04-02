@@ -7,7 +7,10 @@ module.exports = {
     shortDescription: 'Complete the daily quest',
     weight: 15,
 	aliases: ['dd'],
-	addendum: 'You can receive additional rewards if you accumulate a daily completion streak!',
+    addendum: [
+        '- You can view the required monster for the daily quest with `{prefix}daily`',
+        '- See `{prefix}daily` for further information'
+    ],
     category: 'tasks',
 	
 	execute(message, user, args) {

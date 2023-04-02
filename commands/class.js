@@ -6,7 +6,12 @@ module.exports = {
 	descriptions: ['Shows a list of available classes', 'Permanently chooses a class'],
     shortDescription: 'Choose a class (level 10 required)',
     weight: 25,
-	addendum: 'Can only be used after reaching level 10',
+    addendum: [
+        '- Can only be used after reaching level 10',
+        '- Each class gives a different small benefit immediately after being chosen',
+        '- Further benefits are unlocked upon reaching level 30 and 50',
+        '- It\'s impossible to change your class after making your choice'
+    ],
     category: 'misc',
 	
 	execute(message, user, args) {

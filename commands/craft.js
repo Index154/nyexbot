@@ -7,6 +7,12 @@ module.exports = {
 	descriptions: ['Checks the crafting recipe for an item and whether you are able to create it', 'Confirms the crafting process. This needs to be used after the above variant of the command'],
     shortDescription: 'Craft items',
     weight: 15,
+    addendum: [
+        '- You can use `{prefix}recipes` to find things you are able to craft',
+        '- Many crafting recipes require `{prefix}materials`',
+        '- Upgrading an equipment item will retain its name modifier',
+        '- Getting a new equipment drop will overwrite your most recently crafted equipment if you haven\'t equipped it yet'
+    ],
     category: 'items',
 	
 	execute(message, user, args) {

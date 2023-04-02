@@ -5,6 +5,10 @@ module.exports = {
     shortDescription: 'Reload commands',
     weight: 10,
 	aliases:["rl","rld"],
+    addendum: [
+        '- This is a dev command for testing and updating',
+        '- Changes made to bot commands are not loaded automatically. They need to instead be reloaded with this command'
+    ],
     category: 'admin',
 	
 	execute(message, user, args) {

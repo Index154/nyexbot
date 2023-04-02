@@ -8,7 +8,14 @@ module.exports = {
     weight: 10,
 	cooldown: 2.5,
 	aliases: ['cap'],
-	addendum: 'Has an increased cooldown of 2.5 seconds',
+	addendum: [
+        '- Has an increased cooldown of 2.5 seconds',
+        '- A higher Capture Efficiency stat will make this action more likely to succeed',
+        '- If your stats are evenly balanced then capturing is less likely than winning a `{prefix}fight`',
+        '- The command `{prefix}captures` can be used to view all monsters you\'ve ever captured',
+        '- The more species of monster you collect the more effective the `{prefix}radar` will become',
+        '- You can check how many monsters you\'re missing with `{prefix}completion`'
+    ],
     category: 'main',
 	
 	execute(message, user, args) {

@@ -8,7 +8,21 @@ module.exports = {
     weight: 5,
 	usages: [''],
 	aliases: ['mon', 'm'],
-	addendum: 'Can only be used once every 3 hours',
+    addendum: [
+        '- Can only be used once every 3 hours',
+        '- Your area, stats, buffs and more can all affect the monster you get. Everything that applies to `{prefix}encounter` generally also applies here',
+        '- If you use this command while in a realm then you will take 10 damage',
+        '- If you have a Token Point when using this command then you will receive a special monster from a unique pool',
+        '- Tokens can be obtained by reaching `{prefix}daily` streaks',
+        '\n**Here are further details about monsters:**',
+        '- Monsters are divided into different ranks including D, C, B, A, S and SS with D being the lowest and SS being the highest',
+        '- Higher ranking monsters are rarer and have higher stats, making them harder to defeat and capture',
+        '- You can `{prefix}release` captured monsters to obtain temporary buffs',
+        '- Some monsters can only be found in special areas called unique realms. Only one unique realm is available at a time and it changes on a weekly basis. You can view the current weekly realm with `{prefix}shop`',
+        '- Every monster has an alternate shiny variant which can only be encountered extremely rarely or by capturing the same monster many times in a row (called chaining)',
+        '- The commands `{prefix}radar` and `{prefix}fullradar` can also be used to increase shiny chances',
+        '- You can purchase shiny monsters from the `{prefix}shop`'
+    ],
     category: 'tasks',
 	
 	execute(message, user, args) {

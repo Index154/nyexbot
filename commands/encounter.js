@@ -9,7 +9,16 @@ module.exports = {
     weight: 5,
 	cooldown: 2.5,
 	aliases: ['enc'],
-	addendum: 'Has an increased cooldown of 2.5 seconds',
+	addendum: [
+        '- Has an increased cooldown of 2.5 seconds',
+        '- If you have previously captured an encountered monster then the message will feature a bag emote',
+        '- Encountered monsters have a tiny chance of being shiny. You can increase this chance most easily with `{prefix}radar`',
+        '- Starting a new encounter will overwrite your previous one',
+        '- If you activate a buff after starting an encounter then it will still apply to it',
+        '- A higher Monster Luck stat will make rarer monsters more common',
+        '- You can use `{prefix}check` to inspect your active encounter',
+        '- `{prefix}fight` and `{prefix}capture` can be used to end an encounter'
+    ],
     category: 'main',
 	
 	execute(message, user, args) {

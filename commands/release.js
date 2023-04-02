@@ -6,6 +6,12 @@ module.exports = {
 	descriptions: ['Releases one or more monsters from your captures in exchange for a buff'],
     shortDescription: 'Release monsters for temporary buffs',
     weight: 15,
+    addendum: [
+        '- The type of buff you get depends on the monster\'s species. You can see the buff type using `{prefix}check` and `{prefix}captures`',
+        '- Releasing multiple monsters at once will cause the buff to be stronger and last longer',
+        '- Monsters of higher ranks give greater buffs',
+        '- Getting a release buff will replace your currently active buff if you have one'
+    ],
     category: 'misc',
 	
 	execute(message, user, args) {

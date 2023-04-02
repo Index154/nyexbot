@@ -7,7 +7,9 @@ module.exports = {
     shortDescription: 'Many functions',
     weight: 5,
 	aliases: ['da', 'do'],
-	addendum: ['Can only be used by Index154'],
+    addendum: [
+        '- Can only be used by Index154'
+    ],
     category: 'admin',
 	
 	execute(message, user, args) {

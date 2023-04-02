@@ -8,6 +8,11 @@ module.exports = {
     shortDescription: 'Check your game completion statistics',
     weight: 20,
 	aliases: ['compl'],
+	addendum: [
+		'- Your completion consists of how many monster species you\'ve captured and how many quests you\'ve completed',
+        '- `{prefix}radar` and `{prefix}fullradar` become more effective when your completion is higher',
+        '- Reaching 100% monster completion will allow you to `{prefix}buy` shiny monsters for half the price'
+    ],
 	category: 'userinfo',
 	
 	execute(message, user, args) {

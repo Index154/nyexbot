@@ -7,6 +7,9 @@ module.exports = {
     shortDescription: 'Complete your current main quest',
     weight: 30,
 	aliases: ['doquest'],
+    addendum: [
+        '- Successfully delivering something will unlock the next `{prefix}quest` and grant you a reward'
+    ],
     category: 'main',
 	
 	execute(message, user, args) {

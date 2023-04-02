@@ -49,8 +49,8 @@ module.exports = {
         }
         
         // Set countdown goals
-        var eventNames = ['Nyexbot anniversary', 'New global crisis'];
-        var targetEpochs = [getNextAnniversaryEpoch(d, 1, 2, 'no'), getNextAnniversaryEpoch(d, 1, 4, 2023)];
+        var eventNames = ['Nyexbot anniversary'];
+        var targetEpochs = [getNextAnniversaryEpoch(d, 1, 2, 'no')];
 
         // Add the stuff to the embed
         for(i = 0; i < eventNames.length; i++){

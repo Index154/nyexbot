@@ -122,7 +122,7 @@ module.exports = {
             if(command.usages[i] !== ""){command.usages[i] = " " + command.usages[i];}
             output += "\n`" + prefix + command.name + command.usages[i] + "` => " + command.descriptions[i];
         }
-        if (command.addendum) output += "\n**Further information:** " + command.addendum;
+        if (command.addendum) output += "\n\n**Further information:**\n" + command.addendum.join("\n").replace(/{prefix}/g, prefix);
         
         message.reply({ content: output, allowedMentions: { repliedUser: false }});
 

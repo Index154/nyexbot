@@ -8,6 +8,9 @@ module.exports = {
     shortDescription: 'Check your materials and manage them',
     weight: 10,
 	aliases: ['mats', 'mat'],
+    addendum: [
+        '- Materials can be used to `{prefix}craft` other items'
+    ],
     category: 'items',
 	
 	execute(message, user, args) {

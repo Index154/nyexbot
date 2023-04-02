@@ -4,10 +4,16 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'fullradar',
 	usages: [''],
-	descriptions: ['Channels all your radar charges into one encounter in exchange for Gold. Also claims your daily charges if eligible'],
+	descriptions: ['Channels all your radar charges into one encounter in exchange for Gold, increasing the shiny chance significantly. Also claims your daily charges if eligible'],
     shortDescription: 'Use all radar charges instantly for Gold (level 15 required)',
     weight: 10,
-	addendum: 'Can only be used after reaching level 15',
+    addendum: [
+        '- Can only be used after reaching level 15',
+        '- Provides a slightly higher shiny chance gain per charge when compared to the normal `{prefix}radar`',
+        '- Displays your mathematical chance of having encountered a shiny after use',
+        '- It costs 2.5 Gold per charge',
+        '- See `{prefix}radar` for further information'
+    ],
 	aliases: ['frad'],
     category: 'misc',
 	

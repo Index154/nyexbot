@@ -7,9 +7,12 @@ module.exports = {
 	descriptions: ['Sends your feedback or bug report to the main server for the developer to see'],
     shortDescription: 'Send feedback',
     weight: 10,
-	addendum: 'Has an increased cooldown of one minute',
 	cooldown: 60,
 	aliases: ['sub'],
+    addendum: [
+        '- Has an increased cooldown of one minute',
+        '- The submitted message is sent to a special channel on the main server of the bot'
+    ],
     category: 'settings',
 	
 	execute(message, user, args) {

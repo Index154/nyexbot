@@ -8,6 +8,14 @@ module.exports = {
     shortDescription: 'Check a user\'s monsters and their details',
     weight: 10,
 	aliases: ['caps'],
+	addendum: [
+        '- Monsters you no longer have any of are always listed below the rest',
+        '- The color icons in front of monster names indicate their rank',
+        '- Monsters from unique realms and token monsters have purple icons',
+        '- You can `{prefix}release` monsters to gain temporary buffs',
+        '- You can `{prefix}deliver` monsters to complete your current `{prefix}quest`',
+        '- If you favorite a monster then its image will be displayed in `{prefix}stats`, `{prefix}inventory`, `{prefix}trophies` and `{prefix}captures` itself'
+    ],
 	category: 'userinfo',
 	
 	execute(message, user, args) {

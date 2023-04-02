@@ -8,6 +8,9 @@ module.exports = {
     weight: 5,
 	aliases: ['mv', 'goto'],
 	addendum: 'You can only use this command to move to regular areas',
+    addendum: [
+        '- See `{prefix}area` for related information'
+    ],
     category: 'misc',
 	
 	execute(message, user, args) {

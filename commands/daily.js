@@ -6,6 +6,13 @@ module.exports = {
 	descriptions: ['Shows the daily quest for your current user rank'],
     shortDescription: 'Check the daily quest',
     weight: 10,
+    addendum: [
+        '- The daily quest always asks you to `{prefix}deliver` a random monster matching your rank',
+        '- You must use `{prefix}dodaily` to complete the quest',
+        '- Completing the daily will reward you with either Gold, EXP or a bunch of items',
+        '- Completing dailies consecutively will grant additional rewards every 7, 14, 21 and 30 days',
+        '- Users with different ranks will receive different daily quests'
+    ],
     category: 'tasks',
 	
 	execute(message, user, args) {

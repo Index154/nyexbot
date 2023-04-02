@@ -7,7 +7,15 @@ module.exports = {
 	descriptions: ['Sends a trade offer to someone', 'Accepts the counteroffer made by the trade partner, completing the trade', 'Cancels the current trade'],
     shortDescription: 'Trade with other players (level 10 required)',
     weight: 20,
-	addendum: '\nOnly players who have reached level 10 can trade.\nThe [offer] argument can be a list of multiple monsters, currencies and items. It should be formatted like this: [amount] [monster, currency or item name] + [amount] [monster, currency or item name] + ...\nExample usage: `trade TerraDoge 100 gold + 3 imp + 2 blue slime gel + 4 cloth`\nEvery user can only have one active trade at a time. You can\'t offer more than 15 different things in a single trade (the amount per thing is irrelevant). Equipment can not be traded and materials can only be traded to players of a matching or higher rank. Accepted currencies are gold and scrap',
+    addendum: [
+        '- Only players who have reached level 10 can trade',
+        '- The [offer] argument can be a list of multiple monsters, currencies and items. It should be formatted like this: [amount] [monster, currency or item name] + [amount] [monster, currency or item name] + ...',
+        '- Example usage: `{prefix}trade TerraDoge 100 gold + 3 imp + 2 blue slime gel + 4 cloth`',
+        '- Every user can only have one active trade at a time',
+        '- You can\'t offer more than 15 different things in a single trade (the amount per thing is irrelevant)',
+        '- Equipment can not be traded and materials can only be traded to players of a matching or higher rank',
+        '- Accepted currencies are Gold and Scrap'
+    ],
     category: 'misc',
 	
 	execute(message, user, args) {

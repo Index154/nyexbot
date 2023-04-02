@@ -7,6 +7,14 @@ module.exports = {
 	descriptions: ['Displays the current weekly shop', 'Displays the shiny shop'],
     shortDescription: 'Check the weekly shop',
     weight: 10,
+    addendum: [
+        '- You can use `{prefix}buy` and `{prefix}sell` to interact with the shop',
+        '- The regular items on sale are randomized once every week',
+        '- Some special items are always for sale',
+        '- Also displays the weekly event realm (unique realm)',
+        '- When a shiny is bought from the shop, it will be replaced by a new shiny',
+        '- There may be slight price modifier fluctuations every week'
+    ],
     category: 'info',
 	
 	execute(message, user, args) {

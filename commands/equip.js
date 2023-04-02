@@ -6,6 +6,21 @@ module.exports = {
 	descriptions: ['Equips a discovered equipment item', 'Converts a discovered equipment item into Scrap'],
     shortDescription: 'Equip a newly obtained item',
     weight: 20,
+    addendum: [
+        '- Equippable items directly alter your base stats',
+        '- Only the most recently discovered item can be equipped or converted',
+        '- Equipment of higher rank gives more Scrap upon conversion',
+        '- Your current equipment can be viewed with `{prefix}inventory`',
+        '- There are three equipment slots: Weapon, defense and divine tool',
+        '- Weapons and defense equipment mainly alter your Attack and Speed while divine tools are a good source of Capture Efficiency',
+        '- Equipped items can sometimes be upgraded using `{prefix}craft` (see `{prefix}recipes`)',
+        '- Equipment items are sometimes generated with random bonus stats (name modifiers)',
+        '\n**Here is some further information about equipment items**',
+        '- Your equipment items may grant you a combined ability with varying effects',
+        '- The weapon determines the effect of the ability',
+        '- Defensive equipment may buff or debuff the effects or the frequency of the ability. In other words it is a modifier',
+        '- Your tool determines how/when the ability activates. It can be after a real time cooldown, after a set amount of encounters or based on random chance'
+    ],
     category: 'items',
 	
 	execute(message, user, args) {

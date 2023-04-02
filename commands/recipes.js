@@ -8,6 +8,9 @@ module.exports = {
     shortDescription: 'Look at crafting recipes',
     weight: 15,
 	aliases: ["rec"],
+    addendum: [
+        '- Items can be crafted with `{prefix}craft`'
+    ],
     category: 'info',
 	
 	execute(message, user, args) {

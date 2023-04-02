@@ -4,10 +4,19 @@ nick = require('./nickname.js');
 module.exports = {
 	name: 'worldboss',
 	usages: [''],
-	descriptions: ['Deals damage to the world boss, marking you as a participant and granting you 20 Gold'],
+	descriptions: ['Deals damage to the world boss, marking you as a participant and usually granting you 20 Gold'],
     shortDescription: 'Fight the current boss',
     weight: 30,
-	addendum: 'Can only be used once an hour and only if there is an active boss',
+	addendum: [
+        '- Can only be used once an hour and only if there is an active boss',
+        '- Bosses can spawn randomly whenever a message is sent. You can use the command `{prefix}set` to enable notifications for when a boss spawns',
+        '- Only one boss is ever active at a time but it\'s available to all users across all servers',
+        '- Every player who dealt damage to the boss will receive an Unstable Vortex once it is defeated',
+		'- The quality of the Vortex you receive is determined by the lowest rank between you and the boss',
+        '- The three players who dealt the most damage will receive `{prefix}trophies`',
+        '- Fighting the world boss will reduce your current buff duration by one turn',
+		'- The spawning and defeat of every boss will be announced in all channels that were selected as announcement channels using `{prefix}set`'
+    ],
 	aliases: ['wb','boss'],
 	category: 'tasks',
 	

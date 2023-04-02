@@ -8,7 +8,7 @@ module.exports = {
     shortDescription: 'Get a funny Spelunky 2 journal entry',
     weight: 25,
 	aliases: ['j'],
-	addendum: 'Search arguments are parsed as regular expressions',
+	addendum: ['- Search arguments are parsed as regular expressions'],
 	category: 'variety',
 	
 	execute(message, user, args) {

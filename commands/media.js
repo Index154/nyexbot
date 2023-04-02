@@ -8,7 +8,7 @@ module.exports = {
     shortDescription: 'Look at funny images',
     weight: 5,
 	aliases: ['m', 'image', 'img', 'i'],
-	addendum: 'Search arguments are parsed as regular expressions',
+	addendum: ['- Search arguments are parsed as regular expressions'],
 	category: 'variety',
 	
 	execute(message, user, args) {

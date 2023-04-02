@@ -8,7 +8,11 @@ module.exports = {
 	descriptions: ["Enables or disables whether you will receive announcements in DMs", "Sets the current channel as the server's NyexBot announcement channel", "Sets a new server-side prefix for the bot"],
     shortDescription: 'Set the server prefix or announcements channel or enable update DMs',
     weight: 5,
-	addendum: 'Announcement channel and prefix can only be controlled by users with the permission "Manage Server".\nAnnouncements include update and worldboss notices',
+	addendum: '.\n',
+    addendum: [
+        '- Announcement channel and prefix can only be controlled by users with the permission "Manage Server"',
+        '- Announcements include update and worldboss notices'
+    ],
     category: 'settings',
 	
 	execute(message, user, args) {

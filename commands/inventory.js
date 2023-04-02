@@ -4,10 +4,16 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'inventory',
 	usages: ['', '[item name]', 'weapon/defense/tool', 'random', 'user [ID or username]', 'user random'],
-	descriptions: ['Displays your inventory', 'Displays the data of a specified item from your inventory', 'Displays the data of one of your equipment items', 'Displays the data of a random item from your inventory', 'Displays the inventory of a different user', 'Displays the inventory of a random user'],
-    shortDescription: 'Check a user\'s items and their details',
+	descriptions: ['Displays your inventory', 'Displays the details of a specified item from your inventory', 'Displays the details of one of your equipment items', 'Displays the data of a random item from your inventory', 'Displays the inventory of a different user', 'Displays the inventory of a random user'],
+    shortDescription: 'View your inventory and item details',
     weight: 5,
 	aliases: ['inv'],
+	addendum: [
+        '- The amount of stat points from modifiers will be displayed in parentheses behind the total stats of equipment items',
+        '- Consumables will have colored icons indicating their rarity in the list view',
+        '- You can `{prefix}use` items you currently have in your inventory to obtain various benefits (mostly buffs)',
+        '- You can `{prefix}deliver` items to complete your current `{prefix}quest`'
+    ],
 	category: 'items',
 	
 	execute(message, user, args) {

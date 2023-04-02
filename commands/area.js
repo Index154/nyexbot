@@ -8,6 +8,11 @@ module.exports = {
     shortDescription: 'Check areas and their monsters',
     weight: 20,
 	addendum: 'The [area name] argument can be replaced with the word "realm" to inspect a realm you are currently in',
+    addendum: [
+        '- You can `{prefix}move` between regular areas at will',
+        '- The area you are in determines which monsters you can encounter',
+        '- Some areas called realms are only accessible through special items called Fragments'
+    ],
     category: 'info',
 	
 	execute(message, user, args) {

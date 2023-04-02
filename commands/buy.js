@@ -6,6 +6,13 @@ module.exports = {
 	descriptions: ['Attempts to purchase a selected item from the shop', 'Attempts to buy the shiny from the shiny shop'],
     shortDescription: 'Buy an item or shiny with Gold',
     weight: 25,
+    addendum: [
+        '- The currently available items can be viewed with `{prefix}shop`',
+        '- You can buy an item as often as you want',
+        '- You can also `{prefix}sell` your items',
+        '- The shiny from the shiny shop can only be bought by one user. It will then be replaced with a new shiny',
+        '- Shiny purchases are 50% off for players who have captured every monster'
+    ],
     category: 'items',
 	
 	execute(message, user, args) {

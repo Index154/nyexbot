@@ -3,10 +3,18 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'use',
-	usages: ['[item name]', '[amount] [vortex or charge item name]'],
-	descriptions: ['Uses an item from your inventory', 'Uses multiple vortexes or charge items of the same type from your inventory. For unstable vortexes you can\'t use more than 10 at once'],
+	usages: ['[item name]', '[amount] [vortex, buff or charge item name]'],
+	descriptions: ['Uses an item from your inventory', 'Uses multiple vortexes, charge items or buffing items of the same type from your inventory. For unstable vortexes you can\'t use more than 10 at once'],
     shortDescription: 'Use items',
     weight: 5,
+    addendum: [
+        '- Most items will grant temporary buffs or debuffs to your stats. Some unique items also have special effects',
+        '- Only consumable items from your `{prefix}inventory` can be used',
+        '- Most items normally disappear after one use',
+        '- Using multiple copies of a buffing item at once will simply stack the buff duration',
+        '- Activating a buff that does not match your currently active buff will simply replace it',
+        '- You can view your items and their effects with `{prefix}inventory`'
+    ],
     category: 'items',
 
 	execute(message, user, args) {

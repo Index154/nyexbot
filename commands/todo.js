@@ -8,6 +8,10 @@ module.exports = {
     shortDescription: 'Check your available tasks',
     weight: 20,
 	aliases: ['timers'],
+    addendum: [
+        '- Includes the following commands with cooldowns: `{prefix}monster`, `{prefix}worldboss` and `{prefix}research`',
+        '- Also includes these daily task commands: `{prefix}daily` and `{prefix}radar` (for the daily charges)'
+    ],
     category: 'main',
 	
 	execute(message, user, args) {

@@ -8,7 +8,7 @@ module.exports = {
     shortDescription: 'Look at funny gaming clips',
     weight: 10,
 	aliases: ['c', 'clips'],
-	addendum: 'Search arguments will be matched to entry names as well as tags',
+	addendum: ['- Search arguments will be matched to entry names as well as tags'],
 	category: 'variety',
 	
 	execute(message, user, args) {

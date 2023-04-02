@@ -6,6 +6,14 @@ module.exports = {
 	descriptions: ['Shows you your current main quest and some additional info'],
     shortDescription: 'Check your main quest',
     weight: 25,
+    addendum: [
+        '- Quests ask you to `{prefix}deliver` specific items or monsters',
+        '- Completing quests rewards you with items, stat points and rank promotions',
+        '- The quest messages will introduce you to the available commands and other basic knowledge',
+        '- You can see your total quest completion rate with `{prefix}completion`',
+        '- The `{prefix}radar` becomes more effective the more quests you\'ve completed',
+        '- There are also randomly generated `{prefix}daily` quests'
+    ],
     category: 'main',
 	
 	execute(message, user, args) {

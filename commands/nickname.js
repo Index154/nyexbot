@@ -8,8 +8,13 @@ module.exports = {
     shortDescription: 'Generate random nicknames',
     weight: 20,
 	aliases: ['nick'],
+    addendum: [
+        '- type1: Uses words from the Monster Hunter World guild card titles pool. Will only apply to the first part of the nick',
+        '- type2: Uses a word from the "adjectives" pool. Will only apply to the first part of the nick',
+        '- type3: Removed. Now just does the same as type4',
+        '- type4: Uses a custom word that was previously used by another user. Can be used twice in a row to apply to both parts of the nick'
+    ],
     category: 'variety',
-    addendum: '\ntype1: Uses words from the Monster Hunter World guild card titles pool. Will only apply to the first part of the nick\ntype2: Uses a word from the "adjectives" pool. Will only apply to the first part of the nick\ntype4: Uses a custom word that was previously used by another user. Can be used twice in a row to apply to both parts of the nick',
 
 	execute(message, user, args) {
 	    fs = require('fs');
@@ -38,7 +43,7 @@ module.exports = {
             args = allArgs.split(" ");
 
             // Set starting variables
-            var words = lib.readFile("./data/imported/words.txt");
+            var words = lib.readFile("../nyextest/data/imported/words.txt");
             var output = "";
             var count = 1;
             var trueNameFlag = false;
@@ -145,7 +150,7 @@ module.exports = {
 
                         // Save custom word if it is new
                         if(!userWords.includes(args[p])){
-                            lib.saveFile("./data/imported/words.txt", words + "\n" + args[p]);
+                            lib.saveFile("../nyextest/data/imported/words.txt", words + "\n" + args[p]);
                         }
                         customWordUsed = true;
                     }

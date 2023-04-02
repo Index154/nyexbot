@@ -8,6 +8,11 @@ module.exports = {
     shortDescription: 'Play a guessing game',
     weight: 5,
 	aliases: ['gu'],
+    addendum: [
+        '- Every round will have a different theme based on the currently selected topic',
+        '- Players may submit a guess within 13 seconds after the start of a round',
+        '- After a round ends the solution will be announced and all players who guessed correctly receive 15 Scrap'
+    ],
     category: 'minigames',
 	
 	execute(message, user, args) {

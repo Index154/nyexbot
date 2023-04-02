@@ -8,7 +8,7 @@ module.exports = {
     shortDescription: 'Get a random funny quote',
     weight: 15,
 	aliases: ['q'],
-	addendum: 'Search arguments are parsed as regular expressions',
+	addendum: ['- Search arguments are parsed as regular expressions'],
 	category: 'variety',
 	
 	execute(message, user, args) {

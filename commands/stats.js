@@ -8,6 +8,19 @@ module.exports = {
     shortDescription: 'Check a user\'s stats and assign stat points',
     weight: 15,
 	addendum: 'Stat points can only be assigned to Attack, Speed, Capture Efficiency, Monster Luck, Item Luck and Greater Item Luck ',
+    addendum: [
+        '- You can temporarily alter your stats with `{prefix}release` and `{prefix}use`',
+        '- Temporary stat changes are shown in parentheses behind the stat totals',
+        '- Completing a `{prefix}quest` can grant you stat points',
+        '- Your stats are affected by your current equipment',
+        '\n**Here are some details about the available stats**',
+        '- Attack (Defense) and Speed (Weight): These determine your chances of winning a `{prefix}fight`. Having higher Attack than Speed will make you start with more HP in realms while having higher Speed than Attack will increase the amount of Gold you get from monsters',
+        '- Capture Efficiency: Determines your chances of succeeding a `{prefix}capture`',
+        '- Monster Luck: Increases your chance of encountering rarer monsters',
+        '- Item Luck: Increases your chance of obtaining drops from fights',
+        '- Greater Item Luck: Makes rarer item drops more common and common item drops rarer. Does not affect the overall amount of drops you get!',
+        '- Rank: At higher ranks you will encounter higher-ranked monsters a lot more frequently'
+    ],
     category: 'userinfo',
 	
 	execute(message, user, args) {

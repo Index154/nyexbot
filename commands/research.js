@@ -7,7 +7,13 @@ module.exports = {
 	descriptions: ["Displays your available research projects or your currently active project. Also claims a completed project's rewards", 'Starts the selected project'],
     shortDescription: 'Use Scrap to get rewards (level 20 required)',
     weight: 25,
-	addendum: 'Can only be used after reaching level 20',
+    addendum: [
+        '- Can only be used after reaching level 20',
+        '- There are five types of research projects with different rewards: Gold, EXP, buff, radar and Vortex',
+        '- The Scrap cost of a project depends on its type as well as its size / duration',
+        '- The only way to reset your list of available projects is to complete one of them',
+        '- Scrap can be obtained by converting `{prefix}materials` or by winning in the `{prefix}guess` minigame'
+    ],
 	aliases: ['res'],
     category: 'tasks',
 	

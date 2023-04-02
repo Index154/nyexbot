@@ -9,7 +9,12 @@ module.exports = {
     weight: 15,
 	cooldown: 2.5,
 	aliases: ['fig'],
-	addendum: 'Has an increased cooldown of 2.5 seconds',
+	addendum: [
+        '- Has an increased cooldown of 2.5 seconds',
+        '- Higher Attack and Speed stats will make this action more likely to succeed',
+        '- Winning a fight usually grants EXP and Gold. Sometimes you can also get item drops',
+        '- Item drop rates are affected by your Item Luck and Greater Item Luck stats'
+    ],
     category: 'main',
 	
 	execute(message, user, args) {

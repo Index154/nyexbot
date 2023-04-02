@@ -8,6 +8,11 @@ module.exports = {
     shortDescription: 'Compare equipment item stats',
     weight: 25,
 	aliases: ['comp'],
+	addendum: [
+        '- Displays the stat changes that would take place upon equipping the new item with `{prefix}equip`',
+        '- Negative differences are shown in red and positive changes are shown in green',
+        '- Any bonus stats from the new equipment\'s modifiers will be displayed in parentheses behind the total stat differences'
+    ],
 	category: 'info',
 	
 	execute(message, user, args) {

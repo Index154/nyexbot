@@ -6,7 +6,12 @@ module.exports = {
 	descriptions: ['Attempts to sell consumables from your inventory to the shop'],
     shortDescription: 'Sell items',
     weight: 30,
-    addendum: 'If no amount is given it defaults to one',
+    addendum: [
+        '- If no number is given then the command defaults to one',
+        '- Items generally sell for less Gold than you have to spend to buy them',
+        '- You can view the current weekly selling price modifier with `{prefix}shop`',
+        '- You can also `{prefix}buy` items from the shop'
+    ],
     category: 'items',
 	
 	execute(message, user, args) {
