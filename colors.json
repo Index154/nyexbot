@@ -1,0 +1,20 @@
+{	
+    "embedColors": {
+        "D": "#b0b0b0",
+        "C": "#0099ff",
+        "B": "#2AA189",
+        "A": "#b80909",
+        "S": "#e3b712",
+        "SS": "#e39f0e",
+        "Shiny": "#8f1ee6"
+    },
+    "textColors": {
+        "D": "\n",
+        "C": "fix\n",
+        "B": "hy\n",
+        "A": "dust\n{ ",
+        "S": "1c\n~ ",
+        "SS": "1c\n~ ",
+        "Shiny": "ruby\n"
+    }
+}

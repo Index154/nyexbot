@@ -44,7 +44,6 @@ What features does the bot have and what do they accomplish?
     - Stat points: Give the user more freedom of choice + serve as great rewards for quests
     - User rank: Simple indicator of progress
     - Shop: Main use for Gold
-    - Release blessings: Serve as a way to benefit from monsters you don't actually need
     - Random encounter events: Add more variety and fun due to randomness
     - World bosses: Add temporary limited ways to gain rewards for free and might make a user come back frequently
     - Radar: Extra use for Gold + shiny hunting method

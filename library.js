@@ -225,8 +225,8 @@ module.exports = {
                 levelup_extra = levelup_extra + "\n__From now on you may use__ `" + prefix + "radar` __to increase your chance of encountering shinies!__";
             }else
             if(user_level >= 10 && user_level_old < 10){
-                levelup_extra = levelup_extra + "\n__You may now use__ `" + prefix + "class` __to select a character class!__\nFrom now on you may also use the `" + prefix + "trade` command!";
-                trophy_extra = "In addition to this you have received the trophy **\u2747<:real_black_circle:856189638153338900>EXP Collector**|10";
+                levelup_extra = levelup_extra + "\n__You may now use__ `" + prefix + "class` __to select a character class!__";
+                trophy_extra = "You've also received the trophy **\u2747<:real_black_circle:856189638153338900>EXP Collector**|10";
             }else
             if(user_level >= 15 && user_level_old < 15){
                 levelup_extra = levelup_extra + "\n__From now on you may use__ `" + prefix + "fullradar` __as a more efficient alternative to the radar in exchange for some Gold!__";
@@ -453,13 +453,6 @@ module.exports = {
             		{ name: "Rank", value: rarity, inline: true},
             		{ name: 'Type', value: type, inline: true }
             	)
-			
-			// Add release blessing type
-			var buff_names = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck"];
-			var blessing_keys = monster_info[6].split(",");
-			var blessing_type = buff_names[blessing_keys[0]];
-			outputEmbed
-			    .addFields( { name: "Release Blessing", value: blessing_type, inline: true } );
 			
 			// Get item drops and add them
 			if(result_keys[2] == "1"){

@@ -97,13 +97,6 @@ module.exports = {
         		{ name: 'Type', value: type, inline: true }
         	)
 		
-		// Add release blessing type
-		var buff_names = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck"];
-		var blessing_keys = monster_data[6].split(",");
-		var blessing_type = buff_names[blessing_keys[0]];
-		outputEmbed
-		    .addFields( { name: "Release Blessing", value: blessing_type, inline: true } );
-		
 		// Get item drops and add them
 		if(monster_keys_array[2] == "1"){
 		    // Shiny drop item

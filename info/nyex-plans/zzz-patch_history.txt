@@ -1,3 +1,6 @@
+__v0.19.22__
+- Removed the commands `trade` and `release` because I'm too lazy to work on them and they kinda sucked
+
 __v0.19.21__
 - Added a lot of additional details to every command's `help` page
 

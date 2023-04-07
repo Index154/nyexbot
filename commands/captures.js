@@ -12,7 +12,6 @@ module.exports = {
         '- Monsters you no longer have any of are always listed below the rest',
         '- The color icons in front of monster names indicate their rank',
         '- Monsters from unique realms and token monsters have purple icons',
-        '- You can `{prefix}release` monsters to gain temporary buffs',
         '- You can `{prefix}deliver` monsters to complete your current `{prefix}quest`',
         '- If you favorite a monster then its image will be displayed in `{prefix}stats`, `{prefix}inventory`, `{prefix}trophies` and `{prefix}captures` itself'
     ],
@@ -323,13 +322,6 @@ module.exports = {
                 		{ name: "Rank", value: rarity, inline: true},
                 		{ name: 'Type', value: type, inline: true }
                 	);
-				
-				// Add release blessing type
-				var buff_names = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck"];
-				var blessing_keys = monster_info[6].split(",");
-				var blessing_type = buff_names[blessing_keys[0]];
-				outputEmbed
-				    .addFields( { name: "Release Blessing", value: blessing_type, inline: true } );
 				
 				// Get item drops and add them
 				if(result_keys[2] == "1"){

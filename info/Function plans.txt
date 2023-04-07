@@ -4,7 +4,6 @@ Unspecified
 - IMPORTANT: Always think about trophies and what sort of functions to build in order for the trophy check placements to work out the best
 - Function for sending a message (will take the content you wanna send and automatically chooses the correct discordjs function - Also make this determine whether the message should contain the "@username" text)
 - How to deal with things being removed or added multiple times from the same "lists" in one command? Do I need to worry or not once everything is SQL?
-- Members.has (removal of cache) in trade?
 - How to stop a higher level async function? Do I need to use an extra if-statement based on the return value? (I sort of forgot what I even meant by this question)
 - Put the dead ends (returns) of the code into the lower levels (nesting) and keep the main path close to the top to reduce nesting
 - Add additional comments that actually explain stuff that is unintuitive (like unique calculations)
@@ -12,7 +11,7 @@ Unspecified
 
 App
 - Worldboss spawning logic (happens in both message and interaction events)
-- DM a user (happens in app (worldboss spawn event and update event), worldboss and trade)
+- DM a user (happens in app (worldboss spawn event and update event) and worldboss)
 - Alert announcement channels (happens in app (worldboss spawn event and update event) and worldboss)
 - Try to execute commands (happens in app in both message and interaction events)
 - Check for custom server prefix (happens in all commands)
@@ -23,7 +22,17 @@ Library
 - Add {prefix} replacing to readFile?
 - Automatically add "@ __**username**__" to command outputs if the command was triggered using a button
 - Make functions for the individual embeds that are created for paged embeds
-- Make splitList function for turning strings into arrays easily (see example in trade!)
+- Make splitList function for turning strings into arrays easily, like this:
+    function splitList(list, separator){
+            if(list.includes(separator)){
+                list = list.split(separator);
+            }else if(list !== ""){
+                list = [list];
+            }else{
+                list = [];
+            }
+            return list;
+    }
 - Make a function for interpreting user args 
 
 Add
@@ -54,7 +63,7 @@ Capture
 - End an encounter (also happens in fight - influenced by realms and abilities)
 
 Captures
-- Match input to another user (name or ID and then a random one from the results) (happens in the function below and also in trade specifically)
+- Match input to another user (name or ID and then a random one from the results) (happens in the function below)
 - Execute a command in the name of another user to check their stuff (happens in several commands)
 - Build a monster info embed (also happens in check and possibly more commands)
 
@@ -169,9 +178,6 @@ Radar
 Recipes
 /
 
-Release
-/
-
 Reload
 /
 
@@ -201,9 +207,6 @@ Submit
 
 Todo
 - Determine the cooldown for an event using the current timestamp and other supplied information unique to the cooldown (happens in several commands - should happen in a few more maybe)
-
-Trade
-- Send a message pinging another user (either directly in the same channel or in DMs if they are not in the current server)
 
 Transform
 /

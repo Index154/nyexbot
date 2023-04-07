@@ -17,7 +17,6 @@ module.exports = {
         '\n**Here are further details about monsters:**',
         '- Monsters are divided into different ranks including D, C, B, A, S and SS with D being the lowest and SS being the highest',
         '- Higher ranking monsters are rarer and have higher stats, making them harder to defeat and capture',
-        '- You can `{prefix}release` captured monsters to obtain temporary buffs',
         '- Some monsters can only be found in special areas called unique realms. Only one unique realm is available at a time and it changes on a weekly basis. You can view the current weekly realm with `{prefix}shop`',
         '- Every monster has an alternate shiny variant which can only be encountered extremely rarely or by capturing the same monster many times in a row (called chaining)',
         '- The commands `{prefix}radar` and `{prefix}fullradar` can also be used to increase shiny chances',
@@ -82,7 +81,6 @@ module.exports = {
             lib.saveFile(dir + "/scrap.txt", "0");
             lib.saveFile(dir + "/stats.txt", "Classless|5|5|3|0|0|0|0|0|D|1|0|0|0");
             lib.saveFile(dir + "/token_state.txt", "");
-            lib.saveFile(dir + "/trade.txt", "");
             lib.saveFile(dir + "/username.txt", username);
             
             // If the user is an alpha tester, give them their trophy to start with

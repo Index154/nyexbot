@@ -9,7 +9,7 @@ module.exports = {
     weight: 15,
 	addendum: 'Stat points can only be assigned to Attack, Speed, Capture Efficiency, Monster Luck, Item Luck and Greater Item Luck ',
     addendum: [
-        '- You can temporarily alter your stats with `{prefix}release` and `{prefix}use`',
+        '- You can temporarily alter your stats with `{prefix}use`',
         '- Temporary stat changes are shown in parentheses behind the stat totals',
         '- Completing a `{prefix}quest` can grant you stat points',
         '- Your stats are affected by your current equipment',
