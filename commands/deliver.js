@@ -189,7 +189,7 @@ module.exports = {
                         stats[reward] = base + reward_amount;
                     }
                     
-                    var reward_names = ["Error", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Error", "Error", "Rank", "Error", "EXP", "Gold", "Stat Points"];
+                    var reward_names = ["Error", "Attack", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck", "Error", "Error", "Rank", "Error", "EXP", "Gold", "Stat Points"];
                     if(reward == "exp&gold"){
                         reward_name = " [EXP] & " + gold + " [Gold]";
                     }else{

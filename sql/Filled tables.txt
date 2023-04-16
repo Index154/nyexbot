@@ -41,7 +41,7 @@ equipmentModifiers:
 		weight tinyint not null,
 		attack smallint not null,
 		speed smallint not null,
-		captureEfficiency smallint not null,
+		mana smallint not null,
 		monsterLuck smallint not null,
 		dropLuck smallint not null,
 		rareLuck smallint not null,

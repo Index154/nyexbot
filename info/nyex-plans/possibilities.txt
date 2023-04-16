@@ -1,7 +1,6 @@
 __**Possibilities:**__
 (Might not ever be implemented - Rough ideas)
 - Removal of consumable crafting (recipes in general)?
-- Removal of release?
 - A new player stat called Chaos: Affects many events in the game, making them "more random" the higher the stat is?
 - Material research projects that grant random materials of the player's rank?
 - Being able to preview the loot tables of vortexes?
@@ -13,5 +12,4 @@ __**Possibilities:**__
 - NG+ mechanics? Maybe let the player reset their level back to 1 and pick an additional class after reaching level 10 again?
 - Public availability of the bot?
 - A command to reset your account? (Except for trophies? Maybe combine this with the NG+ idea?)
-- Release blessings not all being buffs?
 - Custom reminders?

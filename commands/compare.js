@@ -109,7 +109,7 @@ module.exports = {
         var stat_diffs = [0, attack_dif, speed_dif, cap_dif, mluck_dif, iluck_dif, gluck_dif];
 
         // Differentiate between item types and send an embed
-		var stat_names = ["Filler", "Attack/Defense", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Unnamed"];
+		var stat_names = ["Filler", "Attack/Defense", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck", "Unnamed"];
 		// Create output embed
 		var outputEmbed = new Discord.MessageEmbed()
             	.setColor('#0099ff')

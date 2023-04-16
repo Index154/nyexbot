@@ -112,8 +112,11 @@ module.exports = {
 
                 // SQL query
                 var [rows] = await con.execute({sql: args.join(' '), rowsAsArray: false });
+                if(lib.exists(rows[0]) && rows[0].hasOwnProperty('content')){
+                    rows[0].content = '<' + rows[0].content + '>';
+                }
 
-                message.reply({ content: "The query has been processed! Reply:\n" + JSON.stringify(rows), allowedMentions: { repliedUser: false }});
+                message.reply({ content: "The query has been processed! Reply:\n" + JSON.stringify(rows).replace(/,/gi, "\n"), allowedMentions: { repliedUser: false }});
             }
             doQuery();
             return;

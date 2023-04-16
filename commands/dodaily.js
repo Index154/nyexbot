@@ -269,7 +269,7 @@ module.exports = {
                         }
                     }
                     
-                    var reward_names = ["Error", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Error", "Error", "Error", "Error", "EXP"];
+                    var reward_names = ["Error", "Attack", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck", "Error", "Error", "Error", "Error", "EXP"];
                     if(reward == "exp&gold"){
                         reward_name = "EXP] & " + gold + " [Gold";
                     }else{

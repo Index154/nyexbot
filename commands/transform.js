@@ -277,7 +277,7 @@ module.exports = {
                 var gluck_dif = parseInt(new_item_data[6]) - parseInt(old_item_data[6]) - parseInt(modifier[6]);
                 
                 var stat_diffs = [0, attack_dif, speed_dif, cap_dif, mluck_dif, iluck_dif, gluck_dif];
-                var stat_names = ["Filler", "Attack/Defense", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Unnamed"];
+                var stat_names = ["Filler", "Attack/Defense", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck", "Unnamed"];
                 
                 // Create stat comparison field
         		stat_comparison = "```diff";

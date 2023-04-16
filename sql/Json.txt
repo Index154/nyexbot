@@ -33,7 +33,7 @@ globalVariables.json:
 		"veryRareTreasureChance": 5,
 		"statPointAttackValue": 1,
 		"statPointSpeedValue": 1,
-		"statPointCaptureEfficiencyValue": 1,
+		"statPointManaValue": 1,
 		"statPointMonsterLuckValue": 1,
 		"statPointDropLuckValue": 0.5,
 		"statPointRareLuckValue": 0.5,
@@ -53,8 +53,9 @@ shop.json:
 		"sellingModifier": 1,
 		"shinyMonster": 0,
 		"lastShinyUser": null,
-		"items": [0, 0, 0, 0, 0],
-		"prices": [200, 200, 200, 200, 200]
+		"randomItems": [0, 0, 0, 0, 0],
+		"prices": [200, 200, 200, 200, 200],
+		"specialItems": [324, 283, 286, 114, 227, 162]
 	}
 
 boss.json:

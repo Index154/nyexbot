@@ -328,7 +328,6 @@ module.exports = {
 	// Input: Array, integer, object, string, object, string
     // Function: Creates a paged embed with buttons using another module
 	createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message){
-		//const { paginationEmbed } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
 		// Create embed page field contents
@@ -367,7 +366,6 @@ module.exports = {
 	// Input: Array, object, integer, object, ?, ?, ?, string, string, object
     // Function: Creates a paged embed with buttons using another module
 	createPagedMonsterEmbed(idArray, embedTemplate, startingId, message, monster_groups, monster_names2, items, username, startingName, firstButton, firstAltImage){
-		//const { paginationEmbedAlt } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
 		var shinies = lib.readFile("data/monsters/monsters_shiny.txt");
@@ -524,7 +522,6 @@ module.exports = {
 	// Input: Array, string, integer, object
     // Function: Creates a paged embed with buttons using another module
 	createPagedNightEmbed(entryList, stringTemplate, startingId, message){
-		//const { embedlessPagination } = require('discordjs-button-pagination');
 		const { MessageEmbed, MessageButton } = require('discord.js');
 		
 		// Create embeds
@@ -565,7 +562,7 @@ module.exports = {
 
 		// Important variables
 		var equipRarities = lib.readFile(dir + "/equip_modifiers.txt").split("\n");
-		var statNames = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Unnamed"];
+		var statNames = ["Filler", "Attack", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck", "Unnamed"];
 
 		// Create embeds
 		var embeds = [];
@@ -1045,7 +1042,7 @@ module.exports = {
 		if (!buttonList) throw new Error("Buttons are not given.");
 		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
 		  	throw new Error(
-				"Link buttons are not supported with discordjs-button-pagination"
+				"Link buttons are not supported"
 		  	);
 		if (buttonList.length !== 2) throw new Error("Need two buttons.");
 	  
@@ -1126,7 +1123,7 @@ module.exports = {
 		if (!buttonList) throw new Error("Buttons are not given.");
 		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
 		  	throw new Error(
-				"Link buttons are not supported with discordjs-button-pagination"
+				"Link buttons are not supported"
 		  	);
 		if (buttonList.length !== 4) throw new Error("Need four buttons.");
 	  
@@ -1243,7 +1240,7 @@ module.exports = {
 		if (!buttonList) throw new Error("Buttons are not given.");
 		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
 		  	throw new Error(
-				"Link buttons are not supported with discordjs-button-pagination"
+				"Link buttons are not supported"
 		  	);
 		if (buttonList.length !== 3) throw new Error("Need three buttons.");
 		
@@ -1329,7 +1326,7 @@ module.exports = {
 		if (!buttonList) throw new Error("Buttons are not given.");
 		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
 		  	throw new Error(
-				"Link buttons are not supported with discordjs-button-pagination"
+				"Link buttons are not supported"
 		  	);
 		if (buttonList.length !== 2) throw new Error("Need two buttons.");
 		
@@ -1399,7 +1396,7 @@ module.exports = {
 		if (!buttonList) throw new Error("Buttons are not given.");
 		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
 			throw new Error(
-				"Link buttons are not supported with discordjs-button-pagination"
+				"Link buttons are not supported"
 			);
 		if (buttonList.length < 2) throw new Error("Need at least two buttons.");
 	  

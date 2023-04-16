@@ -6,3 +6,4 @@ __**Main goals:**__
 - Make all commands create a user account? Or at least wb
 - Security considerations: Sanitize user inputs
 - Integrate deliver and dodaily into quest and daily as subcommands
+- Replace old images for unimplemented MH monsters

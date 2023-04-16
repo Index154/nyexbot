@@ -74,7 +74,7 @@ insert into shopItemRarities (rarityName, chance) values
 ('Lure', 10),
 ('Rare', 10);
 
-insert into equipmentModifiers (modifierName, weight, attack, speed, captureEfficiency, monsterLuck, dropLuck, rareLuck) values
+insert into equipmentModifiers (modifierName, weight, attack, speed, mana, monsterLuck, dropLuck, rareLuck) values
 ('Garbage', 1, 0, -3, -3, 0, -3, -3), 
 ('Godly', 1, 2, 2, 2, 2, 2, 2), 
 ('Cursed', 1, 0, 0, 0, -4, -4, -4), 

@@ -10,7 +10,7 @@ module.exports = {
 	aliases: ['cap'],
 	addendum: [
         '- Has an increased cooldown of 2.5 seconds',
-        '- A higher Capture Efficiency stat will make this action more likely to succeed',
+        '- A higher Mana stat will make this action more likely to succeed',
         '- If your stats are evenly balanced then capturing is less likely than winning a `{prefix}fight`',
         '- The command `{prefix}captures` can be used to view all monsters you\'ve ever captured',
         '- The more species of monster you collect the more effective the `{prefix}radar` will become',
@@ -136,14 +136,14 @@ module.exports = {
                     abilityOutput = "\n**Your equipment ability has activated, increasing this encounter's maximum capture chance!**";
                     break;
                 case 3:
-                    // Subduer - Higher capture efficiency - Value is bonus
+                    // Subduer - Higher mana - Value is bonus
                     capBonus = abilityValue;
-                    abilityOutput = "\n**Your equipment ability has activated, increasing your capture efficiency for this encounter!**";
+                    abilityOutput = "\n**Your equipment ability has activated, increasing your mana for this encounter!**";
                     break;
                 case 4:
-                    // Curse - Lower capture efficiency - Value is negative bonus
+                    // Curse - Lower mana - Value is negative bonus
                     capBonus = abilityValue;
-                    abilityOutput = "\n**Your equipment ability has activated, lowering your capture efficiency for this encounter!**";
+                    abilityOutput = "\n**Your equipment ability has activated, lowering your mana for this encounter!**";
                     break;
                 case 5:
                     // Scrapper - Grant some Scrap - Value is amount

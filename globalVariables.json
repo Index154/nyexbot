@@ -10,7 +10,7 @@
 	"veryRareTreasureChance": 5,
 	"statPointAttackValue": 1,
 	"statPointSpeedValue": 1,
-	"statPointCaptureEfficiencyValue": 1,
+	"statPointManaValue": 1,
 	"statPointMonsterLuckValue": 1,
 	"statPointDropLuckValue": 0.5,
 	"statPointRareLuckValue": 0.5,

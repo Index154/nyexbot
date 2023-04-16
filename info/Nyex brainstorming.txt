@@ -17,10 +17,10 @@ What features does the bot have and what do they accomplish?
     - Scrap: Limits the usefulness of Gold + provides a way to benefit from things you got that you don't actually need => Makes items more useful
     - Stats:
         - Attack / Speed: Used to gain increased success chances and progress
-        - Capture Efficiency: Used to gain increased success chances and progress
+        - Mana: Used to gain increased success chances and progress
         - Monster Luck: Used to manipulate rarity of monsters
-        - Item Luck: Used to manipulate item drop chances
-        - Greater Item Luck: Used to manipulate rarity of items
+        - Drop Luck: Used to manipulate item drop chances
+        - Rare Luck: Used to manipulate rarity of items
         - Type Bonus: USELESS => REMOVE
     - Equipment abilities: Give users a feeling of being special + sometimes add extra strategy and variety to encounters + add more variety and complexity to equipment itself => Possibility for more thoughtful decision-making
     - Classes: Serve as important long-term decisions + give various advantages + give a feeling of being unique + add more interesting rewards for gathering EXP

@@ -326,7 +326,7 @@ module.exports = {
         var abilities = lib.readFile("data/abilities.txt").split("######################################\n");
 		
 		// Further differentiate between item types and add item details to the output
-		var stat_names = ["Filler", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck", "Unnamed"];
+		var stat_names = ["Filler", "Attack", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck", "Unnamed"];
 		// Modify embed
 		outputEmbed
         	.setDescription(result_item[9])

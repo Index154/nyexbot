@@ -12,7 +12,7 @@ module.exports = {
         '- Equipment of higher rank gives more Scrap upon conversion',
         '- Your current equipment can be viewed with `{prefix}inventory`',
         '- There are three equipment slots: Weapon, defense and divine tool',
-        '- Weapons and defense equipment mainly alter your Attack and Speed while divine tools are a good source of Capture Efficiency',
+        '- Weapons and defense equipment mainly alter your Attack and Speed while divine tools are a good source of Mana',
         '- Equipped items can sometimes be upgraded using `{prefix}craft` (see `{prefix}recipes`)',
         '- Equipment items are sometimes generated with random bonus stats (name modifiers)',
         '\n**Here is some further information about equipment items**',

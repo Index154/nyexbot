@@ -114,7 +114,7 @@ module.exports = {
                     }
                     
                     // Prepare all possible options for the buff
-                    var buff_names = ["Null", "Attack", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck"];
+                    var buff_names = ["Null", "Attack", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck"];
                     var durations = {Small: 10, Medium: 15, Large: 20};
                     var values_small = [0, 15, 15, 10, 20, 5, 10];
                     var values_medium = [0, 20, 20, 15, 30, 10, 15];

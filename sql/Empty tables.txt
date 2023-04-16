@@ -14,15 +14,6 @@ bossNameModifiers:
 	);
 Filling method: Automatic
 
-bossNameParts:
-	create table bossNameParts(
-		bossNamePartId smallint unsigned unique auto_increment not null,
-		position tinyint unsigned not null,
-		bossNamePart varchar(10) not null,
-		primary key (bossNamePartId)
-	);
-Filling method: Automatic
-
 vortexLootPools:
 	create table vortexLootPools(
 		vortexLootPoolId smallint unsigned unique auto_increment not null,
@@ -122,6 +113,7 @@ commands:
 		weight tinyint unsigned not null,
 		shortDescription varchar(100) not null,
 		fullDescription varchar(500) not null,
+		addendum varchar(3000),
 		primary key (commandId),
         foreign key (categoryId) references commandCategories(categoryId)
 	);
@@ -160,7 +152,7 @@ items:
 		itemName varchar(50) unique not null,
 		attack smallint,
 		speed smallint,
-		captureEfficiency smallint,
+		mana smallint,
 		monsterLuck smallint,
 		dropLuck smallint,
 		rareLuck smallint,
@@ -337,7 +329,7 @@ users:
 		classId tinyint unsigned not null,
 		attack smallint not null,
 		speed smallint not null,
-		captureEfficiency smallint not null,
+		mana smallint not null,
 		monsterLuck smallint not null,
 		dropLuck smallint not null,
 		rareLuck smallint not null,
@@ -359,6 +351,7 @@ users:
 		radarTimestamp timestamp,
 		favoriteMonsterId smallint unsigned not null,
 		monsterTimestamp timestamp,
+		updateDMs bool not null,
 		funnyMode bool not null,
 		radarBonus tinyint not null,
 		tokenPoints smallint unsigned not null,

@@ -7,7 +7,7 @@ module.exports = {
 	descriptions: ['Displays your stats', 'Assigns stat points to one of your stats', 'Displays the stats of a different user', 'Displays the stats of a random user', 'Switches your monster display mode to random names and images (funny) or back to normal'],
     shortDescription: 'Check a user\'s stats and assign stat points',
     weight: 15,
-	addendum: 'Stat points can only be assigned to Attack, Speed, Capture Efficiency, Monster Luck, Item Luck and Greater Item Luck ',
+	addendum: 'Stat points can only be assigned to Attack, Speed, Mana, Monster Luck, Drop Luck and Rare Luck ',
     addendum: [
         '- You can temporarily alter your stats with `{prefix}use`',
         '- Temporary stat changes are shown in parentheses behind the stat totals',
@@ -15,10 +15,10 @@ module.exports = {
         '- Your stats are affected by your current equipment',
         '\n**Here are some details about the available stats**',
         '- Attack (Defense) and Speed (Weight): These determine your chances of winning a `{prefix}fight`. Having higher Attack than Speed will make you start with more HP in realms while having higher Speed than Attack will increase the amount of Gold you get from monsters',
-        '- Capture Efficiency: Determines your chances of succeeding a `{prefix}capture`',
+        '- Mana: Determines your chances of succeeding a `{prefix}capture`',
         '- Monster Luck: Increases your chance of encountering rarer monsters',
-        '- Item Luck: Increases your chance of obtaining drops from fights',
-        '- Greater Item Luck: Makes rarer item drops more common and common item drops rarer. Does not affect the overall amount of drops you get!',
+        '- Drop Luck: Increases your chance of obtaining drops from fights',
+        '- Rare Luck: Makes rarer item drops more common and common item drops rarer. Does not affect the overall amount of drops you get!',
         '- Rank: At higher ranks you will encounter higher-ranked monsters a lot more frequently'
     ],
     category: 'userinfo',
@@ -200,7 +200,7 @@ module.exports = {
             }
             
             // Match the remaining input to one of the available stats
-            var stat_list = ["Attack", "Defense", "Speed", "Capture Efficiency", "Monster Luck", "Item Luck", "Greater Item Luck"];
+            var stat_list = ["Attack", "Defense", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck"];
             var real_keys = [1, 1, 2, 3, 4, 5, 6];
             var stats_raw = "|" + stat_list.join("|").toLowerCase() + "|";
             var key = 0;
@@ -218,7 +218,7 @@ module.exports = {
 			    key = real_keys[key];
 				
 			}else{
-			    message.reply({ content: "\u274C That stat could not be found! Please choose one of the following:\nAttack, Speed, Capture Efficiency, Monster Luck, Item Luck, Greater Item Luck", allowedMentions: { repliedUser: false }});
+			    message.reply({ content: "\u274C That stat could not be found! Please choose one of the following:\nAttack, Speed, Mana, Monster Luck, Drop Luck, Rare Luck", allowedMentions: { repliedUser: false }});
                 return;
 			}
             
@@ -313,10 +313,10 @@ module.exports = {
         		{ name: 'Current area', value: area_name, inline: true },
         		{ name: "Attack/Defense", value: stat_data[1] + buff_info[1], inline: true},
         		{ name: "Speed", value: stat_data[2] + buff_info[2], inline: true},
-        		{ name: "Capture Efficiency", value: stat_data[3] + buff_info[3], inline: true},
+        		{ name: "Mana", value: stat_data[3] + buff_info[3], inline: true},
         		{ name: "Monster Luck", value: stat_data[4] + buff_info[4], inline: true},
-        		{ name: "Item Luck", value: stat_data[5] + buff_info[5], inline: true},
-        		{ name: "Greater Item Luck", value: stat_data[6] + buff_info[6], inline: true},
+        		{ name: "Drop Luck", value: stat_data[5] + buff_info[5], inline: true},
+        		{ name: "Rare Luck", value: stat_data[6] + buff_info[6], inline: true},
         		{ name: "Equipment Ability", value: abilityName, inline: true},
         	)
         	.setThumbnail(lib.readFile(dir + "/main_monster.txt"));

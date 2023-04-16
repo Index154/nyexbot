@@ -104,7 +104,7 @@ module.exports = {
                     user_stats[2] = parseInt(user_stats[2]) + 7;
                 }
                 else if(allArgs == "tamer"){
-                    var ability = "**[Taming]** - Increased Capture Efficiency!";
+                    var ability = "**[Taming]** - Increased Mana!";
                     user_stats[3] = parseInt(user_stats[3]) + 7;
                 }
                 else if(allArgs == "merchant"){

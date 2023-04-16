@@ -1,3 +1,8 @@
+__v0.19.23__
+- Renamed Capture Efficiency to Mana
+- Renamed Item Luck to Drop Luck
+- Renamed Greater Item Luck to Rare Luck
+
 __v0.19.22__
 - Removed the commands `trade` and `release` because I'm too lazy to work on them and they kinda sucked
 
@@ -62,50 +67,50 @@ Examples: nick monkey type4
 nick type4 type4
 nick type4 type2
 
-v0.19.8
-- You can now browse through your items with buttons after using inv [item name] or ìnv random
+__v0.19.8__
+- You can now browse through your items with buttons after using inv [item name] or inv random
 - I've also improved the embeds by making the spacing more consistent so all of the item details are always in the same spots
 
-v0.19.7
+__v0.19.7__
 - Added a "Random" button to the captures embed
 - New command: countdown. It tracks some countdowns for cool stuff
 
-v0.19.6
+__v0.19.6__
 - Bosses now generate with a unique name (using the logic of truename from nick)
 
 [Minor Patch]
 - Greater Item Luck now operates based on average drop chance and brings the drop chances of all of a monster's drops closer to that value without changing the overall average itself 
 
-v0.19.5
+__v0.19.5__
 - nick now has a more detailed help page, explaining all the possible arguments
 - The results obtained with nick can now be rerolled as often as you want with a simple button press!
 - nick now also has a new argument called truename. If you use this argument then the command will generate a word that (usually) didn't exist before instead of a normal nickname
 
-v0.19.4
+__v0.19.4__
 - help has been reworked to show commands sorted by categories. It also has short descriptions for what each command does
 
-v0.19.3
+__v0.19.3__
 - New variety command: scp
 Use it to get a random scp article. You can also do scp [number] to get a specific one
 
-v0.19.2
+__v0.19.2__
 - Minor fixes
 - Removed the treasure feature & command (it was lame)
 
-v0.19.1
+__v0.19.1__
 - Fixed various minor things, including usernames with special characters in them breaking the formatting in most bot messages. For now the special characters are simply removed from the username. This might cause other issues later, let's find out lol
 
 [Minor Patch]
 - Added a new consumable: Glowing Bulb. It is dropped by Abyssal Eels (rank B, found in Ocean) very frequently and can be used to greatly lower your monster luck. I made this item so high rank players can still encounter lots of low rank monsters
 - Fixed negative monster luck making shinies impossible to spawn in some cases 
 
-v0.19.0
+__v0.19.0__
 - Added about 130 shiny monster images, including all D-Rank shinies
 - Shinies which I haven't made images for will all have the same placeholder image from now on
 - Removed all shiny monster descriptions
 - Increased prices for shinies in the shop
 
-v0.18.0
+__v0.18.0__
 - Added capture chains: A new shiny hunting method that allows you to hunt for specific monsters
 - Simply use capture on one species of monster several times in a row to build up a chain
 - The higher the chain gets, the higher the shiny chance for that particular monster will become
@@ -113,13 +118,13 @@ v0.18.0
 - The chain only boosts the shiny chance when you use encounter so fullradar for example will not benefit from it
 - For monsters of lower ranks the chains will generally need to be longer to reach high shiny chances 
 
-v0.17.0
+__v0.17.0__
 - If you have a monster's alternate form (so shiny or non shiny) then it will appear as a thumbnail in captures when viewing the monster
 
 [Minor Patch]
 - Fixed typo in the code that caused some embeds to fail after being posted initially
 
-v0.16.0
+__v0.16.0__
 - clip now no longer considers arguments as regular expressions
 - However I've added tags to each clip (examples: funny, spelunky)
 - When you use the command, every argument (separated by empty spaces) will be used to match either the title or a tag of the clips. Results are only chosen if all of the arguments match something for them
@@ -130,7 +135,7 @@ v0.16.0
 - Fixed some nick options having line breaks in them
 - Fixed inv sometimes displaying incorrect item values
 
-v0.15.0
+__v0.15.0__
 Renamed isaac to fate (it might include other things besides isaac some day)
 Also added characters, trinkets and pocket items to it as additional categories 
 

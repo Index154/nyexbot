@@ -13,7 +13,7 @@ module.exports = {
         '- Has an increased cooldown of 2.5 seconds',
         '- Higher Attack and Speed stats will make this action more likely to succeed',
         '- Winning a fight usually grants EXP and Gold. Sometimes you can also get item drops',
-        '- Item drop rates are affected by your Item Luck and Greater Item Luck stats'
+        '- Item drop rates are affected by your Drop Luck and Rare Luck stats'
     ],
     category: 'main',
 	
@@ -338,7 +338,7 @@ module.exports = {
                 }
                 averageChance = averageChance / chances.length;
 
-                // Determine drop chance variation per item by distributing the Greater Item Luck among them evenly
+                // Determine drop chance variation per item by distributing the Rare Luck among them evenly
                 var posCount = 0;
                 var negCount = 0;
                 for(x = 0; x < drop_count; x++){
