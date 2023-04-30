@@ -822,10 +822,22 @@ module.exports = {
 	    
 	    // Prepare output. Anything that is <= 0 is implied to be 0 so it is not included in the output
 	    var output = "";
-	    if(days > 0){output += days + " day" + dayS + ", ";}
-	    if(hours > 0){output += hours + " hour" + hourS + ", ";}
-	    if(minutes > 0){output += minutes + " minute" + minS + ", ";}
-	    output += input + " second" + secS;
+	    if(days > 0){
+			if(output != ""){output += ", ";}
+			output += days + " day" + dayS;
+		}
+	    if(hours > 0){
+			if(output != ""){output += ", ";}
+			output += hours + " hour" + hourS;
+		}
+	    if(minutes > 0){
+			if(output != ""){output += ", ";}
+			output += minutes + " minute" + minS;
+		}
+	    if(input > 0){
+			if(output != ""){output += ", ";}
+			output += input + " second" + secS;
+		}
 	    
 	    // Replace the last comma in the output with &
 	    output = output.replace(/\,(?=[^,]*$)/, " &");
@@ -837,7 +849,7 @@ module.exports = {
     // Output: Boolean
 	exists(input){
 	    // Check if input exists
-	    if(input !== "" && input !== null && input !== undefined){
+	    if(input !== "" && input !== null && input !== undefined && input !== NaN){
 	        return true;
 	    }else{
 	        return false;
@@ -979,7 +991,6 @@ module.exports = {
 			
 			// Loop through arguments, turning them into parts of the query
 			for(i = 0; i < args.length; i++){
-				if(args[i])
 				args[i] = "(entries.entryTags LIKE '%" + args[i].toLowerCase() + "%' OR entries.entryName LIKE '%" + args[i].toLowerCase() + "%')";
 			}
 			
@@ -1007,7 +1018,7 @@ module.exports = {
 			}
 
 			// Prepare and send output
-			// Remove duplicates! TODO
+			// TODO: Remove duplicates! (?)
 			for(i = 0; i < rows.length; i++){
 				rows[i] = rows[i].entryName + ":\n" + rows[i].content + "\nTags: " + rows[i].entryTags;
 			}

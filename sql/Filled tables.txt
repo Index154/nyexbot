@@ -89,3 +89,15 @@ create table entries(
 );
 Filling Method: Automatic
 Requires: entryTypes
+
+reminders:
+	create table reminders(
+		reminderId smallint unsigned unique auto_increment not null,
+		text varchar(250) not null,
+		channelId varchar(20) not null,
+		userId varchar(20) not null,
+		timestamp int(11) not null,
+		repeating int(11),
+		primary key (reminderId)
+	);
+Filling method: Natural

@@ -431,3 +431,44 @@ client.login(token);
 var stillAlive = setInterval(function() {
     console.log("Still alive! " + Date());
 }, 300 * 1000);
+
+// Check reminders once per minute
+var reminderCheck = setInterval(async function() {
+
+    var d = new Date();
+    var currentEpoch = Math.floor(d.getTime() / 1000);
+    var maxTimestamp = currentEpoch + 30;
+
+    // Query database table for reminders matching the current timestamp +/- 30 seconds
+    var [rows] = await con.execute({sql: `
+        SELECT reminderId, text, userId, channelId, timestamp, repeating
+        FROM reminders
+        WHERE timestamp BETWEEN 0 AND ${maxTimestamp};
+    `, rowsAsArray: false });
+
+    // Loop through all the activated reminders
+    for(i = 0; i < rows.length; i++){
+
+        // If the reminder is set to repeat then update it with a new notification time. Otherwise delete it from the database
+        var repeatingInfo = "";
+        if(lib.exists(rows[i].repeating)){
+            var newTimestamp = currentEpoch + rows[i].repeating;
+            repeatingInfo = "\n(Repeating in " + lib.secondsToTime(rows[i].repeating) + ")";
+            var [rowsB] = await con.execute({sql: `
+                UPDATE reminders
+                SET timestamp = ${newTimestamp}
+                WHERE reminderId = ${rows[i].reminderId};
+            `, rowsAsArray: false });
+        }else{
+            var [rowsC] = await con.execute({sql: `
+                DELETE
+                FROM reminders
+                WHERE reminderId = ${rows[i].reminderId};
+            `, rowsAsArray: false });
+        }
+
+        // Send a notification for every result that was found
+        client.channels.cache.get(rows[i].channelId).send({ content: `<@${rows[i].userId}>` + " - This is your reminder with the ID " + rows[i].reminderId + ":\n" + rows[i].text + repeatingInfo});
+    }
+
+}, 60 * 1000);
