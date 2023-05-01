@@ -31,6 +31,12 @@ module.exports = {
             return;
         }
 
+        // Test
+        if(lib.exists(args[0]) && (args[0].toLowerCase() == "test" )){
+            message.reply({ content: "Testing!", allowedMentions: { repliedUser: false }});
+            return;
+        }
+
         // Send text to me if I want to
         if(lib.exists(args[0]) && (args[0].toLowerCase() == "sendme" || args[0].toLowerCase() == "send")){
             message.client.users.fetch(id, false).then((tempUser) => {

@@ -806,6 +806,8 @@ module.exports = {
 	secondsToTime(input){
 	    // Get individual fragments
 	    input = Math.floor(parseInt(input));
+		var years = Math.floor(input / 31536000);
+		input -= years * 31536000;
 	    var days = Math.floor(input / 86400);
 	    input -= days * 86400;
 	    var hours = Math.floor(input / 3600);
@@ -814,7 +816,8 @@ module.exports = {
 	    input -= minutes * 60;
 	    
 	    // Grammar fix
-	    var dayS = "s", hourS = "s", minS = "s", secS = "s";
+	    var yearS = "s", dayS = "s", hourS = "s", minS = "s", secS = "s";
+		if(years == 1){yearS = "";}
 	    if(days == 1){dayS = "";}
 	    if(hours == 1){hourS = "";}
 	    if(minutes == 1){minS = "";}
@@ -822,6 +825,9 @@ module.exports = {
 	    
 	    // Prepare output. Anything that is <= 0 is implied to be 0 so it is not included in the output
 	    var output = "";
+		if(years > 0){
+			output += years + " year" + yearS;
+		}
 	    if(days > 0){
 			if(output != ""){output += ", ";}
 			output += days + " day" + dayS;

@@ -43,19 +43,29 @@ module.exports = {
                     WHERE userId = '${userID}';
 			    `, rowsAsArray: false });
 
+                // Assemble a basic embed
+        	    var outputEmbed = new Discord.MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle("Your active reminders");
+
                 // Build list / formatting
-                var reminderList = "";
                 for(i = 0; i < rows.length; i++){
                     var repeatInfo = "";
                     if(rows[i].repeating != null){
-                        repeatInfo = " - (repeating every " + lib.secondsToTime(rows[i].repeating) + ")";
+                        repeatInfo = " - (Repeating every " + lib.secondsToTime(rows[i].repeating) + ")";
                     }
-                    reminderList += "\nID **" + rows[i].reminderId + "** --- <t:" + rows[i].timestamp + ":d> <t:" + rows[i].timestamp + ":t> = " + rows[i].text + repeatInfo;
+                    outputEmbed.addFields(
+                        { name: "ID " + rows[i].reminderId + " - " + rows[i].text, value: "<t:" + rows[i].timestamp + ":d> <t:" + rows[i].timestamp + ":t> / <t:" + rows[i].timestamp + ":R>" + repeatInfo, inline: false }
+                    );
                 }
 
                 // Output
-                if(reminderList == ""){reminderList = "\nYou have no reminders!";}
-                message.reply({ content: "__Your active reminders:__" + reminderList, allowedMentions: { repliedUser: false }});
+                if(rows.length < 1){
+                    outputEmbed.addFields(
+                        { name: "You have no reminders!", value: "Too bad...", inline: false }
+                    );
+                }
+                message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }});
 
             }
             getReminders(user.id);
@@ -102,7 +112,7 @@ module.exports = {
         // Examples: "repeat every 5 hours", "repeat yearly", "repeat daily", "repeat 8d 10m"
         var repeatingInterval = 0;
         var repeatingInfo = "";
-        function intervalFromString(input){
+        function intervalFromString(input, type){
 
             // Function for extracting a time interval from a string
             function checkTimeString(timeString){
@@ -125,15 +135,16 @@ module.exports = {
             var years = checkTimeString("y");
             var interval = ((((((years * 365) + days) * 24) + hours) * 60) + minutes) * 60;
 
-            // If the time interval is an exact multiple of years then account for leap days!
-            if(interval % 31536000 == 0){ interval = lib.correctLeapDays(interval); }
+            // If the time interval is an exact multiple of years then account for leap days! Do not do this for repeating intervals
+            if(type != "repeat" && interval % 31536000 == 0){ interval = lib.correctLeapDays(interval); }
             return interval;
 
         }
         if(allArgs.toLowerCase().includes("repeat")){
             var repeatSplit = allArgs.split("repeat");
-            allArgs = repeatSplit[0];
-            repeatingInterval = intervalFromString(repeatSplit[1].toLowerCase());
+            repeatingInterval = intervalFromString(repeatSplit[repeatSplit.length - 1].toLowerCase(), "repeat");
+            repeatSplit.splice(-1, 1);
+            allArgs = repeatSplit.join("repeat");
             if(repeatingInterval != 0){
                 repeatingInfo = " repeating every " + lib.secondsToTime(repeatingInterval);
             }
@@ -148,11 +159,10 @@ module.exports = {
         // Convert any other time definition in the arguments before the word "to" into a timestamp. Abort if nothing is found or if the timestamp is in the past
         var creationTime = Math.floor(message.createdTimestamp / 1000);
         var toSplit = allArgs.split(" to ");
-        reminderText = toSplit[1].trim();
         function timestampFromString(input, creationTime){
             
             var result = 0;
-            var timestampInterval = intervalFromString(input);
+            var timestampInterval = intervalFromString(input, "reminder");
             if(timestampInterval > 0){
                 // Found a simple time interval in the arguments. Add it to the current time to get the reminder timestamp
                 result = creationTime + timestampInterval;
@@ -190,6 +200,8 @@ module.exports = {
 
         }
         var timestamp = timestampFromString(toSplit[0], creationTime);
+        toSplit.splice(0, 1);
+        var reminderText = toSplit.join(" to ").trim().replace(/'/g, "\\'");;
         if(timestamp == 0 || timestamp == null){
             return message.reply({ content: "\u274C Could not find a reminder time interval or date in your message! Check `" + prefix + "help remindme` for further information about this command", allowedMentions: { repliedUser: false }});
         }else if(timestamp <= Math.floor(new Date() / 1000)){
@@ -198,6 +210,7 @@ module.exports = {
 
         // Save the reminder to the database
         async function saveReminder(channelID, userID, text, repeatingInterval, timestamp){
+
             var query = `
                 INSERT INTO reminders
                 (text, channelId, userId, timestamp) values
