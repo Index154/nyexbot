@@ -1,3 +1,8 @@
+__v0.19.25__
+- Prevented setting reminders for the past
+- If a reminder is set to happen one or more years from now then it will now account for leap years. This means that yearly reminders should now always be on the same date
+- Modified the database so that the number of reminders that can be made before there are no IDs left is now 18446744073709551615
+
 __v0.19.24__
 - New command for my personal use. Hehe
 - New command: `remindme` for creating custom reminders (use `help remindme` to learn how to use it)

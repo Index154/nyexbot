@@ -452,13 +452,18 @@ var reminderCheck = setInterval(async function() {
         // If the reminder is set to repeat then update it with a new notification time. Otherwise delete it from the database
         var repeatingInfo = "";
         if(lib.exists(rows[i].repeating)){
+            
+            // If the repeating interval is a multiple of years then account for leap days
             var newTimestamp = currentEpoch + rows[i].repeating;
+            if(rows[i].repeating % 31536000 == 0){ newTimestamp = currentEpoch + lib.correctLeapDays(rows[i].repeating); }
             repeatingInfo = "\n(Repeating in " + lib.secondsToTime(rows[i].repeating) + ")";
+
             var [rowsB] = await con.execute({sql: `
                 UPDATE reminders
                 SET timestamp = ${newTimestamp}
                 WHERE reminderId = ${rows[i].reminderId};
             `, rowsAsArray: false });
+
         }else{
             var [rowsC] = await con.execute({sql: `
                 DELETE

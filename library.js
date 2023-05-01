@@ -1494,6 +1494,53 @@ module.exports = {
         if(resultIndex == 0){resultIndex = parseInt(("" + userId).slice(0, 2));}
         var result = items[resultIndex];
 		return result;
+	},
+
+	// Input: Integer / Unix timestamp in seconds
+	// Function: Checks for leap days between the current time and the given input and adjusts the timestamp to correct yearly dates
+    // Output: Integer / Unix timestamp in seconds
+	correctLeapDays(timestamp){
+		// Get current year
+		var d = new Date();
+		var todayTimestamp = Math.floor(d.getTime() / 1000);
+		var year = d.getUTCFullYear();
+		var month = d.getUTCMonth() + 1;
+
+		// Check the day, year and month of the timestamp added to the current time
+		var futureTimestamp = todayTimestamp + timestamp;
+		var futureD = new Date(futureTimestamp * 1000);
+		var futureYear = futureD.getUTCFullYear();
+		var futureMonth = futureD.getUTCMonth() + 1;
+
+		// Ignore the future year if the timestamp is before March
+		// Ignore the current year if February has already passed
+		if(futureMonth < 3){ futureYear--; }
+		if(month > 2){ year++; }
+		var loopCount = 1 + futureYear - year;
+
+		// Loop through all the years between the current timestamp and the future timestamp and check if they are leap years
+		// Add a day to the timestamp for every positive
+		for(i = 0; i < loopCount; i++){
+
+			var leapYear = false;
+			if(year % 4 == 0){
+				if(year % 100 == 0){
+					if(year % 400 == 0){
+						leapYear = true;
+					}
+				}else{
+					leapYear = true;
+				}
+			}
+
+			if(leapYear){
+				timestamp += 24 * 60 * 60;
+			}
+
+			year++;
+		}
+
+		return timestamp;
 	}
 	
 };

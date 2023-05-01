@@ -95,7 +95,7 @@ module.exports = {
         var allArgs = args.join(" ");
         var secondsInfo = "";
         if(allArgs.toLowerCase().includes("seconds")){
-            secondsInfo = "\nYou seem to have tried to specify an amount of seconds for this reminder. This command does not support such precise time intervals!";
+            secondsInfo = "\nInfo: This command does not support time intervals more precise than minutes!";
         }
 
         // Check if there is a "repeat" keyword in the arguments. If it exists then check for a repeating interval after it
@@ -104,6 +104,7 @@ module.exports = {
         var repeatingInfo = "";
         function intervalFromString(input){
 
+            // Function for extracting a time interval from a string
             function checkTimeString(timeString){
                 var reg = new RegExp("[0-9]+ " + timeString + "|[0-9]+" + timeString + "| " + timeString + "|^" + timeString, "g");
                 var matches = input.match(reg);
@@ -116,12 +117,16 @@ module.exports = {
                 return result;
             }
 
+            // Check for time intervals for minutes, hours, days and years
+            // Then add them together
             var minutes = checkTimeString("m");
             var hours = checkTimeString("h");
             var days = checkTimeString("d");
             var years = checkTimeString("y");
-
             var interval = ((((((years * 365) + days) * 24) + hours) * 60) + minutes) * 60;
+
+            // If the time interval is an exact multiple of years then account for leap days!
+            if(interval % 31536000 == 0){ interval = lib.correctLeapDays(interval); }
             return interval;
 
         }
@@ -140,7 +145,7 @@ module.exports = {
             return message.reply({ content: "\u274C Your command does not contain the string \" to \" (after the desired reminder time). This is required in order to distinguish the content of your reminder!", allowedMentions: { repliedUser: false }});
         }
 
-        // Convert any other time definition in the arguments before the word "to" into a timestamp. Abort if nothing is found
+        // Convert any other time definition in the arguments before the word "to" into a timestamp. Abort if nothing is found or if the timestamp is in the past
         var creationTime = Math.floor(message.createdTimestamp / 1000);
         var toSplit = allArgs.split(" to ");
         reminderText = toSplit[1].trim();
@@ -187,6 +192,8 @@ module.exports = {
         var timestamp = timestampFromString(toSplit[0], creationTime);
         if(timestamp == 0 || timestamp == null){
             return message.reply({ content: "\u274C Could not find a reminder time interval or date in your message! Check `" + prefix + "help remindme` for further information about this command", allowedMentions: { repliedUser: false }});
+        }else if(timestamp <= Math.floor(new Date() / 1000)){
+            return message.reply({ content: "\u274C You may only set reminders for the future!", allowedMentions: { repliedUser: false }});
         }
 
         // Save the reminder to the database
