@@ -12,4 +12,6 @@ __**Possibilities:**__
 - NG+ mechanics? Maybe let the player reset their level back to 1 and pick an additional class after reaching level 10 again?
 - Public availability of the bot?
 - A command to reset your account? (Except for trophies? Maybe combine this with the NG+ idea?)
-- Custom reminders?
+- Let users update reminders?
+- Allow users to define their timezone for reminders?
+- Get a role when joining vc and lose it when leaving (for vc-text access)

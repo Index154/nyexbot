@@ -989,7 +989,7 @@ module.exports = {
 
 	// Input: String, object, array
     // Dependency: readFile, createPagedNightEmbed
-    // Function: Gets one or more results from a list of quotes/clips/images/etc.
+    // Function: Gets one or more results from a database of quotes/clips/images/etc.
 	async searchableListNew(fileName, message, args){
 
 		// If there was at least one argument, try to pick entries that match the search

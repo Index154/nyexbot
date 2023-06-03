@@ -1,4 +1,4 @@
 __**Known issues to fix:**__
 - Transform can transform a Vortex into the same Vortex, making it sometimes useless
-- Missing and incorrect tags on `clip` entries
+- Remind doesn't support monthly reminders
 <:sp:860269564779429908>
