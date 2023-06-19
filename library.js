@@ -932,7 +932,7 @@ module.exports = {
     // Function: Gets one or more results from a list of quotes/clips/images/etc.
 	searchableList(fileName, message, args){
 		// Load all things as a list and turn it into a String for searching
-		var thingList = lib.readFile("./nyextest/data/imported/" + fileName + ".txt").split("\n");
+		var thingList = lib.readFile("../nyextest/data/imported/" + fileName + ".txt").split("\n");
 		var things = thingList.join("|").toLowerCase();
 		
 		// If there was an argument, try to pick a thing that matches it
