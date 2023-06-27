@@ -7,11 +7,11 @@ module.exports = {
 	descriptions: ['Displays a list of areas', 'Displays a list of monsters in an area', 'Displays a list of monsters the user has yet to capture, available in the specified area'],
     shortDescription: 'Check areas and their monsters',
     weight: 20,
-	addendum: 'The [area name] argument can be replaced with the word "realm" to inspect a realm you are currently in',
     addendum: [
         '- You can `{prefix}move` between regular areas at will',
         '- The area you are in determines which monsters you can encounter',
-        '- Some areas called realms are only accessible through special items called Fragments'
+        '- Some areas called realms are only accessible through special items called Fragments',
+        '- The [area name] argument can be replaced with the word "realm" to inspect a realm you are currently in'
     ],
     category: 'info',
 	

@@ -7,7 +7,6 @@ module.exports = {
 	descriptions: ['Displays your stats', 'Assigns stat points to one of your stats', 'Displays the stats of a different user', 'Displays the stats of a random user', 'Switches your monster display mode to random names and images (funny) or back to normal'],
     shortDescription: 'Check a user\'s stats and assign stat points',
     weight: 15,
-	addendum: 'Stat points can only be assigned to Attack, Speed, Mana, Monster Luck, Drop Luck and Rare Luck ',
     addendum: [
         '- You can temporarily alter your stats with `{prefix}use`',
         '- Temporary stat changes are shown in parentheses behind the stat totals',
@@ -19,7 +18,8 @@ module.exports = {
         '- Monster Luck: Increases your chance of encountering rarer monsters',
         '- Drop Luck: Increases your chance of obtaining drops from fights',
         '- Rare Luck: Makes rarer item drops more common and common item drops rarer. Does not affect the overall amount of drops you get!',
-        '- Rank: At higher ranks you will encounter higher-ranked monsters a lot more frequently'
+        '- Rank: At higher ranks you will encounter higher-ranked monsters a lot more frequently',
+        '- Stat points can only be assigned to Attack, Speed, Mana, Monster Luck, Drop Luck and Rare Luck '
     ],
     category: 'userinfo',
 	

@@ -96,8 +96,8 @@ reminders:
 		text varchar(250) not null,
 		channelId varchar(20) not null,
 		userId varchar(20) not null,
-		timestamp int(11) not null,
-		repeating int(11),
+		timestamp unsigned bigint not null,
+		repeating unsigned bigint,
 		primary key (reminderId)
 	);
 Filling method: Natural

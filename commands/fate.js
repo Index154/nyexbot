@@ -5,7 +5,7 @@ module.exports = {
 	name: 'fate',
 	usages: ['isaac', 'pokemon'],
 	descriptions: ['', ''],
-    addendum: 'Tells you about the objects that are important to your destiny!',
+    addendum: ['Tells you about the objects that are important to your destiny!'],
     shortDescription: 'Generate your destiny',
     weight: 45,
     category: 'variety',

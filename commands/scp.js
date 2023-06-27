@@ -98,7 +98,11 @@ module.exports = {
                     title = "No title found...";
                     submitSCPError(SCPNumber, "title");
                 }else{
-                    title = decodeHtmlEntity(title[0].replace(/\<a href=\"\/scp-.*?\"\>/g, "").replace(/\<\/a\>/g, "").replace(/\<\/li\>/g, "").replace(/\<.*?\>/g, ""));
+                    title = decodeHtmlEntity(title[0]
+                        .replace(/\<a href=\"\/scp-.*?\"\>/g, "")
+                        .replace(/\<\/a\>/g, "")
+                        .replace(/\<\/li\>/g, "")
+                        .replace(/\<.*?\>/g, ""));
                     if(title.length > 255){
                         title = title.substring(0, 250) + "...";
                     }
@@ -116,7 +120,12 @@ module.exports = {
                     description = "No description found...";
                     submitSCPError(SCPNumber, "description");
                 }else{
-                    description = decodeHtmlEntity(description[0].replace(/\<sup class.*?\<\/sup\>/, "").replace(/\<p\>\<strong\>Description:/g, "").replace(/\<\/strong\> /g, "").replace(/\<\/p\>/g, "").replace(/\<.*?\>/g, ""));
+                    description = decodeHtmlEntity(description[0]
+                        .replace(/\<sup class.*?\<\/sup\>/, "")
+                        .replace(/\<p\>\<strong\>Description:/g, "")
+                        .replace(/\<\/strong\> /g, "")
+                        .replace(/\<\/p\>/g, "")
+                        .replace(/\<.*?\>/g, ""));
                     if(description.length > 300){
                         description = description.substring(0, 300) + "...";
                     }

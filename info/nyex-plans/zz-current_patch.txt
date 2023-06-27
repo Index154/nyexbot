@@ -1,2 +1,3 @@
 __v0.19.27__
-- 
+- Fixed a couple of help pages for specific commands not being useable
+- New command `tenor`: Can be used to view random gifs from tenor.com

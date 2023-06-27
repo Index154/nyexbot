@@ -185,7 +185,8 @@ Research
 ?
 
 SCP
-/
+- HTML page fetching (also used in tenor)
+- Other stuff that is also in tenor
 
 Sell
 /
@@ -203,6 +204,9 @@ Stats
 /
 
 Submit
+/
+
+Tenor
 /
 
 Todo
