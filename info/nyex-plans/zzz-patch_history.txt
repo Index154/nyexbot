@@ -1,3 +1,7 @@
+__v0.19.27__
+- Fixed a couple of help pages for specific commands not being useable
+- New command `tenor`: Can be used to view random gifs from tenor.com
+
 __v0.19.26__
 - Fixed yearly repeating reminders being overcorrected for leap days
 - Some time displays will now properly show 365 days as a year

@@ -33,7 +33,7 @@ module.exports = {
             var wordList = words.split("\n");
 
             args[0] = wordList[lib.rand(0, wordList.length - 1)] + " " + wordList[lib.rand(0, wordList.length - 1)];
-            args[0] = args[0].replace(" ", "-");
+            args[0] = args[0].replace(/ /g, "-");
             
         }
         var allArgs = args.join(" ");
@@ -79,20 +79,19 @@ module.exports = {
                     gifFigures = "No gifs found...";
                     submitTenorError(url, "None");
                 }else{
-                    /*
-                    var gifFigures = decodeHtmlEntity(gifFigures[lib.rand(0, gifFigures.length - 1)]
-                        .replace(/GifListItem clickable.*?\<img src="/, "")
-                        .replace(/".*\<\/figure\>/, "")
-                        );
-                    */
-
+                    
                     for(i = 0; i < gifFigures.length; i++){
                         gifFigures[i] = decodeHtmlEntity(gifFigures[i]
                             .replace(/GifListItem clickable.*?\<img src="/, "")
                             .replace(/".*\<\/figure\>/, "")
                             );
+                        gifFigures[i] = "Result for the search term **" + allArgs.replace(/\-/g, " ") + "**\n" + gifFigures[i];
 
-                        gifFigures[i] = "Result for the search term **" + allArgs + "**\n" + gifFigures[i];
+                        // Remove bad results
+                        if(gifFigures[i].includes("/assets/img")){
+                            gifFigures.splice(i, 1);
+                            i--;
+                        }
                     }
                 }
 
