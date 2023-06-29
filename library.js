@@ -1547,6 +1547,35 @@ module.exports = {
 		}
 
 		return timestamp;
-	}
+	},
+
+	// Input: String
+    // Function: Decodes HTML string
+    // Output: String
+	decodeHtmlEntity(input) {
+		return input
+			.replace(/&quot;/g, "\"")
+			.replace(/&amp;/g, "&")
+			.replace(/&#(\d+);/g, function(match, dec) {
+				return String.fromCharCode(dec);
+			});
+	},
+
+	// Input: String
+    // Dependency: 
+    // Function: Fetches an HTML page as a string
+    // Output: String
+    async getHTML(url) {
+        try {
+            // Get the response body
+            var response = await fetch(url);
+            var body = await response.text();
+			return body;
+        }
+        catch(exception){
+            console.error("Error fetching HTML from " + url);
+			return "error";
+        }
+    }
 	
 };

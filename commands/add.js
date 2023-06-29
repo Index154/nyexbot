@@ -32,11 +32,11 @@ module.exports = {
         }
         // Add new thing to list
         var listName = args[0];
-        var list = lib.readFile("./nyextest/data/imported/" + listName + ".txt");
+        var list = lib.readFile("../nyextest/data/imported/" + listName + ".txt");
         args.splice(0, 1);
         var allArgs = args.join(" ");
         list = list + "\n" + allArgs;
-        lib.saveFile("./nyextest/data/imported/" + listName + ".txt", list);
+        lib.saveFile("../nyextest/data/imported/" + listName + ".txt", list);
         message.reply({ content: "New entry added to **" + listName + "**!", allowedMentions: { repliedUser: false }});
         
 	},
