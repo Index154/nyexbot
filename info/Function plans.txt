@@ -15,7 +15,6 @@ App
 - Alert announcement channels (happens in app (worldboss spawn event and update event) and worldboss)
 - Try to execute commands (happens in app in both message and interaction events)
 - Check for custom server prefix (happens in all commands)
-- Error handling (should also happen in other commands and functions)
 
 Library
 - Paged embed functions (combine their common points into one somehow?)
@@ -186,7 +185,6 @@ Research
 ?
 
 SCP
-- HTML page fetching (also used in tenor and app)
 - Other stuff that is also in tenor
 
 Sell

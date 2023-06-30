@@ -79,80 +79,63 @@ module.exports = {
         }
 
         async function getSCP(SCPNumber, seriesURL) {
-            try {
-                // HTML decoding function
-                var decodeHtmlEntity = function(str) {
-                    return str.replace(/&quot;/g, "\"").replace(/&amp;/g, "&").replace(/&#(\d+);/g, function(match, dec) {
-                        return String.fromCharCode(dec);
-                    });
-                };
-
-                // Get the name
-                var response = await fetch(seriesURL);
-                var body = await response.text();
-                var SCPLink = "https://scp-wiki.wikidot.com/scp-" + SCPNumber;
-                var reg = "\<a href=\"\/scp-" + SCPNumber + "\"\>.*?\<\/a\> - .*?\<\/li\>";
-                reg = new RegExp(reg, "g");
-                var title = body.match(reg);
-                if(!lib.exists(title)){
-                    title = "No title found...";
-                    submitSCPError(SCPNumber, "title");
-                }else{
-                    title = decodeHtmlEntity(title[0]
-                        .replace(/\<a href=\"\/scp-.*?\"\>/g, "")
-                        .replace(/\<\/a\>/g, "")
-                        .replace(/\<\/li\>/g, "")
-                        .replace(/\<.*?\>/g, ""));
-                    if(title.length > 255){
-                        title = title.substring(0, 250) + "...";
-                    }
+            
+            // Get the name
+            var body = await lib.getHTML(seriesURL);
+            var SCPLink = "https://scp-wiki.wikidot.com/scp-" + SCPNumber;
+            var reg = "\<a href=\"\/scp-" + SCPNumber + "\"\>.*?\<\/a\> - .*?\<\/li\>";
+            reg = new RegExp(reg, "g");
+            var title = body.match(reg);
+            if(!lib.exists(title)){
+                title = "No title found...";
+                submitSCPError(SCPNumber, "title");
+            }else{
+                title = lib.decodeHTMLEntity(title[0]
+                    .replace(/\<a href=\"\/scp-.*?\"\>/g, "")
+                    .replace(/\<\/a\>/g, "")
+                    .replace(/\<\/li\>/g, "")
+                    .replace(/\<.*?\>/g, ""));
+                if(title.length > 255){
+                    title = title.substring(0, 250) + "...";
                 }
+            }
 
-                // Get the body of the SCP article
-                response = await fetch(SCPLink);
-                body = await response.text();
-
-                // Extract the description
-                reg = "\<p\>\<strong\>Description:\<\/strong\> .*?\<\/p\>";
-                reg = new RegExp(reg, "g");
-                var description = body.match(reg);
-                if(!lib.exists(description)){
-                    description = "No description found...";
-                    submitSCPError(SCPNumber, "description");
-                }else{
-                    description = decodeHtmlEntity(description[0]
-                        .replace(/\<sup class.*?\<\/sup\>/, "")
-                        .replace(/\<p\>\<strong\>Description:/g, "")
-                        .replace(/\<\/strong\> /g, "")
-                        .replace(/\<\/p\>/g, "")
-                        .replace(/\<.*?\>/g, ""));
-                    if(description.length > 300){
-                        description = description.substring(0, 300) + "...";
-                    }
+            // Get the description
+            body = await lib.getHTML(SCPLink);
+            reg = "\<p\>\<strong\>Description:\<\/strong\> .*?\<\/p\>";
+            reg = new RegExp(reg, "g");
+            var description = body.match(reg);
+            if(!lib.exists(description)){
+                description = "No description found...";
+                submitSCPError(SCPNumber, "description");
+            }else{
+                description = lib.decodeHTMLEntity(description[0]
+                    .replace(/\<sup class.*?\<\/sup\>/, "")
+                    .replace(/\<p\>\<strong\>Description:/g, "")
+                    .replace(/\<\/strong\> /g, "")
+                    .replace(/\<\/p\>/g, "")
+                    .replace(/\<.*?\>/g, ""));
+                if(description.length > 300){
+                    description = description.substring(0, 300) + "...";
                 }
-
-                // Button
-                var button = new MessageButton()
-                    .setLabel("Full article")
-                    .setStyle("LINK")
-                    .setURL(SCPLink);
-                var row = new MessageActionRow().addComponents([button]);
-
-                // Embed
-                var outputEmbed = new Discord.MessageEmbed()
-                    .setColor("#ffffff")
-                    .setTitle(title)
-                    .setDescription(description);
-
-                // Output
-                message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
-
             }
-            catch(exception){
-                message.reply({ content: "\u274C There was an error fetching SCP-" + SCPNumber + "!\n```javascript\n" + exception + "```", allowedMentions: { repliedUser: false }});
-                console.log("Error fetching SCP-" + SCPNumber + ":");
-                console.log(exception);
-            }
+
+            // Button
+            var button = new MessageButton()
+                .setLabel("Full article")
+                .setStyle("LINK")
+                .setURL(SCPLink);
+            var row = new MessageActionRow().addComponents([button]);
+
+            // Embed
+            var outputEmbed = new Discord.MessageEmbed()
+                .setColor("#ffffff")
+                .setTitle(title)
+                .setDescription(description);
+
+            // Output
+            message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
+            
         }
 	},
 };

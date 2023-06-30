@@ -6,13 +6,14 @@ fs = require('fs');
 lib = require("./library.js");
 mysql = require('mysql2/promise');
 var {token, prefix, testToken, testPrefix, SQLiv, hashedSQLpass} = require('./config.json');
-maintenance = false;
 
 // Change some values if the bot is on the test branch
 const branch = lib.readFile("./isTestBranch.txt");
+var appName = "nyexbot";
 if(branch == "YES"){
     prefix = testPrefix;
     token = testToken;
+    appName = "testapp";
 }
 
 // Decrypt database password
@@ -57,7 +58,7 @@ for (const file of commandFiles) {
 // This event will only trigger one time after logging in
 client.once('ready', async () => {
     // Set presence
-	console.log(Date() + '   |   Bot has been started');
+	console.log(Date() + '  |  ' + appName + ' has been started');
 	client.user.setPresence({
         status: 'online',
         activities: [{
@@ -129,18 +130,11 @@ client.on("guildDelete", guild => {
 client.on('interactionCreate', interaction => {
     var user = interaction.user;
     message = interaction;
+    message.author = message.user;
     user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "").replace(/[\r\n]/gm, "");
     
     // On the test branch: Only react to the bot owner
     if(branch == "YES" && user.id != "214754022832209921") return;
-    
-    // Maintenance mode: Only allow Index to use the bot!
-    if(maintenance){
-        if(user.id != "214754022832209921"){
-            message.reply({ content: "\u274C The bot is currently undergoing maintenance. Please try again later", allowedMentions: { repliedUser: false }});
-            return;
-        }
-    }
 
     // Check whether a world boss should spawn or not
     var worldboss = lib.readFile("./data/worldboss.txt");
@@ -238,23 +232,7 @@ client.on('interactionCreate', interaction => {
 		// Execute command
 		command.execute(message, user, args);
 	} catch (error) {
-		console.error("\nUser: " + user.username + "\nTrigger: " + message.customId + "\nServer: " + message.guild + "\nTime: " + message.createdAt);
-		console.error(error);
-	    
-	    // Create submission message
-        var outputEmbed = new Discord.MessageEmbed()
-        	.setColor('#fc0303')
-        	.setTitle(error.toString())
-        	.setDescription("```\nCause of error:\n" + user.tag + " (" + user.id + ")" + " used this interaction:\n" + message.customId + "```")
-        	.setFooter({ text: "Sent from server with ID " + message.guild + "\n" + message.createdAt });
-        
-        // Notify about the error
-        if(branch == "YES"){
-            message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
-        }else{
-            message.reply({ content: "@ __**" + user.username + "**__```glsl\n# An error has occurred!```All relevant details have automatically been sent to the main server for further investigation", allowedMentions: { repliedUser: false }});
-            if(!maintenance){client.channels.cache.get("859477509178654792").send({ embeds: [outputEmbed] });}
-        }
+		lib.error(message, error, "");
 	}
 	
 });
@@ -350,7 +328,6 @@ client.on('messageCreate', async message => {
         });
     }
     
-    // DISABLED
     /*
     // If the message is part of the bad messages list then react to it
     var badMessages = lib.readFile("./data/bad_messages.txt").split("\n");
@@ -363,14 +340,6 @@ client.on('messageCreate', async message => {
 
     // If the message was sent by a bot or doesn't start with the prefix, stop
     if (!message.content.startsWith(commandPrefix) || user.bot) return;
-
-    // Maintenance mode: Only allow Index to use the bot!
-    if(maintenance){
-        if(user.id != "214754022832209921"){
-            message.reply({ content: "\u274C The bot is currently undergoing maintenance. Please try again later", allowedMentions: { repliedUser: false }});
-            return;
-        }
-    }
 
     // Turn the message into an array of values seperated by whitespace, remove the prefix and save the command itself as a seperate variable
     const args = message.content.slice(commandPrefix.length).trim().split(/ +/);
@@ -403,37 +372,24 @@ client.on('messageCreate', async message => {
         // Execute command
 	    command.execute(message, user, args);
     } catch (error) {
-	    console.error("\nUser: " + user.username + "\nTrigger: " + message.content + "\nServer: " + message.guild + "\nTime: " + message.createdAt);
-	    console.error(error);
-	    
-	    // Create submission message
-        var outputEmbed = new Discord.MessageEmbed()
-        	.setColor('#fc0303')
-        	.setTitle(error.toString())
-        	.setDescription("```\nCause of error:\n" + user.tag + " (" + user.id + ")" + " sent this message:\n" + message.content + "```")
-        	.setFooter({ text: "Sent from server with ID " + message.guild + "\n" + message.createdAt });
-        
-        // Notify about the error
-        if(branch == "YES"){
-            message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
-        }else{
-            message.reply({ content: "@ __**" + user.username + "**__```glsl\n# An error has occurred!```All relevant details have automatically been sent to the main server for further investigation", allowedMentions: { repliedUser: false }});
-            if(!maintenance){client.channels.cache.get("859477509178654792").send({ embeds: [outputEmbed] });}
-        }        
+	    lib.error(message, error, "");
 	}
 
 });
 
-// Login to Discord with your app's token
+// Login to Discord with token
 client.login(token);
 
-// Log to know the bot is still alive every 5 minutes
-var stillAlive = setInterval(function() {
-    console.log("Still alive! " + Date());
-}, 300 * 1000);
-
-// Check reminders once per minute (only on the main branch)
+// Main-branch exclusive functions
 if(branch != "YES"){
+
+    // Log to know the bot is still alive every 5 minutes
+    var stillAlive = setInterval(function() {
+        console.log("Still alive! " + Date());
+    }, 300 * 1000);
+
+
+    // Check reminders once per minute
     var reminderCheck = setInterval(async function() {
 
         var d = new Date();
@@ -486,10 +442,9 @@ if(branch != "YES"){
         }
     
     }, 60 * 1000);
-}
 
-// Check for new posts online every 30 minutes (only on the main branch)
-if(branch != "YES"){
+
+    // Check for new posts online every 30 minutes
     var newsCheck = setInterval(async function() {
 
         // Define list of sites to check and the HTML elements to check for changes
@@ -507,7 +462,6 @@ if(branch != "YES"){
 
             // Fetch site body
             var body = await lib.getHTML(siteList[i].link);
-            body = body.split("\n").join("<br>");
             var reg = new RegExp(siteList[i].pattern, "g");
             var results = await body.match(reg);
 
@@ -515,7 +469,7 @@ if(branch != "YES"){
             var filePath = savePath + siteList[i].name + ".txt";
             var previousResult = lib.readFile(filePath);
             if(!lib.exists(results) || !lib.exists(previousResult) || results.length < 1){
-                console.error("No pattern match found for URL " + siteList[i].link);
+                lib.error("", "newsCheck() Error: No pattern match found for site with ID " + i, "");
             }
             else if(results[0] != previousResult){
                 // Add this list to the updated sites list
@@ -531,7 +485,7 @@ if(branch != "YES"){
         if(updateList.length > 0){
             updateList = updateList.join("\n");
             // Send message in my channel or DM me
-            client.channels.cache.get("516288921127092234").send("**One ore more followed pages have been updated!**\n" + updateList);
+            client.channels.cache.get("516288921127092234").send("**Followed pages have been updated!**\n" + updateList);
         }
         
     }, 30 * 60 * 1000);

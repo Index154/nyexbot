@@ -65,26 +65,24 @@ module.exports = {
 
         // Pull nyex-plans content from Discord if I want to
         if(lib.exists(args[0]) && (args[0].toLowerCase() == "pull" || args[0].toLowerCase() == "push")){
-            message.client.channels.cache.get('846802831322775562').messages.fetch('846804108936871997')
-                .then(message => lib.saveFile("../nyextest/info/nyex-plans/1_main_goals.txt", message.content))
-                .catch(console.error);
+            try {
+                message.client.channels.cache.get('846802831322775562').messages.fetch('846804108936871997')
+                    .then(message => lib.saveFile("../nyextest/info/nyex-plans/1_main_goals.txt", message.content));
 
-            message.client.channels.cache.get('846802831322775562').messages.fetch('983429707360006144')
-                .then(message => lib.saveFile("../nyextest/info/nyex-plans/additional_goals.txt", message.content))
-                .catch(console.error);
-            
-            message.client.channels.cache.get('846802831322775562').messages.fetch('983429732727156817')
-                .then(message => lib.saveFile("../nyextest/info/nyex-plans/lower_priority.txt", message.content))
-                .catch(console.error);
-            
-            message.client.channels.cache.get('846802831322775562').messages.fetch('983429746782248960')
-                .then(message => lib.saveFile("../nyextest/info/nyex-plans/possibilities.txt", message.content))
-                .catch(console.error);
+                message.client.channels.cache.get('846802831322775562').messages.fetch('983429707360006144')
+                    .then(message => lib.saveFile("../nyextest/info/nyex-plans/additional_goals.txt", message.content));
+                
+                message.client.channels.cache.get('846802831322775562').messages.fetch('983429732727156817')
+                    .then(message => lib.saveFile("../nyextest/info/nyex-plans/lower_priority.txt", message.content));
+                
+                message.client.channels.cache.get('846802831322775562').messages.fetch('983429746782248960')
+                    .then(message => lib.saveFile("../nyextest/info/nyex-plans/possibilities.txt", message.content));
 
-            message.client.channels.cache.get('846802831322775562').messages.fetch('1012060594918141982')
-                .then(message => lib.saveFile("../nyextest/info/nyex-plans/z-known_issues.txt", message.content))
-                .catch(console.error);
-            
+                message.client.channels.cache.get('846802831322775562').messages.fetch('1012060594918141982')
+                    .then(message => lib.saveFile("../nyextest/info/nyex-plans/z-known_issues.txt", message.content));
+            }catch (error){
+                lib.error(message, error, "");
+            }          
             
             message.reply({ content: "Nyex-plans fetched successfully!", allowedMentions: { repliedUser: false }});
             return;
@@ -132,7 +130,6 @@ module.exports = {
         if(lib.exists(args[0]) && args[0].toLowerCase() == "restart"){
             async function botRestart(){
                 await message.reply({ content: "Restarting bot process!", allowedMentions: {repliedUser: false}});
-                console.log("Triggered manual restart through command");
                 process.exit();
             }
             botRestart();

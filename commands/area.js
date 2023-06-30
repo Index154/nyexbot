@@ -17,7 +17,7 @@ module.exports = {
 	
 	execute(message, user, args) {
 	    var allArgs = args.join(" ");
-        
+
         // Check if the server has a custom prefix and load it
         if(message.guild !== null){
             var serverID = message.guildId;

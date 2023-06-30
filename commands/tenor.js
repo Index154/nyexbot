@@ -45,9 +45,9 @@ module.exports = {
         var url = "https://tenor.com/search/" + allArgs + "-gifs";
         getGif(url, allArgs);
 
-        async function submitTenorError(url, customString){
+        async function submitTenorError(url){
             var errors = lib.readFile("../nyextest/data/imported/TenorErrors.txt").split("\n");
-            var errorToSave = url + " | " + customString;
+            var errorToSave = url;
 
             if(!errors.includes(errorToSave)){
                 errors.push(errorToSave);
@@ -58,55 +58,38 @@ module.exports = {
 
         async function getGif(url, allArgs){
 
-            try {
+            // Fetch the page
+            var body = await lib.getHTML(url);
 
-                // HTML decoding function
-                var decodeHtmlEntity = function(str) {
-                    return str.replace(/&quot;/g, "\"").replace(/&amp;/g, "&").replace(/&#(\d+);/g, function(match, dec) {
-                        return String.fromCharCode(dec);
-                    });
-                };
+            // Extract all the gifs from the result page
+            var reg = "GifListItem clickable.*?\<\/figure\>";
+            reg = new RegExp(reg, "g");
+            var gifFigures = body.match(reg);
+            if(!lib.exists(gifFigures)){
+                gifFigures = "No gifs found...";
+                submitTenorError(url);
+            }else{
+                
+                for(i = 0; i < gifFigures.length; i++){
+                    gifFigures[i] = lib.decodeHTMLEntity(gifFigures[i]
+                        .replace(/GifListItem clickable.*?\<img src="/, "")
+                        .replace(/".*\<\/figure\>/, "")
+                        );
+                    gifFigures[i] = "Result for the search term **" + allArgs.replace(/\-/g, " ") + "**\n" + gifFigures[i];
 
-                // Fetch the page
-                var response = await fetch(url);
-                var body = await response.text();
-
-                // Extract all the gifs from the result page
-                var reg = "GifListItem clickable.*?\<\/figure\>";
-                reg = new RegExp(reg, "g");
-                var gifFigures = body.match(reg);
-                if(!lib.exists(gifFigures)){
-                    gifFigures = "No gifs found...";
-                    submitTenorError(url, "None");
-                }else{
-                    
-                    for(i = 0; i < gifFigures.length; i++){
-                        gifFigures[i] = decodeHtmlEntity(gifFigures[i]
-                            .replace(/GifListItem clickable.*?\<img src="/, "")
-                            .replace(/".*\<\/figure\>/, "")
-                            );
-                        gifFigures[i] = "Result for the search term **" + allArgs.replace(/\-/g, " ") + "**\n" + gifFigures[i];
-
-                        // Remove bad results
-                        if(gifFigures[i].includes("/assets/img")){
-                            gifFigures.splice(i, 1);
-                            i--;
-                        }
+                    // Remove bad results
+                    if(gifFigures[i].includes("/assets/img")){
+                        gifFigures.splice(i, 1);
+                        i--;
                     }
                 }
-
-                // Pick random result from those found
-				var randKey = lib.rand(0, gifFigures.length - 1);
-
-                // Output (paged embed with all gifs)
-                lib.createPagedNightEmbed(gifFigures, gifFigures[randKey], randKey, message);
-                
             }
-            catch(exception){
-                message.reply({ content: "\u274C There was an error fetching the gif from " + url + "!\n```javascript\n" + exception + "```", allowedMentions: { repliedUser: false }});
-                console.log("Error fetching gif from " + url);
-                console.log(exception);
-            }
+
+            // Pick random result from those found
+            var randKey = lib.rand(0, gifFigures.length - 1);
+
+            // Output (paged embed with all gifs)
+            lib.createPagedNightEmbed(gifFigures, gifFigures[randKey], randKey, message);
 
         }
 

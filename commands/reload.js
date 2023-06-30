@@ -25,9 +25,8 @@ module.exports = {
         	const newCommand = require(`./${command.name}.js`);
         	message.client.commands.set(newCommand.name, newCommand);
         } catch (error) {
-            console.log(Date() + '   |   Reload called by ' + user.tag + " in " + message.channel + " with message: " + message.content);
-        	console.error(error);
-        	message.reply({ content: `\u274C There was an error while reloading the command \`${command.name}\`:\n\`${error.message}\``, allowedMentions: { repliedUser: false }});
+        	lib.error(message, error, "");
+        	return;
         }
 
         message.reply({ content: `\`${command.name}\` was reloaded!`, allowedMentions: { repliedUser: false }});

@@ -8,13 +8,12 @@ module.exports = {
     // Input: String, String
     // Dependency: fs
     // Function: Saves the contents in the filepath
-    // Output: None
     saveFile(path, contents){
 	contents = contents.toString();
         fs.writeFile(path, contents, function(err) {
             if(err) {
-                console.log(Date());
-                return console.log(err);
+                console.error(Date() + " - writeFile error: ");
+				console.error(err);
             }
         });
     },
@@ -28,9 +27,8 @@ module.exports = {
             const data = fs.readFileSync(path, 'utf8')
             return data
         } catch (err) {
-            console.log(Date());
-            console.log("readFile warning: File [" + path + "] was not found! Attempting to create file...");
-			lib.saveFile(path, "");
+            console.error(Date() + " - readFile error: ");
+			console.error(err);
 			return "";
         }
     },
@@ -41,8 +39,10 @@ module.exports = {
     rand(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
-        var result = Math.floor(Math.random() * (max - min + 1)) + min;
-        return result;
+		if(max <= min){
+			console.error(Date() + " - Rand error: Max is not greater than min");
+		}
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     },
     
     // Input: Array, string
@@ -1053,68 +1053,68 @@ module.exports = {
     // Function: Creates an interactive embed message with several pages that can be switched between. The list of entries is filled into the newest field of an embed built with a template
 	async embedFieldPagination(msg, embed, pages, buttonList, timeout = 120000){
 		const {MessageActionRow} = require("discord.js");
-
+		
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
 		if (!pages) throw new Error("Pages are not given.");
 		if (!buttonList) throw new Error("Buttons are not given.");
 		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
-		  	throw new Error(
+			throw new Error(
 				"Link buttons are not supported"
-		  	);
+			);
 		if (buttonList.length !== 2) throw new Error("Need two buttons.");
-	  
+	
 		let page = 0;
-	  
+	
 		const row = new MessageActionRow().addComponents(buttonList);
 		var curPage = "";
 		if(pages.length == 1){
 			embed.fields[embed.fields.length - 1].value = pages[page];
-		  	curPage = await msg.reply({
+			curPage = await msg.reply({
 				embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
-		  	});
+			});
 		}else{
-		  	embed.fields[embed.fields.length - 1].value = pages[page];
-		  	curPage = await msg.reply({
+			embed.fields[embed.fields.length - 1].value = pages[page];
+			curPage = await msg.reply({
 				embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [row],
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
-		  	});
+			});
 			
 			if(!lib.exists(msg.author)){msg.author = msg.user;}
 			const filter = (i) =>
 				(i.customId === buttonList[0].customId ||
 				i.customId === buttonList[1].customId) &&
 				i.user.id === msg.author.id;
-	  
-		  	const collector = await curPage.createMessageComponentCollector({
+	
+			const collector = await curPage.createMessageComponentCollector({
 				filter,
 				time: timeout,
-		  	});
-	  
-		  	collector.on("collect", async (i) => {
+			});
+	
+			collector.on("collect", async (i) => {
 				switch (i.customId) {
-			  	case buttonList[0].customId:
+				case buttonList[0].customId:
 					page = page > 0 ? --page : pages.length - 1;
 					break;
-			  	case buttonList[1].customId:
+				case buttonList[1].customId:
 					page = page + 1 < pages.length ? ++page : 0;
 					break;
-			  	default:
+				default:
 					break;
 				}
 				await i.deferUpdate();
 				embed.fields[embed.fields.length - 1].value = pages[page];
 				await i.editReply({
-			  		embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
-			  		components: [row],
+					embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+					components: [row],
 				});
 				collector.resetTimer();
-		  	});
-	  
-		  	collector.on("end", () => {
+			});
+	
+			collector.on("end", () => {
 				const disabledRow = new MessageActionRow().addComponents(
 					buttonList[0].setDisabled(true),
 					buttonList[1].setDisabled(true)
@@ -1123,11 +1123,12 @@ module.exports = {
 					embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 					components: [disabledRow],
 				});
-		  	});
-	  
+			});
+	
 		}
-	  
+	
 		return curPage;
+		
 	},
 	
 	// Input: Object, array, array, integer, integer
@@ -1552,7 +1553,7 @@ module.exports = {
 	// Input: String
     // Function: Decodes HTML string
     // Output: String
-	decodeHtmlEntity(input) {
+	decodeHTMLEntity(input) {
 		return input
 			.replace(/&quot;/g, "\"")
 			.replace(/&amp;/g, "&")
@@ -1562,7 +1563,7 @@ module.exports = {
 	},
 
 	// Input: String
-    // Dependency: 
+    // Dependency: Lib itself
     // Function: Fetches an HTML page as a string
     // Output: String
     async getHTML(url) {
@@ -1570,12 +1571,59 @@ module.exports = {
             // Get the response body
             var response = await fetch(url);
             var body = await response.text();
+			body = body.split("\n").join("<br>");
 			return body;
         }
         catch(exception){
-            console.error("Error fetching HTML from " + url);
+            lib.error("", exception, "getHTML() Error");
 			return "error";
         }
-    }
+    },
+
+	// Input: Object or String, String, Object
+    // Dependency: Discord, Lib itself
+    // Function: Sends error notifications and logs
+	error(message, error, customMessage){
+		const Discord = require('discord.js');
+
+		// Check if a message is the error trigger
+		var hasMessage = true;
+		if(typeof message == "string"){
+			hasMessage = false;
+			message = {createdAt: Date(), content: "undefined", author: "system"};
+		}
+		var username = message.author.username;
+		var causeInfo = "Error caused by message: " + message.content + " (sent by " + username + ")";
+		if(!hasMessage){
+			causeInfo = "Not caused by a message";
+		}
+
+		// Formatting fix
+		if(lib.exists(customMessage)){
+			customMessage = " - " + customMessage;
+		}
+
+		// Log error to console
+		console.error(message.createdAt + " - " + causeInfo + customMessage);
+		console.error(error);
+
+        // Send messages if possible
+		if(hasMessage){
+
+			var outputEmbed = new Discord.MessageEmbed()
+				.setColor('#fc0303')
+				.setTitle("Command response error")
+				.setDescription("```javascript\n" + error.toString() + customMessage + "```" + causeInfo)
+				.setFooter({ text: message.createdAt });
+
+			var testBranch = lib.readFile("./isTestBranch.txt");
+			if(testBranch == "YES"){
+				message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
+			}else{
+				message.reply({ content: "@ __**" + username + "**__```dust\n{ An error has occurred! }```All relevant details have automatically been sent to the main server for further investigation", allowedMentions: { repliedUser: false }});
+				message.client.channels.cache.get("859477509178654792").send({ embeds: [outputEmbed] });
+			}
+		}
+	}
 	
 };
