@@ -142,17 +142,17 @@ module.exports = {
             if(!lib.exists(log)){log = "Empty";}
             
             // Split log into lines
-            var log_array = log.split("\n");
+            var logArray = log.split("\n");
             
             // If the log is empty, don't do anything
-            if(log_array.length < 2){
+            if(logArray.length < 2){
                 message.reply({ content: "\u274C The error log is empty!", allowedMentions: { repliedUser: false }});
                 return;
             }
 
             // Get link
-            var log_out = log_array.join("\n");
-            lib.saveFile("../indexnight/nyexbot_logs/error-0_log", log_out);
+            var logOut = logArray.join("\n");
+            lib.saveFile("../indexnight/nyexbot_logs/error-0_log", logOut);
             var output = "Created temporary log file:\nhttps://indexnight.com/nyexbot_logs/error-0_log";
 
             // Output
@@ -162,6 +162,17 @@ module.exports = {
 
         // Clear error log if I want to
         if(lib.exists(args[0]) && args[0].toLowerCase() == "clear"){
+
+            // If the log is empty, don't do anything
+            var log = lib.readFile("/root/.pm2/logs/app-error.log");
+            if(!lib.exists(log)){log = "Empty";}
+            var logArray = log.split("\n");
+            if(logArray.length < 2){
+                message.reply({ content: "The error log is already empty!", allowedMentions: { repliedUser: false }});
+                return;
+            }
+
+            // Clear log
             lib.saveFile("/root/.pm2/logs/app-error.log", "Cleared");
             message.reply({ content: "Error log cleared!", allowedMentions: { repliedUser: false }});
             return;
