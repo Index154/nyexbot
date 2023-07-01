@@ -452,7 +452,11 @@ if(branch != "YES"){
             {name: "Uno Makoto", ***REMOVED***}, 
             {name: "Zheng", ***REMOVED***},
             {name: "Capcom", ***REMOVED***},
-            {name: "Mikansu", ***REMOVED***}
+            {name: "Mikansu", ***REMOVED***},
+            {name: "Solo Leveling", ***REMOVED***},
+            {name: "Canan", ***REMOVED***},
+            {name: "Fanatic F", ***REMOVED***},
+            {name: "Azur Lane", ***REMOVED***}
         ];
         var updateList = [];
         var savePath = "../nyextest/data/sitedata/";
@@ -468,7 +472,8 @@ if(branch != "YES"){
             // Compare the first found pattern match to the previously saved one
             var filePath = savePath + siteList[i].name + ".txt";
             var previousResult = lib.readFile(filePath);
-            if(!lib.exists(results) || !lib.exists(previousResult) || results.length < 1){
+            if(!lib.exists(previousResult)){previousResult = "None";}
+            if(!lib.exists(results) || results.length < 1){
                 lib.error("", "newsCheck() Error: No pattern match found for site with ID " + i, "");
             }
             else if(results[0] != previousResult){
@@ -488,5 +493,5 @@ if(branch != "YES"){
             client.channels.cache.get("516288921127092234").send("**Followed pages have been updated!**\n" + updateList);
         }
         
-    }, 30 * 60 * 1000);
+    }, 20 * 60 * 1000);
 }
