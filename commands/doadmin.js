@@ -173,7 +173,7 @@ module.exports = {
             }
 
             // Clear log
-            lib.saveFile("/root/.pm2/logs/app-error.log", "Cleared");
+            lib.saveFile("/root/.pm2/logs/app-error.log", "");
             message.reply({ content: "Error log cleared!", allowedMentions: { repliedUser: false }});
             return;
         }

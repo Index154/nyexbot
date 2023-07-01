@@ -39,8 +39,8 @@ module.exports = {
     rand(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
-		if(max <= min){
-			console.error(Date() + " - Rand error: Max is not greater than min");
+		if(max < min){
+			console.error(Date() + " - rand() Error: Max is smaller than min");
 		}
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
