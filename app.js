@@ -456,7 +456,8 @@ if(branch != "YES"){
             {name: "Solo Leveling", ***REMOVED***},
             {name: "Canan", ***REMOVED***},
             {name: "Fanatic F", ***REMOVED***},
-            {name: "Azur Lane", ***REMOVED***}
+            {name: "Azur Lane", ***REMOVED***},
+            {name: "YuGiOh", ***REMOVED***}
         ];
         var updateList = [];
         var savePath = "../nyextest/data/sitedata/";
