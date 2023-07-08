@@ -1590,7 +1590,7 @@ module.exports = {
 		var hasMessage = true;
 		if(typeof message == "string"){
 			hasMessage = false;
-			message = {createdAt: Date(), content: "undefined", author: "system"};
+			message = {createdAt: Date().toString(), content: "undefined", author: "system"};
 		}
 		var username = message.author.username;
 		var causeInfo = "Error caused by message: " + message.content + " (sent by " + username + ")";
@@ -1610,11 +1610,13 @@ module.exports = {
         // Send messages if possible
 		if(hasMessage){
 
+			console.log(message);
+
 			var outputEmbed = new Discord.MessageEmbed()
 				.setColor('#fc0303')
 				.setTitle("Command response error")
 				.setDescription("```javascript\n" + error.toString() + customMessage + "```" + causeInfo)
-				.setFooter({ text: message.createdAt });
+				.setFooter({ text: message.createdTimestamp.toString() });
 
 			var testBranch = lib.readFile("./isTestBranch.txt");
 			if(testBranch == "YES"){

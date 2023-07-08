@@ -1,3 +1,22 @@
+Implement !!variable to test for variable truthyness?
+
+
+Markov info:
+
+	Implemented very simply: https://medium.com/@alexkrameris/markov-chain-implementation-in-javascript-a698f371d66f
+		Basically make a chain object to which you add every word as an array containing all words that ever came after it.
+		Then with object.keys(chain) you can get an array of all the word arrays. Then you can pick a random starting word, pick a random word from its array and keep repeating this to get a random sequence of words.
+			=> This is probably very slow and bad for large data sets
+	
+	More complex implementation: https://github.com/bespoyasov/text-generator
+		Only works for words, not syllables?
+			=> Might be worth trying
+		
+	The best looking version: https://github.com/vilvadot/markov-text
+		Can generate single words as well as sentences
+			=> Probably the best one to try and build upon
+
+
 Async programming help:
     https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous
 
