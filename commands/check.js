@@ -88,7 +88,7 @@ module.exports = {
         outputEmbed = new Discord.MessageEmbed()
         	.setColor(embed_color)
         	.setTitle(monster_data[0])
-        	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5]) //Alternative source (server): 'https://indexnight.com/monsters/' + monster_data[0].toLowerCase().replace(/ /g, "_") + ".png"
+        	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5])
         	.setDescription(monster_data[4])
         	.addFields(
         		{ name: 'Attack', value: monster_data[1], inline: true },

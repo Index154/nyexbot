@@ -153,7 +153,7 @@ module.exports = {
             // Get link
             var logOut = logArray.join("\n");
             lib.saveFile("../indexnight/nyexbot_logs/error-0_log", logOut);
-            var output = "Created temporary log file:\nhttps://indexnight.com/nyexbot_logs/error-0_log";
+            var output = "Created temporary log file:\nhttps://artificial-index.com/nyexbot_logs/error-0_log";
 
             // Output
             message.reply({ content: output, allowedMentions: { repliedUser: false }});

@@ -797,7 +797,7 @@ module.exports = {
                     var outputEmbed = new Discord.MessageEmbed()
                     	.setColor(embed_color)
                     	.setTitle("@ __**" + username + "**__")
-                    	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5]) //Alternative source (server): "https://indexnight.com/monsters/" + monster_name.toLowerCase().replace(/ /g, "_") + ".png"
+                    	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
                     	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") replaced your previous encounter!" + capped + "```")
                     	.setFooter({ text: "You used the Reality Shifter!" + alch_extra });
 						

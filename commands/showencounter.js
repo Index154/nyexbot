@@ -106,7 +106,7 @@ module.exports = {
         var outputEmbed = new Discord.MessageEmbed()
         	.setColor('#0099ff')
         	.setTitle("Here is your current encounter again:")
-        	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5]) //Alternative source (server): "https://indexnight.com/monsters/" + monster_name.toLowerCase().replace(/ /g, "_") + ".png"
+        	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5])
         	.setDescription("```" + color_mod + "A" + n_extra + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + "```");
         message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});
         

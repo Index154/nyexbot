@@ -314,7 +314,7 @@ module.exports = {
                 var outputEmbed = new Discord.MessageEmbed()
                 	.setColor(embed_color)
                 	.setTitle(monster_info[0])
-                	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5]) //Alternative source (server): 'https://indexnight.com/monsters/' + monster_info[0].toLowerCase().replace(/ /g, "_") + ".png"
+                	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
                 	.setDescription(monster_info[4])
                 	.addFields(
                 		{ name: 'Attack', value: monster_info[1], inline: true },
