@@ -13,7 +13,7 @@ module.exports = {
     ],
     shortDescription: 'Create custom reminders',
     weight: 100,
-	aliases: ['re', 'rem', 'remind'],
+	aliases: ['re', 'rem', 'remind', 'reminders', 'timer', 'timers'],
 	addendum: [
         '- Custom time interval examples: `yearly`, `7d`, `2 hours`, `daily`, `1h 30m`',
         '- When creating a reminder you may also add the following arguments after the reminder text to make it repeat:\n ` repeat [Custom time interval]`'

@@ -449,16 +449,16 @@ if(branch != "YES"){
 
         // Define list of sites to check and the HTML elements to check for changes
         var siteList = [
-            {name: "Uno Makoto", ***REMOVED***}, 
-            {name: "Zheng", ***REMOVED***},
-            {name: "Capcom", ***REMOVED***},
-            {name: "Mikansu", ***REMOVED***},
-            {name: "Solo Leveling", ***REMOVED***},
-            {name: "Canan", ***REMOVED***},
-            {name: "Fanatic F", ***REMOVED***},
-            {name: "Azur Lane", ***REMOVED***},
-            {name: "YuGiOh", ***REMOVED***},
-            {name: "Ninapai", ***REMOVED***}
+            {name: "Uno Makoto", alias: 'UNO', ***REMOVED***}, 
+            {name: "Zheng", alias: 'ZHG', ***REMOVED***},
+            {name: "Capcom", alias: 'CAP', ***REMOVED***},
+            {name: "Mikansu", alias: 'MIK', ***REMOVED***},
+            {name: "Solo Leveling", alias: 'SOLO', ***REMOVED***},
+            {name: "Canan", alias: 'CAN', ***REMOVED***},
+            {name: "Fanatic F", alias: 'FF', ***REMOVED***},
+            {name: "Azur Lane", alias: 'AZL', ***REMOVED***},
+            {name: "YuGiOh", alias: 'YGO', ***REMOVED***},
+            {name: "Ninapai", alias: 'NINP', ***REMOVED***}
         ];
         var updateList = [];
         var savePath = "../nyextest/data/sitedata/";
@@ -476,7 +476,7 @@ if(branch != "YES"){
             var previousResult = lib.readFile(filePath);
             if(!lib.exists(previousResult)){previousResult = "None";}
             if(!lib.exists(results) || results.length < 1){
-                lib.error("", "newsCheck() Error: No pattern match found for site with ID " + i, "");
+                lib.error("", "newsCheck() Error: No pattern match found for site " + siteList[i].alias, "");
             }
             else if(results[0] != previousResult){
                 // Add this list to the updated sites list
