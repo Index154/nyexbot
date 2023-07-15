@@ -442,59 +442,58 @@ if(branch != "YES"){
         }
     
     }, 60 * 1000);
-
-
-    // Check for new posts online every 30 minutes
-    var newsCheck = setInterval(async function() {
-
-        // Define list of sites to check and the HTML elements to check for changes
-        var siteList = [
-            {name: "Uno Makoto", alias: 'UNO', ***REMOVED***}, 
-            {name: "Zheng", alias: 'ZHG', ***REMOVED***},
-            {name: "Capcom", alias: 'CAP', ***REMOVED***},
-            {name: "Mikansu", alias: 'MIK', ***REMOVED***},
-            {name: "Solo Leveling", alias: 'SOLO', ***REMOVED***},
-            {name: "Canan", alias: 'CAN', ***REMOVED***},
-            {name: "Fanatic F", alias: 'FF', ***REMOVED***},
-            {name: "Azur Lane", alias: 'AZL', ***REMOVED***},
-            {name: "YuGiOh", alias: 'YGO', ***REMOVED***},
-            {name: "Ninapai", alias: 'NINP', ***REMOVED***},
-            {name: "Genshin", alias: "GSH", ***REMOVED***}
-        ];
-        var updateList = [];
-        var savePath = "../nyextest/data/sitedata/";
-
-        // Go through the site list
-        for(i = 0; i < siteList.length; i++){
-
-            // Fetch site body
-            var body = await lib.getHTML(siteList[i].link);
-            var reg = new RegExp(siteList[i].pattern, "g");
-            var results = await body.match(reg);
-
-            // Compare the first found pattern match to the previously saved one
-            var filePath = savePath + siteList[i].name + ".txt";
-            var previousResult = lib.readFile(filePath);
-            if(!lib.exists(previousResult)){previousResult = "None";}
-            if(!lib.exists(results) || results.length < 1){
-                lib.error("", "newsCheck() Error: No pattern match found for site " + siteList[i].alias, "");
-            }
-            else if(results[0] != previousResult){
-                // Add this list to the updated sites list
-                updateList.push("<" + siteList[i].link + ">");
-
-                // Save the pattern match for the next comparison
-                lib.saveFile(filePath, results[0]);
-            }
-
-        }
-
-        // Notify about the changes
-        if(updateList.length > 0){
-            updateList = updateList.join("\n");
-            // Send message in my channel or DM me
-            client.channels.cache.get("516288921127092234").send("**Followed pages have been updated!**\n" + updateList);
-        }
-        
-    }, 20 * 60 * 1000);
 }
+
+// Check for new posts online every 20 minutes
+var newsCheck = setInterval(async function() {
+
+    // Define list of sites to check and the HTML elements to check for changes
+    var siteList = [
+        {name: "Uno Makoto", alias: 'UNO', ***REMOVED***}, 
+        {name: "Zheng", alias: 'ZHG', ***REMOVED***},
+        {name: "Capcom", alias: 'CAP', ***REMOVED***},
+        {name: "Mikansu", alias: 'MIK', ***REMOVED***},
+        {name: "Solo Leveling", alias: 'SOLO', ***REMOVED***},
+        {name: "Canan", alias: 'CAN', ***REMOVED***},
+        {name: "Fanatic F", alias: 'FF', ***REMOVED***},
+        {name: "Azur Lane", alias: 'AZL', ***REMOVED***},
+        {name: "YuGiOh", alias: 'YGO', ***REMOVED***},
+        {name: "Ninapai", alias: 'NINP', ***REMOVED***},
+        {name: "Genshin", alias: "GSH", ***REMOVED***}
+    ];
+    var updateList = [];
+    var savePath = "../nyextest/data/sitedata/";
+
+    // Go through the site list
+    for(i = 0; i < siteList.length; i++){
+
+        // Fetch site body
+        var body = await lib.getHTML(siteList[i].link);
+        var reg = new RegExp(siteList[i].pattern, "g");
+        var results = await body.match(reg);
+
+        // Compare the first found pattern match to the previously saved one
+        var filePath = savePath + siteList[i].name + ".txt";
+        var previousResult = lib.readFile(filePath);
+        if(!lib.exists(previousResult)){previousResult = "None";}
+        if(!lib.exists(results) || results.length < 1){
+            lib.error("", "newsCheck() Error: No pattern match found for site " + siteList[i].alias, "");
+        }
+        else if(results[0] != previousResult){
+            // Add this list to the updated sites list
+            updateList.push("<" + siteList[i].link + ">");
+
+            // Save the pattern match for the next comparison
+            lib.saveFile(filePath, results[0]);
+        }
+
+    }
+
+    // Notify about the changes
+    if(updateList.length > 0){
+        updateList = updateList.join("\n");
+        // Send message in my channel or DM me
+        client.channels.cache.get("516288921127092234").send("**Followed pages have been updated!**\n" + updateList);
+    }
+    
+}, 20 * 60 * 1000);
