@@ -458,7 +458,8 @@ if(branch != "YES"){
             {name: "Fanatic F", alias: 'FF', ***REMOVED***},
             {name: "Azur Lane", alias: 'AZL', ***REMOVED***},
             {name: "YuGiOh", alias: 'YGO', ***REMOVED***},
-            {name: "Ninapai", alias: 'NINP', ***REMOVED***}
+            {name: "Ninapai", alias: 'NINP', ***REMOVED***},
+            {name: "Genshin", alias: "GSH", ***REMOVED***}
         ];
         var updateList = [];
         var savePath = "../nyextest/data/sitedata/";
