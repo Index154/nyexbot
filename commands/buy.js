@@ -91,11 +91,11 @@ module.exports = {
 	        var reservedUser = lib.readFile("data/shiny_shop_user.txt");
 	        if(reservedUser !== user.id){
 	            // Create button
-    			var button1 = new MessageButton()
+    			var button1 = new ButtonBuilder()
     			.setCustomId(user.id + "|buy shinymon")
     			.setLabel('Confirm')
-    			.setStyle('SUCCESS')
-    			var row = new MessageActionRow().addComponents([button1]);
+    			.setStyle(3)
+    			var row = new ActionRowBuilder().addComponents([button1]);
     			
     			// Output
     			lib.saveFile("data/shiny_shop_user.txt", user.id.toString());

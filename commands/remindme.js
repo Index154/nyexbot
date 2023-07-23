@@ -44,7 +44,7 @@ module.exports = {
 			    `, rowsAsArray: false });
 
                 // Assemble a basic embed
-        	    var outputEmbed = new Discord.MessageEmbed()
+        	    var outputEmbed = new Discord.EmbedBuilder()
                     .setColor('#0099ff')
                     .setTitle("Your active reminders");
 

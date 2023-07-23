@@ -31,7 +31,7 @@ module.exports = {
         var currentEpoch = Math.floor(d.getTime() / 1000);
 
         // Embed
-        var outputEmbed = new Discord.MessageEmbed()
+        var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
         	.setTitle('Time left until...')
 

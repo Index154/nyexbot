@@ -82,7 +82,7 @@ module.exports = {
                 area = "_" + key;
                 
 				// Create paged embed
-				var embedTemplate = new Discord.MessageEmbed()
+				var embedTemplate = new Discord.EmbedBuilder()
 					.setColor('#0099ff')
                 	.setTitle(area_name + " - Monsters");
                 
@@ -151,7 +151,7 @@ module.exports = {
             
         }else{
             // Create an embed for the output
-    	    var outputEmbed = new Discord.MessageEmbed()
+    	    var outputEmbed = new Discord.EmbedBuilder()
             	.setColor('#0099ff')
             	.setTitle("Area list")
             	.setDescription(areas_raw);

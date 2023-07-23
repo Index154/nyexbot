@@ -109,7 +109,7 @@ module.exports = {
     		lib.saveFile("data/shiny_shop_user.txt", user.id.toString());
     		
     		// Create embed
-            var outputEmbed = new Discord.MessageEmbed()
+            var outputEmbed = new Discord.EmbedBuilder()
             	.setColor('#8f1ee6')
             	.setTitle("Current shiny offer")
             	.setDescription("The thumbnail in the top right depicts the non-shiny version of the monster for comparison")
@@ -123,11 +123,11 @@ module.exports = {
             	);
 			
 			// Create button
-			var button1 = new MessageButton()
+			var button1 = new ButtonBuilder()
 			.setCustomId(user.id + "|buy shinymon")
 			.setLabel('Buy')
-			.setStyle('SUCCESS')
-			var row = new MessageActionRow().addComponents([button1]);
+			.setStyle(3)
+			var row = new ActionRowBuilder().addComponents([button1]);
 			
 			// Output
 			message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});
@@ -219,7 +219,7 @@ module.exports = {
 		var monster_data = monster_data_raw.split("|");
         
         // Create embed
-        var outputEmbed = new Discord.MessageEmbed()
+        var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
         	.setTitle("This week's shop")
         	.setDescription("Buying regular consumable items at **" + buying + "%** price!\nSelling regular items at **" + selling + "%** price!\n**Weekly unique realm: " + area_names[parseInt(current_event)] + "**\n**Current shiny: " + monster_data[0] + "**")

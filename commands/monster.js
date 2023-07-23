@@ -506,7 +506,7 @@ module.exports = {
         for(u = 0; u < extraStuff.length; u++){
             if(extraStuff[u] === ""){extraStuff.splice(u, 1); u--}
         }
-        var outputEmbed = new Discord.MessageEmbed()
+        var outputEmbed = new Discord.EmbedBuilder()
         	.setColor(embed_color)
         	.setTitle("@ __**" + username + "**__")
         	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5])

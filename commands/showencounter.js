@@ -84,26 +84,26 @@ module.exports = {
         }
         
         // Build buttons
-		var button1 = new MessageButton()
+		var button1 = new ButtonBuilder()
 			.setCustomId("any|capture")
 			.setLabel('Capture')
-			.setStyle('PRIMARY')
-		var button2 = new MessageButton()
+			.setStyle(1)
+		var button2 = new ButtonBuilder()
 			.setCustomId("any|fight")
 			.setLabel('Fight')
-			.setStyle('PRIMARY')
-		var button3 = new MessageButton()
+			.setStyle(1)
+		var button3 = new ButtonBuilder()
 			.setCustomId("any|encounter")
 			.setLabel('New encounter')
-			.setStyle('DANGER')
-		var button4 = new MessageButton()
+			.setStyle(4)
+		var button4 = new ButtonBuilder()
 		    .setCustomId("any|check " + monster_keys)
 			.setLabel('Check')
-			.setStyle('SECONDARY')
-		var row = new MessageActionRow().addComponents([button1, button2, button3, button4]);
+			.setStyle(2)
+		var row = new ActionRowBuilder().addComponents([button1, button2, button3, button4]);
         
         // Output embed
-        var outputEmbed = new Discord.MessageEmbed()
+        var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
         	.setTitle("Here is your current encounter again:")
         	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5])

@@ -104,7 +104,7 @@ module.exports = {
 		var efficiency = Math.round((real_eff / 275) * 1000) / 10;
 		
 		// Assemble a basic embed
-	    var outputEmbed = new Discord.MessageEmbed()
+	    var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
         	.setTitle(username + "'s Completion")
         	.addFields(

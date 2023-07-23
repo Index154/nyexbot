@@ -233,11 +233,11 @@ module.exports = {
                             }
                         }else{
                             // Confirmation button
-                            var button1 = new MessageButton()
+                            var button1 = new ButtonBuilder()
                     			.setCustomId(user.id + "|use stasis cube")
                     			.setLabel('Confirm')
-                    			.setStyle('DANGER')
-                    		var row = new MessageActionRow().addComponents([button1]);
+                    			.setStyle(4)
+                    		var row = new ActionRowBuilder().addComponents([button1]);
                             
                             // Output with needed confirmation
                             message.reply({ content: "@ __**" + username + "**__, you're about to store your encounter in the stasis space. **Anything already inside the space will be overwritten! Your current capture chain will also be lost!**\nUse the same command again or press the button to confirm this action.\nFinish your current encounter first if you want to resume a stored encounter instead!", components: [row], allowedMentions: { repliedUser: false }});
@@ -257,11 +257,11 @@ module.exports = {
                                 var special_extra = " You resumed your stored encounter! Use `" + prefix + "showenc` to display it again!\nThe Stasis Cube broke!";
                             }else{
                                 // Confirmation button
-                                var button1 = new MessageButton()
+                                var button1 = new ButtonBuilder()
                         			.setCustomId(user.id + "|use stasis cube")
                         			.setLabel('Confirm')
-                        			.setStyle('DANGER')
-                        		var row = new MessageActionRow().addComponents([button1]);
+                        			.setStyle(4)
+                        		var row = new ActionRowBuilder().addComponents([button1]);
                                 
                                 //Output requiring confirmation
                                 message.reply({ content: "@ __**" + username + "**__, you're about to release your stored encounter!\nUse the same command again or press the button to confirm!", components: [row], allowedMentions: { repliedUser: false }});
@@ -303,11 +303,11 @@ module.exports = {
                             }
                         }else{
                             // Confirmation button
-                            var button1 = new MessageButton()
+                            var button1 = new ButtonBuilder()
                     			.setCustomId(user.id + "|use memory link")
                     			.setLabel('Confirm')
-                    			.setStyle('DANGER')
-                    		var row = new MessageActionRow().addComponents([button1]);
+                    			.setStyle(4)
+                    		var row = new ActionRowBuilder().addComponents([button1]);
                             
                             // Output with needed confirmation
                             message.reply({ content: "@ __**" + username + "**__, you're about to save your capture chain. **If you already have a saved chain then it will be overwritten!**\nUse the same command again or press the button to confirm this action.\nFinish your current chain first if you want to resume a saved chain instead!", components: [row], allowedMentions: { repliedUser: false }});
@@ -327,11 +327,11 @@ module.exports = {
                                 var special_extra = " You resumed your saved capture chain!\nThe Memory Link broke!";
                             }else{
                                 // Confirmation button
-                                var button1 = new MessageButton()
+                                var button1 = new ButtonBuilder()
                         			.setCustomId(user.id + "|use memory link")
                         			.setLabel('Confirm')
-                        			.setStyle('DANGER')
-                        		var row = new MessageActionRow().addComponents([button1]);
+                        			.setStyle(4)
+                        		var row = new ActionRowBuilder().addComponents([button1]);
                                 
                                 //Output requiring confirmation
                                 message.reply({ content: "@ __**" + username + "**__, you're about to resume your stored capture chain!\nUse the same command again or press the button to confirm!", components: [row], allowedMentions: { repliedUser: false }});
@@ -775,26 +775,26 @@ module.exports = {
                 // For Reality Shifter, send a unique output that looks like an encounter
                 }else if(new_item_data_2[0] == "Shifter"){
                     // Build buttons
-            		var button1 = new MessageButton()
+            		var button1 = new ButtonBuilder()
             			.setCustomId("any|capture")
             			.setLabel('Capture')
-            			.setStyle('PRIMARY')
-            		var button2 = new MessageButton()
+            			.setStyle(1)
+            		var button2 = new ButtonBuilder()
             			.setCustomId("any|fight")
             			.setLabel('Fight')
-            			.setStyle('PRIMARY')
-            		var button3 = new MessageButton()
+            			.setStyle(1)
+            		var button3 = new ButtonBuilder()
             		    .setCustomId("any|check " + enc_keys.join(","))
             			.setLabel('Check')
-            			.setStyle('SECONDARY')
-            		var button4 = new MessageButton()
+            			.setStyle(2)
+            		var button4 = new ButtonBuilder()
             		    .setCustomId(user.id + "|use reality shifter")
             			.setLabel('Reroll again')
-            			.setStyle('DANGER')
-            		var row = new MessageActionRow().addComponents([button1, button2, button3, button4]);
+            			.setStyle(4)
+            		var row = new ActionRowBuilder().addComponents([button1, button2, button3, button4]);
                     
                     // Output embed
-                    var outputEmbed = new Discord.MessageEmbed()
+                    var outputEmbed = new Discord.EmbedBuilder()
                     	.setColor(embed_color)
                     	.setTitle("@ __**" + username + "**__")
                     	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])

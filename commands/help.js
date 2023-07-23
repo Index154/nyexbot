@@ -70,7 +70,7 @@ module.exports = {
             var embeds = [];
             for(x = 0; x < 4; x++){
 
-                var embedTemplate = new Discord.MessageEmbed()
+                var embedTemplate = new Discord.EmbedBuilder()
                     .setColor('#0099ff')
                     .setTitle("Command list:")
                     .setDescription("You can use `" + prefix + "help [command name]` to get further info about a specific command!" + "\n\nIf you are interested in future update plans for the bot then join the main server: https://discord.gg/Sz72qan\nIf you have a problem with the bot then please use the command `" + prefix + "submit`!");

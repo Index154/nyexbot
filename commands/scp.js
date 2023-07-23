@@ -121,14 +121,14 @@ module.exports = {
             }
 
             // Button
-            var button = new MessageButton()
+            var button = new ButtonBuilder()
                 .setLabel("Full article")
-                .setStyle("LINK")
+                .setStyle(5)
                 .setURL(SCPLink);
-            var row = new MessageActionRow().addComponents([button]);
+            var row = new ActionRowBuilder().addComponents([button]);
 
             // Embed
-            var outputEmbed = new Discord.MessageEmbed()
+            var outputEmbed = new Discord.EmbedBuilder()
                 .setColor("#ffffff")
                 .setTitle(title)
                 .setDescription(description);

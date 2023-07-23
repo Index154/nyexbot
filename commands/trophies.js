@@ -190,7 +190,7 @@ module.exports = {
 			var paginationArray = scoreboard;
 			var elementsPerPage = 10;
 			var fieldTitle = "Out of " + scoreboard.length + " users";
-			var embedTemplate = new Discord.MessageEmbed()
+			var embedTemplate = new Discord.EmbedBuilder()
 				.setColor('#0099ff')
             	.setTitle("Global Trophy Scoreboard");
 			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
@@ -224,7 +224,7 @@ module.exports = {
 		var paginationArray = trophy_list;
 		var elementsPerPage = 10;
 		var fieldTitle = trophy_list.length + " total";
-		var embedTemplate = new Discord.MessageEmbed()
+		var embedTemplate = new Discord.EmbedBuilder()
 			.setColor('#0099ff')
         	.setTitle(username + "'s Trophies")
         	.setThumbnail(lib.readFile(dir + "/main_monster.txt"))

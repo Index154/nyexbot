@@ -305,22 +305,22 @@ module.exports = {
         }
         
         // Build buttons
-		var button1 = new MessageButton()
+		var button1 = new ButtonBuilder()
 			.setCustomId("any|capture")
 			.setLabel('Capture')
-			.setStyle('PRIMARY')
-		var button2 = new MessageButton()
+			.setStyle(1)
+		var button2 = new ButtonBuilder()
 			.setCustomId("any|fight")
 			.setLabel('Fight')
-			.setStyle('PRIMARY')
-		var button3 = new MessageButton()
+			.setStyle(1)
+		var button3 = new ButtonBuilder()
 		    .setCustomId("any|check " + monster)
 			.setLabel('Check')
-			.setStyle('SECONDARY')
-		var row = new MessageActionRow().addComponents([button1, button2, button3]);
+			.setStyle(2)
+		var row = new ActionRowBuilder().addComponents([button1, button2, button3]);
         
         // Output embed
-        var outputEmbed = new Discord.MessageEmbed()
+        var outputEmbed = new Discord.EmbedBuilder()
         	.setColor(embed_color)
         	.setTitle("@ __**" + username + "**__")
         	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])

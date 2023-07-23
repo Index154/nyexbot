@@ -328,7 +328,7 @@ module.exports = {
 	// Input: Array, integer, object, string, object, string
     // Function: Creates a paged embed with buttons using another module
 	createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message){
-		const { MessageEmbed, MessageButton } = require('discord.js');
+		const { EmbedBuilder, ButtonBuilder } = require('discord.js');
 		
 		// Create embed page field contents
 		var ongoingID = 0;
@@ -349,14 +349,14 @@ module.exports = {
 		}
 		
 		// Create buttons
-		const button1 = new MessageButton()
+		const button1 = new ButtonBuilder()
 			.setCustomId('previousbtn')
 			.setLabel('Previous')
-			.setStyle('SECONDARY');
-		const button2 = new MessageButton()
+			.setStyle(2);
+		const button2 = new ButtonBuilder()
 			.setCustomId('nextbtn')
 			.setLabel('Next')
-			.setStyle('SECONDARY');
+			.setStyle(2);
 		buttonList = [ button1, button2 ];
 		
 		// Send embed
@@ -366,7 +366,7 @@ module.exports = {
 	// Input: Array, object, integer, object, ?, ?, ?, string, string, object
     // Function: Creates a paged embed with buttons using another module
 	createPagedMonsterEmbed(idArray, embedTemplate, startingId, message, monster_groups, monster_names2, items, username, startingName, firstButton, firstAltImage){
-		const { MessageEmbed, MessageButton } = require('discord.js');
+		const { EmbedBuilder, ButtonBuilder } = require('discord.js');
 		
 		var shinies = lib.readFile("data/monsters/monsters_shiny.txt");
 		var shiny_groups = shinies.split("#################################################################################\n");
@@ -417,10 +417,10 @@ module.exports = {
 			var monster_info = result_monster.split("|");
 			
 			// Push variant switch button to array
-			var button5 = new MessageButton()
+			var button5 = new ButtonBuilder()
     			.setCustomId('comparebtn|' + altIndex)
     			.setLabel('Switch')
-    			.setStyle('PRIMARY');
+    			.setStyle(1);
     		shinyButtons[i] = button5;
 			alternateImages[i] = altImage;
 			
@@ -439,8 +439,11 @@ module.exports = {
 			    type = monster_info[3];
 			}
 			
+			// Fix error for empty property
+			if(monster_info[4] == ""){monster_info[4] = "/";}
+
 			// Assemble embed
-            var outputEmbed = new MessageEmbed()
+            var outputEmbed = new EmbedBuilder()
             	.setColor(embed_color)
             	.setTitle(monster_info[0])
             	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
@@ -496,23 +499,23 @@ module.exports = {
 		}
 		
 		// Create buttons
-		const button1 = new MessageButton()
+		const button1 = new ButtonBuilder()
 			.setCustomId('previousbtn')
 			.setLabel('Previous')
-			.setStyle('SECONDARY');
-		const button2 = new MessageButton()
+			.setStyle(2);
+		const button2 = new ButtonBuilder()
 			.setCustomId('randbtn')
 			.setLabel('Random')
-			.setStyle('PRIMARY');
-		const button3 = new MessageButton()
+			.setStyle(1);
+		const button3 = new ButtonBuilder()
 			.setCustomId('nextbtn')
 			.setLabel('Next')
-			.setStyle('SECONDARY');
+			.setStyle(2);
 		if(!lib.exists(message.author)){message.author = message.user;}
-		const button4 = new MessageButton()
+		const button4 = new ButtonBuilder()
 			.setCustomId(message.author.id + '|captures favorite ' + startingName)
 			.setLabel('Favorite')
-			.setStyle('SUCCESS');
+			.setStyle(3);
 		buttonList = [ button1, button2, button3, button4 ];
 		
 		// Send embed
@@ -522,7 +525,7 @@ module.exports = {
 	// Input: Array, string, integer, object
     // Function: Creates a paged embed with buttons using another module
 	createPagedNightEmbed(entryList, stringTemplate, startingId, message){
-		const { MessageEmbed, MessageButton } = require('discord.js');
+		const { EmbedBuilder, ButtonBuilder } = require('discord.js');
 		
 		// Create embeds
 		var pages = [];
@@ -537,18 +540,18 @@ module.exports = {
 		}
 		
 		// Create buttons
-		const button1 = new MessageButton()
+		const button1 = new ButtonBuilder()
 			.setCustomId('previousbtn')
 			.setLabel('Previous')
-			.setStyle('SECONDARY');
-		const button2 = new MessageButton()
+			.setStyle(2);
+		const button2 = new ButtonBuilder()
 			.setCustomId('nextbtn')
 			.setLabel('Next')
-			.setStyle('SECONDARY');
-		const button3 = new MessageButton()
+			.setStyle(2);
+		const button3 = new ButtonBuilder()
 			.setCustomId('randbtn')
 			.setLabel('Random')
-			.setStyle('PRIMARY')
+			.setStyle(1)
 		buttonList = [ button1, button3, button2 ];
 		
 		// Send embed
@@ -558,7 +561,7 @@ module.exports = {
 	// Input: String, ?, ?, integer, object, object, ?
 	// Function: Creates a paged embed with a specific layout for the display of item details. The list of items has to be supplied by the calling function
 	createPagedItemEmbed(dir, items, allItems, startingId, message, user, itemList){
-		const { MessageEmbed, MessageButton } = require('discord.js');
+		const { EmbedBuilder, ButtonBuilder } = require('discord.js');
 
 		// Important variables
 		var equipRarities = lib.readFile(dir + "/equip_modifiers.txt").split("\n");
@@ -575,7 +578,7 @@ module.exports = {
 			var itemAmount = "\u200b";
 
 			// Assemble embed
-            var embed = new MessageEmbed()
+            var embed = new EmbedBuilder()
             	.setColor('#0099ff');
 
 			// Apply modifier stats
@@ -672,18 +675,18 @@ module.exports = {
 		}
 
 		// Create buttons
-		const button1 = new MessageButton()
+		const button1 = new ButtonBuilder()
 			.setCustomId('previousbtn')
 			.setLabel('Previous')
-			.setStyle('SECONDARY');
-		const button2 = new MessageButton()
+			.setStyle(2);
+		const button2 = new ButtonBuilder()
 			.setCustomId('randbtn')
 			.setLabel('Random')
-			.setStyle('PRIMARY');
-		const button3 = new MessageButton()
+			.setStyle(1);
+		const button3 = new ButtonBuilder()
 			.setCustomId('nextbtn')
 			.setLabel('Next')
-			.setStyle('SECONDARY');
+			.setStyle(2);
 		buttonList = [ button1, button2, button3 ];
 
 		// Go to secondary function
@@ -693,17 +696,17 @@ module.exports = {
 	// Input: Message object, array of embed objects
 	// Function: Combines multiple different embeds into one message and allows switching through them with buttons
 	createSimplePagedEmbed(message, embeds){
-		const { MessageEmbed, MessageButton } = require('discord.js');
+		const { EmbedBuilder, ButtonBuilder } = require('discord.js');
 
 		// Create buttons
-		const button1 = new MessageButton()
+		const button1 = new ButtonBuilder()
 			.setCustomId('previousbtn')
 			.setLabel('Previous')
-			.setStyle('SECONDARY');
-		const button2 = new MessageButton()
+			.setStyle(2);
+		const button2 = new ButtonBuilder()
 			.setCustomId('nextbtn')
 			.setLabel('Next')
-			.setStyle('SECONDARY');
+			.setStyle(2);
 		buttonList = [ button1, button2 ];
 
 		// Go to secondary function
@@ -713,7 +716,7 @@ module.exports = {
 	// Input: Object, object, array
     // Function: Sends a message with command buttons that time out
 	async buttonReply(message, embeds, buttons){
-		const row = new MessageActionRow().addComponents(buttons);
+		const row = new ActionRowBuilder().addComponents(buttons);
 		const newMessage = await message.reply({
 			embeds: embeds,
 			components: [row],
@@ -734,7 +737,7 @@ module.exports = {
 			for(y = 0; y < buttons.length; y++){
 				buttons[y].setDisabled(true);
 			}
-			var disabledRow = new MessageActionRow().addComponents(buttons);
+			var disabledRow = new ActionRowBuilder().addComponents(buttons);
 			newMessage.edit({
 				embeds: embeds,
 				components: [disabledRow],
@@ -746,7 +749,7 @@ module.exports = {
 			for(y = 0; y < buttons.length; y++){
 				buttons[y].setDisabled(true);
 			}
-			var disabledRow = new MessageActionRow().addComponents(buttons);
+			var disabledRow = new ActionRowBuilder().addComponents(buttons);
 			newMessage.edit({
 				embeds: embeds,
 				components: [disabledRow],
@@ -758,7 +761,7 @@ module.exports = {
 	// Input: Object, string, array
     // Function: Sends a message with command buttons that time out (without embed)
 	async buttonReplyBasic(message, content, buttons){
-		const row = new MessageActionRow().addComponents(buttons);
+		const row = new ActionRowBuilder().addComponents(buttons);
 		const newMessage = await message.reply({
 			content: content,
 			components: [row],
@@ -779,7 +782,7 @@ module.exports = {
 			for(y = 0; y < buttons.length; y++){
 				buttons[y].setDisabled(true);
 			}
-			var disabledRow = new MessageActionRow().addComponents(buttons);
+			var disabledRow = new ActionRowBuilder().addComponents(buttons);
 			newMessage.edit({
 				content: content,
 				components: [disabledRow],
@@ -791,7 +794,7 @@ module.exports = {
 			for(y = 0; y < buttons.length; y++){
 				buttons[y].setDisabled(true);
 			}
-			var disabledRow = new MessageActionRow().addComponents(buttons);
+			var disabledRow = new ActionRowBuilder().addComponents(buttons);
 			newMessage.edit({
 				content: content,
 				components: [disabledRow],
@@ -1052,12 +1055,12 @@ module.exports = {
 	// Input: Object, array, array, integer, integer
     // Function: Creates an interactive embed message with several pages that can be switched between. The list of entries is filled into the newest field of an embed built with a template
 	async embedFieldPagination(msg, embed, pages, buttonList, timeout = 120000){
-		const {MessageActionRow} = require("discord.js");
+		const {ActionRowBuilder} = require("discord.js");
 		
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
 		if (!pages) throw new Error("Pages are not given.");
 		if (!buttonList) throw new Error("Buttons are not given.");
-		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+		if (buttonList[0].style === 5 || buttonList[1].style === 5)
 			throw new Error(
 				"Link buttons are not supported"
 			);
@@ -1065,17 +1068,17 @@ module.exports = {
 	
 		let page = 0;
 	
-		const row = new MessageActionRow().addComponents(buttonList);
+		const row = new ActionRowBuilder().addComponents(buttonList);
 		var curPage = "";
 		if(pages.length == 1){
-			embed.fields[embed.fields.length - 1].value = pages[page];
+			embed.data.fields[embed.data.fields.length - 1].value = pages[page];
 			curPage = await msg.reply({
 				embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				allowedMentions: { repliedUser: false },
 				fetchReply: true,
 			});
 		}else{
-			embed.fields[embed.fields.length - 1].value = pages[page];
+			embed.data.fields[embed.data.fields.length - 1].value = pages[page];
 			curPage = await msg.reply({
 				embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [row],
@@ -1085,8 +1088,8 @@ module.exports = {
 			
 			if(!lib.exists(msg.author)){msg.author = msg.user;}
 			const filter = (i) =>
-				(i.customId === buttonList[0].customId ||
-				i.customId === buttonList[1].customId) &&
+				(i.customId === buttonList[0].data.custom_id ||
+				i.customId === buttonList[1].data.custom_id) &&
 				i.user.id === msg.author.id;
 	
 			const collector = await curPage.createMessageComponentCollector({
@@ -1096,17 +1099,17 @@ module.exports = {
 	
 			collector.on("collect", async (i) => {
 				switch (i.customId) {
-				case buttonList[0].customId:
+				case buttonList[0].data.custom_id:
 					page = page > 0 ? --page : pages.length - 1;
 					break;
-				case buttonList[1].customId:
+				case buttonList[1].data.custom_id:
 					page = page + 1 < pages.length ? ++page : 0;
 					break;
 				default:
 					break;
 				}
 				await i.deferUpdate();
-				embed.fields[embed.fields.length - 1].value = pages[page];
+				embed.data.fields[embed.data.fields.length - 1].value = pages[page];
 				await i.editReply({
 					embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 					components: [row],
@@ -1115,7 +1118,7 @@ module.exports = {
 			});
 	
 			collector.on("end", () => {
-				const disabledRow = new MessageActionRow().addComponents(
+				const disabledRow = new ActionRowBuilder().addComponents(
 					buttonList[0].setDisabled(true),
 					buttonList[1].setDisabled(true)
 				);
@@ -1134,12 +1137,12 @@ module.exports = {
 	// Input: Object, array, array, integer, integer
     // Function: Creates an interactive embed message with several pages that can be switched between. Only used for the captures command due to custom logic
 	async monsterPagination(msg, pages, buttonList, startingId, timeout = 120000, extraButtons, alternateImages){
-		const {MessageActionRow, MessageButton} = require("discord.js");
+		const {ActionRowBuilder, ButtonBuilder} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
 		if (!pages) throw new Error("Pages are not given.");
 		if (!buttonList) throw new Error("Buttons are not given.");
-		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+		if (buttonList[0].style === 5 || buttonList[1].style === 5)
 		  	throw new Error(
 				"Link buttons are not supported"
 		  	);
@@ -1147,14 +1150,14 @@ module.exports = {
 	  
 		let page = startingId;
 		
-		var row = new MessageActionRow().addComponents(buttonList);
-		var singleRow = new MessageActionRow().addComponents(buttonList[3]);
+		var row = new ActionRowBuilder().addComponents(buttonList);
+		var singleRow = new ActionRowBuilder().addComponents(buttonList[3]);
 		
 		if(alternateImages[page] != "Not owned"){
 			pages[page].setThumbnail(alternateImages[page]);
 		}
 
-		if(extraButtons[page].customId.split("|")[1] != "None"){
+		if(extraButtons[page].data.custom_id.split("|")[1] != "None"){
 			row.addComponents(extraButtons[page]);
 			singleRow.addComponents(extraButtons[page]);
 		}
@@ -1177,10 +1180,10 @@ module.exports = {
 	  
 			if(!lib.exists(msg.author)){msg.author = msg.user;}
 		  	const filter = (i) =>
-				(i.customId === buttonList[0].customId ||
-				i.customId === buttonList[1].customId ||
-				i.customId === buttonList[2].customId ||
-				i.customId === extraButtons[page].customId) &&
+				(i.customId === buttonList[0].data.custom_id ||
+				i.customId === buttonList[1].data.custom_id ||
+				i.customId === buttonList[2].data.custom_id ||
+				i.customId === extraButtons[page].data.custom_id) &&
 				i.user.id === msg.author.id;
 	  
 		  	const collector = await curPage.createMessageComponentCollector({
@@ -1190,34 +1193,34 @@ module.exports = {
 	  
 		  	collector.on("collect", async (i) => {
 				switch (i.customId) {
-				case buttonList[0].customId:
+				case buttonList[0].data.custom_id:
 					page = page > 0 ? --page : pages.length - 1;
 					break;
-				case buttonList[1].customId:
+				case buttonList[1].data.custom_id:
 					page = lib.rand(0, pages.length - 1);
 					break;
-				case buttonList[2].customId:
+				case buttonList[2].data.custom_id:
 					page = page + 1 < pages.length ? ++page : 0;
 					break;
-				case extraButtons[page].customId:
-					page = parseInt(extraButtons[page].customId.split("|")[1]);
+				case extraButtons[page].data.custom_id:
+					page = parseInt(extraButtons[page].data.custom_id.split("|")[1]);
 					break;
 				default:
 					break;
 				}
 				if(!lib.exists(msg.author)){msg.author = msg.user;}
-				buttonList[3] = new MessageButton()
-					.setCustomId(msg.author.id + '|captures favorite ' + pages[page].title.trim())
+				buttonList[3] = new ButtonBuilder()
+					.setCustomId(msg.author.id + '|captures favorite ' + pages[page].data.title.trim())
 					.setLabel('Favorite')
-					.setStyle('SUCCESS');
-				row = new MessageActionRow().addComponents(buttonList);
+					.setStyle(3);
+				row = new ActionRowBuilder().addComponents(buttonList);
 
 				if(alternateImages[page] != "Not owned"){
 					pages[page].setThumbnail(alternateImages[page]);
 				}else if(pages[page].hasOwnProperty('thumbnail')){
 					delete pages[page].thumbnail;
 				}
-				if(extraButtons[page].customId.split("|")[1] != "None"){
+				if(extraButtons[page].data.custom_id.split("|")[1] != "None"){
 					row.addComponents(extraButtons[page]);
 				}
 
@@ -1231,7 +1234,7 @@ module.exports = {
 			});
 			
 			collector.on("end", () => {
-				const row = new MessageActionRow().addComponents(
+				const row = new ActionRowBuilder().addComponents(
 					buttonList[0].setDisabled(true),
 					buttonList[1].setDisabled(true),
 					buttonList[2].setDisabled(true),
@@ -1251,12 +1254,12 @@ module.exports = {
 	// Input: Object, object, array, array, integer, integer
 	// Function: Creates an embed with an extra button for using items
 	async preparedEmbedPagination(user, msg, pages, buttonList, startingId, timeout = 120000){
-		const {MessageActionRow, MessageButton} = require("discord.js");
+		const {ActionRowBuilder, ButtonBuilder} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
 		if (!pages) throw new Error("Pages are not given.");
 		if (!buttonList) throw new Error("Buttons are not given.");
-		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+		if (buttonList[0].style === 5 || buttonList[1].style === 5)
 		  	throw new Error(
 				"Link buttons are not supported"
 		  	);
@@ -1264,13 +1267,13 @@ module.exports = {
 		
 		let page = startingId;
 		buttonList.push(
-			new MessageButton()
-				.setCustomId(user.id + "|use " + pages[page].title)
+			new ButtonBuilder()
+				.setCustomId(user.id + "|use " + pages[page].data.title)
 				.setLabel('Use')
-				.setStyle('PRIMARY')
+				.setStyle(1)
 		);
 
-		var row = new MessageActionRow().addComponents(buttonList);
+		var row = new ActionRowBuilder().addComponents(buttonList);
 
 		var curPage = await msg.reply({
 			embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
@@ -1281,9 +1284,9 @@ module.exports = {
 	
 		if(!lib.exists(msg.author)){msg.author = msg.user;}
 		const filter = (i) =>
-			(i.customId === buttonList[0].customId ||
-			i.customId === buttonList[1].customId ||
-			i.customId === buttonList[2].customId) &&
+			(i.customId === buttonList[0].data.custom_id ||
+			i.customId === buttonList[1].data.custom_id ||
+			i.customId === buttonList[2].data.custom_id) &&
 			i.user.id === msg.author.id;
 	
 		const collector = await curPage.createMessageComponentCollector({
@@ -1293,23 +1296,23 @@ module.exports = {
 	
 		collector.on("collect", async (i) => {
 			switch (i.customId) {
-			case buttonList[0].customId:
+			case buttonList[0].data.custom_id:
 				page = page > 0 ? --page : pages.length - 1;
 				break;
-			case buttonList[1].customId:
+			case buttonList[1].data.custom_id:
 				page = lib.rand(0, pages.length - 1);
 				break;
-			case buttonList[2].customId:
+			case buttonList[2].data.custom_id:
 				page = page + 1 < pages.length ? ++page : 0;
 				break;
 			default:
 				break;
 			}
-			buttonList[3] = new MessageButton()
-				.setCustomId(user.id + "|use " + pages[page].title)
+			buttonList[3] = new ButtonBuilder()
+				.setCustomId(user.id + "|use " + pages[page].data.title)
 				.setLabel('Use')
-				.setStyle('PRIMARY')
-			row = new MessageActionRow().addComponents(buttonList);
+				.setStyle(1)
+			row = new ActionRowBuilder().addComponents(buttonList);
 			await i.deferUpdate();
 			await i.editReply({
 				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
@@ -1319,7 +1322,7 @@ module.exports = {
 		});
 		
 		collector.on("end", () => {
-			const row = new MessageActionRow().addComponents(
+			const row = new ActionRowBuilder().addComponents(
 				buttonList[0].setDisabled(true),
 				buttonList[1].setDisabled(true),
 				buttonList[2].setDisabled(true),
@@ -1337,19 +1340,19 @@ module.exports = {
 	// Input: Object, array, array, integer
 	// Function: Creates an embed with buttons for switching between pages. The pages have to be supplied by the parent function in their entirety
 	async fullEmbedPagination(msg, pages, buttonList, timeout = 120000){
-		const {MessageActionRow, MessageButton} = require("discord.js");
+		const {ActionRowBuilder, ButtonBuilder} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
 		if (!pages) throw new Error("Pages are not given.");
 		if (!buttonList) throw new Error("Buttons are not given.");
-		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+		if (buttonList[0].style === 5 || buttonList[1].style === 5)
 		  	throw new Error(
 				"Link buttons are not supported"
 		  	);
 		if (buttonList.length !== 2) throw new Error("Need two buttons.");
 		
 		let page = 0;
-		var row = new MessageActionRow().addComponents(buttonList);
+		var row = new ActionRowBuilder().addComponents(buttonList);
 
 		var curPage = await msg.reply({
 			embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
@@ -1360,8 +1363,8 @@ module.exports = {
 	
 		if(!lib.exists(msg.author)){msg.author = msg.user;}
 		const filter = (i) =>
-			(i.customId === buttonList[0].customId ||
-			i.customId === buttonList[1].customId) &&
+			(i.customId === buttonList[0].data.custom_id ||
+			i.customId === buttonList[1].data.custom_id) &&
 			i.user.id === msg.author.id;
 	
 		const collector = await curPage.createMessageComponentCollector({
@@ -1371,17 +1374,17 @@ module.exports = {
 	
 		collector.on("collect", async (i) => {
 			switch (i.customId) {
-			case buttonList[0].customId:
+			case buttonList[0].data.custom_id:
 				page = page > 0 ? --page : pages.length - 1;
 				break;
-			case buttonList[1].customId:
+			case buttonList[1].data.custom_id:
 				page = page + 1 < pages.length ? ++page : 0;
 				break;
 			default:
 				break;
 			}
 			
-			row = new MessageActionRow().addComponents(buttonList);
+			row = new ActionRowBuilder().addComponents(buttonList);
 			await i.deferUpdate();
 			await i.editReply({
 				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
@@ -1391,7 +1394,7 @@ module.exports = {
 		});
 		
 		collector.on("end", () => {
-			const row = new MessageActionRow().addComponents(
+			const row = new ActionRowBuilder().addComponents(
 				buttonList[0].setDisabled(true),
 				buttonList[1].setDisabled(true)
 			);
@@ -1407,12 +1410,12 @@ module.exports = {
 	// Input: Object, array, array, integer, integer
     // Function: Creates an interactive message with several pages that can be switched between
 	async embedlessPagination(msg, pages, buttonList, startingId, timeout = 120000){
-		const {MessageActionRow} = require("discord.js");
+		const {ActionRowBuilder} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
 		if (!pages) throw new Error("Pages are not given.");
 		if (!buttonList) throw new Error("Buttons are not given.");
-		if (buttonList[0].style === "LINK" || buttonList[1].style === "LINK")
+		if (buttonList[0].style === 5 || buttonList[1].style === 5)
 			throw new Error(
 				"Link buttons are not supported"
 			);
@@ -1420,7 +1423,7 @@ module.exports = {
 	  
 		let page = startingId;
 		
-		var row = new MessageActionRow().addComponents(buttonList);
+		var row = new ActionRowBuilder().addComponents(buttonList);
 		
 		var curPage = "";
 		if(pages.length == 1){
@@ -1439,9 +1442,9 @@ module.exports = {
 	  
 			if(!lib.exists(msg.author)){msg.author = msg.user;}
 			const filter = (i) =>
-				(i.customId === buttonList[0].customId ||
-				i.customId === buttonList[1].customId ||
-				i.customId === buttonList[2].customId) &&
+				(i.customId === buttonList[0].data.custom_id ||
+				i.customId === buttonList[1].data.custom_id ||
+				i.customId === buttonList[2].data.custom_id) &&
 				i.user.id === msg.author.id;
 	  
 			const collector = await curPage.createMessageComponentCollector({
@@ -1451,13 +1454,13 @@ module.exports = {
 	  
 			collector.on("collect", async (i) => {
 				switch (i.customId) {
-				case buttonList[0].customId:
+				case buttonList[0].data.custom_id:
 					page = page > 0 ? --page : pages.length - 1;
 					break;
-				case buttonList[1].customId:
+				case buttonList[1].data.custom_id:
 					page = lib.rand(0, pages.length - 1);
 					break;
-				case buttonList[2].customId:
+				case buttonList[2].data.custom_id:
 					page = page + 1 < pages.length ? ++page : 0;
 					break;
 				default:
@@ -1472,7 +1475,7 @@ module.exports = {
 			});
 	  
 			collector.on("end", () => {
-				const row = new MessageActionRow().addComponents(
+				const row = new ActionRowBuilder().addComponents(
 					buttonList[0].setDisabled(true),
 					buttonList[1].setDisabled(true),
 					buttonList[2].setDisabled(true)
@@ -1610,9 +1613,7 @@ module.exports = {
         // Send messages if possible
 		if(hasMessage){
 
-			console.log(message);
-
-			var outputEmbed = new Discord.MessageEmbed()
+			var outputEmbed = new Discord.EmbedBuilder()
 				.setColor('#fc0303')
 				.setTitle("Command response error")
 				.setDescription("```javascript\n" + error.toString() + customMessage + "```" + causeInfo)

@@ -50,7 +50,7 @@ module.exports = {
         }
 
         // Build embed and send it
-        var outputEmbed = new Discord.MessageEmbed()
+        var outputEmbed = new Discord.EmbedBuilder()
             .setColor("#ffc300")
             .setTitle("You find a message " + location + ":")
             .setDescription(eldenMessage)

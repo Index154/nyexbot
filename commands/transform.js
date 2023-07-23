@@ -42,7 +42,7 @@ module.exports = {
         // If there was no input, send a generic message with price information
 	    if(args.length === 0 || args[0] === undefined){
 	        // Assemble only a basic embed
-    	    var outputEmbed = new Discord.MessageEmbed()
+    	    var outputEmbed = new Discord.EmbedBuilder()
             	.setColor('#0099ff')
             	.setTitle("Transformation Info")
             	.setDescription("Below is a list of item types that can be transformed (rerolled) along with their respective scrap costs.")

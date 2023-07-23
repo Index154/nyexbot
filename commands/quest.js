@@ -57,11 +57,11 @@ module.exports = {
         var source_info = quest_data[8];
         
         // Create button
-        var button1 = new MessageButton()
+        var button1 = new ButtonBuilder()
 			.setCustomId(user.id + "|deliver")
 			.setLabel('Deliver')
-			.setStyle('SUCCESS')
-		var row = new MessageActionRow().addComponents([button1]);
+			.setStyle(3)
+		var row = new ActionRowBuilder().addComponents([button1]);
         
         // Further further extract information from the quest data
         var target_name = "";

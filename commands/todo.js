@@ -36,7 +36,7 @@ module.exports = {
         }
         
         // Create embed
-        var outputEmbed = new Discord.MessageEmbed()
+        var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
         	.setTitle(username + "'s To-Do List")
         var description = "";
@@ -54,10 +54,10 @@ module.exports = {
         if(level >= 5){
             if(current_day != last_day){
                 description += "\uD83D\uDCE1 You have yet to claim your daily **radar** charges!";
-                var button1 = new MessageButton()
+                var button1 = new ButtonBuilder()
         			.setCustomId("any|radar")
         			.setLabel('Radar')
-        			.setStyle('PRIMARY')
+        			.setStyle(1)
         		buttons.push(button1);
             }
         }
@@ -67,10 +67,10 @@ module.exports = {
         var done = parseInt(lib.readFile(dir + "/daily.txt").split("|")[0]);
         if(done != day){
             description += "\n\uD83D\uDCC6 You have yet to complete the **daily** quest!";
-            var button2 = new MessageButton()
+            var button2 = new ButtonBuilder()
     			.setCustomId("any|daily")
     			.setLabel('Daily')
-    			.setStyle('PRIMARY')
+    			.setStyle(1)
     		buttons.push(button2);
         }
         
@@ -84,10 +84,10 @@ module.exports = {
     	        description += "\n\u274C Your worldboss cooldown is **" + wbCooldown + "**";
     	    }else{
     	        description += "\n\u2694 You can fight the **worldboss** right now!";
-    	        var button3 = new MessageButton()
+    	        var button3 = new ButtonBuilder()
         			.setCustomId("any|worldboss")
         			.setLabel('Worldboss')
-        			.setStyle('PRIMARY')
+        			.setStyle(1)
         		buttons.push(button3);
     	    }
 	    }
@@ -100,10 +100,10 @@ module.exports = {
             description += "\n\u274C Your monster cooldown is **" + monCooldown + "**";
         }else{
             description += "\n\uD83D\uDC17 You can receive a free **monster** right now!";
-            var button4 = new MessageButton()
+            var button4 = new ButtonBuilder()
     			.setCustomId("any|monster")
     			.setLabel('Monster')
-    			.setStyle('PRIMARY')
+    			.setStyle(1)
     		buttons.push(button4);
         }
         
@@ -115,10 +115,10 @@ module.exports = {
                 var remaining = (parseInt(research_data[0]) + parseInt(research_data[1])) - current_sec;
                 if(remaining <= 0){
                     description += "\n\uD83E\uDDEA You can claim your **research** rewards right now!";
-                    var button6 = new MessageButton()
+                    var button6 = new ButtonBuilder()
             			.setCustomId("any|research")
             			.setLabel('Research')
-            			.setStyle('PRIMARY')
+            			.setStyle(1)
             		buttons.push(button6);
                 }else{
                     remaining = lib.secondsToTime(remaining);
@@ -126,10 +126,10 @@ module.exports = {
                 }
             }else{
                 description += "\n\uD83E\uDDEA You can start a new **research** project right now!";
-                var button6 = new MessageButton()
+                var button6 = new ButtonBuilder()
         			.setCustomId("any|research")
         			.setLabel('Research')
-        			.setStyle('PRIMARY')
+        			.setStyle(1)
         		buttons.push(button6);
             }
         }
@@ -178,10 +178,10 @@ module.exports = {
             
         	// Show the user info about their current quest
         	description += "\n\uD83D\uDCAC Your current quest is: **" + quest_target + "**";
-        	var button7 = new MessageButton()
+        	var button7 = new ButtonBuilder()
     			.setCustomId("any|deliver")
     			.setLabel('Do quest')
-    			.setStyle('PRIMARY')
+    			.setStyle(1)
     		buttons.push(button7);
         }
         
@@ -196,11 +196,11 @@ module.exports = {
             if(buttons.length > 5){
                 var first = buttons.slice(0, 5);
                 var second = buttons.slice(5);
-                var row1 = new MessageActionRow().addComponents(first);
-                var row2 = new MessageActionRow().addComponents(second);
+                var row1 = new ActionRowBuilder().addComponents(first);
+                var row2 = new ActionRowBuilder().addComponents(second);
                 message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }, components: [row1, row2] });
             }else{
-                var row = new MessageActionRow().addComponents(buttons);
+                var row = new ActionRowBuilder().addComponents(buttons);
                 message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }, components: [row] });
             }
         }

@@ -37,11 +37,12 @@ con = mysql.createPool({
 });
 
 // Create a new Discord client, also set some variables
-Intents = Discord.Intents;
-MessageActionRow = Discord.MessageActionRow;
-MessageButton = Discord.MessageButton;
-MessageSelectMenu = Discord.MessageSelectMenu;
-const client = new Discord.Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES], partials: ["CHANNEL"] });
+Intents = Discord.GatewayIntentBits;
+Partials = Discord.Partials;
+ActionRowBuilder = Discord.ActionRowBuilder;
+ButtonBuilder = Discord.ButtonBuilder;
+StringSelectMenuBuilder = Discord.StringSelectMenuBuilder;
+const client = new Discord.Client({ intents: [Intents.MessageContent, Intents.Guilds, Intents.GuildMessages, Intents.DirectMessages], partials: [Partials.Channel] });
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -91,7 +92,7 @@ client.once('ready', async () => {
 });
 
 // Log rate limiting
-client.on('rateLimit', console.log);
+client.rest.on('rateLimited', console.log);
 
 // Load some stuff for the boss code
 var bossChance = 8000;   // 1 out of x
@@ -181,7 +182,7 @@ client.on('interactionCreate', interaction => {
     }
     
 	var commandName = "";
-	if(interaction.isSelectMenu()){
+	if(interaction.isStringSelectMenu()){
 	    var interactionData = interaction.customId.split("|");
 	    if(interactionData[0] != "any" && interactionData[0] != user.id) return;
 	    var args = [interaction.values[0].trim()];
@@ -302,7 +303,7 @@ client.on('messageCreate', async message => {
     // Also send it to all signed-up users in DMs
     if(branch != "YES" && message.channel.id == "731236740974510100" && !message.content.toLowerCase().includes("[minor patch]")){
         // Define embed
-        var updateEmbed = new Discord.MessageEmbed()
+        var updateEmbed = new Discord.EmbedBuilder()
                 .setTitle("New bot update")
                 .setDescription(message.content.trim());
 

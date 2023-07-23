@@ -142,11 +142,11 @@ module.exports = {
             out = out + "Use `" + prefix + "fullradar` to channel all of your charges into a single encounter (costs **" + cost + "** Gold)";
 
             // Add button
-            var button = new MessageButton()
+            var button = new ButtonBuilder()
                 .setCustomId("any|fullradar")
                 .setLabel('Fullradar')
-                .setStyle('SECONDARY');
-            var row = new MessageActionRow().addComponents([button]);
+                .setStyle(2);
+            var row = new ActionRowBuilder().addComponents([button]);
 
             message.reply({ content: out, components: [row], allowedMentions: { repliedUser: false }});
 

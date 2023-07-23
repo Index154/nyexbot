@@ -268,11 +268,11 @@ module.exports = {
         else if(trophy_extra !== ""){reward_text = "\n" + reward_text;}
         if(next_quest != quest_count){
             // Button output
-            var button1 = new MessageButton()
+            var button1 = new ButtonBuilder()
     			.setCustomId("any|quest")
     			.setLabel('Next quest')
-    			.setStyle('SUCCESS');
-    		var row = new MessageActionRow().addComponents([button1]);
+    			.setStyle(3);
+    		var row = new ActionRowBuilder().addComponents([button1]);
             message.reply({ content: "@ __**" + username + "**__, you've completed the quest! As a reward you got... ```\n" + reward_amount + reward_name + "```" + levelup_extra + trophy_extra + reward_text, components: [row], allowedMentions: { repliedUser: false }});
             return;
         }

@@ -154,18 +154,18 @@ module.exports = {
 				reward_data[0] = modifier.split("|")[0] + reward_data[0];
 				
                 // Define buttons
-                var button1 = new MessageButton()
+                var button1 = new ButtonBuilder()
         			.setCustomId(user.id + "|equip")
         			.setLabel('Equip')
-        			.setStyle('SUCCESS')
-                var button2 = new MessageButton()
+        			.setStyle(3)
+                var button2 = new ButtonBuilder()
         			.setCustomId(user.id + "|compare")
         			.setLabel('Compare')
-        			.setStyle('PRIMARY')
-        		var button3 = new MessageButton()
+        			.setStyle(1)
+        		var button3 = new ButtonBuilder()
         			.setCustomId(user.id + "|equip convert")
         			.setLabel('Convert')
-        			.setStyle('DANGER')
+        			.setStyle(4)
         		buttons = [button1, button2, button3];
                 
                 // Change some output stuff
@@ -183,7 +183,7 @@ module.exports = {
             // Output
             if(buttons.length > 0){
                 // Button output
-                var row = new MessageActionRow().addComponents(buttons);
+                var row = new ActionRowBuilder().addComponents(buttons);
                 message.reply({ content: "@ __**" + username + "**__, you successfully crafted the **" + reward_data[0] + "!**" + equip_out_2 + ability_extra, allowedMentions: { repliedUser: false }, components: [row] });
             }else{
                 // Normal output
@@ -272,7 +272,7 @@ module.exports = {
 		}
 		
         // Create output embed
-        var outputEmbed = new Discord.MessageEmbed()
+        var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
         	.setTitle("[" + result_item[0] + "] crafting recipe");
         
@@ -311,10 +311,10 @@ module.exports = {
         // If the user is able to craft the item, ask for confirmation and save important values temporarily
         if(craftable){
             // Create button
-            var button1 = new MessageButton()
+            var button1 = new ButtonBuilder()
     			.setCustomId(user.id + "|craft confirm")
     			.setLabel('Confirm')
-    			.setStyle('SUCCESS')
+    			.setStyle(3)
     		buttons = [button1];
             
             lib.saveFile(dir + "/crafting_queue.txt", result_key + "|" + recipe_data[1] + "|" + recipe_data[2]);
@@ -432,17 +432,17 @@ module.exports = {
 		
 		// Add compare button for equipment
 		if(result_item[10] == "Tool" || result_item[10] == "Weapon" || result_item[10] == "Defense"){
-		    var compButton = new MessageButton()
+		    var compButton = new ButtonBuilder()
     			.setCustomId(user.id + "|compare " + result_item[0])
     			.setLabel('Compare')
-    			.setStyle('PRIMARY')
+    			.setStyle(1)
     		buttons.push(compButton);
 		}
         
         // Output
         if(buttons.length > 0){
             // Button output
-            var row = new MessageActionRow().addComponents(buttons);
+            var row = new ActionRowBuilder().addComponents(buttons);
             message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }, components: [row]});
         }else{
             // Normal output

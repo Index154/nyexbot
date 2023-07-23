@@ -49,9 +49,9 @@ module.exports = {
         // If the user didn't give an input, list the available classes. Otherwise attempt to match the input to a class
         if(allArgs === ""){
             // Create select menu
-            const row = new MessageActionRow()
+            const row = new ActionRowBuilder()
 			.addComponents(
-				new MessageSelectMenu()
+				new StringSelectMenuBuilder()
 					.setCustomId(user.id + '|class')
 					.setPlaceholder('Carefully select a class')
 					.addOptions([

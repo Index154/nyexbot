@@ -274,7 +274,7 @@ module.exports = {
 				var paginationArray = consumables;
 				var elementsPerPage = 10;
 				var fieldTitle = "Consumables";
-        	    var embedTemplate = new Discord.MessageEmbed()
+        	    var embedTemplate = new Discord.EmbedBuilder()
                 	.setColor('#0099ff')
                 	.setTitle(username + "'s Inventory")
 					.setThumbnail(lib.readFile(dir + "/main_monster.txt"))
@@ -295,7 +295,7 @@ module.exports = {
                 
             }else{
                 // Assemble only a basic embed
-        	    var outputEmbed = new Discord.MessageEmbed()
+        	    var outputEmbed = new Discord.EmbedBuilder()
                 	.setColor('#0099ff')
                 	.setTitle(username + "'s Inventory")
                 	.addFields(

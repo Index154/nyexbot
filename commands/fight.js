@@ -375,18 +375,18 @@ module.exports = {
             }
             
             // Define buttons for equip drops
-            var button1 = new MessageButton()
+            var button1 = new ButtonBuilder()
     			.setCustomId(user.id + "|equip")
     			.setLabel('Equip')
-    			.setStyle('SUCCESS')
-            var button2 = new MessageButton()
+    			.setStyle(3)
+            var button2 = new ButtonBuilder()
     			.setCustomId(user.id + "|compare")
     			.setLabel('Compare')
-    			.setStyle('PRIMARY')
-    		var button3 = new MessageButton()
+    			.setStyle(1)
+    		var button3 = new ButtonBuilder()
     			.setCustomId(user.id + "|equip convert")
     			.setLabel('Convert')
-    			.setStyle('DANGER')
+    			.setStyle(4)
             
             // If there was a drop, add it to the correct inventory or start an equip prompt
             var material_extra = "";
@@ -518,7 +518,7 @@ module.exports = {
         
         if(buttons.length > 0){
             // Equip prompt output
-            var row = new MessageActionRow().addComponents(buttons);
+            var row = new ActionRowBuilder().addComponents(buttons);
             message.reply({ content: "@ __**" + username + "**__" + output, allowedMentions: { repliedUser: false }, components: [row] });
         }else{
             // Regular output

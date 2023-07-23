@@ -85,7 +85,7 @@ module.exports = {
 		    type = monster_data[3];
 		}
 		
-        outputEmbed = new Discord.MessageEmbed()
+        outputEmbed = new Discord.EmbedBuilder()
         	.setColor(embed_color)
         	.setTitle(monster_data[0])
         	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5])

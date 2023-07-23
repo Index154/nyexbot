@@ -285,10 +285,10 @@ module.exports = {
     			var monster_info = result_monster.split("|");
 				
 				// Push button to array
-    			var button4 = new MessageButton()
+    			var button4 = new ButtonBuilder()
         			.setCustomId('comparebtn|' + altIndex)
         			.setLabel('Switch')
-        			.setStyle('PRIMARY');
+        			.setStyle(1);
 				
 				// If the user is trying to favorite the monster, select it as such and stop early
 				if(favoriteFlag){
@@ -311,7 +311,11 @@ module.exports = {
 				}else{
 				    type = monster_info[3];
 				}
-                var outputEmbed = new Discord.MessageEmbed()
+
+				// Fix error for empty property
+				if(monster_info[4] == ""){monster_info[4] = "/";}
+
+                var outputEmbed = new Discord.EmbedBuilder()
                 	.setColor(embed_color)
                 	.setTitle(monster_info[0])
                 	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
@@ -379,7 +383,7 @@ module.exports = {
 			var paginationArray = cappedMonsters;
 			var elementsPerPage = 15;
 			var fieldTitle = totalCount + " monsters / " + uniq_array.length + " entries";
-			var embedTemplate = new Discord.MessageEmbed()
+			var embedTemplate = new Discord.EmbedBuilder()
 				.setColor('#0099ff')
             	.setTitle(username + "'s Captures")
 				.setDescription("Use \"" + prefix + "caps [monster name]\" to view a monster's details!")

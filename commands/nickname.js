@@ -61,7 +61,7 @@ module.exports = {
                         output = saved[1];
                         
                         // Define embed
-                        var outputEmbed = new Discord.MessageEmbed()
+                        var outputEmbed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
                             .setTitle("Here you go:")
                             .setDescription(output)
@@ -306,7 +306,7 @@ module.exports = {
             lib.saveFile("./data/imported/dailyart.txt", day + "|" + output);
 
             // Define embed
-            var outputEmbed = new Discord.MessageEmbed()
+            var outputEmbed = new Discord.EmbedBuilder()
                 .setColor("#0099ff")
                 .setTitle("Here you go:")
                 .setDescription(output)
@@ -315,10 +315,10 @@ module.exports = {
             message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }});
         }else{
             // Make reroll button
-            var button = new MessageButton()
+            var button = new ButtonBuilder()
                 .setCustomId("nickbutton")
                 .setLabel('Reroll')
-                .setStyle('PRIMARY');
+                .setStyle(1);
 
             // Include footer text if needed
             if(nickResult[2] != ""){
@@ -331,8 +331,8 @@ module.exports = {
 
         async function nickButtonReply(message, content, buttons, allArgs, footer){
 
-            var row = new MessageActionRow().addComponents(buttons);
-            var outputEmbed = new Discord.MessageEmbed()
+            var row = new ActionRowBuilder().addComponents(buttons);
+            var outputEmbed = new Discord.EmbedBuilder()
                 .setColor("#0099ff")
                 .setTitle("Here you go:")
                 .setDescription(content);
@@ -350,7 +350,7 @@ module.exports = {
             if(!lib.exists(message.author)){message.author = message.user;}
             const filter = (i) =>
                 i.user.id === message.author.id && 
-                i.customId === buttons[0].customId;
+                i.data.custom_id === buttons[0].data.custom_id;
                 
             const collector = await newMessage.createMessageComponentCollector({
                 filter,
@@ -360,7 +360,7 @@ module.exports = {
             collector.on("collect", async (i) => {
                 var nickResult = generateNicks(allArgs);
 
-                outputEmbed = new Discord.MessageEmbed()
+                outputEmbed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("Here you go:")
                     .setDescription(nickResult[0]);
@@ -380,7 +380,7 @@ module.exports = {
                 for(y = 0; y < buttons.length; y++){
                     buttons[y].setDisabled(true);
                 }
-                var disabledRow = new MessageActionRow().addComponents(buttons);
+                var disabledRow = new ActionRowBuilder().addComponents(buttons);
                 newMessage.edit({
                     components: [disabledRow]
                 });

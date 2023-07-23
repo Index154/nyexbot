@@ -106,7 +106,7 @@ module.exports = {
 			var paginationArray = craftable_list;
 			var elementsPerPage = 15;
 			var fieldTitle = "You can use `" + prefix + "craft [item name]` to preview and then craft any of these items!";
-			var embedTemplate = new Discord.MessageEmbed()
+			var embedTemplate = new Discord.EmbedBuilder()
 				.setColor('#0099ff')
             	.setTitle(username + "'s craftable items")
 			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
@@ -185,7 +185,7 @@ module.exports = {
 				var paginationArray = item_list;
 				var elementsPerPage = 15;
 				var fieldTitle = "Found " + item_list.length + " recipes\n";
-				var embedTemplate = new Discord.MessageEmbed()
+				var embedTemplate = new Discord.EmbedBuilder()
 					.setColor('#0099ff')
                 	.setTitle("Items that can be crafted with [" + item_info[0] + "]")
                 	.setDescription("(The item itself is also included if it is craftable)");

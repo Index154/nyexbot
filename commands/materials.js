@@ -137,11 +137,11 @@ module.exports = {
                 var confirmed = lib.readFile(dir + "/confirm_conv.txt");
                 if(confirmed == "no"){
                     // Create button
-                    var button1 = new MessageButton()
+                    var button1 = new ButtonBuilder()
             			.setCustomId(user.id + "|materials convert all")
             			.setLabel('Confirm')
-            			.setStyle('PRIMARY')
-            		var row = new MessageActionRow().addComponents([button1]);
+            			.setStyle(1)
+            		var row = new ActionRowBuilder().addComponents([button1]);
                     
                     lib.saveFile(dir + "/confirm_conv.txt", "yes");
                     message.reply({ content: "Are you sure you want to convert all your unfavorited materials?\nUse the same command again or press the button to confirm", allowedMentions: { repliedUser: false }, components: [row]});
@@ -259,7 +259,7 @@ module.exports = {
 				    
 				    // Further differentiate between item types and alter the output message
     				// Create output embed
-    				var outputEmbed = new Discord.MessageEmbed()
+    				var outputEmbed = new Discord.EmbedBuilder()
                         	.setColor('#0099ff')
                         	.addFields( { name: "Scrap value", value: item_info[11], inline: true } )
                         	.setTitle(item_info[0])
@@ -313,7 +313,7 @@ module.exports = {
 			var paginationArray = materials;
 			var elementsPerPage = 15;
 			var fieldTitle = "Scrap Amount: " + scrap_amount;
-			var embedTemplate = new Discord.MessageEmbed()
+			var embedTemplate = new Discord.EmbedBuilder()
 				.setColor('#0099ff')
             	.setTitle(username + "'s Materials")
 			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);

@@ -304,18 +304,18 @@ module.exports = {
         
         // Create selection buttons
         // Build buttons
-		var button1 = new MessageButton()
+		var button1 = new ButtonBuilder()
 			.setCustomId(user.id + "|research A")
 			.setLabel('A')
-			.setStyle('SUCCESS')
-		var button2 = new MessageButton()
+			.setStyle(3)
+		var button2 = new ButtonBuilder()
 			.setCustomId(user.id + "|research B")
 			.setLabel('B')
-			.setStyle('SUCCESS')
-		var button3 = new MessageButton()
+			.setStyle(3)
+		var button3 = new ButtonBuilder()
 			.setCustomId(user.id + "|research C")
 			.setLabel('C')
-			.setStyle('SUCCESS')
+			.setStyle(3)
 		var buttons = [button1, button2, button3];
 		
 		// Get scrap amount
@@ -326,7 +326,7 @@ module.exports = {
 		if(scrapAmount < parseInt(prices[projectC_data[1]])){notAffordable[2] = " - **You don't have enough!**"}
         
         // Display project list
-	    var outputEmbed = new Discord.MessageEmbed()
+	    var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
         	.setTitle(username + "'s available research projects")
         	.setDescription("Available Scrap: " + scrapAmount.toString())

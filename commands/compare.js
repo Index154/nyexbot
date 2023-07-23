@@ -111,7 +111,7 @@ module.exports = {
         // Differentiate between item types and send an embed
 		var stat_names = ["Filler", "Attack/Defense", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck", "Unnamed"];
 		// Create output embed
-		var outputEmbed = new Discord.MessageEmbed()
+		var outputEmbed = new Discord.EmbedBuilder()
             	.setColor('#0099ff')
             	.setTitle("@ __**" + username + "**__, comparing your [" + modifier[0] + item_data[0] + "] with [" + newModifier[0] + new_item_data[0] + "]")
 		
@@ -164,15 +164,15 @@ module.exports = {
 		        .setFooter({ text: "Do " + prefix + "equip to replace your " + item_data[0] + " with the " + new_item_data[0] + "!" });
 		    
 		    // Create buttons
-    		var button1 = new MessageButton()
+    		var button1 = new ButtonBuilder()
     			.setCustomId(user.id + "|equip")
     			.setLabel('Equip')
-    			.setStyle('SUCCESS')
-    		var button2 = new MessageButton()
+    			.setStyle(3)
+    		var button2 = new ButtonBuilder()
     			.setCustomId(user.id + "|equip convert")
     			.setLabel('Convert')
-    			.setStyle('DANGER')
-    		var row = new MessageActionRow().addComponents([button1, button2]);
+    			.setStyle(4)
+    		var row = new ActionRowBuilder().addComponents([button1, button2]);
     		
     		// Button output
     		message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }, components: [row]});

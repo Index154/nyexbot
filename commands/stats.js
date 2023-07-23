@@ -258,7 +258,7 @@ module.exports = {
         else{var for_levelup = levels[level];}
         
         // Assemble a basic embed
-	    var outputEmbed = new Discord.MessageEmbed()
+	    var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
         	.setTitle(username + "'s Stats")
         	.setDescription("**LVL " + level + "** (" + exp + "/" + for_levelup + " EXP)\n**Stat Points: " + stat_data[13] + "**");

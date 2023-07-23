@@ -42,7 +42,7 @@ module.exports = {
         }
         
         // Create submission message
-        var outputEmbed = new Discord.MessageEmbed()
+        var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
         	.setTitle("Submission by __" + user.tag + "__\n(ID: " + user.id + ")")
         	.setDescription("```\n" + allArgs + "```")

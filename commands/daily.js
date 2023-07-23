@@ -123,11 +123,11 @@ module.exports = {
         target_name = shiny + monster_data[0];
 
         // Create button
-        var button1 = new MessageButton()
+        var button1 = new ButtonBuilder()
 			.setCustomId("any|dodaily")
 			.setLabel('Do daily')
-			.setStyle('SUCCESS');
-		var row = new MessageActionRow().addComponents([button1]);
+			.setStyle(3);
+		var row = new ActionRowBuilder().addComponents([button1]);
 		
 		// Check if the user has the monster in their previous captures
         var captures = lib.readFile(dir + "/captures.txt");
