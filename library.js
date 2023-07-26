@@ -9,7 +9,7 @@ module.exports = {
     // Dependency: fs
     // Function: Saves the contents in the filepath
     saveFile(path, contents){
-	contents = contents.toString();
+		contents = contents.toString();
         fs.writeFile(path, contents, function(err) {
             if(err) {
                 console.error(Date() + " - writeFile error: ");

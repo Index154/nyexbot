@@ -350,7 +350,7 @@ module.exports = {
             if(!lib.exists(message.author)){message.author = message.user;}
             const filter = (i) =>
                 i.user.id === message.author.id && 
-                i.data.custom_id === buttons[0].data.custom_id;
+                i.customId === buttons[0].data.custom_id;
                 
             const collector = await newMessage.createMessageComponentCollector({
                 filter,
