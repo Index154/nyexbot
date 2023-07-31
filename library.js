@@ -1627,6 +1627,433 @@ module.exports = {
 				message.client.channels.cache.get("859477509178654792").send({ embeds: [outputEmbed] });
 			}
 		}
+	},
+
+	// Input: String
+    // Dependency: Lib itself
+    // Function: Generates one or more nicknames
+    // Output: String, String
+	generateNicks(allArgs){
+
+		var args = allArgs.split(" ");
+
+		// Set starting variables
+		var words = lib.readFile("../nyextest/data/imported/words.txt");
+		var output = "";
+		var count = 1;
+		var trueNameFlag = false;
+
+		// Get count argument if it exists
+		if(lib.exists(args[0])){
+			if(!isNaN(args[0])){
+				if(parseInt(args[0]) > 20 || parseInt(args[0]) < 1){
+					// Bad number
+					message.reply({ content: "\u274C You may only generate between 1 and 20 nicknames at a time!", allowedMentions: { repliedUser: false }});
+					return ["error", "error"];
+				}
+				count = parseInt(args[0]);
+				args.splice(0, 1);
+			}
+		}
+		
+		// Get truename argument if it exists
+		if(lib.exists(args[0])){
+			args[0] = args[0].toLowerCase();
+			if(args[0] == "truename"){
+				args.splice(0, args.length);
+				trueNameFlag = true;
+			}
+		}
+		
+		// Split word list
+		var wordLists = words.split("\n#####################################################\n");
+		var adjectives = wordLists[0].split("\n");
+		var nouns = wordLists[1].split("\n");
+		var mhwTitles = wordLists[2].split("\n");
+		var userWords = wordLists[3].split("\n");
+		
+		// Go through a loop generating random nicknames
+		var usableNick = "";
+		for(i = 0; i < count; i++){
+
+			// Deconstruct a maximum of 2 args, preparing the word order
+			var wordTypes = [];
+			var customWord = "";
+			var customWordUsed = false;
+			var nextWordPosition = lib.rand(0, 1);
+
+			// Evaluate type1 and type2 first
+			if(args.includes("type1")){
+				wordTypes[0] = "type1";
+				args.splice(args.indexOf("type1"), 1);
+				nextWordPosition = 1;
+			}
+			if(args.includes("type2")){
+				wordTypes[0] = "type2";
+				args.splice(args.indexOf("type2"), 1);
+				nextWordPosition = 1;
+			}
+
+			for(p = 0; p < args.length && p < 2; p++){
+				args[p] = args[p].toLowerCase();
+
+				// Determine the position of the theoretical next word
+				var position = nextWordPosition;
+				if(position == 0){nextWordPosition = 1;}else
+				if(position == 1){nextWordPosition = 0;}
+
+				if(args[p] == "type4" || args[p] == "type3"){
+					wordTypes[position] = "type4";
+
+				}else if(!customWordUsed && args[p] != "type2" && args[p] != "type1" && lib.exists(args[p])){
+					wordTypes[position] = "customWord";
+
+					// Modify the custom word
+					args[p] = args[p].replaceAll(/_/g, " ");
+					customWord = args[p].charAt(0).toUpperCase() + args[p].slice(1);
+
+					// Save custom word if it is new
+					if(!userWords.includes(args[p])){
+						lib.saveFile("../nyextest/data/imported/words.txt", words + "\n" + args[p]);
+					}
+					customWordUsed = true;
+				}
+			}
+
+			// Do the following twice (for both of the words) unless truenames are being generated
+			var loopCount = 2;
+			var tempOutput = "";
+			if(trueNameFlag){loopCount = 1;}
+			for(p = 0; p < loopCount; p++){
+			   
+				if(trueNameFlag){
+					// Generate a new random word
+					var consonants = ['w','r','t','z','p','s','d','f','g','h','j','k','l','y','x','c','v','b','n','m'];
+					var vowels = ['e','u','i','o','a'];
+					var previousChar = "r";     // Set this to r to avoid errors and to allow all starting chars
+					var wordLength = lib.rand(3, 4);
+					var consonantStart = false;
+					for(x = 0; x < wordLength; x++){
+						// 50-50 chance to have only one character in the first segment
+						var odd = false;
+						if(x === 0){if(lib.rand(0, 1) === 1){odd = true;}}
+						if(lib.rand(0, 1) === 1 && !(consonantStart && x === 1)){
+							var newChar = getNextChar(consonants, previousChar);
+							tempOutput += newChar;
+							previousChar = newChar;
+							consonantStart = true;
+	
+							if(!odd){
+								newChar = getNextChar(vowels, previousChar);
+								tempOutput += newChar;
+								previousChar = newChar;
+								consonantStart = false;
+							}
+						}
+						else{
+							var newChar = getNextChar(vowels, previousChar);
+							tempOutput += newChar;
+							previousChar = newChar;
+
+							if(!odd){
+								newChar = getNextChar(consonants, previousChar);
+								tempOutput += newChar;
+								previousChar = newChar;
+							}
+						}
+					}
+					// Function for rerolling characters if they are not allowed
+					function getNextChar(array, prevChar) {
+						var forbiddenCombos = {
+							w: ['w', 'h', 'v'],
+							r: ['?'],
+							t: ['w', 'd', 'x'],
+							z: ['w', 's', 'f', 'h', 'j', 'x'],
+							p: ['w', 'x', 'b'],
+							s: ['w', 'z', 'x'],
+							d: ['t', 'x'],
+							f: ['w', 'h', 'x', 'v'],
+							g: ['k', 'x'],
+							h: ['h'],
+							j: ['w', 't', 'z', 'p', 's', 'd', 'f', 'g', 'j', 'k', 'l', 'x', 'c', 'v', 'b'],
+							k: ['g', 'x', 'c'],
+							l: ['w', 'h', 'x'],
+							y: ['y', 'j'],
+							x: ['w', 'z', 's', 'f', 'g', 'h', 'j', 'k', 'v'],
+							c: ['g', 'k', 'x'],
+							v: ['w', 'z', 'f', 'h', 'x'],
+							b: ['p', 'h', 'x'],
+							n: ['h', 'x'],
+							m: ['h', 'x'],
+							e: ['?'],
+							u: ['?'],
+							i: ['w', 'i', 'y'],
+							o: ['?'],
+							a: ['?']
+						};
+						var result = array[lib.rand(0, array.length - 1)];
+						while(forbiddenCombos[prevChar].includes(result)){
+							result = array[lib.rand(0, array.length - 1)];
+						}
+						return result;
+					}
+
+					tempOutput = tempOutput.charAt(0).toUpperCase() + tempOutput.slice(1);
+				}else{
+					// Set starting variables
+					var randNum = lib.rand(1, 100);
+					// If the user included one of the keywords, set the word pool for every loop manually
+					if(wordTypes[p] == "type1" && p == 0){
+						randNum = 51;
+					}else if(wordTypes[p] == "type2" && p == 0){
+						randNum = 66;
+					}else if(wordTypes[p] == "type4"){
+						randNum = 1;
+					}else if(wordTypes[p] == "customWord"){
+						randNum = 0;
+					}else{
+
+					}
+					
+					// Determine result
+					if(randNum >= 50 && p == 1){
+						randNum = lib.rand(1, 49)
+					}
+					if(randNum >= 50 && p == 0){
+						if(randNum >=65){
+							var chosenList = adjectives;
+						}else{
+							var chosenList = mhwTitles;
+						}
+					}else{
+						if(randNum <= 5){
+							if(randNum == 0){
+								var chosenList = [customWord];
+							}else{
+								var chosenList = userWords;
+							}
+						}else{
+							var chosenList = nouns;
+						}
+					}
+
+					// Add this loop's word to the nick
+					var selectedWord = chosenList[lib.rand(0, chosenList.length - 1)];
+					if(p == 1){
+						tempOutput += " ";
+					}
+					tempOutput += selectedWord;
+					
+				}
+			}
+
+			// Add this loop's nick to the final output
+			if(i > 0){
+				output = output + "\n";
+			}
+			output = output + tempOutput;
+
+			// Use this as the main nick if there is only one being generated
+			if(count == 1){
+				usableNick = tempOutput;
+			}
+			
+		}
+
+		// Footer preparation
+		if(usableNick != ""){
+			usableNick = "/nick new_nick:" + usableNick;
+		}
+
+		return [output, usableNick];
+	},
+
+	// Input: String
+    // Dependency: Lib itself
+    // Function: Generates one or more abilities
+    // Output: String
+	generateAbilities(allArgs){
+
+		// Set starting variables
+		var words = lib.readFile("../nyextest/data/imported/words.txt");
+		var output = "";
+		var count = 1;
+
+		// Get count argument if it exists
+		if(lib.exists(allArgs)){
+			if(!isNaN(allArgs)){
+				if(parseInt(allArgs) > 20 || parseInt(allArgs) < 1){
+					// Bad number
+					message.reply({ content: "\u274C You may only generate between 1 and 20 abilities at a time!", allowedMentions: { repliedUser: false }});
+					return "error";
+				}
+				count = parseInt(allArgs);
+			}
+		}
+
+		// Split word list
+		var wordLists = words.split("\n#####################################################\n");
+		var adjectives = wordLists[0].split("\n");
+		var nouns = wordLists[1].split("\n");
+		var verbs = lib.readFile("../nyextest/data/imported/verbs.txt").split("\n");
+		
+		// Go through a loop generating random abilities
+		for(i = 0; i < count; i++){
+
+			// In 40% of cases, use an adjective instead of a noun
+			var chosenList = nouns;
+			if(lib.rand(1, 10) <= 4){ chosenList = adjectives; }
+
+			// Random ability String
+			var tempOutput = verbs[lib.rand(0, verbs.length - 1)] + " " + chosenList[lib.rand(0, chosenList.length - 1)];
+
+			// Add this loop's ability to the final output
+			if(i > 0){
+				output = output + "\n";
+			}
+			output = output + tempOutput;
+			
+		}
+
+		return output;
+
+	},
+
+	// Input: String
+    // Dependency: Lib itself
+    // Function: Generates a comment
+    // Output: String, String
+	generateComment(allArgs){
+
+		// Set starting variables
+		var words = lib.readFile("../nyextest/data/imported/words.txt");
+		var wordLists = words.split("\n#####################################################\n");
+		var nouns = wordLists[1].split("\n");
+		var comments = lib.readFile("../nyextest/data/imported/comments.txt").split("\n");
+		var output = "";
+		var chosenWord = "";
+
+		// Get random template ID
+		var id = lib.rand(0, comments.length - 1);
+
+		// Get ID or word argument if it exists
+		if(lib.exists(allArgs)){
+			if(!isNaN(allArgs)){
+
+				// ID
+				if(parseInt(allArgs) > comments.length || parseInt(allArgs) < 1){
+					// Bad number
+					message.reply({ content: "\u274C This comment ID does not exist! There are currently only " + comments.length + " templates!", allowedMentions: { repliedUser: false }});
+					return ["error", "error"];
+				}
+				id = parseInt(allArgs) - 1;
+
+			}else{
+				// Custom word
+				chosenWord = allArgs;
+			}
+		}
+		
+		// Replace placeholder in a comment template with the word
+		if(chosenWord == ""){ chosenWord = nouns[lib.rand(0, nouns.length - 1)]; }
+		output = comments[id].replace(/#W#/g, chosenWord.toLowerCase());
+
+		return [output, "Template ID: " + (id + 1)];
+
+	},
+
+	// Input: Object, String, String, String, String
+    // Dependency: Lib itself
+    // Function: Adds a reroll button to the output embed for easy re-activation of the command
+	async rerollbuttonReply(message, content, allArgs, footer, commandType){
+		const Discord = require('discord.js');
+
+		// Make reroll button
+        var button = new ButtonBuilder()
+            .setCustomId("rerollbutton")
+            .setLabel('Reroll')
+            .setStyle(1);
+		var buttons = [button];
+
+		// Create first embed message
+		var row = new ActionRowBuilder().addComponents(buttons);
+		var outputEmbed = new Discord.EmbedBuilder()
+			.setColor("#0099ff")
+			.setTitle("Here you go:")
+			.setDescription(content);
+		if(footer != ""){
+			outputEmbed.setFooter({ text: footer });
+		}
+
+		const newMessage = await message.reply({
+			embeds: [outputEmbed],
+			components: [row],
+			allowedMentions: { repliedUser: false },
+			fetchReply: true,
+		});
+
+		if(!lib.exists(message.author)){message.author = message.user;}
+		const filter = (i) =>
+			i.user.id === message.author.id && 
+			i.customId === buttons[0].data.custom_id;
+			
+		const collector = await newMessage.createMessageComponentCollector({
+			filter,
+			time: 20000,
+		});
+
+		// When the reroll button is pressed
+		collector.on("collect", async (i) => {
+			var newDesc = "Error: Could not recall command";
+			var newFooter = "";
+
+			// Re-run the original command again to get new values for the embed
+			if(commandType == "nickname"){
+
+				var nickResult = lib.generateNicks(allArgs);
+				newDesc = nickResult[0];
+				newFooter = nickResult[1];
+
+			}else if(commandType == "ability"){
+
+				newDesc = lib.generateAbilities(allArgs);
+
+			}else if(commandType == "comment"){
+
+				var commentResult = lib.generateComment(allArgs);
+				newDesc = commentResult[0];
+				newFooter = commentResult[1];
+
+			}
+
+			// Modify the embed
+			outputEmbed = new Discord.EmbedBuilder()
+				.setColor("#0099ff")
+				.setTitle("Here you go:")
+				.setDescription(newDesc);
+			if(newFooter != ""){
+				outputEmbed.setFooter({ text: newFooter });
+			}
+
+			await i.deferUpdate();
+			await i.editReply({
+				embeds: [outputEmbed]
+			});
+			collector.resetTimer();
+		});
+
+		// Upon timeout of the collector
+		collector.on("end", () => {
+			// Set all buttons to disabled
+			for(y = 0; y < buttons.length; y++){
+				buttons[y].setDisabled(true);
+			}
+			var disabledRow = new ActionRowBuilder().addComponents(buttons);
+			newMessage.edit({
+				components: [disabledRow]
+			});
+		});
+
 	}
 	
 };

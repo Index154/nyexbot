@@ -6,20 +6,12 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Generates a random message that could be made in Elden Ring'],
     shortDescription: 'Generate an Elden Ring message',
-    weight: 35,
+    weight: 110,
     category: 'variety',
 
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 	    fs = require('fs');
 	    const lib = require("../library.js");
-        
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
-        }
         
         // Load templates, words and conjunctions
         var everything = lib.readFile("./data/imported/eldenWords.txt");

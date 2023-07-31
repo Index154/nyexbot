@@ -16,20 +16,12 @@ module.exports = {
     ],
 	category: 'items',
 	
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 	    adc  = require('adc.js');
 	    var allArgs = args.join(" ");
 	    
 	    function onlyUnique(value, index, self) {
             return self.indexOf(value) === index;
-        }
-        
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
         }
         
         // Set important variables

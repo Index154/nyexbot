@@ -9,16 +9,8 @@ module.exports = {
 	usages: ['', '[command name]'],
     category: 'info',
 	
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
         const { commands } = message.client;
-
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
-        }
 
         if (!args.length) {
             var names = [];
@@ -65,10 +57,11 @@ module.exports = {
             var categoryNames = ["\u2757 Main commands", "\uD83D\uDDD2 Recurring tasks", "\uD83D\uDC64 User information", "\uD83D\uDC8E Item interactions", "ℹ️ General information", "\uD83D\uDECD Miscellaneous", "⚙️ Settings / Feedback", "\u2753 Unrelated / Fun commands", "\uD83C\uDFAE Other minigames", "\uD83D\uDD27 Admin commands"];
             
             // Assemble different versions of the same embed for each page
-            var categoriesPerPage = [3, 2, 2, 3];
+            var categoriesPerPage = [2, 2, 3, 1, 2];
+            var pageCount = 5;
             var categoryTracker = 0;
             var embeds = [];
-            for(x = 0; x < 4; x++){
+            for(x = 0; x < pageCount; x++){
 
                 var embedTemplate = new Discord.EmbedBuilder()
                     .setColor('#0099ff')

@@ -7,21 +7,13 @@ module.exports = {
 	usages: [''],
 	descriptions: ['Generate a random creature configuration for inspiration'],
     shortDescription: 'Creature idea generator',
-    weight: 30,
+    weight: 100,
 	aliases: ['insp'],
     category: 'variety',
 	
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 	    fs = require('fs');
 	    const lib = require("../library.js");
-        
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
-        }
         
         // Set important variables
         var username = user.username;

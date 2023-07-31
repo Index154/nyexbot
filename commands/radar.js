@@ -19,16 +19,8 @@ module.exports = {
     ],
     category: 'tasks',
 	
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 	    
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
-        }
-        
         function onlyUnique(value, index, self) {
             return self.indexOf(value) === index;
         }

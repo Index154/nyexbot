@@ -10,17 +10,9 @@ module.exports = {
 	aliases: ['up'],
     category: 'admin',
 
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 	    fs = require('fs');
 	    const lib = require("../library.js");
-        
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
-        }
         
         // Uptime subcommand
         // Get uptimes

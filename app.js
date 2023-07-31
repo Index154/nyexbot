@@ -189,7 +189,7 @@ client.on('interactionCreate', interaction => {
 		commandName = interactionData[1];
 	}
 	else if(interaction.isButton()){
-	    if(interaction.customId === 'previousbtn' || interaction.customId === 'randbtn' || interaction.customId === 'nextbtn' || interaction.customId === 'nickbutton') return;
+	    if(interaction.customId === 'previousbtn' || interaction.customId === 'randbtn' || interaction.customId === 'nextbtn' || interaction.customId === 'rerollbutton') return;
 		var interactionData = interaction.customId.split("|");
 		if(interactionData[0] != "any" && interactionData[0] != user.id) return;
 		var args = interactionData[1].split(" ");
@@ -206,6 +206,14 @@ client.on('interactionCreate', interaction => {
 		args = args.trim().split(/ +/);
 	}
 	
+    // Check if the server has a custom prefix and load it
+    commandPrefix = prefix;
+    if(message.guildId !== null){
+        if(fs.existsSync("./data/configs/" + message.guildId)){
+           commandPrefix = lib.readFile("./data/configs/" + message.guildId + "/prefix.txt");
+        }
+    }
+
 	// Check for commands and try to execute them
 	const command = client.commands.get(commandName)
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
@@ -231,7 +239,7 @@ client.on('interactionCreate', interaction => {
 		setTimeout(() => timestamps.delete(user.id), cooldownAmount);
 		
 		// Execute command
-		command.execute(message, user, args);
+		command.execute(message, user, args, commandPrefix);
 	} catch (error) {
 		lib.error(message, error, "");
 	}
@@ -293,9 +301,8 @@ client.on('messageCreate', async message => {
     // Check if the server has a custom prefix and load it
     commandPrefix = prefix;
     if(message.guild !== null){
-        var serverID = message.guildId;
-        if(fs.existsSync("./data/configs/" + serverID)){
-           commandPrefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
+        if(fs.existsSync("./data/configs/" + message.guildId)){
+           commandPrefix = lib.readFile("./data/configs/" + message.guildId + "/prefix.txt");
         }
     }
     
@@ -371,7 +378,7 @@ client.on('messageCreate', async message => {
         setTimeout(() => timestamps.delete(user.id), cooldownAmount);
         
         // Execute command
-	    command.execute(message, user, args);
+	    command.execute(message, user, args, commandPrefix);
     } catch (error) {
 	    lib.error(message, error, "");
 	}

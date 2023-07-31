@@ -6,21 +6,13 @@ module.exports = {
 	usages: ['', '[text]'],
 	descriptions: ['Posts a random gif from tenor, found by entering a random search term', 'Posts a random gif from tenor using the argument as a search term'],
     shortDescription: 'Random gifs from Tenor',
-    weight: 24,
+    weight: 60,
 	aliases: ['ten', 'gif'],
     category: 'variety',
 	
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 	    fs = require('fs');
 	    const lib = require("../library.js");
-        
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
-        }
         
         // Set important variables
         var username = user.username;

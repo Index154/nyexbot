@@ -7,21 +7,13 @@ module.exports = {
 	descriptions: ['', ''],
     addendum: ['Tells you about the objects that are important to your destiny!'],
     shortDescription: 'Generate your destiny',
-    weight: 45,
+    weight: 130,
     category: 'variety',
 	
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 	    fs = require('fs');
 	    const lib = require("../library.js");
         var input = args.join(" ").toLowerCase();
-        
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
-        }
         
         // Set important variables
         var username = user.username;

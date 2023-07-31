@@ -15,17 +15,9 @@ module.exports = {
     ],
     category: 'items',
 	
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 	    allArgs = args.join(" ").toLowerCase();
 	    var adc  = require('adc.js');
-        
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
-        }
         
         // Set important variables
         var username = user.username;

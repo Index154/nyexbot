@@ -11,7 +11,7 @@ module.exports = {
     ],
     category: 'admin',
 	
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 		if (!args.length) return message.reply({ content: `\u274C You didn't specify a command to reload!`, allowedMentions: { repliedUser: false }});
         const commandName = args[0].toLowerCase();
         const command = message.client.commands.get(commandName)

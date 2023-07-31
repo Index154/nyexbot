@@ -12,7 +12,7 @@ module.exports = {
         'Deletes the reminder with the given ID'
     ],
     shortDescription: 'Create custom reminders',
-    weight: 100,
+    weight: 45,
 	aliases: ['re', 'rem', 'remind', 'reminders', 'timer', 'timers'],
 	addendum: [
         '- Custom time interval examples: `yearly`, `7d`, `2 hours`, `daily`, `1h 30m`',
@@ -20,18 +20,10 @@ module.exports = {
     ],
     category: 'variety',
 	
-	execute(message, user, args) {
+	execute(message, user, args, prefix) {
 	    fs = require('fs');
 	    const lib = require("../library.js");
         
-        // Check if the server has a custom prefix and load it
-        if(message.guild !== null){
-            var serverID = message.guildId;
-            if(fs.existsSync("./data/configs/" + serverID)){
-                prefix = lib.readFile("./data/configs/" + serverID + "/prefix.txt");
-            }
-        }
-
         // Get a list of the user's reminders if there are no arguments
         if(args.length < 1){
             async function getReminders(userID){
