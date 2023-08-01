@@ -8,6 +8,7 @@ Unspecified
 - Put the dead ends (returns) of the code into the lower levels (nesting) and keep the main path close to the top to reduce nesting
 - Add additional comments that actually explain stuff that is unintuitive (like unique calculations)
 - Change where and how which functions are imported and from which module to improve performance?
+- Make use of globalVariables.json
 
 App
 - Worldboss spawning logic (happens in both message and interaction events)

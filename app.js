@@ -396,7 +396,6 @@ if(branch != "YES"){
         console.log("Still alive! " + Date());
     }, 300 * 1000);
 
-
     // Check reminders once per minute
     var reminderCheck = setInterval(async function() {
 
@@ -450,9 +449,40 @@ if(branch != "YES"){
         }
     
     }, 60 * 1000);
+
+    // Check logs every 24 hours
+    var logCheck = setInterval(async function(){
+
+        // Get error log
+        var log = lib.readFile("/root/.pm2/logs/app-error.log");
+        if(!lib.exists(log)){log = "Empty";}
+        log = log.split("\n");
+        
+        // If the log isn't empty, post the content to Discord and empty the file
+        if(log.length > 1){
+            
+            // If the log contains too many lines, split it into multiple messages
+            var linesPerMessage = 70;
+            for(i = 0; i < log.length - 1; i++){
+
+                var tempMessage = "";
+                if( ((i + 1) % linesPerMessage) == 0 || i == log.length - 1 ){
+                    client.channels.cache.get("1136023345373122560").send("```js\n" + tempMessage + "```");
+                    tempMessage = "";
+                }
+
+            }
+
+            // Clear log file
+            lib.saveFile("/root/.pm2/logs/app-error.log", "");
+
+        }
+
+    }, 24 * 60 * 1000);
+
 }
 
-// Check for new posts online every 20 minutes
+// Check for new posts online every 30 minutes
 var newsCheck = setInterval(async function() {
 
     // Define list of sites to check and the HTML elements to check for changes
@@ -504,4 +534,4 @@ var newsCheck = setInterval(async function() {
         client.channels.cache.get("516288921127092234").send("**Followed pages have been updated!**\n" + updateList);
     }
     
-}, 20 * 60 * 1000);
+}, 30 * 60 * 1000);
