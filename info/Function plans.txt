@@ -9,6 +9,7 @@ Unspecified
 - Add additional comments that actually explain stuff that is unintuitive (like unique calculations)
 - Change where and how which functions are imported and from which module to improve performance?
 - Make use of globalVariables.json
+- Decide how to split test environment and main environment data after SQL implementation
 
 App
 - Worldboss spawning logic (happens in both message and interaction events)

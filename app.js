@@ -522,6 +522,8 @@ var newsCheck = setInterval(async function() {
             updateList.push("<" + siteList[i].link + ">");
 
             // Save the pattern match for the next comparison
+            console.log(results[0]);
+            console.log(previousResult);
             lib.saveFile(filePath, results[0]);
         }
 
@@ -531,7 +533,7 @@ var newsCheck = setInterval(async function() {
     if(updateList.length > 0){
         updateList = updateList.join("\n");
         // Send message in my channel or DM me
-        client.channels.cache.get("516288921127092234").send("**Followed pages have been updated!**\n" + updateList);
+        client.channels.cache.get("516288921127092234").send("**Update(s) found!**\n" + updateList);
     }
     
 }, 30 * 60 * 1000);
