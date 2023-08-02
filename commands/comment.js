@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'comment',
-	usages: [''],
-	descriptions: ['Generates a random comment'],
+	usages: ['', '[number]', '[custom word]'],
+	descriptions: ['Generates a random comment', 'Generates a comment using the specified template ID', 'Generates a comment with the custom word'],
     shortDescription: 'Generate stupid sentences',
     weight: 56,
 	aliases: ['co'],
