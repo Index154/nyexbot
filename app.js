@@ -399,8 +399,6 @@ if(branch != "YES"){
     // Check reminders once per minute
     var reminderCheck = setInterval(async function() {
 
-        console.error("Test");
-
         var d = new Date();
         var currentEpoch = Math.floor(d.getTime() / 1000);
         var maxTimestamp = currentEpoch + 30;
