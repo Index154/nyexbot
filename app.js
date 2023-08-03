@@ -399,6 +399,8 @@ if(branch != "YES"){
     // Check reminders once per minute
     var reminderCheck = setInterval(async function() {
 
+        console.error("Test");
+
         var d = new Date();
         var currentEpoch = Math.floor(d.getTime() / 1000);
         var maxTimestamp = currentEpoch + 30;
@@ -522,8 +524,6 @@ var newsCheck = setInterval(async function() {
             updateList.push("<" + siteList[i].link + ">");
 
             // Save the pattern match for the next comparison
-            console.log(results[0]);
-            console.log(previousResult);
             lib.saveFile(filePath, results[0]);
         }
 
