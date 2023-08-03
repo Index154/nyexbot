@@ -450,7 +450,7 @@ if(branch != "YES"){
     
     }, 60 * 1000);
 
-    // Check logs every 24 hours
+    // Check logs every 6 hours
     var logCheck = setInterval(async function(){
 
         // Get error log
@@ -478,7 +478,7 @@ if(branch != "YES"){
 
         }
 
-    }, 24 * 60 * 1000);
+    }, 6 * 60 * 1000);
 
 }
 
