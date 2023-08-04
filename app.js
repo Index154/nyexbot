@@ -463,9 +463,12 @@ if(branch != "YES"){
             
             // If the log contains too many lines, split it into multiple messages
             var linesPerMessage = 70;
-            for(i = 0; i < log.length - 1; i++){
+            var tempMessage = "";
+            for(i = 0; i < log.length; i++){
 
-                var tempMessage = "";
+                if(tempMessage != ""){tempMessage += "\n";}
+                tempMessage += log[i];
+
                 if( ((i + 1) % linesPerMessage) == 0 || i == log.length - 1 ){
                     client.channels.cache.get("1136023345373122560").send("```js\n" + tempMessage + "```");
                     tempMessage = "";
@@ -478,7 +481,7 @@ if(branch != "YES"){
 
         }
 
-    }, 6 * 60 * 1000);
+    }, 6 * 60 * 60 * 1000);
 
 }
 
