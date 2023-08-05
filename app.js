@@ -476,6 +476,10 @@ if(branch != "YES"){
 
             }
 
+            // Save to backup log
+            var backupLog = lib.readFile("../nyextest/data/imported/logBackup.txt");
+            lib.saveFile("../nyextest/data/imported/logBackup.txt", backupLog + log.join("\n"));
+
             // Clear log file
             lib.saveFile("/root/.pm2/logs/app-error.log", "");
 
