@@ -462,7 +462,7 @@ if(branch != "YES"){
         if(log.length > 1){
             
             // If the log contains too many lines, split it into multiple messages
-            var linesPerMessage = 70;
+            var linesPerMessage = 50;
             var tempMessage = "";
             for(i = 0; i < log.length; i++){
 

@@ -1900,9 +1900,9 @@ module.exports = {
 		// Go through a loop generating random abilities
 		for(i = 0; i < count; i++){
 
-			// In 40% of cases, use an adjective instead of a noun
+			// In 10% of cases, use an adjective instead of a noun
 			var chosenList = nouns;
-			if(lib.rand(1, 10) <= 4){ chosenList = adjectives; }
+			if(lib.rand(1, 10) == 1){ chosenList = adjectives; }
 
 			// Random ability String
 			var tempOutput = verbs[lib.rand(0, verbs.length - 1)] + " " + chosenList[lib.rand(0, chosenList.length - 1)];
