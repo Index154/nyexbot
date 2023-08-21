@@ -456,9 +456,14 @@ if(branch != "YES"){
         // Get error log
         var log = lib.readFile("/root/.pm2/logs/app-error.log");
         if(!lib.exists(log)){log = "Empty";}
+        altLog = log;
         
         // If the log isn't empty, post the content to Discord and empty the file
         if(log.length > 5){
+
+            // Save to backup log
+            var backupLog = lib.readFile("../nyextest/data/imported/logBackup.log");
+            lib.saveFile("../nyextest/data/imported/logBackup.log", backupLog + "\n" + log);
             
             // If the log contains too many characters, split it into multiple messages
             var charsPerMessage = 1980;
@@ -472,13 +477,10 @@ if(branch != "YES"){
                     tempMessage = log;
                     log = "";
                 }
+                tempMessage = tempMessage.split("```").join("`");
                 client.channels.cache.get("1136023345373122560").send("```js\n" + tempMessage + "```");
 
             }
-
-            // Save to backup log
-            var backupLog = lib.readFile("../nyextest/data/imported/logBackup.log");
-            lib.saveFile("../nyextest/data/imported/logBackup.log", backupLog + log.join("\n"));
 
             // Clear log file
             lib.saveFile("/root/.pm2/logs/app-error.log", "");
