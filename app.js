@@ -456,23 +456,23 @@ if(branch != "YES"){
         // Get error log
         var log = lib.readFile("/root/.pm2/logs/app-error.log");
         if(!lib.exists(log)){log = "Empty";}
-        log = log.split("\n");
         
         // If the log isn't empty, post the content to Discord and empty the file
-        if(log.length > 1){
+        if(log.length > 5){
             
-            // If the log contains too many lines, split it into multiple messages
-            var linesPerMessage = 30;
+            // If the log contains too many characters, split it into multiple messages
+            var charsPerMessage = 1980;
             var tempMessage = "";
-            for(i = 0; i < log.length; i++){
+            for(; log.length > 0; ){
 
-                if(tempMessage != ""){tempMessage += "\n";}
-                tempMessage += log[i];
-
-                if( ((i + 1) % linesPerMessage) == 0 || i == log.length - 1 ){
-                    client.channels.cache.get("1136023345373122560").send("```js\n" + tempMessage + "```");
-                    tempMessage = "";
+                if(log.length > charsPerMessage){
+                    tempMessage = log.slice(0, charsPerMessage) + "...";
+                    log = "..." + log.slice(charsPerMessage, log.length);
+                }else{
+                    tempMessage = log;
+                    log = "";
                 }
+                client.channels.cache.get("1136023345373122560").send("```js\n" + tempMessage + "```");
 
             }
 
