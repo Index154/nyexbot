@@ -1,6 +1,6 @@
-__**Lower priority:**__
+## __Lower priority__
 (Same as above but even less necessary for the overall quality and completeness of the game)
-- The addition and improvement of some of the fun commands from Nightbot (decipher, actitle, mhshuffle, vietmon)
+- The addition and improvement of some of the fun commands from Nightbot (decipher, mhshuffle)
 - Equipment being scrapped when replaced
 - A cooldown between bosses spawning
 - Material details also being shown in paged embeds

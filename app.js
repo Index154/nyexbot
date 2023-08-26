@@ -401,9 +401,9 @@ if(branch != "YES"){
 
         var d = new Date();
         var currentEpoch = Math.floor(d.getTime() / 1000);
-        var maxTimestamp = currentEpoch + 30;
     
-        // Query database table for reminders matching the current timestamp +/- 30 seconds
+        // Query database table for reminders that have already surpassed the current timestamp +/- 30 seconds
+        var maxTimestamp = currentEpoch + 30;
         var [rows] = await con.execute({sql: `
             SELECT reminderId, text, userId, channelId, timestamp, repeating
             FROM reminders

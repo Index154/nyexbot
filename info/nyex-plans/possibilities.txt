@@ -1,7 +1,7 @@
-__**Possibilities:**__
+## __Possibilities__
 (Might not ever be implemented - Rough ideas)
 - Removal of consumable crafting (recipes in general)?
-- A new player stat called Chaos: Affects many events in the game, making them "more random" the higher the stat is?
+- A new player stat called Chaos: Affects many events in the game, making them "more random" (lower lows and higher highs) the higher the stat is?
 - Material research projects that grant random materials of the player's rank?
 - Being able to preview the loot tables of vortexes?
 - The ability to bet Gold on a fight with possible rewards corresponding to the winning chance?

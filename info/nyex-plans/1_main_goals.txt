@@ -1,10 +1,11 @@
-__**Main goals:**__
+## __Main goals__
 (Basically these are the most important goals for making the game somewhat complete. However, they are less likely to happen quickly because they require more effort)
 - Sort reminders by how soon they are
 - More quests (Next: C)
 - More unique realms (= new exclusive monsters)
-- SQL database implementation (also includes monster dex numbering and more trophies) + full code rewrite including centralization of common operations as functions and de-nesting by making the nested code be the error paths
+- SQL database implementation + full code rewrite including centralization of common operations as functions and de-nesting by making the nested code be the error paths
 - Make all commands create a user account? Or at least wb
 - Security considerations: Sanitize user inputs
 - Integrate deliver and dodaily into quest and daily as subcommands
 - Replace old images for unimplemented MH monsters
+- More time increment options for reminders (weeks, months, etc.)
