@@ -212,14 +212,21 @@ module.exports = {
             trophy_list[i] = trophy_data.join("");
         }
 		
-		// Create paged embed and send it
+		// Create paged embed
 		var paginationArray = trophy_list;
 		var elementsPerPage = 10;
 		var fieldTitle = trophy_list.length + " total";
 		var embedTemplate = new Discord.EmbedBuilder()
 			.setColor('#0099ff')
-        	.setTitle(username + "'s Trophies")
-        	.setThumbnail(lib.readFile(dir + "/main_monster.txt"))
+        	.setTitle(username + "'s Trophies");
+
+        // Add main monster thumbnail if it exists
+        var mainMonster = lib.readFile(dir + "/main_monster.txt");
+        if(lib.exists(mainMonster)){
+            embedTemplate.setThumbnail(mainMonster);
+        }
+
+        // Send embed
 		lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
         
 	},

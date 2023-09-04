@@ -262,14 +262,13 @@ module.exports = {
                     consumables[j] = uniq_array[j] + " x " + itemCounts[uniq_array[j]];
                 }
 				
-				// Create paged embed and send it
+				// Create paged embed
 				var paginationArray = consumables;
 				var elementsPerPage = 10;
 				var fieldTitle = "Consumables";
         	    var embedTemplate = new Discord.EmbedBuilder()
                 	.setColor('#0099ff')
                 	.setTitle(username + "'s Inventory")
-					.setThumbnail(lib.readFile(dir + "/main_monster.txt"))
                 	.addFields(
                 		{ name: 'Equipment', value: name0 + "\n" + name1 + "\n" + name2 },
                 		{ name: 'Gold', value: user_data[12], inline: true },
@@ -282,7 +281,14 @@ module.exports = {
                     embedTemplate
                         .addFields( { name: "Token Points", value: tokens, inline: true } );
                 }
+
+				// Add main monster thumbnail if it exists
+				var mainMonster = lib.readFile(dir + "/main_monster.txt");
+				if(lib.exists(mainMonster)){
+					embedTemplate.setThumbnail(mainMonster);
+				}
 				
+				// Send embed
 				lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
                 
             }else{

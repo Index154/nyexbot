@@ -17,4 +17,5 @@
 - Monster modifiers (fight/capture reward variety) (maybe wait for SQL)
 - Counters for various stats (requires SQL)
 - Another rework of the quest tutorials with explanations for new commands, changes and features
+- Actual rewards for getting trophies (besides boss ones)
 <:sp:860269564779429908>

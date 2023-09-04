@@ -310,8 +310,13 @@ module.exports = {
         		{ name: "Drop Luck", value: stat_data[5] + buff_info[5], inline: true},
         		{ name: "Rare Luck", value: stat_data[6] + buff_info[6], inline: true},
         		{ name: "Equipment Ability", value: abilityName, inline: true},
-        	)
-        	.setThumbnail(lib.readFile(dir + "/main_monster.txt"));
+        	);
+
+        // Add main monster thumbnail if it exists
+        var mainMonster = lib.readFile(dir + "/main_monster.txt");
+        if(lib.exists(mainMonster)){
+            outputEmbed.setThumbnail(mainMonster);
+        }
         
         // Add realm HP if in a realm
         var hp = lib.readFile(dir + "/hp.txt");

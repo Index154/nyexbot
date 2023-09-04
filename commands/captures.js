@@ -371,17 +371,24 @@ module.exports = {
             
         }else{
             
-			// Create paged embed and send it
+			// Create paged embed
 			var paginationArray = cappedMonsters;
 			var elementsPerPage = 15;
 			var fieldTitle = totalCount + " monsters / " + uniq_array.length + " entries";
 			var embedTemplate = new Discord.EmbedBuilder()
 				.setColor('#0099ff')
             	.setTitle(username + "'s Captures")
-				.setDescription("Use \"" + prefix + "caps [monster name]\" to view a monster's details!")
-            	.setThumbnail(lib.readFile(dir + "/main_monster.txt"))
-			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
+				.setDescription("Use \"" + prefix + "caps [monster name]\" to view a monster's details!");
 			
+			// Add main monster thumbnail if it exists
+			var mainMonster = lib.readFile(dir + "/main_monster.txt");
+			if(lib.exists(mainMonster)){
+				embedTemplate.setThumbnail(mainMonster);
+			}
+
+			// Send embed
+			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
+
         }
 	},
 };
