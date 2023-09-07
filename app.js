@@ -1,5 +1,6 @@
-﻿// New link with slash command scope: https://discord.com/api/oauth2/authorize?client_id=445030573904363540&permissions=321600&scope=bot%20applications.commands
+﻿// New invite link with slash command scope: https://discord.com/api/oauth2/authorize?client_id=445030573904363540&permissions=321600&scope=bot%20applications.commands
 // Test branch invite link: https://discord.com/api/oauth2/authorize?client_id=1063139030545485905&permissions=321600&scope=bot%20applications.commands
+
 // Require dependencies:
     // Discord.js is the required main Discord library
     // FS is for filesystem operations like reading from files and writing to files
@@ -9,13 +10,12 @@ const Discord = require('discord.js');
 fs = require('fs');
 lib = require("./library.js");
 mysql = require('mysql2/promise');
-// Load important configs from file
-var {token, prefix, testToken, testPrefix, SQLiv, hashedSQLpass} = require('./config.json');
+// Load important configs
+var {token, prefix, testToken, testPrefix, SQLiv, hashedSQLpass, isTestBranch} = require('./config.json');
 
 // Change some values if the bot is on the test branch
-const branch = lib.readFile("./isTestBranch.txt");
 var appName = "nyexbot";
-if(branch == "YES"){
+if(isTestBranch){
     prefix = testPrefix;
     token = testToken;
     appName = "testapp";
@@ -147,12 +147,12 @@ client.on('interactionCreate', interaction => {
     user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "").replace(/[\r\n]/gm, "");
     
     // On the test branch: Ignore all messages that weren't sent by the bot admin
-    if(branch == "YES" && user.id != "214754022832209921") return;
+    if(isTestBranch && user.id != "214754022832209921") return;
 
     // Determine whether a world boss should spawn or not
     var worldboss = lib.readFile("./data/worldboss.txt");
     // If this is the test branch or there already is an active boss then stop
-    if(branch != "YES" && worldboss === ""){
+    if(!isTestBranch && worldboss === ""){
         // Random event math
         var wResult = Math.floor(Math.random() * (Math.floor(bossChance) - min + 1)) + min;
         if(wResult <= min){
@@ -281,11 +281,11 @@ client.on('messageCreate', async message => {
     user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "");
 
     // On the test branch: Only react to the bot owner
-    if(branch == "YES" && user.id != "214754022832209921") return;
+    if(isTestBranch && user.id != "214754022832209921") return;
 
     // Check whether a world boss should spawn or not
     var worldboss = lib.readFile("./data/worldboss.txt");
-    if(branch != "YES" && worldboss === ""){
+    if(!isTestBranch && worldboss === ""){
         var wResult = Math.floor(Math.random() * (Math.floor(bossChance) - min + 1)) + min;
         if(wResult <= min){
             // Spawn a boss with a random rank!
@@ -337,7 +337,7 @@ client.on('messageCreate', async message => {
     
     // If the message was sent in the updates channel on the main server and is not a minor patch then crosspost it to all other configured announcement channels (except the one on the main server)
     // Also send it to all signed-up users in DMs
-    if(branch != "YES" && message.channel.id == "731236740974510100" && !message.content.toLowerCase().includes("[minor patch]")){
+    if(!isTestBranch && message.channel.id == "731236740974510100" && !message.content.toLowerCase().includes("[minor patch]")){
         // Define embed
         var updateEmbed = new Discord.EmbedBuilder()
                 .setTitle("New bot update")
@@ -418,7 +418,7 @@ client.on('messageCreate', async message => {
 client.login(token);
 
 // Main-branch exclusive functions
-if(branch != "YES"){
+if(!isTestBranch){
 
     // Log the bot's status every 5 minutes in case I need to retrace its exact uptime for troubleshooting someday
     var stillAlive = setInterval(function() {
@@ -522,23 +522,37 @@ if(branch != "YES"){
 
 }
 
+// Define list of sites to check in the newsCheck function later as well as the HTML element patterns to extract from them
+siteList = [
+    {alias: 'UNO', ***REMOVED***}, 
+    {alias: 'ZHG', ***REMOVED***},
+    {alias: 'CAP', ***REMOVED***},
+    {alias: 'MIK', ***REMOVED***},
+    {alias: 'SOLO', ***REMOVED***},
+    {alias: 'CAN', ***REMOVED***},
+    {alias: 'FF', ***REMOVED***},
+    {alias: 'AZL', ***REMOVED***},
+    {alias: 'YGO', ***REMOVED***},
+    {alias: 'NINP', ***REMOVED***},
+    {alias: "GSH", ***REMOVED***}
+];
+
+// Decrypt site URLs
+// Also has code for encrypting in case I need it again
+for(i = 0; i < siteList.length; i++){
+    // Encryption code
+    /*var cipher = crypto.createCipheriv(algorithm, SQLsecretKey, Buffer.from(SQLiv, 'hex'));
+    var encrypted = Buffer.concat([cipher.update(siteList[i].link), cipher.final()]).toString('hex');
+    console.log(siteList[i].alias + " = " + encrypted);*/
+
+    var nDecipher = crypto.createDecipheriv(algorithm, SQLsecretKey, Buffer.from(SQLiv, 'hex'));
+    var nDecrypted = Buffer.concat([nDecipher.update(Buffer.from(siteList[i].link, 'hex')), nDecipher.final()]).toString();
+    siteList[i].link = nDecrypted;
+}
+
 // A feature for me personally: Check for updates to specific websites every 30 minutes and alert me about them
 var newsCheck = setInterval(async function() {
 
-    // Define list of sites to check and the HTML element patterns to extract from them
-    var siteList = [
-        {name: "Uno Makoto", alias: 'UNO', ***REMOVED***}, 
-        {name: "Zheng", alias: 'ZHG', ***REMOVED***},
-        {name: "Capcom", alias: 'CAP', ***REMOVED***},
-        {name: "Mikansu", alias: 'MIK', ***REMOVED***},
-        {name: "Solo Leveling", alias: 'SOLO', ***REMOVED***},
-        {name: "Canan", alias: 'CAN', ***REMOVED***},
-        {name: "Fanatic F", alias: 'FF', ***REMOVED***},
-        {name: "Azur Lane", alias: 'AZL', ***REMOVED***},
-        {name: "YuGiOh", alias: 'YGO', ***REMOVED***},
-        {name: "Ninapai", alias: 'NINP', ***REMOVED***},
-        {name: "Genshin", alias: "GSH", ***REMOVED***}
-    ];
     var updateList = [];
     var savePath = "../nyextest/data/sitedata/";
 
@@ -551,7 +565,7 @@ var newsCheck = setInterval(async function() {
         var results = await body.match(reg);
 
         // Compare the first pattern match to the one that was saved most recently
-        var filePath = savePath + siteList[i].name + ".txt";
+        var filePath = savePath + siteList[i].alias + ".txt";
         var previousResult = lib.readFile(filePath);
         if(!lib.exists(previousResult)){previousResult = "None";}
         if(!lib.exists(results) || results.length < 1){

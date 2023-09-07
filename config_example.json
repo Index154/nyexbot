@@ -1,9 +1,10 @@
 {
     "__info:__": "This file has to be renamed to config.json and the values here have to be filled in correctly for the bot to function!",
 	"token": "Discord bot token goes here",
-	"testToken": "Discord test branch bot token goes here",
+	"testToken": "Test branch bot token goes here",
 	"prefix": ".",
 	"testPrefix": "<",
 	"SQLiv": "IV for SQL password decryption goes here",
-	"hashedSQLpass": "Hashed SQL password goes here"
+	"hashedSQLpass": "Hashed SQL password goes here",
+	"isTestBranch": false
 }

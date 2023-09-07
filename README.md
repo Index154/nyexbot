@@ -18,5 +18,3 @@ This guide is currently lacking in details. I will improve it later.
 - Hash the SQL user's password using the npm package 'crypto'
 - Rename the file config_example.json to config.json and edit the values within
 - Run the command 'pm2 start app.js --name "app"' to start the bot. You can use the other functions of pm2 to automatically start the bot when the server starts as well as for logging
-
-To make a test branch for the bot that can only be used by the configured admin, create a file called isTestBranch.txt in the root directory and simply enter the text 'YES' into it.
