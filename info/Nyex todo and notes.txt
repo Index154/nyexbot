@@ -38,7 +38,7 @@ Trophy ideas:
     - Daily streak milestones
 
 
-Monster type effect notes:
+Monster type effects concept:
     (
         ? = Very extreme effect, not inherently negative or positive
         + = Minor effect, always positive

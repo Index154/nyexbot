@@ -176,12 +176,12 @@ module.exports = {
 		var rankChances = [30, 25, 20, 15, 7, 3];
 		var rank = 0;
 		var rankRand = lib.rand(1,100);
-		var add_previous = 0;
+		var addPrevious = 0;
 	    for(y = 5; y > 0 && rank === 0; y--){
-	        if(rankRand <= (rankChances[y] + add_previous)){
+	        if(rankRand <= (rankChances[y] + addPrevious)){
                 rank = y;
             }
-            add_previous += rankChances[y];
+            addPrevious += rankChances[y];
 	    }
 	    var monster_groups = lib.readFile("data/monsters/monsters_0.txt").split("#################################################################################\n");
 	    var monstersNew = monster_groups[rank].split(";\n");

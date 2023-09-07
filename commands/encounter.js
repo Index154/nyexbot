@@ -302,12 +302,12 @@ module.exports = {
         // Determine result!
         var rarity_rand = lib.rand(1, limit);
         var chosen_group = 5;
-        var add_previous = 0;
+        var addPrevious = 0;
         for(y = 0; y < 5 && chosen_group == 5; y++){
-            if(rarity_rand <= (rarities[y] + add_previous)){
+            if(rarity_rand <= (rarities[y] + addPrevious)){
                 chosen_group = y;
             }
-            add_previous = add_previous + rarities[y];
+            addPrevious = addPrevious + rarities[y];
         }
         var rarity = rarity_names[chosen_group];
         

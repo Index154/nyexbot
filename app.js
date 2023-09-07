@@ -1,10 +1,15 @@
 ﻿// New link with slash command scope: https://discord.com/api/oauth2/authorize?client_id=445030573904363540&permissions=321600&scope=bot%20applications.commands
 // Test branch invite link: https://discord.com/api/oauth2/authorize?client_id=1063139030545485905&permissions=321600&scope=bot%20applications.commands
-// Require dependencies
+// Require dependencies:
+    // Discord.js is the required main Discord library
+    // FS is for filesystem operations like reading from files and writing to files
+    // lib is my own library of functions
+    // mysql2/promise is for connecting to the local database
 const Discord = require('discord.js');
 fs = require('fs');
 lib = require("./library.js");
 mysql = require('mysql2/promise');
+// Load important configs from file
 var {token, prefix, testToken, testPrefix, SQLiv, hashedSQLpass} = require('./config.json');
 
 // Change some values if the bot is on the test branch
@@ -36,30 +41,34 @@ con = mysql.createPool({
     queueLimit: 0
 });
 
-// Create a new Discord client, also set some variables
+// Create a new bot client with the necessary parameters and Discord intents
 Intents = Discord.GatewayIntentBits;
 Partials = Discord.Partials;
 ActionRowBuilder = Discord.ActionRowBuilder;
 ButtonBuilder = Discord.ButtonBuilder;
 StringSelectMenuBuilder = Discord.StringSelectMenuBuilder;
 const client = new Discord.Client({ intents: [Intents.MessageContent, Intents.Guilds, Intents.GuildMessages, Intents.DirectMessages], partials: [Partials.Channel] });
+
+// Make some collections to put the commands and their cooldowns into
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-// Add commands to the Collection for executing them dynamically later...
+// Add all js files in the commands folder to the collection so they can be executed dynamically later
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
     
-	// Set a new item in the Collection with the key as the command name and the value as the exported module
+	// Set a new item in the collection with the key as the command name and the value as the exported module containing the actual code
 	client.commands.set(command.name, command);
 }
 
 // When the client is ready, run this code
-// This event will only trigger one time after logging in
+// This event will only trigger once after the bot has successfully started
 client.once('ready', async () => {
+    // Log bot start time
+    console.log(Date() + '  |  ' + appName + ' has been started');
+
     // Set presence
-	console.log(Date() + '  |  ' + appName + ' has been started');
 	client.user.setPresence({
         status: 'online',
         activities: [{
@@ -68,7 +77,8 @@ client.once('ready', async () => {
         }]
     })
     
-    // Deploy slash commands (WIP)
+    // Deploy slash commands - Currently commented out and unused because it's poopy and useless and annoying to work on
+    // It's probably best to make a collection object for this later if I work on it again. Maybe the definitions for the slash commands can be put into the command files that already exist as extra module exports
     /*
     for(i = 0; i < 1; i++){
         const data = {
@@ -87,29 +97,29 @@ client.once('ready', async () => {
     }
     */
     
-    // Leave a specific server if necessary
+    // Uncomment this and edit the ID to make the bot leave a specific server on startup
     // client.guilds.cache.get("ID").leave();
 });
 
-// Log rate limiting
+// Log it when the bot gets rate-limited by Discord for sending messages too quickly
 client.rest.on('rateLimited', console.log);
 
-// Load some stuff for the boss code
-var bossChance = 8000;   // 1 out of x
-var min = Math.ceil(1);
+// Prepare some variables for the boss code
+var bossChance = 8000;   // The chance is defined as 1 out of bossChance per message
+var min = 1;
 var ranks = ["D", "C", "B", "A", "S", "SS"];
-var chances = [23, 30, 20, 14, 9, 4];
+var chances = [23, 30, 20, 14, 9, 4];   // The chances for each rank of boss to be chosen, out of 100
 
 // If the bot joins a server, add it to the list of servers and send a joining message
 client.on("guildCreate", guild => {
     var serverList = lib.readFile("./data/serverlist.txt");
     serverList += "\n" + guild.id + " (" + guild.name + ")";
     lib.saveFile("./data/serverlist.txt", serverList);
-    // Join message
+    // Joining message
     guild.systemChannel.send("Thank you for inviting me to this server! Some quick tips for server admins & mods:\nUse `,set prefix [prefix]` to change the command prefix!\nUse `,set channel` in the channel where you want me to post my global announcements (for example when I'm updated or when a boss spawns)!");
 });
 
-// If the bot leaves a server, set the channel config there to Undefined and remove the server from the list
+// If the bot leaves a server, set the channel config for that server to Undefined and remove the server from the list
 client.on("guildDelete", guild => {
 
     // Check if the server had a config folder and update it
@@ -127,35 +137,40 @@ client.on("guildDelete", guild => {
     lib.saveFile("./data/serverlist.txt", serverList.join("\n"));
 });
 
-// Listen for interactions
+// Listen for interactions (this includes slash commands, button presses and menu selections)
 client.on('interactionCreate', interaction => {
+    // Define some necessary variables. "Rename" some of them so the code is closer to the message event code further below
     var user = interaction.user;
     message = interaction;
     message.author = message.user;
+    // Remove special characters from usernames to prevent weird stuff and formatting issues
     user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "").replace(/[\r\n]/gm, "");
     
-    // On the test branch: Only react to the bot owner
+    // On the test branch: Ignore all messages that weren't sent by the bot admin
     if(branch == "YES" && user.id != "214754022832209921") return;
 
-    // Check whether a world boss should spawn or not
+    // Determine whether a world boss should spawn or not
     var worldboss = lib.readFile("./data/worldboss.txt");
+    // If this is the test branch or there already is an active boss then stop
     if(branch != "YES" && worldboss === ""){
+        // Random event math
         var wResult = Math.floor(Math.random() * (Math.floor(bossChance) - min + 1)) + min;
         if(wResult <= min){
-            // Spawn a boss with a random rank!
+            // Spawn a boss! Determine the rank first
             var rankRand = lib.rand(1, 100);
-            var add_previous = 0;
+            var addPrevious = 0;
             var rank = "";
             for(y = 0; y < 6 && rank === ""; y++){
-                if(rankRand <= (chances[y] + add_previous)){
+                if(rankRand <= (chances[y] + addPrevious)){
                     rank = ranks[y];
                 }
-                add_previous = add_previous + chances[y];
+                addPrevious = addPrevious + chances[y];
             }
             lib.saveFile("./data/worldboss.txt", rank);
             
-            // Alert users about the boss in all configured channels
+            // Send an alert about the boss in all configured channels
             fs.readdir("./data/configs", (err, files) => {
+                // Go through the configured update channels for all servers
                 for(i = 0; i < files.length; i++){
                     var serverPrefix = lib.readFile("./data/configs/" + files[i] + "/prefix.txt");
                     var channelID = lib.readFile("./data/configs/" + files[i] + "/channel.txt");
@@ -165,10 +180,10 @@ client.on('interactionCreate', interaction => {
                 }
             });
 
-            // Also alert the signed-up users in DMs
+            // Also alert users who signed up for it in DMs
             fs.readdir("./userdata", (err, files) => {
                 for(x = 0; x < files.length; x++){
-                    // Check if a user wants to receive announcements in DMs
+                    // Go through all users and check if they have update alerts enabled
                     var userDMSetting = lib.readFile("./userdata/" + files[x] + "/dmupdates.txt");
                     if(userDMSetting == "yes"){
                         client.users.fetch(files[x], false).then((tempUser) => {
@@ -181,14 +196,20 @@ client.on('interactionCreate', interaction => {
         }
     }
     
+    // Process the actual interaction now
+    // For interactive elements which should trigger a command when clicked I fill the customId field with two values: The ID of the user the interaction element is restricted to (or "any" for all users) and the command that should be executed when the element is clicked
 	var commandName = "";
 	if(interaction.isStringSelectMenu()){
+        // The interaction came from a selection menu (only used in the class command)
 	    var interactionData = interaction.customId.split("|");
 	    if(interactionData[0] != "any" && interactionData[0] != user.id) return;
+        // For these elements the command arguments are found in the values of the selected menu option
 	    var args = [interaction.values[0].trim()];
 		commandName = interactionData[1];
 	}
 	else if(interaction.isButton()){
+        // The interaction came from a button (most common)
+        // Ignore buttons of special types used for paged embed navigation. Those interactions are handled by the collectors from the respective library functions instead
 	    if(interaction.customId === 'previousbtn' || interaction.customId === 'randbtn' || interaction.customId === 'nextbtn' || interaction.customId === 'rerollbutton') return;
 		var interactionData = interaction.customId.split("|");
 		if(interactionData[0] != "any" && interactionData[0] != user.id) return;
@@ -197,6 +218,7 @@ client.on('interactionCreate', interaction => {
 		args.splice(0, 1);
 	}
 	else if (interaction.isCommand()){
+        // The interaction came from a slash command (lol)
 		commandName = interaction.commandName;
 		var options = interaction.options._hoistedOptions;
 		var args = "";
@@ -206,47 +228,54 @@ client.on('interactionCreate', interaction => {
 		args = args.trim().split(/ +/);
 	}
 	
-    // Check if the server has a custom prefix and load it
-    commandPrefix = prefix;
+    // Check if the server the interaction was used in has a custom command prefix and load it
+    commandPrefix = prefix;     // Idk why I used a new variable for this
     if(message.guildId !== null){
         if(fs.existsSync("./data/configs/" + message.guildId)){
            commandPrefix = lib.readFile("./data/configs/" + message.guildId + "/prefix.txt");
         }
     }
 
-	// Check for commands and try to execute them
+	// Find a command in the collection with a name or alias matching the string obtained from the interaction
 	const command = client.commands.get(commandName)
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 	if (!command) return;
+
+    // Implement the command cooldown
 	try {
-		// Implement command cooldown if it exists
+        // Create a collection of collections of cooldown timestamps for each command, stored in the client
 		const { cooldowns } = client;
 		if (!cooldowns.has(command.name)) {
 			cooldowns.set(command.name, new Discord.Collection());
 		}
 		const now = Date.now();
 		const timestamps = cooldowns.get(command.name);
+        // Use the default cooldown of 1 second if nothing else has been explicitly defined
 		const cooldownAmount = (command.cooldown || 1) * 1000;
 		if (timestamps.has(user.id)) {
+            // If there is an existing timestamp for the user in the collection then make them wait
 			const expirationTime = timestamps.get(user.id) + cooldownAmount;
-		
 			if (now < expirationTime) {
 				const timeLeft = (expirationTime - now) / 1000;
 				return message.reply({ content: `@ __**` + user.username + `**__\n\u274C Please wait ${timeLeft.toFixed(1)} more second(s) before using \`${command.name}\` again!`, allowedMentions: { repliedUser: false }});
 			}
 		}
+        // Set a new timestamp for the user and for this command
 		timestamps.set(user.id, now);
+        // Remove the timestamp after the cooldown has expired
 		setTimeout(() => timestamps.delete(user.id), cooldownAmount);
 		
-		// Execute command
+		// Execute the command
 		command.execute(message, user, args, commandPrefix);
 	} catch (error) {
+        // Error handling
 		lib.error(message, error, "");
 	}
 	
 });
 
 // Listen for messages
+// TODO: Add / update comments here as well
 client.on('messageCreate', async message => {
 	var user = message.author;
     user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "");
@@ -261,13 +290,13 @@ client.on('messageCreate', async message => {
         if(wResult <= min){
             // Spawn a boss with a random rank!
             var rankRand = Math.floor(Math.random() * (Math.floor(100) - min + 1)) + min
-            var add_previous = 0;
+            var addPrevious = 0;
             var rank = "";
             for(y = 0; y < 6 && rank === ""; y++){
-                if(rankRand <= (chances[y] + add_previous)){
+                if(rankRand <= (chances[y] + addPrevious)){
                     rank = ranks[y];
                 }
-                add_previous = add_previous + chances[y];
+                addPrevious = addPrevious + chances[y];
             }
             lib.saveFile("./data/worldboss.txt", rank);
             
@@ -385,24 +414,23 @@ client.on('messageCreate', async message => {
 
 });
 
-// Login to Discord with token
+// Log into Discord with the bot token
 client.login(token);
 
 // Main-branch exclusive functions
 if(branch != "YES"){
 
-    // Log to know the bot is still alive every 5 minutes
+    // Log the bot's status every 5 minutes in case I need to retrace its exact uptime for troubleshooting someday
     var stillAlive = setInterval(function() {
         console.log("Still alive! " + Date());
     }, 300 * 1000);
 
-    // Check reminders once per minute
+    // Trigger and update reminders once per minute
     var reminderCheck = setInterval(async function() {
-
         var d = new Date();
         var currentEpoch = Math.floor(d.getTime() / 1000);
     
-        // Query database table for reminders that have already surpassed the current timestamp +/- 30 seconds
+        // Query the database table for reminders that are at least 30 seconds in the past (some will be matched 30 seconds too early and some 30 seconds too late but whatever. I don't want to make it check them more often than once per minute)
         var maxTimestamp = currentEpoch + 30;
         var [rows] = await con.execute({sql: `
             SELECT reminderId, text, userId, channelId, timestamp, repeating
@@ -410,7 +438,7 @@ if(branch != "YES"){
             WHERE timestamp BETWEEN 0 AND ${maxTimestamp};
         `, rowsAsArray: false });
     
-        // Loop through all the activated reminders
+        // Loop through all the reminders that were found and have to be triggered
         for(i = 0; i < rows.length; i++){
     
             // If the reminder is set to repeat then update it with a new notification time. Otherwise delete it from the database
@@ -422,6 +450,7 @@ if(branch != "YES"){
                 if(rows[i].repeating % 31536000 == 0){ newTimestamp = currentEpoch + lib.correctLeapDays(rows[i].repeating); }
                 repeatingInfo = "\n(Repeating in " + lib.secondsToTime(rows[i].repeating) + ")";
     
+                // Update the reminder
                 var [rowsB] = await con.execute({sql: `
                     UPDATE reminders
                     SET timestamp = ${newTimestamp}
@@ -429,6 +458,7 @@ if(branch != "YES"){
                 `, rowsAsArray: false });
     
             }else{
+                // Delete the reminder
                 var [rowsC] = await con.execute({sql: `
                     DELETE
                     FROM reminders
@@ -436,7 +466,7 @@ if(branch != "YES"){
                 `, rowsAsArray: false });
             }
     
-            // Send a notification for every result that was found. Send it in DMs if the original channel can't be identified
+            // Send a notification for every result that was found. Send it in DMs if the original channel of the reminder can't be identified
             var reminderMessage = `<@${rows[i].userId}>` + " - This is your reminder with the ID " + rows[i].reminderId + ":\n" + rows[i].text + repeatingInfo;
             var channel = await client.channels.cache.get(rows[i].channelId);
             if(channel == undefined){
@@ -450,22 +480,23 @@ if(branch != "YES"){
     
     }, 60 * 1000);
 
-    // Check logs every 6 hours
+    // Check the error log every 6 hours and send errors to my private channel for analysis
     var logCheck = setInterval(async function(){
 
-        // Get error log
+        // Get the error log
         var log = lib.readFile("/root/.pm2/logs/app-error.log");
         if(!lib.exists(log)){log = "Empty";}
         altLog = log;
         
-        // If the log isn't empty, post the content to Discord and empty the file
+        // If the log isn't close to empty, post the content to Discord and empty the file
+        // Any serious error will be more than a few lines long
         if(log.length > 5){
 
-            // Save to backup log
+            // Save the text to the backup log file where all the errors are kept for the future
             var backupLog = lib.readFile("../nyextest/data/imported/logBackup.log");
             lib.saveFile("../nyextest/data/imported/logBackup.log", backupLog + "\n" + log);
             
-            // If the log contains too many characters, split it into multiple messages
+            // If the log contains too many characters, split it into multiple messages. The actual character limit defined by Discord is 2000
             var charsPerMessage = 1980;
             var tempMessage = "";
             for(; log.length > 0; ){
@@ -482,7 +513,7 @@ if(branch != "YES"){
 
             }
 
-            // Clear log file
+            // Clear the main error log file
             lib.saveFile("/root/.pm2/logs/app-error.log", "");
 
         }
@@ -491,10 +522,10 @@ if(branch != "YES"){
 
 }
 
-// Check for new posts online every 30 minutes
+// A feature for me personally: Check for updates to specific websites every 30 minutes and alert me about them
 var newsCheck = setInterval(async function() {
 
-    // Define list of sites to check and the HTML elements to check for changes
+    // Define list of sites to check and the HTML element patterns to extract from them
     var siteList = [
         {name: "Uno Makoto", alias: 'UNO', ***REMOVED***}, 
         {name: "Zheng", alias: 'ZHG', ***REMOVED***},
@@ -514,12 +545,12 @@ var newsCheck = setInterval(async function() {
     // Go through the site list
     for(i = 0; i < siteList.length; i++){
 
-        // Fetch site body
+        // Fetch the site body, only returning the HTML text matching the defined pattern
         var body = await lib.getHTML(siteList[i].link);
         var reg = new RegExp(siteList[i].pattern, "g");
         var results = await body.match(reg);
 
-        // Compare the first found pattern match to the previously saved one
+        // Compare the first pattern match to the one that was saved most recently
         var filePath = savePath + siteList[i].name + ".txt";
         var previousResult = lib.readFile(filePath);
         if(!lib.exists(previousResult)){previousResult = "None";}
@@ -530,16 +561,15 @@ var newsCheck = setInterval(async function() {
             // Add this list to the updated sites list
             updateList.push("<" + siteList[i].link + ">");
 
-            // Save the pattern match for the next comparison
+            // Save the pattern match result to a file for the next comparison
             lib.saveFile(filePath, results[0]);
         }
 
     }
 
-    // Notify about the changes
+    // Notify me about the list of updated sites in my private channel
     if(updateList.length > 0){
         updateList = updateList.join("\n");
-        // Send message in my channel or DM me
         client.channels.cache.get("516288921127092234").send("**Update(s) found!**\n" + updateList);
     }
     

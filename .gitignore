@@ -1,4 +1,5 @@
 /config.json
+/fantasyIdeas.txt
 /userdata
 /node_modules
 /data/configs
@@ -19,3 +20,4 @@
 /isTestBranch.txt
 /data/guess/servers
 /data/monsters/monsters_alt.txt
+/data/imported/logBackup.log
