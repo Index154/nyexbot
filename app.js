@@ -33,7 +33,7 @@ var SQLpassword = decrpyted.toString();
 con = mysql.createPool({
     host: "localhost",
     user: "root",
-    ***REMOVED***
+    password: SQLpassword,
     database: "nyexbot",
     charset: "utf8mb4",
     waitForConnections: true,
@@ -524,17 +524,17 @@ if(!isTestBranch){
 
 // Define list of sites to check in the newsCheck function later as well as the HTML element patterns to extract from them
 siteList = [
-    {alias: 'UNO', ***REMOVED***}, 
-    {alias: 'ZHG', ***REMOVED***},
-    {alias: 'CAP', ***REMOVED***},
-    {alias: 'MIK', ***REMOVED***},
-    {alias: 'SOLO', ***REMOVED***},
-    {alias: 'CAN', ***REMOVED***},
-    {alias: 'FF', ***REMOVED***},
-    {alias: 'AZL', ***REMOVED***},
-    {alias: 'YGO', ***REMOVED***},
-    {alias: 'NINP', ***REMOVED***},
-    {alias: "GSH", ***REMOVED***}
+    {alias: 'UNO', link: "436febd1d2a7c039ed1f22759a8b8aaca5c1e239596affaea498b214ffa81f1de68c04309f", pattern: "\<li class=\"pages\"\>Pages:.*?\<\/li\>"}, 
+    {alias: 'ZHG', link: "436febd1d2a7c039f6072675c7cbc5bdf3c1b5281869fbbae68da81defe94e4dbb84416ec31df176fee36f43c18aa8ed084f2336c517f69a", pattern: "\<div class=\"image-list.*?\<a id=\".*?\""},
+    {alias: 'CAP', link: "436febd1d2a7c039f3053d3e979e9ba6e4d4b7261760fbb1e69eaf00fff44a58bdd1506fd400a460ecec60529ad9ace80e487b62c506f591", pattern: ".*"},
+    {alias: 'MIK', link: "436febd1d2a7c039ef17277f9a90c5b6fe96fc201879f7a3e788b308a2b61c12e78c00", pattern: "\<div class=\"card-list__items\"\>.*?\<\/div\>"},
+    {alias: 'SOLO', link: "436febd1d2a7c039fd172460869a98b6a5daf52c597efbb0a198b342a3f64345f3d55477d505be6ba4a2655fd8c5bf", pattern: "\<div class=\"inline_block col-d-20 col-t-33 .*?\<\/div\>"},
+    {alias: 'CAN', link: "436febd1d2a7c039f7072175969a82ebe5c0fb20587ef7edf79bfd5df6fa121a818917708d0ab66ba2e1", pattern: "\<a href=\"\/view\/.*?\<\/a\>"},
+    {alias: 'FF', link: "436febd1d2a7c039e71b67759ad18fa9f8d0ee24586ef1afe79eb208b1ed4058f18c02398146b677b7e6655cd0", pattern: "\<div class=\"c-postedArticle-info.*?\<\/p\>"},
+    {alias: 'AZL', link: "436febd1d2a7c039e5083f62989e85a0a5d2f5341b6cf5a3a6d3aa1dffee4641b7966364d30cb9719cc16347c6", pattern: "\<h2\>\<span class=\"mw-headline\".*?\<\/span\>"},
+    {alias: 'YGO', link: "436febd1d2a7c039e61e2f75909685a2e8d6f52d586ef1afe79aa100b5ea005ebfdb5d64c406a72aa0ee745498cbbde10a4f3135d85fff94ba7ed97d", pattern: "\<article class=\"latest-article-container.*?\<\/article\>"},
+    {alias: 'NINP', link: "436febd1d2a7c039ef17277f9a90c5b6fe96fc20186ff1bae788b308a2b61713ea8e0433895a", pattern: "\<div class=\"card-list__items\"\>.*?\<\/div\>"},
+    {alias: "GSH", link: "436febd1d2a7c039e31724639c9685e8e2d4ea201579b0a4a993a402bdb74c45b3964668db00f853a6fd7559dac2", pattern: "id=\"Version_History\".*?id=\"Maintenance\""}
 ];
 
 // Decrypt site URLs
