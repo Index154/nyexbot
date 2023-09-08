@@ -49,8 +49,10 @@ Setting up permissions:
 	cd /home/admin
 	chgrp -R nyexadmins nyexbot
 	chmod -R 770 nyexbot
+	chown -R admin nyexbot
 	chgrp -R nyexadmins nyextest
 	chmod -R 770 nyextest
+	chown -R admin nyextest
 
 
 Setting up Apache (artificial-index.com):
@@ -210,7 +212,7 @@ Automatic Git pulls for production environment:
 	crontab -e
 	Add this text:
 		# Automatic Github pulls for main Nyexbot once per minute
-		*/1 * * * * cd /home/admin/nyexbot && git pull -q nyexbot master >> /var/log/syslog 2>&1
+		*/1 * * * * cd /home/admin/nyexbot && git pull -q origin master >> /var/log/syslog 2>&1
 	
 	Automatic app restart after every merge:
 		sudo bash
