@@ -1619,8 +1619,8 @@ module.exports = {
 				.setDescription("```javascript\n" + error.toString() + customMessage + "```" + causeInfo)
 				.setFooter({ text: message.createdTimestamp.toString() });
 
-			var testBranch = lib.readFile("./isTestBranch.txt");
-			if(testBranch == "YES"){
+			var {isTestBranch} = require('./config.json');
+			if(isTestBranch){
 				message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
 			}else{
 				message.reply({ content: "@ __**" + username + "**__```dust\n{ An error has occurred! }```All relevant details have automatically been sent to the main server for further investigation", allowedMentions: { repliedUser: false }});
