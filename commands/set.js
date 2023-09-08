@@ -51,7 +51,7 @@ module.exports = {
         
         // If the user doesn't have server admin rights, stop the command
         (message.client.guilds.cache.get(message.guildId)).members.fetch(user.id).then((member) => {
-            if(!member.permissions.has(PermissionsBitField.FLAGS.MANAGE_GUILD)){
+            if(!member.permissions.has(PermissionsBitField.Flags.ManageGuild)){
                 message.reply({ content: "\u274C This command can only be used by those with the permission \"Manage Server\"!", allowedMentions: { repliedUser: false }});
                 return;
             }else{
