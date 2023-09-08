@@ -177,10 +177,6 @@ Commands for managing the Git repository:
 			regex:link: \".*\"
 		git clone --mirror git@github.com:Index154/nyexbot.git
 		java -jar bfg.jar --delete-files config.json nyexbot.git
-		java -jar bfg.jar --delete-files "Linux setup docs.txt" nyexbot.git
-		java -jar bfg.jar --delete-files "fantasyIdeas.txt" nyexbot.git
-		java -jar bfg.jar --delete-files "fantaIdeas.txt" nyexbot.git
-		java -jar bfg.jar --delete-files "logBackup.log" nyexbot.git
 		java -jar bfg.jar --replace-text expressions.txt nyexbot.git
 		cd nyexbot.git
 		git reflog expire --expire=now --all && git gc --prune=now --aggressive
