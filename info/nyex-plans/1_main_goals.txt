@@ -3,6 +3,7 @@
 - Sort reminders by how soon they are
 - More quests (Next: C)
 - More unique realms (= new exclusive monsters)
+- Rework the way all the data is treated and created and where it is saved
 - SQL database implementation + full code rewrite including centralization of common operations as functions and de-nesting by making the nested code be the error paths
 - Make all commands create a user account? Or at least wb
 - Security considerations: Sanitize user inputs

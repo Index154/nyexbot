@@ -9,12 +9,16 @@ This was my first step into Javascript, Node.js, npm, SQL and more. It's actuall
 
 
 ## Installation guide
-This guide is currently lacking in details. I will improve it later.
+### WARNING: Currently the bot can't be cloned / installed easily since the way I arranged the file structure for it is kinda messed up. Some necessary files will be missing even if you clone the repo. I will improve this later rather than listing all the missing files here...
+
+In theory the installation would go a little like this:
 - Create a new bot using the Discord developer portal and obtain the token for it (the exact settings to use on the portal will be added here later)
-- Download the files from this project and save them in a directory of your choosing. Doesn't really matter where as long as it's secure
+- Clone this repo with `git clone https://github.com/Index154/nyexbot.git`
 - Install node.js and npm
 - Install MYSQL and set up a user 'root' for the database. Generate a secure password for it
-- Run the command 'npm install' in the bot's source directory to install all the required packages
-- Hash the SQL user's password using the npm package 'crypto'
+- Run the command `npm install` in the bot's source directory to install all the required packages
+- Hash the SQL user's password using the npm package 'crypto' (details about this are to be added later)
 - Rename the file config_example.json to config.json and edit the values within
-- Run the command 'pm2 start app.js --name "app"' to start the bot. You can use the other functions of pm2 to automatically start the bot when the server starts as well as for logging
+- Run the command `sudo pm2 start app.js --name "app"` to start the bot. You can use the other functions of pm2 to make it so the bot automatically starts when the server restarts. It can also be used for checking the error logs and such
+
+After I'm done migrating most of the data contained in the bot's files into the database I plan on adding a script for setting up the database automatically.
