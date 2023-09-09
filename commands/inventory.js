@@ -302,8 +302,13 @@ module.exports = {
                 		{ name: 'Stasis Space', value: stasis_info, inline: true },
 						{ name: 'Saved chain', value: chainInfo, inline: true}
                 	)
-                	.setFooter({ text: "Use \"" + prefix + "inv [item name]\" to view an item's details!" })
-                	.setThumbnail(lib.readFile(dir + "/main_monster.txt"));
+                	.setFooter({ text: "Use \"" + prefix + "inv [item name]\" to view an item's details!" });
+
+				// Add main monster thumbnail if it exists
+				var mainMonster = lib.readFile(dir + "/main_monster.txt");
+				if(lib.exists(mainMonster)){
+					outputEmbed.setThumbnail(mainMonster);
+				}
                 
                 // Add token points if there are any
 				if(lib.exists(tokens) && tokens != "0"){
