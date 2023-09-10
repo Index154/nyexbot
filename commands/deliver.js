@@ -18,12 +18,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "@ __**" + username + "**__ \u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-	    
 	    // Get user's current main quest
         var quest_list_raw = lib.readFile("data/quests.txt");
         var quest_list = quest_list_raw.split(";\n");

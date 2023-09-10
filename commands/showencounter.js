@@ -15,12 +15,6 @@ module.exports = {
         // Set important variables
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
         // Fetch current encounter info
         var monster_keys = lib.readFile(dir + "/current_encounter.txt");
         // Only run the command if there is an active encounter

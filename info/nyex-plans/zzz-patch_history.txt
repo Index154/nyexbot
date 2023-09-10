@@ -1,3 +1,14 @@
+__v0.19.32__
+- When you press a button on an encounter the bot will now edit the message the button is attached to instead of posting a new reply. I plan on implementing this for more buttons in the future
+- You can revert this feature with the new toggle option `set commandmode`
+- Using `set` without arguments will now post an embed with buttons for adjusting your settings
+- The setting for "funny monster mode" is now also part of `set` and no longer a subcommand of `stats`
+- Any command which is directly related to the game can now be used to register as a new player instead of only `encounter` and `monster`
+- Changed the replies of the bot when a player uses a command for the first time
+- The minigame `guess` no longer requires users to be registered to play
+- `area` now also highlights your current area in the list
+- Chupacabra quest now only requires one claw drop
+
 __Oopsie__
 - I had to reset the bot's directory to a clean state and I accidentally removed all the user data. Who cares, I guess. Everyone will start from level 1 again
 - I also had to reset all server settings to use . as the prefix. The update channels are also no longer configured

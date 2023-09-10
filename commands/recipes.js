@@ -20,12 +20,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
         // If the user included the argument "craftable", check which items they can craft at the moment
         var icon_array = {D: "<:real_black_circle:856189638153338900>", C: "\uD83D\uDD35", B: "\uD83D\uDFE2", A: "\uD83D\uDD34", S: "\uD83D\uDFE1", SS: "\uD83D\uDFE0", Special: "\u2728", Vortex: "\uD83C\uDF00"};
         if(args[0] == "craftable"){

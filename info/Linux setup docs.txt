@@ -54,6 +54,11 @@ Setting up permissions:
 	chmod -R 770 nyextest
 	chown -R admin nyextest
 
+	crontab -e
+	Put this in there:
+		# Automatic file permission changes for Nyextest every minute
+		*/1 * * * * chgrp -R nyexadmins /home/admin/nyextest && chown -R admin /home/admin/nyextest
+
 
 Setting up Apache (artificial-index.com):
 	sudo bash

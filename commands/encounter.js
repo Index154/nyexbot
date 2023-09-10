@@ -27,65 +27,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // Create a new user folder with default files if there is none yet
-        var newInfo = "";
-        if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
-            lib.saveFile(dir + "/ability.txt", "0|0|0");
-            lib.saveFile(dir + "/ability_cd.txt", "");
-            lib.saveFile(dir + "/ability_timestamp.txt", "");
-            lib.saveFile(dir + "/all_captures.txt", "");
-            lib.saveFile(dir + "/area.txt", "4");
-            lib.saveFile(dir + "/boss_cd.txt", "1");
-            lib.saveFile(dir + "/captures.txt", "");
-            lib.saveFile(dir + "/charges.txt", "0");
-            lib.saveFile(dir + "/chain.txt", "0|0");
-            lib.saveFile(dir + "/confirm.txt", "");
-            lib.saveFile(dir + "/confirm_conv.txt", "no");
-            lib.saveFile(dir + "/cooldown.txt", "1");
-            lib.saveFile(dir + "/crafting_queue.txt", "");
-            lib.saveFile(dir + "/current_buff.txt", "");
-            lib.saveFile(dir + "/current_quest.txt", "0");
-            lib.saveFile(dir + "/daily.txt", "1|0");
-            lib.saveFile(dir + "/daily_radar.txt", "1");
-            lib.saveFile(dir + "/dmupdates.txt", "no");
-            lib.saveFile(dir + "/equipment.txt", "0,1,2");
-			lib.saveFile(dir + "/equip_modifiers.txt", "|0|0|0|0|0|0\n|0|0|0|0|0|0\n|0|0|0|0|0|0");
-            lib.saveFile(dir + "/fav_mats.txt", "");
-            lib.saveFile(dir + "/hp.txt", "0");
-            lib.saveFile(dir + "/inventory.txt", "");
-            lib.saveFile(dir + "/main_monster.txt", "");
-            lib.saveFile(dir + "/materials.txt", "");
-            lib.saveFile(dir + "/mon_cd.txt", "1");
-            lib.saveFile(dir + "/monster_mode.txt", "normal");
-            lib.saveFile(dir + "/new_equip.txt", "");
-			lib.saveFile(dir + "/new_modifier.txt", "");
-            lib.saveFile(dir + "/projects.txt", "");
-            lib.saveFile(dir + "/radar_values.txt", "0,0");
-            lib.saveFile(dir + "/research.txt", "");
-            lib.saveFile(dir + "/saved_chain.txt", "");
-            lib.saveFile(dir + "/saved_encounter.txt", "");
-            lib.saveFile(dir + "/scrap.txt", "0");
-            lib.saveFile(dir + "/stats.txt", "Classless|5|5|3|0|0|0|0|0|D|1|0|0|0");
-            lib.saveFile(dir + "/token_state.txt", "");
-            lib.saveFile(dir + "/username.txt", username);
-            
-            // If the user is an alpha tester, give them their trophy to start with
-            var userId = user.id.toString().trim();
-            newInfo = "You can either `" + prefix + "capture` or `" + prefix + "fight` monsters.\nUse`" + prefix + "enc` at any time to start an encounter!\nCheck out `" + prefix + "quest` to make progress and learn more!\nUse `" + prefix + "help` for more concentrated information!\nAnd please use `" + prefix + "submit` to send feedback and bug reports!";
-            if(userId == "266598133683847169" || userId == "690236539971698719" || userId == "480412132538712070" || userId == "270597404342878210"){
-                lib.saveFile(dir + "/trophies.txt", "10|Tester|Special|**Alpha Tester** - One of the special people!");
-                newInfo = "**Welcome back, alpha tester! Your trophy has been added**\n" + newInfo;
-            }else if(userId == "214754022832209921"){
-                lib.saveFile(dir + "/trophies.txt", "10|Tester|Special|**Creator** - Real!");
-                newInfo = "**You deleted your account again? So dedicated!**\n" + newInfo;
-            }else{
-                lib.saveFile(dir + "/trophies.txt", "");
-            }
-            
-            message.reply({ content: "@ __**" + username + "**__, your account has been created! Here is your first encounter: ", allowedMentions: { repliedUser: false }});
-        }
-        
         // Empty confirmation queues
         lib.saveFile(dir + "/confirm.txt", "");
         lib.saveFile(dir + "/confirm_conv.txt", "no");
@@ -484,23 +425,36 @@ module.exports = {
             capped = "  ( \uD83D\uDCBC )";
         }
 		
+        // Check single-embed mode setting and change button types accordingly
+        var mode = "single";
+        var buttonRestriction = user.id;
+        var buttonType = "embedEdit";
+        var userModeSetting = lib.readFile(dir + "/commandmode.txt");
+        if(lib.exists(userModeSetting)){
+            mode = userModeSetting;
+        }
+        if(mode != "single"){
+            buttonRestriction = "any";
+            buttonType = "normal";
+        }
+
 		// Build buttons
 		var button1 = new ButtonBuilder()
-			.setCustomId("any|capture")
+			.setCustomId(buttonRestriction + "|capture|" + buttonType)
 			.setLabel('Capture')
 			.setStyle(1)
 		var button2 = new ButtonBuilder()
-			.setCustomId("any|fight")
+			.setCustomId(buttonRestriction + "|fight|" + buttonType)
 			.setLabel('Fight')
 			.setStyle(1)
 		var button3 = new ButtonBuilder()
-		    .setCustomId("any|check " + monster)
+			.setCustomId(buttonRestriction + "|encounter|" + buttonType)
+			.setLabel('-- New encounter --')
+			.setStyle(4)
+        var button4 = new ButtonBuilder()
+		    .setCustomId("any|check " + monster + "|" + buttonType)
 			.setLabel('Check')
 			.setStyle(2)
-		var button4 = new ButtonBuilder()
-			.setCustomId("any|encounter")
-			.setLabel('New encounter')
-			.setStyle(4)
 		var row = new ActionRowBuilder().addComponents([button1, button2, button3, button4]);
 		//var buttonList1 = [button1, button2];
 		//var buttonList2 = [button3]
@@ -511,14 +465,21 @@ module.exports = {
         	.setColor(embed_color)
         	.setTitle("@ __**" + username + "**__")
         	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
-        	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + chainInfo + "```" + newInfo + buff_extra + abilityOutput);
+        	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + chainInfo + "```" + buff_extra + abilityOutput);
 
         // Add footer if necessary
         if(chain[1] != "0"){
             outputEmbed.setFooter({ text: "Current chain: " + chainData });
         }
 
-		// Real output
+        // If the command was called using a special button then edit the original message instead of sending a new one
+        if(lib.exists(message.message) && message.customId.includes("embedEdit")){
+            message.deferUpdate();
+            message.message.edit({ embeds: [outputEmbed], components: [row]});
+            return;
+        }
+
+		// Normal output
 		message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
 		//lib.buttonReply(message, [outputEmbed], buttonList1, buttonList2)     This would make the capture and fight buttons timeout after a while and disable after one click
 		

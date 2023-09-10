@@ -21,12 +21,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
         // Create embed
         var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')

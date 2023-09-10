@@ -23,12 +23,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "@ __**" + username + "**__ \u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
         // If the user is below level 20, stop the command
         var user_stats = lib.readFile(dir + "/stats.txt").split("|");
         if(parseInt(user_stats[10]) < 20){

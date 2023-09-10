@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'stats',
-	usages: ['', '[number] [stat name]', 'user [ID or username]', 'user random', 'mode'],
-	descriptions: ['Displays your stats', 'Assigns stat points to one of your stats', 'Displays the stats of a different user', 'Displays the stats of a random user', 'Switches your monster display mode to random names and images (funny) or back to normal'],
+	usages: ['', '[number] [stat name]', 'user [ID or username]', 'user random'],
+	descriptions: ['Displays your stats', 'Assigns stat points to one of your stats', 'Displays the stats of a different user', 'Displays the stats of a random user'],
     shortDescription: 'Check a user\'s stats and assign stat points',
     weight: 15,
     addendum: [
@@ -29,74 +29,6 @@ module.exports = {
         // Set important variables
         var username = user.username;
         var dir = "userdata/" + user.id;
-        
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
-        // If the user entered argument "mode" then change their monster mode
-        if(args[0] == "mode"){
-            // Randomize the monsters
-            var monsters = lib.readFile("./data/monsters/monsters.txt");
-            var monsterGroups = monsters.split("#################################################################################\n");
-            
-            // Loop through every group and modify it
-            for(i = 0; i < monsterGroups.length; i++){
-                var monsterList = monsterGroups[i].split(";\n");
-                
-                // Prepare attribute collections
-                var names = [];
-                var images = [];
-                for(y = 0; y < monsterList.length - 1; y++){
-                    // Extract all attributes from this rank's monsters
-                    var monsterData = monsterList[y].split("|");
-                    names.push(monsterData[0]);
-                    images.push(monsterData[5]);
-                }
-                
-                // Randomly generate each monster anew using the extracted attributes
-                for(z = 0; z < monsterList.length - 1; z++){
-                    var monsterData = monsterList[z].split("|");
-                    var nameLength = lib.rand(0, 2);
-                    if(nameLength === 1){
-                        // Pick 3 names and combine them
-                        var name1 = names[lib.rand(0, names.length - 1)];
-                        var name2 = names[lib.rand(0, names.length - 1)];
-                        var name3 = names[lib.rand(0, names.length - 1)];
-                        var newName = name1.substring(0, name1.length / 3) + name2.substring(name2.length, name2.length / 3) + name3.substring(name3.length, name3.length / 3);
-                        monsterData[0] = newName;
-                    }else{
-                        // Pick 2 names and combine them
-                        var name1 = names[lib.rand(0, names.length - 1)];
-                        var name2 = names[lib.rand(0, names.length - 1)];
-                        var newName = name1.substring(0, name1.length / 2) + name2.substring(name2.length, name2.length / 2);
-                        monsterData[0] = newName;
-                    }
-                    
-                    // Pick random image
-                    var newImg = images[lib.rand(0, images.length - 1)];
-                    monsterData[5] = newImg;
-                    
-                    // Finalize monster
-                    monsterList[z] = monsterData.join("|");
-                }
-                
-                // Finalize rank
-                monsterGroups[i] = monsterList.join(";\n");
-            }
-            
-            // Save new monster list
-            lib.saveFile("./data/monsters/monsters_alt.txt", monsterGroups.join("#################################################################################\n"));
-            
-            // User stuff
-            var mode = lib.readFile(dir + "/monster_mode.txt");
-            if(mode == "funny"){mode = "normal";}else{mode = "funny";}
-            lib.saveFile(dir + "/monster_mode.txt", mode);
-            message.reply({ content: "You've changed your monster mode to " + mode + "\nUse this command again to switch back!", allowedMentions: { repliedUser: false }});
-            return;
-        }
         
         // If the user entered the argument "user" and a second argument to go along with it, try to match the input to another user
         if(args[0] == "user" && args[1] !== undefined){

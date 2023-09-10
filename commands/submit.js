@@ -22,12 +22,7 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
+        // No arguments error
         if(args.length < 1){
             message.reply({ content: "\u274C Please include your feedback or bug report after the command name!", allowedMentions: { repliedUser: false }});
             return;

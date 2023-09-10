@@ -16,15 +16,9 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "@ __**" + username + "**__ \u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
         // Check if the command was used through a button
         var buttonCheck = false;
-        if(message.type == "MESSAGE_COMPONENT"){
+        if(lib.exists(message.customId)){
             buttonCheck = true;
         }
         
@@ -127,7 +121,17 @@ module.exports = {
 		outputEmbed
             .setFooter({ text: username + "'s capture count: " + capture_count});
 		
-		// Output
+        // If the command was called using a special button then edit the original message instead of sending a new one
+        if(lib.exists(message.message) && message.customId.includes("embedEdit")){
+            message.deferUpdate();
+            var buttonToRemove = 3;
+            if(message.message.components[0].components.length == 2){buttonToRemove = 1;}
+            message.message.components[0].components.splice(buttonToRemove, 1);
+            message.message.edit({ embeds: [outputEmbed], components: [message.message.components[0]]});
+            return;
+        }
+
+		// Normal output
 		message.reply({ content: "@ __**" + username + "**__", embeds: [outputEmbed], allowedMentions: { repliedUser: false }});
 	},
 };

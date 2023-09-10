@@ -21,12 +21,6 @@ module.exports = {
         // Set important variables
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
         // Set scrap prices
         var vortexPrices = [15, 25, 35];
         var equipPrices = [10, 15, 20, 25, 35, 45];

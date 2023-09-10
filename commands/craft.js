@@ -23,12 +23,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
         // Check if the user tried to confirm a crafting process
         var item_array = lib.readFile("data/items.txt").split(";\n");
         var buttons = [];

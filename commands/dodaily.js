@@ -19,12 +19,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "@ __**" + username + "**__ \u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-	    
 	    // Check what rank the user is and use / generate the appropriate kind of quest
         var stats = lib.readFile(dir + "/stats.txt").split("|");
         var rank = stats[9];

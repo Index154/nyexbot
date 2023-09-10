@@ -19,12 +19,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-
         // Define options
         var movementTypes = ["Terrestrial", "Flying", "Burrowing", "Swimming"];
         var behaviors = ["aggressive", "peaceful", "skittish", "lazy", "curious"];

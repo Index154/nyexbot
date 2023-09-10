@@ -39,12 +39,6 @@ module.exports = {
 		var mon_total = mons.length - 1;
 		var quest_total = quests.length;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
 		// Get the count of completed quests and completion percentage
 		var quest_num = parseInt(lib.readFile(dir + "/current_quest.txt"));
 		var quest_progress = (Math.round((quest_num / quest_total) * 1000)) / 10;

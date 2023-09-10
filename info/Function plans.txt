@@ -1,11 +1,3 @@
-IMPORTANT
-- Fix the bot accessing resources that are not included in the repository. At least move those resources outside of the actual project folder. Maybe add a script to the repo that creates them for you when you set it up
-- Always make sure to separate the three types of data and treat them differently:
-    1. Persistent project data - Should be tracked in the git project
-    2. Persistent instance data (stuff like userdata) - Should not be tracked but should be created once after cloning the repo
-    3. Non-persistent data (stuff like temporary files for button confirmations and such) - Should just be created by the code when needed
-    Also make sure to use these types only for the appropriate use cases!
-
 Unspecified
 - Shorten the code needed in commands for using levelCheck / Improve the function?
 - Instead of having some values saved in files or tables, maybe it could be better to define them directly inside a function's code (if the only code that requires that data is the function itself) - example: convertToIcon => Check this while or after reworking the code (adding SQL and functions)
@@ -71,9 +63,10 @@ Capture
 - Load monster info (happens in several commands? - wait for SQL?)
 - Activate abilities if possible (also happens in fight and enc)
 - Reduce realm HP (also happens in fight)
-- Grant a trophy (happens in several commands - will later hopefully mostly be used inside of other functions!)
+- Grant a trophy (happens in several commands - will later hopefully mostly be done inside of other functions!)
 - Grant a trophy based on captured monsters (combine with "monster obtaining" function)
 - End an encounter (also happens in fight - influenced by realms and abilities)
+- Edit the original message instead of posting a reply (happens in several commands)
 
 Captures
 - Match input to another user (name or ID and then a random one from the results) (happens in the function below)

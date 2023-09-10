@@ -10,7 +10,7 @@ module.exports = {
     addendum: [
         '- You can `{prefix}move` between regular areas at will',
         '- The area you are in determines which monsters you can encounter',
-        '- Some areas called realms are only accessible through special items called Fragments',
+        '- Some areas called realms are only accessible through special items called fragments',
         '- The [area name] argument can be replaced with the word "realm" to inspect a realm you are currently in'
     ],
     category: 'info',
@@ -22,18 +22,16 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
+        // Get user's current area
+        var userArea = parseInt(lib.readFile(dir + "/area.txt"));
+
         // Set list of available areas
         var areas_raw = lib.readFile("data/area_names.txt");
         var areas = areas_raw.split(",");
         // Remove areas above ID 13 (Realms)
         areas = areas.slice(0, 14);
         var area_list_lower = areas.join("|").toLowerCase();
+        areas[parseInt(userArea)] = "**" + areas[parseInt(userArea)] + "** - `You are here!`";
         areas_raw = areas.join("\n");
         
         // Give out a list of areas if the user submitted no argument. Otherwise try to match their input to an area
@@ -50,18 +48,15 @@ module.exports = {
                 }
             }
             
-            // Get user's current area in the case that they try to check a realm
-            var user_area = parseInt(lib.readFile(dir + "/area.txt"));
-            
-            if(area_list_lower.includes(args[0]) || args[0] == "realm" && user_area >= 14){
+            if(area_list_lower.includes(args[0]) || args[0] == "realm" && userArea >= 14){
                 // If the user is looking at their current realm, reobtain the area list and don't remove realms this time
                 areas_raw = lib.readFile("data/area_names.txt");
                 areas = areas_raw.split(",");
                 area_list_lower = areas.join("|").toLowerCase();
                 areas_raw = areas.join("\n");
                 
-                if(args[0] == "realm" && user_area >= 14){
-                    var key = user_area;
+                if(args[0] == "realm" && userArea >= 14){
+                    var key = userArea;
                 }else{
                     var split = area_list_lower.split(args[0]);
     				var left_side = split[0].replace(/[^|]/g, "");
@@ -93,13 +88,11 @@ module.exports = {
                 }
                 
                 // Go through all the monster names and add them to the embed
-                var rarity_names = ["Rank D", "Rank C", "Rank B", "Rank A", "Rank S", "Rank SS"];
                 var icon_array = ["<:real_black_circle:856189638153338900>", "\uD83D\uDD35", "\uD83D\uDFE2", "\uD83D\uDD34", "\uD83D\uDFE1", "\uD83D\uDFE0"];
                 var hub_array = [];
                 // Go through the groups
                 for(i = 0; i < 6; i++){
                     var monsters_array = monster_groups[i].split(";\n");
-                    var monsters_main = monster_groups_main[i].split(";\n");
                     var monster_count = monsters_array.length;
                     // Go through the individual monsters of the group
                     for(y = 0; y < monster_count - 1; y++){

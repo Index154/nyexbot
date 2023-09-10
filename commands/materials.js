@@ -21,12 +21,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-         // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
         // Get a full list of all the user's items
         var inventory = lib.readFile(dir + "/materials.txt");
         var items = lib.readFile("data/items.txt");

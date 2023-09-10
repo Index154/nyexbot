@@ -1,0 +1,66 @@
+IMPORTANT
+- Data that is kept in files and is not part of the git repo should be moved into ONE UNTRACKED sub-directory in the bot directory.
+- Stop putting stuff into the testbranch files
+
+
+WHEN TO PUT STUFF SOMEWHERE
+- SQL: Dynamic data and static data which is required in combination with other data?
+- Files: Static data and dynamic data which is rarely altered or accessed
+
+List of data and how to change its location:
+- commands: Git
+- data:
+    - configs: Dynamic but rare => SQL or files
+    - daily_quests: Dynamic => SQL
+    - guess: Partially dynamic and static => SQL and maybe files
+    - imported:
+        - fates: Static => SQL or files
+        - comments: Static => SQL or files
+        - customWords: Dynamic => SQL (separate from main words list) - Do not track
+        - eldenWords: Static => SQL or files
+        - journal: Static => SQL or files
+        - logBackup: Dynamic => Keep as file
+        - Media: Dynamic but rare => SQL
+        - MHL: Dynamic but rare => SQL
+        - monsterNames: Static => SQL or file (rename!)
+        - pokeattempts: Dynamic => SQL
+        - pokegories: Static => SQL
+        - pokeprompt: Dynamic => SQL
+        - pokesolutions: Dynamic => SQL
+        - quote: Dynamic => SQL
+        - SCPErrors: Dynamic => Remove entirely? Do actual logging
+        - TenorErrors: Dynamic => Remove entirely? Do actual logging
+        - verbs: Static => Keep as file
+        - words: Static => Keep as file (split and move customwords to SQL)
+    - monsters: Static => SQL
+        - monsters_alt: Dynamic => SQL?
+    - realmdrops: Static => SQL
+    - sitedata: Dynamic => Keep as files
+    - abilities: Static => SQL
+    - ability_conditions: Static => SQL
+    - ability_values: Static => SQL
+    - area_names: Static => SQL
+    - bad_messages: Static => Remove entirely
+    - boss_mods: Static => SQL
+    - boss_participants: Dynamic => SQL
+    - drops: Static => SQL
+    - items: Static => SQL
+    - level_reqs: Static => Keep as file
+    - quests: Static => SQL
+    - realm_week: Dynamic => SQL
+    - recipes: Static => SQL
+    - serverlist: Dynamic => SQL
+    - shiny_shop_user: Dynamic => SQL
+    - shop_week: Dynamic => SQL
+    - shop: Dynamic => SQL
+    - transform_pools: Static => Remove entirely (make it dynamic)
+    - unique_realms: Static => SQL
+    - vortex_loot: Static => SQL
+    - weekly_realm: Dynamic => SQL
+    - worldboss: Dynamic => SQL
+- info: Static => Keep as files
+- markov-text: Static => Remove entirely
+- sql: Static => Keep as files
+- userdata: Dynamic => SQL
+
+- various stuff from the code: Static => Put that stuff into json files!

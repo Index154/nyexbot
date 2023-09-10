@@ -5,7 +5,7 @@ Scorpion Toxin|15|0|0|0|0|0|0|0|A strong but volatile toxin. Can be applied to a
 Blue Slime Gel|-20|-30|-20|10|20|40|0|0|A gooey substance that, against all expectations, is not flammable. Ingesting it seems like a bad idea|Item,17|53|D;
 Godslayer Greatsword|256|134|0|0|0|0|50|Legendary|This blade is said to have fallen from the sky forge when Hephaestus struck down an Archdemon trying to steal it|Weapon|9|Special;
 Wooden Club|8|2|0|0|0|0|0|0|A poorly made club that has already seen some use... and not in the field of sports|Weapon|8|D;
-Goblin Horn|0|0|0|30|0|0|0|0|Over time, the sounds of the Goblins' horns have become known as an indicator for an easy meal to many monsters. Attracts tougher monsters for 2 encounters|Item,10|130|D;
+Goblin Horn|0|0|0|30|0|0|0|0|Over time, the sounds of the Goblins' horns have become known as an indicator for an easy meal to many monsters. Attracts tougher monsters for a short time|Item,10|130|D;
 Wolf Pelt|2|9|0|0|0|0|0|0|A very large patch of a wolf's pelt - Can be worn like a mantle|Defense|0|D;
 Bear Claw|3|7|0|0|0|0|0|0|The claw of an adult bear. It's more durable than you'd expect and can be swung very easily|Weapon|2|D;
 Shaman Staff|0|0|9|0|0|0|6|Intangible|An old staff carved from mana wood. Since it has no catalyst on the top its efficiency is relatively low|Tool|1|C;

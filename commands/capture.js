@@ -24,12 +24,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "@ __**" + username + "**__ \u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
 		// Fetch current encounter
 		var monster_keys = lib.readFile(dir + "/current_encounter.txt");
 		// Only run if there is one
@@ -337,12 +331,27 @@ module.exports = {
 		    lib.saveFile(dir + "/current_encounter.txt", "");
 		}
 
+        // If the command was called using a special button then edit the original message instead of sending a new one
+        if(lib.exists(message.message) && message.customId.includes("embedEdit")){
+            message.deferUpdate();
+            if(chainValue > 0){
+                message.message.embeds[0].data.footer = { text: "Current chain: " + monster_title + " (" + chainValue + ")"};
+            }else{
+                delete message.message.embeds[0].data.footer;
+            }
+            delete message.message.embeds[0].data.fields;
+            message.message.embeds[0].data.description = output;
+            message.message.components[0].components.splice(0, 2);
+            message.message.edit({ embeds: [message.message.embeds[0]], components: [message.message.components[0]]});
+            return;
+        }
+
         // If there is a chain, add it to the output
         if(chainValue > 0){
             output += "\nYour current capture chain is **" + chainValue + "**";
         }
 
-        // Output
+        // Normal output
 		message.reply({ content: "@ __**" + username + "**__" + output, allowedMentions: { repliedUser: false }});
 		
     },

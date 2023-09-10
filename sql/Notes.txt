@@ -1,6 +1,6 @@
 !! Missing SQL plans for everything listed in the patch_history file !!
 
-Also make sure not to forget about capture chains and updating the website info page? (or remove it lol)
+Also make sure not to forget about capture chains
 Also add some extra attribute (icon) to consumables / items which denotes their main use case (like fighting/capturing/item drops)
 Also consider using strings as primary keys for some things that have to be added manually over and over (for example stuff like areaId)
 

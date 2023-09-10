@@ -26,12 +26,6 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C @ __**" + username + "**__, use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-	    
 	    // Read world boss file. If the file only contains a rank (recently generated) then generate a random boss based on that rank and save it
 	    var boss = lib.readFile("data/worldboss.txt");
 	    if(boss === "" || boss === undefined){

@@ -19,12 +19,6 @@ module.exports = {
         // Set important variables
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-        
         // Get current area
         var area = parseInt(lib.readFile(dir + "/area.txt"));
         

@@ -19,15 +19,8 @@ module.exports = {
         
         // Set important variables
         var username = user.username;
-        var dir = "userdata/" + user.id;
         var server = message.guildId;
         var serverConfigPath = "data/guess/servers/";
-        
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
         
         // If the server doesn't have a directory yet, create it along with the files
         if(!fs.existsSync(serverConfigPath + server)){
@@ -153,17 +146,18 @@ module.exports = {
                     }
                     users += users_array[y];
                     
-                    // Give scrap to the user
-                    var scrap_amount = parseInt(lib.readFile("userdata/" + user_ids[y] + "/scrap.txt"));
-                    scrap_amount += 15;
-                    lib.saveFile("userdata/" + user_ids[y] + "/scrap.txt", scrap_amount);
-                    
+                    // Give scrap to the users which are registered
+                    if(fs.existsSync("userdata/" + user_ids[y])){
+                        var scrap_amount = parseInt(lib.readFile("userdata/" + user_ids[y] + "/scrap.txt"));
+                        scrap_amount += 15;
+                        lib.saveFile("userdata/" + user_ids[y] + "/scrap.txt", scrap_amount);
+                    }                    
                 }
             }
             
             // Determine the report of who answered correctly if there were any correct answers
             if(users === ""){extra = "";}
-            else{extra = "The following users got it right and received 15 scrap each: **" + users + "**";}
+            else{extra = "All registered players who guessed correctly have received 15 Scrap each. The following users got it right:\n**" + users + "**";}
             
             // Give scrap to the users
             for(i = 0; i < users_array.length; i++){

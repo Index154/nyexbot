@@ -22,12 +22,6 @@ module.exports = {
         // Set important variables
         var dir = "userdata/" + user.id;
         
-        // If the user isn't registered yet, stop the command
-        if(!fs.existsSync(dir)){
-            message.reply({ content: "\u274C Use `" + prefix + "encounter` first to create an account!", allowedMentions: { repliedUser: false }});
-            return;
-        }
-	    
 	    // Get all items
 	    var item_array = lib.readFile("data/items.txt").split(";\n");
 

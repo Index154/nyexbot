@@ -258,7 +258,17 @@ client.on('interactionCreate', interaction => {
 			const expirationTime = timestamps.get(user.id) + cooldownAmount;
 			if (now < expirationTime) {
 				const timeLeft = (expirationTime - now) / 1000;
-				return message.reply({ content: `@ __**` + user.username + `**__\n\u274C Please wait ${timeLeft.toFixed(1)} more second(s) before using \`${command.name}\` again!`, allowedMentions: { repliedUser: false }});
+                output = `\n\u274C Please wait ${timeLeft.toFixed(1)} more second(s) before using \`${command.name}\` again!`;
+
+                // If the command was called using a special button then edit the original message instead of sending a new one
+                if(lib.exists(message.message) && message.customId.includes("embedEdit")){
+                    message.deferUpdate();
+                    message.message.embeds[0].data.description = output;
+                    message.message.edit({ embeds: [message.message.embeds[0]]});
+                    return;
+                }
+
+				return message.reply({ content: `@ __**` + user.username + `**__` + output, allowedMentions: { repliedUser: false }});
 			}
 		}
         // Set a new timestamp for the user and for this command
@@ -266,6 +276,12 @@ client.on('interactionCreate', interaction => {
         // Remove the timestamp after the cooldown has expired
 		setTimeout(() => timestamps.delete(user.id), cooldownAmount);
 		
+        // Create a new user folder with default files if there is none yet
+        if (!fs.existsSync("userdata/" + user.id) && command.name != "help" && (command.category == "main" || command.category == "info" || command.category == "items" || command.category == "userinfo" || command.category == "tasks" || command.category == "misc" || command.category == "settings")){
+            lib.createUserFiles(message, user, commandPrefix);
+            return;
+        }
+
 		// Execute the command
 		command.execute(message, user, args, commandPrefix);
 	} catch (error) {
@@ -407,6 +423,12 @@ client.on('messageCreate', async message => {
         timestamps.set(user.id, now);
         setTimeout(() => timestamps.delete(user.id), cooldownAmount);
         
+        // Create a new user folder with default files if there is none yet
+        if (!fs.existsSync("userdata/" + user.id) && command.name != "help" && (command.category == "main" || command.category == "info" || command.category == "items" || command.category == "userinfo" || command.category == "tasks" || command.category == "misc" || command.category == "settings")){
+            lib.createUserFiles(message, user, commandPrefix);
+            return;
+        }
+
         // Execute command
 	    command.execute(message, user, args, commandPrefix);
     } catch (error) {
