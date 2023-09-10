@@ -250,7 +250,7 @@ module.exports = {
                         	.addFields( { name: "Scrap value", value: item_info[11], inline: true } )
                         	.setTitle(item_info[0])
                         	.setDescription(item_info[9])
-                            .setFooter("Use the command `" + prefix + "mats convert [amount] [material name]` to convert materials into Scrap");
+                            .setFooter({ text: "Use the command `" + prefix + "mats convert [amount] [material name]` to convert materials into Scrap" });
                             
                     // Set item count and add it to the output
     				var itemCounts = new adc(item_keys).count();
