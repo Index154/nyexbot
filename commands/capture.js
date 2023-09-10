@@ -6,7 +6,7 @@ module.exports = {
 	descriptions: ['Attempts to capture the currently encountered monster'],
     shortDescription: 'Capture an encountered monster',
     weight: 10,
-	cooldown: 2.5,
+	cooldown: 3,
 	aliases: ['cap'],
 	addendum: [
         '- Has an increased cooldown of 2.5 seconds',
@@ -330,6 +330,12 @@ module.exports = {
 		}else{
 		    lib.saveFile(dir + "/current_encounter.txt", "");
 		}
+
+        // Formatting consistency
+        output += "\n\u2800";
+        if(realm_extra == ""){
+            output += "\n\u2800";
+        }
 
         // If the command was called using a special button then edit the original message instead of sending a new one
         if(lib.exists(message.message) && message.customId.includes("embedEdit")){

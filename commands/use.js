@@ -186,8 +186,11 @@ module.exports = {
                     
                     // Calculate the user's starting HP
                     var rank_hp_bonus = {"D": 0, "C": 100, "B": 200, "A": 300, "S": 400, "SS": 500};
-                    var attack_hp_bonus = ((stats[1] / stats[2]) - 1) * 100;
-                    var hp = Math.round((stats[10] * 8) + (stats[11] / 12) + rank_hp_bonus[stats[9]] + attack_hp_bonus);
+                    if(parseInt(stats[2]) == 0){stats[2] = 1;}
+                    var attack_hp_bonus = (stats[1] / stats[2]) * 100;
+                    if(attack_hp_bonus > 500){attack_hp_bonus = 500;}
+                    var level_hp_bonus = stats[10] * 5;
+                    var hp = Math.round(level_hp_bonus + rank_hp_bonus[stats[9]] + attack_hp_bonus);
                     lib.saveFile(dir + "/hp.txt", hp);
                     // Output
                     var realm_name = realm_list[realm];

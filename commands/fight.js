@@ -7,7 +7,7 @@ module.exports = {
 	descriptions: ['Fights the currently encountered monster'],
     shortDescription: 'Fight an encountered monster',
     weight: 15,
-	cooldown: 2.5,
+	cooldown: 3,
 	aliases: ['fig'],
 	addendum: [
         '- Has an increased cooldown of 2.5 seconds',
@@ -30,6 +30,7 @@ module.exports = {
 			message.reply({ content: "@ __**" + username + "**__ \u274C There is no monster to fight!", allowedMentions: { repliedUser: false }});
 			return;
 		}
+        var realmFlag = false;
 		
         // Get monster stats and name with modifier
 		var monster_groups = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
@@ -383,8 +384,6 @@ module.exports = {
                 var item_data = items[item_key].split("|");
                 drop_extra = "\nThe monster dropped: **" + item_data[0] + "**";
                 
-                var old_equipment = "," + lib.readFile(dir + "/equipment.txt") + ",";
-                
                 // If the drop is equippable and new, start an equip prompt. Otherwise add it to the inventory / material inventory
                 if(item_data[10] == "Weapon" || item_data[10] == "Defense" || item_data[10] == "Tool"){
                     var item_type = item_data[10];
@@ -460,12 +459,17 @@ module.exports = {
             // Winning output
             if(levelup_extra !== ""){levelup_extra = "\n" + levelup_extra;}
             output = "```diff\n+You defeated the " + monster_title + "!" + "```" + realm_extra + forced_death_extra + "You got **" + exp + "** EXP and **" + gold + "** Gold!" + abilityOutput + levelup_extra + drop_extra + material_extra + trophy_extra + "\nYour chance of winning was **" + win_chance + "%**!";
+            if(drop_extra == ""){output += "\n\u2800";}
             
         }else{
-            // If the user is in a realm, reduce their HP, give a different output and stop the command before the encounter is closed
+            // Regular losing message
+            output = "```diff\n-You lost...```Your chance of winning was **" + win_chance + "%**!";
+
+            // If the user is in a realm, reduce their HP and prepare a different output
             var area = lib.readFile(dir + "/area.txt");
             if(area > 13){
                 var hp = parseInt(lib.readFile(dir + "/hp.txt"));
+                realmFlag = true;
                 // Calculate damage (minimum of 5)
                 var damage = (monster_attack + monster_speed - user_attack - user_speed - bonus) / 2;
                 if(damage < 0){damage = 0;}
@@ -480,31 +484,27 @@ module.exports = {
                 }
                 
                 // Realm losing message
-                message.reply({ content: "@ __**" + username + "**__```diff\n-You lost...```You have **" + hp + "** HP remaining!\nYour chance of winning was **" + win_chance + "%**!", allowedMentions: { repliedUser: false }});
-                return;
+                output = "```diff\n-You lost...```You have **" + hp + "** HP remaining!\nYour chance of winning was **" + win_chance + "%**!\n**Due to the effects of the realm you may try again**";
             }
-            
-            // Regular losing message
-            output = "```diff\n-You lost...```Your chance of winning was **" + win_chance + "%**!";
             
         }
         
         // End encounter
         if(!win){
             if(keepEncounter){
-                if(area < 14){abilityOutput = "\n**Your equipment ability has activated, allowing you to try again!**";}
+                if(!realmFlag){abilityOutput = "\n**Your equipment ability has activated, allowing you to try again!**" + "\n\u2800";}
                 else{abilityOutput = "\n**Your equipment ability has activated but [Persistence] has no effect on fights inside of a realm...**";}
-            }else{
+            }else if(!realmFlag){
+                output += "\n\u2800\n\u2800";
                 lib.saveFile(dir + "/current_encounter.txt", "");
             }
             output += abilityOutput;
 		}else{
 		    lib.saveFile(dir + "/current_encounter.txt", "");
 		}
-        
-        var outputObject = { content: "@ __**" + username + "**__" + output, allowedMentions: { repliedUser: false } };
 
         // Add equip buttons if necessary
+        var outputObject = { content: "@ __**" + username + "**__" + output, allowedMentions: { repliedUser: false } };
         if(buttons.length > 0){
             var row = new ActionRowBuilder().addComponents(buttons);
             outputObject = { content: "@ __**" + username + "**__" + output, allowedMentions: { repliedUser: false }, components: [row] };
@@ -515,7 +515,9 @@ module.exports = {
             message.deferUpdate();
             delete message.message.embeds[0].data.fields;
             message.message.embeds[0].data.description = output;
-            message.message.components[0].components.splice(0, 2);
+            if(!realmFlag){
+                message.message.components[0].components.splice(0, 2);
+            }
             if(buttons.length > 0){
                 message.message.edit({ embeds: [message.message.embeds[0]], components: [row]});
                 return;

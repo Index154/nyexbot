@@ -7,7 +7,7 @@ module.exports = {
 	descriptions: ['Starts an encounter and creates a new user account if necessary'],
     shortDescription: 'Encounter a monster',
     weight: 5,
-	cooldown: 2.5,
+	cooldown: 3,
 	aliases: ['enc'],
 	addendum: [
         '- Has an increased cooldown of 2.5 seconds',
@@ -26,6 +26,7 @@ module.exports = {
         // Set important variables
         var username = user.username;
         var dir = "userdata/" + user.id;
+        var extraCount = 0;
         
         // Empty confirmation queues
         lib.saveFile(dir + "/confirm.txt", "");
@@ -158,6 +159,7 @@ module.exports = {
             var buff_stat_subdiv = buff_stats[10].split(",");
             var buff_timer = parseInt(buff_stat_subdiv[1]);
             var item_name = buff_stats[0];
+            extraCount++;
             if(buff_timer === 0){
                 // Remove old item's values from the user's stats
                 for(y = 1; y < 7; y++){
@@ -459,13 +461,31 @@ module.exports = {
 		//var buttonList1 = [button1, button2];
 		//var buttonList2 = [button3]
 		
+        // Prepare extra text and formatting
+        if(buff_extra != ""){abilityOutput = "\n" + abilityOutput;}
+        var hpExtra = "";
+        if(parseInt(area_raw) > 13){
+            var hp = parseInt(lib.readFile(dir + "/hp.txt"));
+            hpExtra = "You have **" + hp + "** HP remaining!";
+            extraCount++;
+        }
+        if(abilityOutput != ""){extraCount++;}
+        if(hpExtra != "" && buff_extra != ""){buff_extra = "\n" + buff_extra;}
+        allExtras = hpExtra + buff_extra + abilityOutput;
+        
+        // Formatting for semi-consistent embed height
+        for(i = 3; i > extraCount; i--){
+            var spacer = "\n\u2800";
+            if(extraCount == 0 && i == 3){spacer = "\u2800";}
+            allExtras = allExtras + spacer;
+        }
+
         // Output embed
-        if(buff_extra !== ""){abilityOutput = "\n" + abilityOutput;}
         var outputEmbed = new Discord.EmbedBuilder()
         	.setColor(embed_color)
         	.setTitle("@ __**" + username + "**__")
         	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
-        	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + chainInfo + "```" + buff_extra + abilityOutput);
+        	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + chainInfo + "```" + allExtras);
 
         // Add footer if necessary
         if(chain[1] != "0"){
