@@ -108,7 +108,7 @@ Requires: icons
 commands:
 	create table commands(
 		commandId tinyint unsigned unique auto_increment not null,
-		command varchar(15) unique not null,
+		commandName varchar(15) unique not null,
 		categoryId tinyint unsigned not null,
 		weight tinyint unsigned not null,
 		shortDescription varchar(100) not null,
