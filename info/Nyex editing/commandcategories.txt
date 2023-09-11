@@ -15,13 +15,13 @@ tasks = Recurring tasks / Todo
     worldboss
 
 userinfo = User information
-    inventory
     captures
     stats
     completion
     trophies
 
 items = Item interactions
+    inventory
     use
     materials
     craft
@@ -53,9 +53,15 @@ variety = Funny / Standalone / Unrelated
     clip
     quote
     nickname
+    remindme
     scp
+    ability
+    comment
+    tenor
     journal
+    countdown
     http
+    inspire
     elden
     mhl
     fate
