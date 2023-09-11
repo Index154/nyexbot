@@ -1,14 +1,34 @@
-SQL stuff
-- Check plans files for planned SQL changes to take note of before making the tables
-- Add more default values to SQL table columns
-- Rework which columns may or may not be null
-- Change some primary SQL table keys to be unique varchars if applicable?
-- Missing table changes:
+SQL preparation plan
+- Go through every table that I have planned and do the following
+=> Continue with recipes
+    - Review null constraints
+    - Add default constraints (only for dynamic tables)
+- Missing table stuff:
     - Maybe: countdowns, comment sentences, words for abilities, 
     - Item main use icons in the icon table
 - Use the reminders and clip commands as references for SQL implementation
 
+Overall plan
+- Prepare SQL table commands
+- Go through every js file in order and do the following
+    - Turn common code blocks into functions
+        - Also implement those functions in other commands they appear in?
+    - Create and fill tables that are required for funtionality
+    - Implement SQL queries
+    - Change the location of other data referenced in the file
+    - Add extra comments if necessary
+    - Change variable names to Camelcase
+
+NEW feature plans related to SQL
+- List view sorting options
+- Monster dex
+- Always update radar values when progress is made
+- Special trophies
+- Monster modifiers
+- Statistics / counters
+
 Unspecified
+- Redesign the library system. Either one function per file or several per file with files separated by category or use case
 - Shorten the code needed in commands for using levelCheck / Improve the function?
 - Instead of having some values saved in files or tables, maybe it could be better to define them directly inside a function's code (if the only code that requires that data is the function itself) - example: convertToIcon => Check this while or after reworking the code (adding SQL and functions)
 - IMPORTANT: Always think about trophies and what sort of functions to build in order for the trophy check placements to work out the best
