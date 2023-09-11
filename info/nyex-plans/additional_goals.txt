@@ -15,6 +15,10 @@
 - Transforming materials into others of your choosing (must be same rank, conversion rate of maybe like 5 to 1)
 - Information about the areas a monster can be found in in check and caps
 - List views for clip, media and such
+- A confirmation prompt for class choosing
+- Equipment being scrapped when replaced
+- Material details also being shown in paged embeds just like in inv
+- Bosses being able to replace each other but with a certain cooldown between them (sort of adding a possibility of failure for the players if they take too long)
 - List view sorting options (easier to implement with SQL)
 - A monster dex which shows how many monsters you're missing. Also with clues (area icons) for obtaining them (requires SQL)
 <:sp:860269564779429908>

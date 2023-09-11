@@ -1,3 +1,4 @@
 ## __Known issues__
 - Transform can transform a Vortex into the same Vortex, making it sometimes useless
+- The bot throws an error when a daily quest is generated for the first time for each rank
 <:sp:860269564779429908>

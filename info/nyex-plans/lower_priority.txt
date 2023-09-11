@@ -1,21 +1,19 @@
 ## __Lower priority__
 (Same as above but even less necessary for the overall quality and completeness of the game)
 - The addition and improvement of some of the fun commands from Nightbot (decipher, mhshuffle)
-- Equipment being scrapped when replaced
-- A cooldown between bosses spawning
-- Material details also being shown in paged embeds
-- Bosses being able to replace each other (sort of adding a possibility of failure for the players if they take too long)
 - .rec craftable being sorted by icons (so mostly by rank)
 - .rec showing all recipes in Discord instead of linking to the website
-- Radar values being updated whenever quests are completed or monsters are obtained
+- Radar values being updated whenever quests are completed or monsters are obtained (maybe wait for SQL)
 - More regular realms and corresponding vortexes
 - Review of monster luck in items
-- Review of item drop rates
+- Review of item drop rates (especially materials)
 - More guessing game topics
-- Slash commands
 - Special hard-to-get trophies based on the seven sins (maybe wait for SQL)
 - Monster modifiers (fight/capture reward variety) (maybe wait for SQL)
 - Counters for various stats (requires SQL)
 - Another rework of the quest tutorials with explanations for new commands, changes and features
 - Actual rewards for getting trophies (besides boss ones)
+- More time increment options for reminders (weeks, months, etc.)
+- Sort reminders by how soon they are
+- A button on the area output which lets you check your current area
 <:sp:860269564779429908>

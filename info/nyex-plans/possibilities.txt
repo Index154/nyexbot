@@ -5,7 +5,6 @@
 - Material research projects that grant random materials of the player's rank?
 - Being able to preview the loot tables of vortexes?
 - The ability to bet Gold on a fight with possible rewards corresponding to the winning chance?
-- Check being tied to the active encounter again?
 - Equipment being put into the equipping queue when replaced so you can switch back?
 - Seasonal events / anniversary?
 - Some sort of difficulty increase after unlocking the level cap?
@@ -14,4 +13,5 @@
 - A command to reset your account? (Except for trophies? Maybe combine this with the NG+ idea?)
 - Let users update reminders?
 - Allow users to define their timezone for reminders?
-- Get a role when joining vc and lose it when leaving (for vc-text access)
+- Integrate deliver and dodaily into quest and daily as subcommands?
+<:sp:860269564779429908>
