@@ -146,6 +146,17 @@ equipmentAbilities:
 Filling method: Manual
 Requires: commands
 
+itemCategories:
+	create table itemCategories(
+		itemCategoryId tinyint unsigned unique auto_increment not null,
+		itemCategoryName varchar(50) unique not null,
+		iconId tinyint unsigned not null,
+		primary key (itemCategoryId),
+		foreign key (iconId) references icons(iconId)
+	);
+Filling method: Manual
+Requires: icons
+
 items:
 	create table items(
 		itemId smallint unsigned unique auto_increment not null,
@@ -159,15 +170,17 @@ items:
 		description varchar(400) not null,
 		itemTypeId tinyint unsigned not null,
 		itemRarityId tinyint unsigned not null,
+		itemCategoryId tinyint unsigned not null,
 		useDuration tinyint unsigned,
 		extraValue smallint unsigned,
 		primary key (itemId),
 		foreign key (itemTypeId) references itemTypes(itemTypeId),
-		foreign key (itemRarityId) references itemRarities(itemRarityId)
+		foreign key (itemRarityId) references itemRarities(itemRarityId),
+		foreign key (itemCategoryId) references itemCategories(itemCategoryId)
 	);
 	CREATE INDEX itemNameIndex ON items (itemName);
 Filling method: Automatic
-Requires: itemRarities, itemTypes
+Requires: itemRarities, itemTypes, itemCategories
 
 recipes:
 	create table recipes(
@@ -353,6 +366,7 @@ users:
 		monsterTimestamp timestamp,
 		updateDMs bool not null,
 		funnyMode bool not null,
+		singleCommandMode bool not null,
 		radarBonus tinyint not null,
 		tokenPoints smallint unsigned not null,
 		primary key (userId),
