@@ -4,7 +4,7 @@ levelRequirements:
 		requiredExp smallint not null,
 		primary key (level)
 	);
-Filling method: Automatic
+Filling method: Automatic or manual
 
 bossNameModifiers:
 	create table bossNameModifiers(
@@ -17,22 +17,13 @@ Filling method: Automatic
 vortexLootPools:
 	create table vortexLootPools(
 		vortexLootPoolId smallint unsigned unique auto_increment not null,
-		internalName varchar(20) unique not null,
+		vortexLootPoolName varchar(20) unique not null,
 		minDrops tinyint unsigned not null,
 		maxDrops tinyint unsigned not null,
 		rareDropChance tinyint unsigned not null,
 		veryRareDropChance tinyint unsigned not null,
 		primary key (vortexLootPoolId)
 	);
-Filling method: Manual
-
-commandCategories:
-    create table commandCategories(
-        categoryId tinyint unsigned unique auto_increment not null,
-        categoryName varchar(60) not null,
-		categoryWeight tinyint unsigned not null,
-        primary key (categoryId)
-    );
 Filling method: Manual
 
 dailyRewards:
@@ -45,7 +36,6 @@ dailyRewards:
 	);
 (value can be the amount or the id, depending on the type of reward)
 Filling method: Manual
-	
 
 quests:
 	create table quests(
@@ -56,8 +46,8 @@ quests:
 		rewardType varchar(15) not null,
 		reward smallint unsigned not null,
 		rewardAmount smallint unsigned not null,
-		firstText varchar(255) not null,
-		secondText varchar(255) not null,
+		startText varchar(255),
+		finishText varchar(255),
 		suggestedSource varchar(35) not null,
 		primary key (questId)
 	);
@@ -66,7 +56,7 @@ Filling method: Automatic
 classes:
 	create table classes(
 		classId tinyint unsigned unique auto_increment not null,
-		className varchar(15) unique not null,
+		className varchar(20) unique not null,
 		fullDescription varchar(150) not null,
 		shortDescription varchar(60) not null,
 		primary key (classId)
@@ -76,7 +66,7 @@ Filling method: Manual
 dropPools:
 	create table dropPools(
 		dropPoolId smallint unsigned unique auto_increment not null,
-		internalName varchar(40) unique not null,
+		dropPoolName varchar(40) unique not null,
 		primary key (dropPoolId)
 	);
 Filling method: Automatic
@@ -89,36 +79,34 @@ itemTypes:
 		givesBuff bool not null,
 		batchUsePossible bool not null,
 		isMaterial bool not null,
-		isEquippable bool not null,
+		isWeapon bool not null,
+		isDefense bool not null,
+		isTool bool not null,
 		primary key (itemTypeId)
 	);
 Filling method: Manual
+(For defining the way the item can be utilized)
 
-itemRarities:
+itemRanks:
 	create table itemRarities(
-		itemRarityId tinyint unsigned unique auto_increment not null,
-		name varchar(15) unique not null,
+		itemRankId tinyint unsigned unique auto_increment not null,
+		name varchar(5) unique not null,
 		iconId tinyint unsigned not null,
-		primary key (itemRarityId),
+		primary key (itemRankId),
 		foreign key (iconId) references icons(iconId)
 	);
 Filling method: Manual
 Requires: icons
+(For defining the item ranks like D or S. Vortexes and such should not have special "ranks". That will become the itemCategory instead!)
 
 commands:
 	create table commands(
 		commandId tinyint unsigned unique auto_increment not null,
-		commandName varchar(15) unique not null,
-		categoryId tinyint unsigned not null,
-		weight tinyint unsigned not null,
-		shortDescription varchar(100) not null,
-		fullDescription varchar(500) not null,
-		addendum varchar(3000),
-		primary key (commandId),
-        foreign key (categoryId) references commandCategories(categoryId)
+		commandName varchar(20) unique not null,
+		primary key (commandId)
 	);
 Filling method: Manual
-Requires: commandCategories
+(Only used for other tables to reference commands by id)
 
 equipmentAbilities:
 	create table equipmentAbilities(
@@ -142,9 +130,9 @@ equipmentAbilities:
 		primary key (abilityId),
 		foreign key (activationCommand) references commands(commandId)
 	);
-(activationCommand is either fight ID, capture ID or the sum of both)
 Filling method: Manual
 Requires: commands
+(activationCommand is either encounter ID, fight ID, capture ID or a sum of the latter two indicating both as activation commands)
 
 itemCategories:
 	create table itemCategories(
@@ -161,26 +149,27 @@ items:
 	create table items(
 		itemId smallint unsigned unique auto_increment not null,
 		itemName varchar(50) unique not null,
-		attack smallint,
-		speed smallint,
-		mana smallint,
-		monsterLuck smallint,
-		dropLuck smallint,
-		rareLuck smallint,
+		attack smallint not null default 0,
+		speed smallint not null default 0,
+		mana smallint not null default 0,
+		monsterLuck smallint not null default 0,
+		dropLuck smallint not null default 0,
+		rareLuck smallint not null default 0,
 		description varchar(400) not null,
 		itemTypeId tinyint unsigned not null,
-		itemRarityId tinyint unsigned not null,
+		itemRankId tinyint unsigned not null,
 		itemCategoryId tinyint unsigned not null,
 		useDuration tinyint unsigned,
 		extraValue smallint unsigned,
 		primary key (itemId),
 		foreign key (itemTypeId) references itemTypes(itemTypeId),
-		foreign key (itemRarityId) references itemRarities(itemRarityId),
+		foreign key (itemRankId) references itemRarities(itemRankId),
 		foreign key (itemCategoryId) references itemCategories(itemCategoryId)
 	);
 	CREATE INDEX itemNameIndex ON items (itemName);
 Filling method: Automatic
 Requires: itemRarities, itemTypes, itemCategories
+(extraValue can be the abilityId, the vortexLootPoolId, the realmId, etc.)
 
 recipes:
 	create table recipes(
@@ -223,17 +212,13 @@ Requires: classes
 monsterTypes
 	create table monsterTypes(
 		typeId tinyint unsigned unique auto_increment not null,
-		typeName varchar(15) unique not null,
-		effectMessage varchar(80) not null,
-		effectDescription varchar(150) not null,
-		commandId tinyint unsigned not null,
+		typeName varchar(20) unique not null,
 		iconId tinyint unsigned not null,
 		primary key (typeId),
-		foreign key (commandId) references commands(commandId),
 		foreign key (iconId) references icons(iconId)
 	);
 Filling method: Manual
-Requires: icons, commands
+Requires: icons
 
 monsterRarities:
 	create table monsterRarities(
@@ -568,10 +553,10 @@ possibleShopItems:
 	create table possibleShopItems(
 		shopItemId smallint unsigned unique auto_increment not null,
 		itemId smallint unsigned not null,
-		shopItemRarityId tinyint unsigned not null,
+		shopitemRankId tinyint unsigned not null,
 		primary key (shopItemId),
 		foreign key (itemId) references items(itemId),
-		foreign key (shopItemRarityId) references shopItemRarities(shopItemRarityId)
+		foreign key (shopitemRankId) references shopItemRarities(shopitemRankId)
 	);
 Filling method: Automatic
 Requires: items, shopItemRarities
