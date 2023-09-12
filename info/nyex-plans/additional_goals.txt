@@ -2,6 +2,9 @@
 (These can be done at any time in any order and are not super important. Usually QoL improvements, fixes and additional features)
 - Additional icons for consumables in the inventory so you can tell what their main usages are (for example so you can easily find an item meant to help with capturing/fighting/item drops)
 - Unique shiny images for the last few remaining monsters
+- Global notifications when a shiny is caught, killed or failed
+- Random encounter events (like finding treasure) being presented as a ? button you have to press which then triggers a random event from a list of possibilities
+- Monster modifiers which give extra rewards to the player if they capture or fight
 - A button for starting a new research right after finishing one
 - Crafting system rework: No more equipment upgrades or set recipes for equipment. Instead every material has certain attributes (but no specific numbers) and you can craft custom equipment using a certain number of them (3 to 5?). The attributes of the ingredients then determine the resulting equipment item's stats and so on. Perhaps one of the ingredients has to be a "main ingredient" which will determine what kind of equipment will be made. The rank and values of the stats will be determined based on either the average rank of the ingredients or the lowest rank used and how often each attribute is present. Example: Using 4 D-Rank materials with only attack attributes will make an equipment with 10 Attack (plus some random fluctuation). If one of them had speed instead of attack then it would maybe have 8 attack and 2 speed on average
 - The ability to browse the details of items in the shop (like inventory embeds)
@@ -21,4 +24,6 @@
 - Bosses being able to replace each other but with a certain cooldown between them (sort of adding a possibility of failure for the players if they take too long)
 - List view sorting options (easier to implement with SQL)
 - A monster dex which shows how many monsters you're missing. Also with clues (area icons) for obtaining them (requires SQL)
+- Review high rank monster rates and maybe make it so S and SS are always kinda rare
+- More ways of getting monster tokens and maybe token monster rates being static (more like a gacha than normal)
 <:sp:860269564779429908>
