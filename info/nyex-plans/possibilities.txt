@@ -14,4 +14,5 @@
 - Let users update reminders?
 - Allow users to define their timezone for reminders?
 - Integrate deliver and dodaily into quest and daily as subcommands?
+- Separate DM notification settings for bosses, updates and (later) shinies?
 <:sp:860269564779429908>

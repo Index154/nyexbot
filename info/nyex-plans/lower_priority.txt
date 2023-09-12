@@ -9,7 +9,6 @@
 - Review of item drop rates (especially materials)
 - More guessing game topics
 - Special hard-to-get trophies based on the seven sins (maybe wait for SQL)
-- Monster modifiers (fight/capture reward variety) (maybe wait for SQL)
 - Counters for various stats (requires SQL)
 - Another rework of the quest tutorials with explanations for new commands, changes and features
 - Actual rewards for getting trophies (besides boss ones)
