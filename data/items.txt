@@ -135,7 +135,7 @@ Punishing Greataxe|19|5|0|0|0|0|10|Beast|The demons that use these axes often ki
 The Rock Smasher|23|3|0|0|0|0|0|0|The primitive Volcanic Beasts repeatedly melt, flatten and fold Obsidian which they then use to create these extremely dense and sturdy hammers|Weapon|5|A;
 Phoenix Feather|0|0|25|0|0|0|8|Plant|A legendary object that is said to contain enough mana to burn down a hundred trees in an instant|Tool|2|S;
 Heart of the Stars|0|0|30|5|10|10|0|0|The core of a Celestial Serpent is also its offspring at the same time. Once the parent dies, it injects all of its remaining lifeforce into the mana-rich core, effectively transforming it into an egg. The egg then goes through an unknown evolutionary process which can take up to 40 years!|Tool|0|SS;
-Worm Carapace|12|3|0|0|0|0|0|0|A part of the exoskeleton of a Giant Worm. It's heavier than it looks|Defense|4|D;
+Worm Carapace|12|3|0|0|0|0|0|0|A part of the exoskeleton of a Giant Worm. It's heavier than it looks|Defense|4|C;
 The Reaper's Cloak|3|11|0|0|0|0|0|0|It may look like just a ragged cloak at first glance but this is actually an item enchanted by a high-ranking Lich|Defense|1|C;
 Frost Carapace|17|5|0|0|0|0|-8|Fire|The exoskeleton of the Frost Worm consists of chitin covered in a layer of frozen mana, making it a lot stronger than the carapaces of other arthropods|Defense|0|B;
 Draconata Shell|11|9|0|0|0|0|0|0|The shell of the Dragon Turtle is as hard as steel and works well as a shield|Defense|0|B;
