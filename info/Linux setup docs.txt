@@ -285,10 +285,9 @@ Maintenance commands:
 
 sudo bash
 apt update
+npm update
+npm i -g npm@latest
 cd /home/admin/nyexbot
 npm update
-cd /home/admin/nyextest
-npm update
 apt upgrade
-npm i -g npm@latest
 n latest
