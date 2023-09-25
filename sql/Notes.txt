@@ -1,2 +1,79 @@
-See other branch!
-git checkout rewrite
+!! Missing SQL plans for everything listed in the patch_history file !!
+
+Also make sure not to forget about capture chains
+Also add some extra attribute (icon) to consumables / items which denotes their main use case (like fighting/capturing/item drops)
+Also consider using strings as primary keys for some things that have to be added manually over and over (for example stuff like areaId)
+
+
+Entries example:
+    - User does .c funny gungeon
+    - .c causes it to filter entries by entryType "clip"
+    - Match the arguments to tags or clip names
+    - join tables and select all rows that have all of the determined tags or name
+
+This can be used for all searchableLists: media, clip, quote, mhl, and journal!
+
+
+words:
+wordType, word
+(maybe don't even make a table for this?)
+
+
+insert into  () values 
+(),
+();
+
+insert into  () values 
+(),
+();
+
+
+Get random row:
+SELECT * FROM tableName ORDER BY RAND() LIMIT 1;
+
+
+Data types and more:
+
+    For strings:
+        CHAR(size) = Faster but requires more space (max size 255)
+        VARCHAR(size) = Smaller but less performant (max size 65535)
+        (the difference is probably negligible since my tables will be on the smaller side anyway)
+        => Use varchar for ease of use
+
+    For numbers:
+        BOOL = 1 or 0
+        TINYINT = -128 to 127 or 0 to 255
+        SMALLINT = -32768 to 32767 or 0 to 65535
+        MEDIUMINT = -8388608 to 8388607 or 0 to 16777215 (probably not gonna need anything bigger than that)
+        FLOAT = For floating point numbers
+
+    For timestamps:
+        TIMESTAMP = Time in seconds since 01.01.1970 (enable explicit_defaults_for_timestamp to prevent automatic values!) (can probably be cast to other types for readability)
+        DATETIME(0) = Time as an actual ISO time string thing or whatever (more easily readable)
+
+    Special column options:
+        AUTO_INCREMENT = Assigns a unique number (good for IDs) (but be careful not to assign any values manually or it will reset the incrementation)
+        UNIQUE (column) = Only accepts values that aren't already in use
+        NOT NULL = Needs to have a value (good for anything that should never be empty)
+        UNSIGNED = Only accepts positive numbers but has twice as much room for them (can't be used on decimal numbers)
+        PRIMARY KEY (column name) = Defines the main unique identifier column (can't be NULL and must be UNIQUE) (can also be two columns "combined")
+        (deprecated) ZEROFILL = Implies UNSIGNED and also pads the full size of the field with zeros (from the front) (good for monster IDs)
+        DEFAULT [value] = Makes the field take on a certain default value when not assigned
+        FOREIGN KEY (column name) REFERENCES OtherTableName(primary column) = Defines a column as referring to a primary column of another table. Useful for keeping relations stable
+        CONSTRAINT constraint name CHECK (evaluation) = Can be used to make columns more stable by adding custom constraints but may lead to confusion if not documented correctly
+        CREATE INDEX index name ON table name (column); = Makes searching through values in a column faster. Use on columns that are often searched through (this is a solo command)
+
+
+
+Other general notes:
+    - A value that is the same in many rows should rather be turned into an id. The id then refers to a different table where each unique value is defined
+    - Instead of having multiple values in one column, make a new table with one column that refers to the original table's row and one column for the value itself. That way you will simply turn the repeating group into multiple rows in a different table
+    - For every value in every column, think about how much work it would be to change it in the future. Does it make more sense to make a new related table for it?
+    - Will the rows in a table ever have to be changed manually in the future? How does this affect other tables? Will it cause inconsistencies?
+    - Don't abbreviate names
+    - Use constraints (meh)
+    - Use elastisearch? Or a database analyzer to check if indexes make sense (later)
+    - Does it make sense to have all values for an entity in the same table? Are they often needed at the same time? Or is it smarter to split a table up?
+    - Choose the right data types (nvarchar when users can enter a value)
+    - Every table needs to have unique row identifiers (really?)
+    - Use prepared statements?
