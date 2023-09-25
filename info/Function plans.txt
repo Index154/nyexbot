@@ -1,12 +1,14 @@
 SQL preparation plan
 - Go through every table that I have planned and do the following
-=> Continue with recipes
+=> Continue with monsters
     - Review null constraints
     - Add default constraints (only for dynamic tables)
 - Missing table stuff:
     - Maybe: countdowns, comment sentences, words for abilities, 
     - Item main use icons in the icon table
 - Use the reminders and clip commands as references for SQL implementation
+- How to deal with random stat values which used to be "?" instead of a number?
+- Define a standard for "rewardType" which appears in several tables
 
 Overall plan
 - Prepare SQL table commands
@@ -35,7 +37,7 @@ Unspecified
 - Function for sending a message (will take the content you wanna send and automatically chooses the correct discordjs function - Also make this determine whether the message should contain the "@username" text)
 - How to deal with things being removed or added multiple times from the same "lists" in one command? Do I need to worry or not once everything is SQL?
 - How to stop a higher level async function? Do I need to use an extra if-statement based on the return value? (I sort of forgot what I even meant by this question)
-- Put the dead ends (returns) of the code into the lower levels (nesting) and keep the main path close to the top to reduce nesting
+- Put the dead ends (returns) of the code into the lower levels and keep the main path close to the top to reduce nesting
 - Add additional comments that actually explain stuff that is unintuitive (like unique calculations)
 - Change where and how which functions are imported and from which module to improve performance?
 - Make use of globalVariables.json for data that is used rarely
