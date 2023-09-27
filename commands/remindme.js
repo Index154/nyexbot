@@ -205,6 +205,11 @@ module.exports = {
             return message.reply({ content: "\u274C You may only set reminders for the future!", allowedMentions: { repliedUser: false }});
         }
 
+        // If the reminder text is too long then abort
+        if(reminderText.length >= 650){
+            return message.reply({ content: "\u274C The reminder text is too long. Please use less than 650 characters", allowedMentions: { repliedUser: false }});
+        }
+
         // Save the reminder to the database
         async function saveReminder(channelID, userID, text, repeatingInterval, timestamp){
 
