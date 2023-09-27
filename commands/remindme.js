@@ -42,6 +42,11 @@ module.exports = {
 
                 // Build list / formatting
                 for(i = 0; i < rows.length; i++){
+                    // Shorten text
+                    if(rows[i].text.length > 100){
+                        rows[i].text = rows[i].text.slice(0, 100) + "..."
+                    }
+
                     var repeatInfo = "";
                     if(rows[i].repeating != null){
                         repeatInfo = " - (Repeating every " + lib.secondsToTime(rows[i].repeating) + ")";
