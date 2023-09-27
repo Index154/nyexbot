@@ -93,7 +93,7 @@ Requires: entryTypes
 reminders:
 	create table reminders(
 		reminderId bigint unsigned unique auto_increment not null,
-		text varchar(250) not null,
+		text varchar(650) not null,
 		channelId varchar(20) not null,
 		userId varchar(20) not null,
 		timestamp unsigned bigint not null,
