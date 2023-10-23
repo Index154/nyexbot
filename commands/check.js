@@ -79,7 +79,7 @@ module.exports = {
         	.addFields(
         		{ name: 'Attack', value: monster_data[1], inline: true },
         		{ name: 'Speed', value: monster_data[2], inline: true },
-        		{ name: "Rank", value: rarity, inline: true},
+        		{ name: 'Rank', value: rarity, inline: true},
         		{ name: 'Type', value: type, inline: true }
         	)
 		

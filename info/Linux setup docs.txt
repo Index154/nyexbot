@@ -132,7 +132,7 @@ VSCode OpenSSH setup on a client machine:
 	The toolbar option "Terminal" > "New Terminal" can be used to open a regular SSH terminal
 
 
-Atop (resource logging):
+Atop for performance logging:
 	sudo apt-get install atop
 	sudo update-rc.d atop defaults
 	Add INTERVAL=60 to /etc/atoprc

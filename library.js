@@ -1506,6 +1506,18 @@ module.exports = {
 		return result;
 	},
 
+	// Input: Integer, String or integer
+    // Function: Picks a random ID from a list based on a seed
+    // Output: Integer
+	seededRand(arrayLength, seed){
+		// Extract numbers from the seed, assuming it is a string
+		numSeed = parseInt(seed.replace(/[^0-9]/g, ""));
+
+		// Turn the rest of the string into
+		// TODO
+
+	},
+
 	// Input: Integer / Unix timestamp in seconds
 	// Function: Checks for leap days between the current time and the given input and adjusts the timestamp to correct yearly dates
     // Output: Integer / Unix timestamp in seconds
