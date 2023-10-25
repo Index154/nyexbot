@@ -16,10 +16,9 @@ module.exports = {
         
         // Set important variables
         var username = user.username;
-        var dir = "userdata/" + user.id;
 
         // Pick a random worlde starting word for the day
-        var link = "https://www.nytimes.com/games/wordle/index.html";
+        var link = "https://www.nytimes.com/games/wordle/index.html" + "\nhttps://wordleunlimited.org/";
         var wordleList = lib.readFile("./data/imported/wordle.txt").split("\n");
         var leWord = wordleList[lib.rand(0, wordleList.length - 1)];
         

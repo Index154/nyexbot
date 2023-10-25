@@ -549,7 +549,7 @@ if(!isTestBranch){
 siteList = [
     {alias: 'UNO', link: "436febd1d2a7c039ed1f22759a8b8aaca5c1e239596affaea498b214ffa81f1de68c04309f", pattern: "\<li class=\"pages\"\>Pages:.*?\<\/li\>"}, 
     {alias: 'ZHG', link: "436febd1d2a7c039f6072675c7cbc5bdf3c1b5281869fbbae68da81defe94e4dbb84416ec31df176fee36f43c18aa8ed084f2336c517f69a", pattern: "\<div class=\"image-list.*?\<a id=\".*?\""},
-    {alias: 'CAP', link: "436febd1d2a7c039f3053d3e979e9ba6e4d4b7261760fbb1e69eaf00fff44a58bdd1506fd400a460ecec60529ad9ace80e487b62c506f591", pattern: "e-capcom\.com.*?\""},
+    {alias: 'CAP', link: "436febd1d2a7c039f3053d3e979e9ba6e4d4b7261760fbb1e69eaf00fff44a58bdd1506fd400a460ecec60529a", pattern: "\<ul class=\"productLists\"\>.*?figure class"},
     {alias: 'MIK', link: "436febd1d2a7c039ef17277f9a90c5b6fe96fc201879f7a3e788b308a2b61c12e78c00", pattern: "\<div class=\"card-list__items\"\>.*?\<\/div\>"},
     {alias: 'SOLO', link: "436febd1d2a7c039fd172460869a98b6a5daf52c597efbb0a198b342a3f64345f3d55477d505be6ba4a2655fd8c5bf", pattern: "\<div class=\"inline_block col-d-20 col-t-33 .*?\<\/div\>"},
     {alias: 'CAN', link: "436febd1d2a7c039f7072175969a82ebe5c0fb20587ef7edf79bfd5df6fa121a818917708d0ab66ba2e1", pattern: "\<a href=\"\/view\/.*?\<\/a\>"},
@@ -565,8 +565,8 @@ siteList = [
 for(i = 0; i < siteList.length; i++){
     // Encryption code
     /*var cipher = crypto.createCipheriv(algorithm, SQLsecretKey, Buffer.from(SQLiv, 'hex'));
-    var encrypted = Buffer.concat([cipher.update(siteList[i].link), cipher.final()]).toString('hex');
-    console.log(siteList[i].alias + " = " + encrypted);*/
+    var encrypted = Buffer.concat([cipher.update("https://www.capcom-games.com/merchandise/cfb/"), cipher.final()]).toString('hex');
+    console.log(encrypted);*/
 
     var nDecipher = crypto.createDecipheriv(algorithm, SQLsecretKey, Buffer.from(SQLiv, 'hex'));
     var nDecrypted = Buffer.concat([nDecipher.update(Buffer.from(siteList[i].link, 'hex')), nDecipher.final()]).toString();
