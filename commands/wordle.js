@@ -20,13 +20,13 @@ module.exports = {
         // Pick a random worlde starting word for the day
         var link = "https://www.nytimes.com/games/wordle/index.html" + "\nhttps://wordleunlimited.org/";
         var wordleList = lib.readFile("./data/imported/wordle.txt").split("\n");
-        var leWord = wordleList[lib.rand(0, wordleList.length - 1)];
+        var word = wordleList[lib.rand(0, wordleList.length - 1)];
         
         // Send output
         outputEmbed = new Discord.EmbedBuilder()
             .setColor("#0099ff")
             .setTitle("@ " + username)
-            .setDescription(link + "\nHere is your random starting word: **" + leWord + "**");
+            .setDescription(link + "\nHere is your random starting word: ||**" + word + "**||");
 
         message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }});
         
