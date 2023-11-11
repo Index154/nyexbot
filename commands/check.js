@@ -74,7 +74,7 @@ module.exports = {
         outputEmbed = new Discord.EmbedBuilder()
         	.setColor(embed_color)
         	.setTitle(monster_data[0])
-        	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5])
+        	.setImage("https://artificial-index.com/media/rpg_monsters/" + monster_data[0].toLowerCase().replace(/ /g, "_") + ".png")
         	.setDescription(monster_data[4])
         	.addFields(
         		{ name: 'Attack', value: monster_data[1], inline: true },

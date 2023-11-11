@@ -566,14 +566,14 @@ module.exports = {
                     }
                     
                     // Get monster info for output
-                    var monster_info = monsters[monster_key].split("|");
+                    var monster_data = monsters[monster_key].split("|");
                     // Change monster key to accomodate for the area
-                    enc_keys[1] = monster_info[7];
+                    enc_keys[1] = monster_data[7];
                     // Get new info from the main file
                     var monster_groups_all = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
                     var monsters_all = monster_groups_all[enc_keys[0]].split(";\n");
-                    monster_info = monsters_all[enc_keys[1]].split("|");
-                    var monster_name = monster_info[0];
+                    monster_data = monsters_all[enc_keys[1]].split("|");
+                    var monster_name = monster_data[0];
 
                     // Shiny check
                     var shiny_extra = "";
@@ -587,7 +587,7 @@ module.exports = {
                         var shinies = lib.readFile("data/monsters/monsters_shiny.txt");
             			var shiny_groups = shinies.split("#################################################################################\n");
             			var shinies_array = shiny_groups[enc_keys[0]].split(";\n");
-            			monster_info = shinies_array[enc_keys[1]].split("|");
+            			monster_data = shinies_array[enc_keys[1]].split("|");
                     }
                     
                     // Minor grammatical check
@@ -786,7 +786,7 @@ module.exports = {
                     var outputEmbed = new Discord.EmbedBuilder()
                     	.setColor(embed_color)
                     	.setTitle("@ __**" + username + "**__")
-                    	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
+                    	.setThumbnail("https://artificial-index.com/media/rpg_monsters/" + monster_name.toLowerCase().replace(/ /g, "_") + ".png")
                     	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") replaced your previous encounter!" + capped + "```")
                     	.setFooter({ text: "You used the Reality Shifter!" + alch_extra });
 						

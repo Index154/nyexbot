@@ -46,6 +46,10 @@ Setting up Nyexbot:
 Setting up permissions:
 	groupadd nyexadmins
 	sudo usermod -a -G nyexadmins admin
+	sudo usermod -a -G www-data admin
+	chmod g+s /home/admin/nyextest
+	chmod g+s /home/admin/nyexbot
+	chmod g+s /home/admin/artificial-index
 	cd /home/admin
 	chgrp -R nyexadmins nyexbot
 	chmod -R 770 nyexbot
@@ -53,6 +57,7 @@ Setting up permissions:
 	chgrp -R nyexadmins nyextest
 	chmod -R 770 nyextest
 	chown -R admin nyextest
+	chgrp -R www-data artificial-index
 
 	crontab -e
 	Put this in there:

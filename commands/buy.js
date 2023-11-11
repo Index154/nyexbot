@@ -179,8 +179,8 @@ module.exports = {
 		    var monster_groupsLimited = lib.readFile("data/monsters/monsters_0.txt").split("#################################################################################\n");
 		    var monstersNew = monster_groupsLimited[rank].split(";\n");
             var monster_key = lib.rand(0, monstersNew.length - 2);
-            var monster_info = monstersNew[monster_key].split("|");
-            monster_key = monster_info[7];
+            var monster_data = monstersNew[monster_key].split("|");
+            monster_key = monster_data[7];
             var newMonster = rank + "," + monster_key + ",1";
             lib.saveFile("data/shiny_shop.txt", newMonster);
             lib.saveFile("data/shiny_shop_user.txt", "");

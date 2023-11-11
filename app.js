@@ -76,7 +76,7 @@ client.once('ready', async () => {
             name: 'all messages',
             type: 'WATCHING',
         }]
-    })
+    });
     
     // Deploy slash commands - Currently commented out and unused because it's poopy and useless and annoying to work on
     // It's probably best to make a collection object for this later if I work on it again. Maybe the definitions for the slash commands can be put into the command files that already exist as extra module exports
@@ -439,6 +439,46 @@ client.on('messageCreate', async message => {
 
 // Log into Discord with the bot token
 client.login(token);
+
+// Scan media folders for new files every 30 minutes
+var mediaScan = setInterval(async function(){
+
+    // Define folder paths
+    var scanPath = "../artificial-index/media_temp/";
+    var targetPath = "../artificial-index/media/";
+    var subFolders = ['clips', 'images', 'journal', 'rpg_monsters'];
+
+    // Scan each folder for new files
+    for(i = 0; i < subFolders.length; i++){
+
+        var sqlCommand = "insert into entries (entryTypeId, entryName, content) values";
+        var sqlCommandValues = "";
+
+        var files = await fs.readdirSync(scanPath + subFolders[i]);
+        for(x = 0; x < files.length; x++){
+            if(files[x] != ".gitignore"){
+                // Move the file (modify name as well)
+                var newName = files[x].toLowerCase().replace(/ /g, "_") + ".png".replace(/'/g, "");
+                fs.rename(scanPath + subFolders[i] + "/" + files[x], targetPath + subFolders[i] + "/" + newName, (error) => {if (error){console.log(error);}});
+
+                // Prepare the SQL command for adding it to the database (only for image, clip and journal entries)
+                if(subFolders[i] != "rpg_monsters"){
+                    if(sqlCommandValues != ""){sqlCommandValues += ", ";}
+                    sqlCommandValues += `(${i + 1}, '${newName}', 'https://artificial-index.com/media/${subFolders[i]}/${newName}')`;
+                }
+            }
+        }
+
+        // Execute SQL command, adding detected images to the database
+        if(sqlCommandValues != ""){
+            sqlCommand = sqlCommand + sqlCommandValues + ";";
+            var [rows] = await con.execute({sql: sqlCommand, rowsAsArray: false });
+        }
+        console.log("loop " + i + " done");
+    }
+
+}, 30 * 60 * 1000);
+// TODO: Fix interval!
 
 // Main-branch exclusive functions
 if(!isTestBranch){

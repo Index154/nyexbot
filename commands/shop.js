@@ -79,17 +79,12 @@ module.exports = {
             result_price = result_price * 2;
 			
 			// Get monster info for output
-			var monster_groups = lib.readFile("data/monsters/monsters_shiny.txt").split("#################################################################################\n");
+			var monster_groups = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
     		var monsters = monster_groups[monster_keys_array[0]].split(";\n");
     		var monster_data_raw = monsters[monster_keys_array[1]];
     		var monster_data = monster_data_raw.split("|");
     		var rarity_names = ["D", "C", "B", "A", "S", "SS"];
             var rarity = rarity_names[monster_keys_array[0]];
-    		
-    		// Get normal variant data for comparison
-    		var reg_monster_groups = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
-    		var reg_monsters = reg_monster_groups[monster_keys_array[0]].split(";\n");
-    		var reg_monster_data = reg_monsters[monster_keys_array[1]].split("|");
     		
     		// Reserve the shiny for the user
     		lib.saveFile("data/shiny_shop_user.txt", user.id.toString());
@@ -100,8 +95,8 @@ module.exports = {
             	.setTitle("Current shiny offer")
             	.setDescription("The thumbnail in the top right depicts the non-shiny version of the monster for comparison")
             	.setFooter({ text: "The price is halved for users who have reached 100% monster collection completion!" })
-            	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5])
-            	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + reg_monster_data[5])
+            	.setImage("https://artificial-index.com/media/rpg_monsters/" + ("shiny_" + monster_data[0]).toLowerCase().replace(/ /g, "_") + ".png")
+            	.setThumbnail("https://artificial-index.com/media/rpg_monsters/" + monster_data[0].toLowerCase().replace(/ /g, "_") + ".png")
             	.addFields(
             	    { name: 'Name', value: monster_data[0], inline: true },
             		{ name: 'Price', value: result_price + " Gold", inline: true },

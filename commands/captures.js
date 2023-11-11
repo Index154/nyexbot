@@ -258,17 +258,17 @@ module.exports = {
     				var altId = result_keys[0] + "," + result_keys[1] + "," + 0;
     				if(uniq_array.includes(altId)){
     				    altIndex = uniq_array.indexOf(altId);
-						firstAltImage = "https://cdn.discordapp.com/attachments/731848120539021323/" + monsters_array[result_keys[1]].split("|")[5];
+						firstAltImage = "https://artificial-index.com/media/rpg_monsters/" + monsters_array[result_keys[1]].split("|")[0].toLowerCase().replace(/ /g, "_") + ".png";
     				}
 				}else{
     			    // Check if the user has the shiny variant as well and find its page number
     				var altId = result_keys[0] + "," + result_keys[1] + "," + 1;
     				if(uniq_array.includes(altId)){
     				    altIndex = uniq_array.indexOf(altId);
-						firstAltImage = "https://cdn.discordapp.com/attachments/731848120539021323/" + shinies_array[result_keys[1]].split("|")[5];
+						firstAltImage = "https://artificial-index.com/media/rpg_monsters/" + shinies_array[result_keys[1]].split("|")[0].toLowerCase().replace(/ /g, "_") + ".png";
     				}
     			}
-    			var monster_info = result_monster.split("|");
+    			var monster_data = result_monster.split("|");
 				
 				// Push button to array
     			var button4 = new ButtonBuilder()
@@ -278,8 +278,8 @@ module.exports = {
 				
 				// If the user is trying to favorite the monster, select it as such and stop early
 				if(favoriteFlag){
-				    lib.saveFile(dir + "/main_monster.txt", "https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5]);
-				    message.reply({ content: "You've successfully set the **" + monster_info[0] + "** as your favorite!\nIt will now appear as a thumbnail in some of your displays", allowedMentions: { repliedUser: false }});
+				    lib.saveFile(dir + "/main_monster.txt", "https://artificial-index.com/media/rpg_monsters/" + monster_data[0].toLowerCase().replace(/ /g, "_") + ".png");
+				    message.reply({ content: "You've successfully set the **" + monster_data[0] + "** as your favorite!\nIt will now appear as a thumbnail in some of your displays", allowedMentions: { repliedUser: false }});
 				    return;
 				}
 				
@@ -291,24 +291,24 @@ module.exports = {
                 }
 				
 				// Assemble a basic embed for the output
-				if(monster_info[3].includes(",")){
-				    var types = monster_info[3].split(",");
+				if(monster_data[3].includes(",")){
+				    var types = monster_data[3].split(",");
 				    type = types.join(", ");
 				}else{
-				    type = monster_info[3];
+				    type = monster_data[3];
 				}
 
 				// Fix error for empty property
-				if(monster_info[4] == ""){monster_info[4] = "/";}
+				if(monster_data[4] == ""){monster_data[4] = "/";}
 
                 var outputEmbed = new Discord.EmbedBuilder()
                 	.setColor(embed_color)
-                	.setTitle(monster_info[0])
-                	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
-                	.setDescription(monster_info[4])
+                	.setTitle(monster_data[0])
+                	.setImage("https://artificial-index.com/media/rpg_monsters/" + monster_data[0].toLowerCase().replace(/ /g, "_") + ".png")
+                	.setDescription(monster_data[4])
                 	.addFields(
-                		{ name: 'Attack', value: monster_info[1], inline: true },
-                		{ name: 'Speed', value: monster_info[2], inline: true },
+                		{ name: 'Attack', value: monster_data[1], inline: true },
+                		{ name: 'Speed', value: monster_data[2], inline: true },
                 		{ name: "Rank", value: rarity, inline: true},
                 		{ name: 'Type', value: type, inline: true }
                 	);
@@ -347,7 +347,7 @@ module.exports = {
 				// Get captured count
 				var monster_array = monster_names2.split("|");
 				var captures_counts = new adc(monster_array).count();
-				var capture_count = captures_counts[monster_info[0]] - 1; // Subtract one because of all_captures.txt
+				var capture_count = captures_counts[monster_data[0]] - 1; // Subtract one because of all_captures.txt
 				outputEmbed
 				    .addFields( { name: username + "'s capture count", value: capture_count.toString(), inline: true } );
 				
@@ -355,7 +355,7 @@ module.exports = {
 				var startingId = uniq_array.indexOf(monster_key_groups[key]);
 				
 				// Create custom paged embed with all monsters (sorted)
-				lib.createPagedMonsterEmbed(uniq_array, outputEmbed, startingId, message, monster_groups, monster_names2, items, username, monster_info[0], button4, firstAltImage);
+				lib.createPagedMonsterEmbed(uniq_array, outputEmbed, startingId, message, monster_groups, monster_names2, items, username, monster_data[0], button4, firstAltImage);
 				
 			}else{
 				// Error, monster not found

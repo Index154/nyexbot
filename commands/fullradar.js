@@ -247,14 +247,14 @@ module.exports = {
         }
         
         // Get monster info for output
-        var monster_info = monsters[monster_key].split("|");
+        var monster_data = monsters[monster_key].split("|");
         // Change monster key to accomodate for the area
-        monster_key = monster_info[7];
+        monster_key = monster_data[7];
         // Get new info from the main file
         var monster_groups_all = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
         var monsters_all = monster_groups_all[chosen_group].split(";\n");
-        monster_info = monsters_all[monster_key].split("|");
-        var monster_name = monster_info[0];
+        monster_data = monsters_all[monster_key].split("|");
+        var monster_name = monster_data[0];
         
         // Shiny check
         var shiny_extra = "";
@@ -269,7 +269,7 @@ module.exports = {
             var shinies = lib.readFile("data/monsters/monsters_shiny.txt");
 			var shiny_groups = shinies.split("#################################################################################\n");
 			var shinies_array = shiny_groups[chosen_group].split(";\n");
-			monster_info = shinies_array[monster_key].split("|");
+			monster_data = shinies_array[monster_key].split("|");
         }
 
         // Minor grammatical check
@@ -309,7 +309,7 @@ module.exports = {
         var outputEmbed = new Discord.EmbedBuilder()
         	.setColor(embed_color)
         	.setTitle("@ __**" + username + "**__")
-        	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
+        	.setThumbnail("https://artificial-index.com/media/rpg_monsters/" + monster_name.toLowerCase().replace(/ /g, "_") + ".png")
         	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + "```All of your radar charges have been used up in exchange for **" + cost + "** Gold!\nThe shiny chance was **" + real_shiny + "%**!\n" + claimed);
         message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});
         

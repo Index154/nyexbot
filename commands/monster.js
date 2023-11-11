@@ -501,7 +501,7 @@ module.exports = {
         var outputEmbed = new Discord.EmbedBuilder()
         	.setColor(embed_color)
         	.setTitle("@ __**" + username + "**__")
-        	.setThumbnail("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_data[5])
+        	.setThumbnail("https://artificial-index.com/media/rpg_monsters/" + monster_name.toLowerCase().replace(/ /g, "_") + ".png")
         	.setDescription("```" + color_mod + "You've obtained a" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ")!" + capped + "```" + extraStuff.join("\n"));
 		// Real output
 		message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });

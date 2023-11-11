@@ -15,6 +15,6 @@ module.exports = {
 	    fs = require('fs');
 	    const lib = require("../library.js");
         
-        lib.searchableListNew("clip", message, args);
+        lib.searchableListNew("clips", message, args);
 	},
 };

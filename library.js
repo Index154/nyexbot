@@ -186,8 +186,8 @@ module.exports = {
 	    var monster_groups = lib.readFile("data/monsters/monsters_0.txt").split("#################################################################################\n");
 	    var monstersNew = monster_groups[rank].split(";\n");
         var monster_key = lib.rand(0, monstersNew.length - 2);
-        var monster_info = monstersNew[monster_key].split("|");
-        monster_key = monster_info[7];
+        var monster_data = monstersNew[monster_key].split("|");
+        monster_key = monster_data[7];
         var newMonster = rank + "," + monster_key + ",1";
         lib.saveFile("data/shiny_shop_user.txt", "");
         
@@ -403,7 +403,7 @@ module.exports = {
 				var altId = result_keys[0] + "," + result_keys[1] + "," + 0;
 				if(idArray.includes(altId)){
 				    altIndex = idArray.indexOf(altId);
-					altImage = "https://cdn.discordapp.com/attachments/731848120539021323/" + monsters_array[result_keys[1]].split("|")[5];
+					altImage = "https://artificial-index.com/media/rpg_monsters/" + monsters_array[result_keys[1]].split("|")[0].toLowerCase().replace(/ /g, "_") + ".png";
 				}
 				
 			}else{
@@ -411,10 +411,10 @@ module.exports = {
 				var altId = result_keys[0] + "," + result_keys[1] + "," + 1;
 				if(idArray.includes(altId)){
 				    altIndex = idArray.indexOf(altId);
-					altImage = "https://cdn.discordapp.com/attachments/731848120539021323/" + shinies_array[result_keys[1]].split("|")[5];
+					altImage = "https://artificial-index.com/media/rpg_monsters/" + shinies_array[result_keys[1]].split("|")[0].toLowerCase().replace(/ /g, "_") + ".png";
 				}
 			}
-			var monster_info = result_monster.split("|");
+			var monster_data = result_monster.split("|");
 			
 			// Push variant switch button to array
 			var button5 = new ButtonBuilder()
@@ -432,25 +432,25 @@ module.exports = {
             }
 			
 			// Add types
-			if(monster_info[3].includes(",")){
-			    var types = monster_info[3].split(",");
+			if(monster_data[3].includes(",")){
+			    var types = monster_data[3].split(",");
 			    type = types.join(", ");
 			}else{
-			    type = monster_info[3];
+			    type = monster_data[3];
 			}
 			
 			// Fix error for empty property
-			if(monster_info[4] == ""){monster_info[4] = "/";}
+			if(monster_data[4] == ""){monster_data[4] = "/";}
 
 			// Assemble embed
             var outputEmbed = new EmbedBuilder()
             	.setColor(embed_color)
-            	.setTitle(monster_info[0])
-            	.setImage("https://cdn.discordapp.com/attachments/731848120539021323/" + monster_info[5])
-            	.setDescription(monster_info[4])
+            	.setTitle(monster_data[0])
+            	.setImage("https://artificial-index.com/media/rpg_monsters/" + monster_data[0].toLowerCase().replace(/ /g, "_") + ".png")
+            	.setDescription(monster_data[4])
             	.addFields(
-            		{ name: 'Attack', value: monster_info[1], inline: true },
-            		{ name: 'Speed', value: monster_info[2], inline: true },
+            		{ name: 'Attack', value: monster_data[1], inline: true },
+            		{ name: 'Speed', value: monster_data[2], inline: true },
             		{ name: "Rank", value: rarity, inline: true},
             		{ name: 'Type', value: type, inline: true }
             	)
@@ -488,7 +488,7 @@ module.exports = {
 			// Get captured count
 			var monster_array = monster_names2.split("|");
 			var captures_counts = new adc(monster_array).count();
-			var capture_count = captures_counts[monster_info[0]] - 1; // Subtract one because of all_captures.txt
+			var capture_count = captures_counts[monster_data[0]] - 1; // Subtract one because of all_captures.txt
 			outputEmbed
 			    .addFields( { name: username + "'s capture count", value: capture_count.toString(), inline: true } );
 			
@@ -1000,12 +1000,12 @@ module.exports = {
 			
 			// Loop through arguments, turning them into parts of the query
 			for(i = 0; i < args.length; i++){
-				args[i] = "(entries.entryTags LIKE '%" + args[i].toLowerCase() + "%' OR entries.entryName LIKE '%" + args[i].toLowerCase() + "%')";
+				args[i] = "(entries.entryName LIKE '%" + args[i].toLowerCase() + "%')";
 			}
 			
 			// SQL Query
 			var [rows] = await con.execute({sql: `
-				SELECT entries.entryName, entries.content, entries.entryTags
+				SELECT entries.entryName, entries.content
 				FROM entries
 				INNER JOIN entryTypes ON entryTypes.entryTypeId=entries.entryTypeId
 				WHERE entryTypes.entryTypeName = '${fileName}' AND (${args.join(" AND ")});
@@ -1014,14 +1014,14 @@ module.exports = {
 			// If there were no results, get a random one
 			if(rows.length < 1){
 				[rows] = await con.execute({sql: `
-					SELECT entries.entryName, entries.content, entries.entryTags
+					SELECT entries.entryName, entries.content
 					FROM entries
 					INNER JOIN entryTypes ON entryTypes.entryTypeId=entries.entryTypeId
 					WHERE entryTypes.entryTypeName = '${fileName}'
 					ORDER BY RAND()
 					LIMIT 1;
 				`, rowsAsArray: false });
-				rows[0] = rows[0].entryName + ":\n" + rows[0].content + "\nTags: " + rows[0].entryTags;
+				rows[0] = rows[0].entryName + ":\n" + rows[0].content;
 				message.reply({ content: "No matches found! Random result:\n" + rows[0], allowedMentions: { repliedUser: false }});
 				return;
 			}
@@ -1029,7 +1029,7 @@ module.exports = {
 			// Prepare and send output
 			// TODO: Remove duplicates! (?)
 			for(i = 0; i < rows.length; i++){
-				rows[i] = rows[i].entryName + ":\n" + rows[i].content + "\nTags: " + rows[i].entryTags;
+				rows[i] = rows[i].entryName + ":\n" + rows[i].content;
 			}
 			var randKey = lib.rand(0, rows.length - 1);
 			lib.createPagedNightEmbed(rows, rows[randKey], randKey, message);
@@ -1037,7 +1037,7 @@ module.exports = {
 		}else{
 			// Get a random result if there was no argument
 			[rows] = await con.execute({sql: `
-				SELECT entries.entryName, entries.content, entries.entryTags
+				SELECT entries.entryName, entries.content
 				FROM entries
 				INNER JOIN entryTypes ON entryTypes.entryTypeId=entries.entryTypeId
 				WHERE entryTypes.entryTypeName = '${fileName}'
@@ -1046,7 +1046,7 @@ module.exports = {
 			`, rowsAsArray: false });
 
 			// Prepare and send output
-			rows[0] = rows[0].entryName + ":\n" + rows[0].content + "\nTags: " + rows[0].entryTags;
+			rows[0] = rows[0].entryName + ":\n" + rows[0].content;
 			message.reply({ content: "Random result:\n" + rows[0], allowedMentions: { repliedUser: false }});
 		}
 		

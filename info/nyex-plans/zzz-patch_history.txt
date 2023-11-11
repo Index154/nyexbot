@@ -1,3 +1,9 @@
+__v0.19.34__
+- Removed `mhl` command since it was kinda useless and not worth maintaining
+- `media`, also known as `image` now has many more images, mostly gifs, that have all been renamed to be easily searchable if you use short and concise search terms. The command now utilizes my SQL database as well so it's better
+- All entries from `clip` are gone for now until I re-add them. I am currently preparing to rename and then upload all the old clips + many more new ones
+- Monster images are now sourced directly from my web server instead of files uploaded to Discord. Hopefully the loading speed will be okay
+
 __v0.19.33__
 New command: `wordle` - Posts a link to the worlde page and suggests a random starting word
 

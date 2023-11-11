@@ -81,9 +81,8 @@ entries:
 	create table entries(
 		entryId smallint unsigned unique auto_increment not null,
 		entryTypeId tinyint unsigned not null,
-		entryName varchar(50) unique not null,
+		entryName varchar(300) unique not null,
 		content varchar(500) unique not null,
-		entryTags varchar(60) not null,
 		primary key (entryId),
 		foreign key (entryTypeId) references entryTypes(entryTypeId)
 	);
