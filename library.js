@@ -1056,15 +1056,26 @@ module.exports = {
 		}
 
 		// Prepare and send output
-		// TODO: Remove duplicates (?)
 		if(fileName == "clips"){
 			for(i = 0; i < rows.length; i++){
 				rows[i] = rows[i].content;
 			}
-			var randKey = lib.rand(0, rows.length - 1);
-			lib.createPagedMessage(rows, rows[randKey], randKey, message);
+			if(rows.length < 2){
+				message.reply({ content: "Found 1 result:\n" + rows[0], allowedMentions: { repliedUser: false }});
+			}else{
+				var randKey = lib.rand(0, rows.length - 1);
+				lib.createPagedMessage(rows, rows[randKey], randKey, message);
+			}
 		}else{
-			lib.createSimplePagedEmbedWithReroll(message, rows);
+			if(rows.length < 2){
+				var embed = new EmbedBuilder()
+					.setTitle(rows[0].entryName)
+					.setImage(rows[0].content)
+					.setFooter({text: "Result 1/1"});
+				message.reply({ embeds: [embed], allowedMentions: { repliedUser: false }});
+			}else{
+				lib.createSimplePagedEmbedWithReroll(message, rows);
+			}
 		}
 	},
 
@@ -1469,7 +1480,7 @@ module.exports = {
 				break;
 			case buttonList[1].data.custom_id:
 				var newPage = page;
-				while(newPage == page){
+				while(newPage == page && pages.length > 1){
 					newPage = lib.rand(0, pages.length - 1);
 				}
 				page = newPage;
