@@ -458,7 +458,7 @@ var mediaScan = setInterval(async function(){
         for(x = 0; x < files.length; x++){
             if(files[x] != ".gitignore"){
                 // Move the file (modify name as well)
-                var newName = files[x].toLowerCase().replace(/ /g, "_") + ".png".replace(/'/g, "");
+                var newName = files[x].toLowerCase().replace(/ /g, "_").replace(/'/g, "");
                 fs.rename(scanPath + subFolders[i] + "/" + files[x], targetPath + subFolders[i] + "/" + newName, (error) => {if (error){console.log(error);}});
 
                 // Prepare the SQL command for adding it to the database (only for image, clip and journal entries)
@@ -478,7 +478,6 @@ var mediaScan = setInterval(async function(){
     }
 
 }, 30 * 60 * 1000);
-// TODO: Fix interval!
 
 // Main-branch exclusive functions
 if(!isTestBranch){
