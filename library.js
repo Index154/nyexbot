@@ -1016,6 +1016,7 @@ module.exports = {
 		const {EmbedBuilder} = require("discord.js");
 
 		// If there was at least one argument, try to pick entries that match the search
+		var rows = [];
 		if(args.length > 0){
 			
 			// Loop through arguments, turning them into parts of the query
@@ -1024,11 +1025,12 @@ module.exports = {
 			}
 			
 			// SQL Query
-			var [rows] = await con.execute({sql: `
+			[rows] = await con.execute({sql: `
 				SELECT entries.entryName, entries.content
 				FROM entries
 				INNER JOIN entryTypes ON entryTypes.entryTypeId=entries.entryTypeId
-				WHERE entryTypes.entryTypeName = '${fileName}' AND (${args.join(" AND ")});
+				WHERE entryTypes.entryTypeName = '${fileName}' AND (${args.join(" AND ")})
+				ORDER BY RAND();
 			`, rowsAsArray: false });
 			
 			// If there were no results, get a random one
@@ -1038,24 +1040,8 @@ module.exports = {
 					FROM entries
 					INNER JOIN entryTypes ON entryTypes.entryTypeId=entries.entryTypeId
 					WHERE entryTypes.entryTypeName = '${fileName}'
-					ORDER BY RAND()
-					LIMIT 1;
+					ORDER BY RAND();
 				`, rowsAsArray: false });
-				rows[0] = rows[0].entryName + ":\n" + rows[0].content;
-				message.reply({ content: "No matches found! Random result:\n" + rows[0], allowedMentions: { repliedUser: false }});
-				return;
-			}
-
-			// Prepare and send output
-			// TODO: Remove duplicates (?)
-			if(fileName == "clips"){
-				for(i = 0; i < rows.length; i++){
-					rows[i] = rows[i].content;
-				}
-				var randKey = lib.rand(0, rows.length - 1);
-				lib.createPagedMessage(rows, rows[randKey], randKey, message);
-			}else{
-				lib.createSimplePagedEmbedWithReroll(message, rows);
 			}
 
 		}else{
@@ -1065,23 +1051,21 @@ module.exports = {
 				FROM entries
 				INNER JOIN entryTypes ON entryTypes.entryTypeId=entries.entryTypeId
 				WHERE entryTypes.entryTypeName = '${fileName}'
-				ORDER BY RAND()
-				LIMIT 1;
+				ORDER BY RAND();
 			`, rowsAsArray: false });
-
-			// Prepare and send output
-			if(fileName == "clips"){
-				rows[0] = rows[0].content;
-				message.reply({ content: "Random result:\n" + rows[0], allowedMentions: { repliedUser: false }});
-			}else{
-				var outputEmbed = new EmbedBuilder()
-					.setTitle(rows[0].entryName)
-					.setImage(rows[0].content);
-				message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }});
-			}
-            
 		}
-		
+
+		// Prepare and send output
+		// TODO: Remove duplicates (?)
+		if(fileName == "clips"){
+			for(i = 0; i < rows.length; i++){
+				rows[i] = rows[i].content;
+			}
+			var randKey = lib.rand(0, rows.length - 1);
+			lib.createPagedMessage(rows, rows[randKey], randKey, message);
+		}else{
+			lib.createSimplePagedEmbedWithReroll(message, rows);
+		}
 	},
 
 	// Input: Object, array, array, integer, integer
