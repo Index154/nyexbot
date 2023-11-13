@@ -381,7 +381,7 @@ module.exports = {
 			}
 
 			// Send embed
-			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
+			lib.createPagedFieldEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
 
         }
 	},

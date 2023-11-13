@@ -302,7 +302,7 @@ module.exports = {
 			var embedTemplate = new Discord.EmbedBuilder()
 				.setColor('#0099ff')
             	.setTitle(username + "'s Materials")
-			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
+			lib.createPagedFieldEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
                 
         }
         

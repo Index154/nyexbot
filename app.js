@@ -441,10 +441,12 @@ client.on('messageCreate', async message => {
 client.login(token);
 
 // Scan media folders for new files every 30 minutes
+var mediaScanInterval = 30 * 60;
+if(isTestBranch){mediaScanInterval = 10;}
 var mediaScan = setInterval(async function(){
 
     // Define folder paths
-    var scanPath = "../artificial-index/media_temp/";
+    var scanPath = "./media_temp/";
     var targetPath = "../artificial-index/media/";
     var subFolders = ['clips', 'images', 'journal', 'rpg_monsters'];
 
@@ -474,10 +476,9 @@ var mediaScan = setInterval(async function(){
             sqlCommand = sqlCommand + sqlCommandValues + ";";
             var [rows] = await con.execute({sql: sqlCommand, rowsAsArray: false });
         }
-        console.log("loop " + i + " done");
     }
 
-}, 30 * 60 * 1000);
+}, mediaScanInterval * 1000);
 
 // Main-branch exclusive functions
 if(!isTestBranch){

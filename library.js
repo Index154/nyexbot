@@ -1,8 +1,3 @@
-// Input: 
-    // Dependency: 
-    // Function: 
-    // Output: 
-
 module.exports = {
 	
     // Input: String, String
@@ -327,7 +322,7 @@ module.exports = {
 	
 	// Input: Array, integer, object, string, object, string
     // Function: Creates a paged embed with buttons using another module
-	createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message){
+	createPagedFieldEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message){
 		const { EmbedBuilder, ButtonBuilder } = require('discord.js');
 		
 		// Create embed page field contents
@@ -524,7 +519,7 @@ module.exports = {
 	
 	// Input: Array, string, integer, object
     // Function: Creates a paged embed with buttons using another module
-	createPagedNightEmbed(entryList, stringTemplate, startingId, message){
+	createPagedMessage(entryList, stringTemplate, startingId, message){
 		const { EmbedBuilder, ButtonBuilder } = require('discord.js');
 		
 		// Create embeds
@@ -690,13 +685,13 @@ module.exports = {
 		buttonList = [ button1, button2, button3 ];
 
 		// Go to secondary function
-		lib.preparedEmbedPagination(user, message, embeds, buttonList, startingId, 30000);
+		lib.itemEmbedPagination(user, message, embeds, buttonList, startingId, 30000);
 	},
 
 	// Input: Message object, array of embed objects
 	// Function: Combines multiple different embeds into one message and allows switching through them with buttons
 	createSimplePagedEmbed(message, embeds){
-		const { EmbedBuilder, ButtonBuilder } = require('discord.js');
+		const { ButtonBuilder } = require('discord.js');
 
 		// Create buttons
 		const button1 = new ButtonBuilder()
@@ -711,6 +706,30 @@ module.exports = {
 
 		// Go to secondary function
 		lib.fullEmbedPagination(message, embeds, buttonList, timeout = 120000);
+	},
+
+	// Input: Message object, array of embed objects
+	// Function: Combines multiple different embeds into one message and allows switching through them with buttons
+	createSimplePagedEmbedWithReroll(message, rows){
+		const { ButtonBuilder } = require('discord.js');
+
+		// Create buttons
+		const button1 = new ButtonBuilder()
+			.setCustomId('previousbtn')
+			.setLabel('Previous')
+			.setStyle(2);
+		const button2 = new ButtonBuilder()
+			.setCustomId('randbtn')
+			.setLabel('Random')
+			.setStyle(1);
+		const button3 = new ButtonBuilder()
+			.setCustomId('nextbtn')
+			.setLabel('Next')
+			.setStyle(2);
+		buttonList = [ button1, button2, button3 ];
+
+		// Go to secondary function
+		lib.fullEmbedPaginationWithReroll(message, rows, buttonList, timeout = 120000);
 	},
 
 	// Input: Object, object, array
@@ -931,7 +950,7 @@ module.exports = {
 	},
 
 	// Input: String, object, array
-    // Dependency: readFile, createPagedNightEmbed
+    // Dependency: readFile, createPagedMessage
     // Function: Gets one or more results from a list of quotes/clips/images/etc.
 	searchableList(fileName, message, args){
 		// Load all things as a list and turn it into a String for searching
@@ -974,7 +993,7 @@ module.exports = {
 					newList.push(thingList[results[i]]);
 				}
 
-				lib.createPagedNightEmbed(newList, thingList[key], randKey, message);
+				lib.createPagedMessage(newList, thingList[key], randKey, message);
 				return;
 			}else{
 				// Pick a random thing since no matching entry was found
@@ -991,9 +1010,10 @@ module.exports = {
 	},
 
 	// Input: String, object, array
-    // Dependency: readFile, createPagedNightEmbed
+    // Dependency: readFile, createPagedMessage
     // Function: Gets one or more results from a database of quotes/clips/images/etc.
 	async searchableListNew(fileName, message, args){
+		const {EmbedBuilder} = require("discord.js");
 
 		// If there was at least one argument, try to pick entries that match the search
 		if(args.length > 0){
@@ -1027,12 +1047,16 @@ module.exports = {
 			}
 
 			// Prepare and send output
-			// TODO: Remove duplicates! (?)
-			for(i = 0; i < rows.length; i++){
-				rows[i] = rows[i].entryName + ":\n" + rows[i].content;
+			// TODO: Remove duplicates (?)
+			if(fileName == "clips"){
+				for(i = 0; i < rows.length; i++){
+					rows[i] = rows[i].content;
+				}
+				var randKey = lib.rand(0, rows.length - 1);
+				lib.createPagedMessage(rows, rows[randKey], randKey, message);
+			}else{
+				lib.createSimplePagedEmbedWithReroll(message, rows);
 			}
-			var randKey = lib.rand(0, rows.length - 1);
-			lib.createPagedNightEmbed(rows, rows[randKey], randKey, message);
 
 		}else{
 			// Get a random result if there was no argument
@@ -1046,8 +1070,16 @@ module.exports = {
 			`, rowsAsArray: false });
 
 			// Prepare and send output
-			rows[0] = rows[0].entryName + ":\n" + rows[0].content;
-			message.reply({ content: "Random result:\n" + rows[0], allowedMentions: { repliedUser: false }});
+			if(fileName == "clips"){
+				rows[0] = rows[0].content;
+				message.reply({ content: "Random result:\n" + rows[0], allowedMentions: { repliedUser: false }});
+			}else{
+				var outputEmbed = new EmbedBuilder()
+					.setTitle(rows[0].entryName)
+					.setImage(rows[0].content);
+				message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }});
+			}
+            
 		}
 		
 	},
@@ -1253,7 +1285,7 @@ module.exports = {
 	
 	// Input: Object, object, array, array, integer, integer
 	// Function: Creates an embed with an extra button for using items
-	async preparedEmbedPagination(user, msg, pages, buttonList, startingId, timeout = 120000){
+	async itemEmbedPagination(user, msg, pages, buttonList, startingId, timeout = 120000){
 		const {ActionRowBuilder, ButtonBuilder} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
@@ -1340,7 +1372,7 @@ module.exports = {
 	// Input: Object, array, array, integer
 	// Function: Creates an embed with buttons for switching between pages. The pages have to be supplied by the parent function in their entirety
 	async fullEmbedPagination(msg, pages, buttonList, timeout = 120000){
-		const {ActionRowBuilder, ButtonBuilder} = require("discord.js");
+		const {ActionRowBuilder} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
 		if (!pages) throw new Error("Pages are not given.");
@@ -1349,7 +1381,6 @@ module.exports = {
 		  	throw new Error(
 				"Link buttons are not supported"
 		  	);
-		if (buttonList.length !== 2) throw new Error("Need two buttons.");
 		
 		let page = 0;
 		var row = new ActionRowBuilder().addComponents(buttonList);
@@ -1366,7 +1397,7 @@ module.exports = {
 			(i.customId === buttonList[0].data.custom_id ||
 			i.customId === buttonList[1].data.custom_id) &&
 			i.user.id === msg.author.id;
-	
+		
 		const collector = await curPage.createMessageComponentCollector({
 			filter,
 			time: timeout,
@@ -1400,6 +1431,99 @@ module.exports = {
 			);
 			curPage.edit({
 				embeds: [pages[page].setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
+				components: [row],
+			});
+		});
+		
+		return curPage;
+	},
+
+		// Input: Object, array, array, integer
+	// Function: Creates an embed with buttons for switching between pages. The pages have to be supplied by the parent function in their entirety
+	async fullEmbedPaginationWithReroll(msg, pages, buttonList, timeout = 120000){
+		const {ActionRowBuilder, EmbedBuilder} = require("discord.js");
+
+		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
+		if (!pages) throw new Error("Pages are not given.");
+		if (!buttonList) throw new Error("Buttons are not given.");
+		if (buttonList[0].style === 5 || buttonList[1].style === 5)
+		  	throw new Error(
+				"Link buttons are not supported"
+		  	);
+		
+		let page = 0;
+		var row = new ActionRowBuilder().addComponents(buttonList);
+
+		var curPage = await msg.reply({
+			embeds: [
+				new EmbedBuilder()
+					.setTitle(pages[page].entryName)
+					.setImage(pages[page].content)
+					.setFooter({ text: `Page ${page + 1} / ${pages.length}` })
+			],
+			components: [row],
+			allowedMentions: { repliedUser: false },
+			fetchReply: true
+		});
+	
+		if(!lib.exists(msg.author)){msg.author = msg.user;}
+		const filter = (i) =>
+			(i.customId === buttonList[0].data.custom_id ||
+			i.customId === buttonList[1].data.custom_id ||
+			i.customId === buttonList[2].data.custom_id) &&
+			i.user.id === msg.author.id;
+		
+		const collector = await curPage.createMessageComponentCollector({
+			filter,
+			time: timeout,
+		});
+	
+		collector.on("collect", async (i) => {
+			switch (i.customId) {
+			case buttonList[0].data.custom_id:
+				page = page > 0 ? --page : pages.length - 1;
+				break;
+			case buttonList[1].data.custom_id:
+				var newPage = page;
+				while(newPage == page){
+					newPage = lib.rand(0, pages.length - 1);
+				}
+				page = newPage;
+				break;
+			case buttonList[2].data.custom_id:
+				page = page + 1 < pages.length ? ++page : 0;
+				break;
+			default:
+				break;
+			}
+			
+			row = new ActionRowBuilder().addComponents(buttonList);
+			await i.deferUpdate();
+			await i.editReply({
+				embeds: [
+					new EmbedBuilder()
+						.setTitle(pages[page].entryName)
+						.setImage(pages[page].content)
+						.setFooter({ text: `Page ${page + 1} / ${pages.length}` })
+				],
+				components: [row],
+			});
+			collector.resetTimer();
+		});
+		
+		collector.on("end", () => {
+			const row = new ActionRowBuilder().addComponents(
+				buttonList[0].setDisabled(true),
+				buttonList[1].setDisabled(true),
+				buttonList[2].setDisabled(true)
+			);
+			curPage.edit({
+				embeds: [
+					new EmbedBuilder()
+						.setTitle(pages[page].entryName)
+						.setImage(pages[page].content)
+						.setFooter({ text: `Page ${page + 1} / ${pages.length}` })
+				],
 				components: [row],
 			});
 		});
@@ -1513,7 +1637,7 @@ module.exports = {
 		// Extract numbers from the seed, assuming it is a string
 		numSeed = parseInt(seed.replace(/[^0-9]/g, ""));
 
-		// Turn the rest of the string into
+		// Turn the rest of the string into a hash or something??
 		// TODO
 
 	},

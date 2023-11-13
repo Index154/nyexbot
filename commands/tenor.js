@@ -81,7 +81,7 @@ module.exports = {
             var randKey = lib.rand(0, gifFigures.length - 1);
 
             // Output (paged embed with all gifs)
-            lib.createPagedNightEmbed(gifFigures, gifFigures[randKey], randKey, message);
+            lib.createPagedMessage(gifFigures, gifFigures[randKey], randKey, message);
 
         }
 

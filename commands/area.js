@@ -128,7 +128,7 @@ module.exports = {
 				var paginationArray = hub_array;
 				var elementsPerPage = 20;
 				var fieldTitle = "Sorted by rank";
-				lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
+				lib.createPagedFieldEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
 				
             }else{
                 message.reply({ content: "\u274C That area could not be found!", allowedMentions: { repliedUser: false }});

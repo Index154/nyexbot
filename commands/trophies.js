@@ -179,7 +179,7 @@ module.exports = {
 			var embedTemplate = new Discord.EmbedBuilder()
 				.setColor('#0099ff')
             	.setTitle("Global Trophy Scoreboard");
-			lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
+			lib.createPagedFieldEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
             return;
         }
         
@@ -221,7 +221,7 @@ module.exports = {
         }
 
         // Send embed
-		lib.createPagedEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
+		lib.createPagedFieldEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
         
 	},
 };
