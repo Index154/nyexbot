@@ -1661,7 +1661,7 @@ module.exports = {
 
 		// Loop through all the years between the current timestamp and the future timestamp and check if they are leap years
 		// Add a day to the timestamp for every positive
-		for(i = 0; i < loopCount; i++){
+		for(o = 0; o < loopCount; o++){
 
 			var leapYear = false;
 			if(year % 4 == 0){
