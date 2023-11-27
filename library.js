@@ -1767,6 +1767,8 @@ module.exports = {
 	generateNicks(allArgs){
 
 		var args = allArgs.split(" ");
+		// Default to type4
+		if(args.length < 1) args = ['type4']
 
 		// Set starting variables
 		var words = lib.readFile("../nyextest/data/imported/words.txt");
