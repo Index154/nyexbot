@@ -1,3 +1,6 @@
+__v0.19.36__
+- `nick` without arguments will now default to the "type4" option - Basically instead of `nick type4` you can now always just do `nick`
+
 __v0.19.35__
 - Fixed ".png" being attached to the name of any newly added gif, image or video
 - Fixed the one image which already had this issue ("cat in street hole butt stuck poke fast.gif")
