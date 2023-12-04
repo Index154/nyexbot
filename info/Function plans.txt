@@ -9,6 +9,7 @@ SQL preparation plan
 - Use the reminders and clip commands as references for SQL implementation
 - How to deal with random stat values which used to be "?" instead of a number?
 - Define a standard for "rewardType" which appears in several tables
+- Account for area images
 
 Overall plan
 - Prepare SQL table commands

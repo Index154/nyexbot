@@ -1,4 +1,5 @@
 var { prefix } = require('../config.json');
+const Discord = require('discord.js');
 
 module.exports = {
 	name: 'move',
@@ -41,7 +42,7 @@ module.exports = {
                 var split = area_list_lower.split(allArgs);
 				var left_side = split[0].replace(/[^,]/g, "");
 				var key = left_side.length;
-				var area_name = area_list[key];
+				var area_name = area_list[key].toLowerCase();
 				
 				// If the area is a realm (ID higher than 13) then don't allow moving there
 				if(key > 13){
@@ -52,7 +53,11 @@ module.exports = {
 				// Move the user to the area if they aren't already there
 				if(area != key){
 				    lib.saveFile(dir + "/area.txt", key);
-				    message.reply({ content: "You moved to the " + area_name, allowedMentions: { repliedUser: false }});
+                    var outputEmbed = new Discord.EmbedBuilder()
+                        .setColor('#0099ff')
+                        .setTitle("You moved to the " + area_name)
+                        .setThumbnail(lib.getAreaImage(key, area_name));
+				    message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
 				}else{
 				    message.reply({ content: "\u274C You are already in this area!", allowedMentions: { repliedUser: false }});
 				}
@@ -71,9 +76,14 @@ module.exports = {
                 }
             }
             
-            var area_name = area_list[new_area];
+            var area_name = area_list[new_area].toLowerCase();
             lib.saveFile(dir + "/area.txt", new_area);
-            message.reply({ content: "You were moved to the " + area_name, allowedMentions: { repliedUser: false }});
+
+            var outputEmbed = new Discord.EmbedBuilder()
+                .setColor('#0099ff')
+                .setTitle("You were moved to the " + area_name)
+                .setThumbnail(lib.getAreaImage(new_area, area_name));
+            message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
         }
 	},
 };

@@ -12,7 +12,8 @@
 - A daily and weekly refresh countdown in relevant commands (Example: A timer to show when the next daily will be, visible in daily and todo. Or a countdown to the next shop reset in the shop footer)
 - More random events that can occur when using enc (being moved to a realm, getting a random buff, finding currencies, losing currencies, etc.)
 - An option (or permanent change) for captures to only show matching results (Example: `.caps slime` => Then you can browse through all the Slime results with the buttons) | Similar to how media, clip and such work currently
-- New funny mode activation method
+- Change speed gold bonus
+- Paginate reminders embed
 - Descriptions for the newer equipment and monsters
 - The ability to craft multiple consumables at once
 - Transforming materials into others of your choosing (must be same rank, conversion rate of maybe like 5 to 1)

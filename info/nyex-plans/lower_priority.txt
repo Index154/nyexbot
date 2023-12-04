@@ -15,4 +15,5 @@
 - More time increment options for reminders (weeks, months, etc.)
 - Sort reminders by how soon they are
 - A button on the area output which lets you check your current area
+- List class abilities somewhere
 <:sp:860269564779429908>

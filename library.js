@@ -2268,6 +2268,17 @@ module.exports = {
 		// Output
 		message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
 		return;
+	},
+
+	// Input: Integer, String
+	// Dependency: Lib itself
+	// Funtion: Prepares a link to an area image
+	// Output: String
+	getAreaImage(areaId, areaName) {
+		let areaImageCounts = [4, 15, 3, 4, 8, 9, 5, 5, 4, 8, 5, 6, 7, 5];
+		let num = lib.rand(1, areaImageCounts[areaId]);
+		let areaImage = 'https://artificial-index.com/media/rpg_areas/' + areaName.toLowerCase().replace(/ /g, '_') + '_' + num + '.png';
+		return areaImage;
 	}
 
 };

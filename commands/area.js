@@ -72,6 +72,9 @@ module.exports = {
 				var embedTemplate = new Discord.EmbedBuilder()
 					.setColor('#0099ff')
                 	.setTitle(area_name + " - Monsters");
+
+                // Add image if it is not a realm
+                if(userArea < 14) embedTemplate.setThumbnail(lib.getAreaImage(userArea, area_name));
                 
                 // Create monster list for displaying
                 var monsters_raw = lib.readFile("data/monsters/monsters" + area + ".txt");

@@ -441,7 +441,7 @@ client.on('messageCreate', async message => {
 client.login(token);
 
 // Scan media folders for new files every 30 minutes
-var mediaScanInterval = 30 * 60;
+var mediaScanInterval = 10 * 60;
 if(isTestBranch){mediaScanInterval = 10;}
 var mediaScan = setInterval(async function(){
 

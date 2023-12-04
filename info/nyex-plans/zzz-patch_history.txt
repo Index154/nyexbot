@@ -1,3 +1,6 @@
+__v0.19.37__
+- `area [area name]` and `move` will now display one of several images for the chosen area
+
 __v0.19.36__
 - `nick` without arguments will now default to the "type4" option - Basically instead of `nick type4` you can now always just do `nick`
 
