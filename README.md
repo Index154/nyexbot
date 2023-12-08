@@ -7,6 +7,8 @@ I also added some unrelated commands that I came up with to this bot. These incl
 
 This was my first step into Javascript, Node.js, npm, SQL and more. It's actually also the first Linux server I ever set up aside from simple school projects. Because of this there is definitely a lot of room for improvement and a bunch of bad practices at play. But I try my best!
 
+The folder info/nyex-plans contains lists of changes and features I want to work on some day.
+
 
 ## Installation guide
 ### WARNING: Currently the bot can't be cloned / installed easily since the way I arranged the file structure for it is kinda messed up. Some necessary files will be missing even if you clone the repo. I will improve this later rather than listing all the missing files here...
