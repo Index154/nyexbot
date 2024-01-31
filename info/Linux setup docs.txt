@@ -5,7 +5,8 @@ AWS Lightsail / Linux setup:
 	Set it to make daily backups
 	Download certificate for SSH login
 
-	Put the following into /etc/apt/sources.list (will change based on the Debian version)
+	Put debian repository sources into /etc/apt/sources.list (will change based on the Debian release!)
+	Example:
 		deb http://deb.debian.org/debian bullseye main contrib non-free
 		deb http://deb.debian.org/debian bullseye-updates main contrib non-free
 		deb http://security.debian.org/debian-security bullseye-security main
@@ -41,6 +42,7 @@ Setting up Nyexbot:
 	pm2 startup
 	pm2 save
 	(Make sure this really works, may need sudo for startup or maybe not)
+	(Nyextest is basically the same as the other one but with a modified config.json, different git behavior and a separate pm2 app)
 
 
 Setting up permissions:
@@ -133,7 +135,7 @@ VSCode OpenSSH setup on a client machine:
 		  User admin
 		  IdentityFile C:/Users/username/keyfile.pem
 		  
-	"Remote-SSH: Connect to Host..." can now be used to connect
+	F1 -> "Remote-SSH: Connect to Host..." can be used to connect
 	The toolbar option "Terminal" > "New Terminal" can be used to open a regular SSH terminal
 
 
@@ -295,4 +297,4 @@ npm i -g npm@latest
 cd /home/admin/nyexbot
 npm update
 apt upgrade
-n latest
+n lts

@@ -2279,6 +2279,90 @@ module.exports = {
 		let num = lib.rand(1, areaImageCounts[areaId]);
 		let areaImage = 'https://artificial-index.com/media/rpg_areas/' + areaName.toLowerCase().replace(/ /g, '_') + '_' + num + '.png';
 		return areaImage;
+	},
+
+	// Input: Object, Object, String
+	// Dependency: Lib itself
+	// Funtion: Executes a random event from a selection of possible outcomes
+	// Output: None
+	randomEvent(user) {
+		// Important variables
+        var dir = "userdata/" + user.id;
+
+		// Pick an event
+		var output = "";
+		var chosenEvent = null;
+		var events = [
+			{name: '+treasure', weight: 1000}, // weight: 30
+			{name: '+specialItem', weight: 10},
+			{name: '+gold', weight: 50},
+			{name: '-gold', weight: 30},
+			{name: '+scrap', weight: 50},
+			{name: '-scrap', weight: 30},
+			{name: 'realm', weight: 40},
+			{name: 'buff', weight: 50},
+			{name: 'extremeBuff', weight: 20},
+			{name: '+radar', weight: 20},
+			{name: 'loseEncounter', weight: 10},
+			{name: '+encounterRank', weight: 10},
+			{name: 'makeShiny', weight: 1},
+			{name: '+exp', weight: 20},
+			{name: '+monster', weight: 10},
+			{name: 'nothing', weight: 1000}
+		];
+		var eventRoll = lib.rand(1, 1000);
+		for(x = 0; x < events.length && chosenEvent == null; x++){
+			if(eventRoll <= events[x].weight){
+				chosenEvent = events[x].name;
+			}else{
+				eventRoll = eventRoll - events[x].weight;
+			}
+		}
+		// TEMP
+		chosenEvent = '+treasure';
+			
+		// Free item
+		if(chosenEvent == '+treasure'){
+			// Get treasure loot data
+			var icon_array = {D: "<:real_black_circle:856189638153338900>", C: "🔵", B: "🟢", A: "🔴", S: "🟡", SS: "🟠", Special: "✨", Vortex: "🌀"};
+			var items = lib.readFile("data/items.txt").split(";\n");
+			var treasures = lib.readFile("data/treasure_drops.txt").split(";\n");
+			var common_drops = treasures[0].split(",");
+			var rare_drops = treasures[1].split(",");
+			var veryrare_drops = treasures[2].split(",");
+			var veryrare_chance = 2;
+			var rare_chance = 5 + veryrare_chance;
+			
+			// Determine results
+			var rarity_roll = lib.rand(1, 100);
+			var rarity_text = "common";
+			if(rarity_roll <= veryrare_chance){
+				var drop_pool = veryrare_drops;
+				rarity_text = "very rare";
+			}else if(rarity_roll <= rare_chance){
+				var drop_pool = rare_drops;
+				rarity_text = "rare";
+			}else{
+				var drop_pool = common_drops;
+			}
+			var drop_roll = lib.rand(0, drop_pool.length - 1);
+			var item_key = drop_pool[drop_roll];
+			var item = items[item_key].split("|");
+			
+			// Add it to the inventory
+			var inventory = lib.readFile(dir + "/inventory.txt");
+			if(inventory !== ""){
+				inventory = inventory + "," + item_key;
+			}else{
+				inventory = inventory + item_key;
+			}
+			lib.saveFile(dir + "/inventory.txt", inventory);
+
+			output = "You stumbled upon a hidden chest and found... " + icon_array[item[12]] +"**" + item[0] + "** (" + rarity_text + " treasure)!";
+		}
+
+		// If the command was called using a special button then edit the original message instead of sending a new one
+		return output;
 	}
 
 };

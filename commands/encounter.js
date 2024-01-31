@@ -32,93 +32,11 @@ module.exports = {
         lib.saveFile(dir + "/confirm.txt", "");
         lib.saveFile(dir + "/confirm_conv.txt", "no");
         lib.saveFile(dir + "/crafting_queue.txt", "");
-        
-        // Add a chance to find a random item from the treasure pool instead of encountering a monster
-        var specialRand = lib.rand(1, 300);
-        if(specialRand <= 2){
-            // Get treasure loot data
-            var icon_array = {D: "<:real_black_circle:856189638153338900>", C: "🔵", B: "🟢", A: "🔴", S: "🟡", SS: "🟠", Special: "✨", Vortex: "🌀"};
-            var items = lib.readFile("data/items.txt").split(";\n");
-            var treasures = lib.readFile("data/treasure_drops.txt").split(";\n");
-            var common_drops = treasures[0].split(",");
-            var rare_drops = treasures[1].split(",");
-            var veryrare_drops = treasures[2].split(",");
-            var veryrare_chance = 2;
-            var rare_chance = 5 + veryrare_chance;
-            
-            // Determine results
-            var rarity_roll = lib.rand(1, 100);
-            var rarity_text = "common";
-            if(rarity_roll <= veryrare_chance){
-                var drop_pool = veryrare_drops;
-                rarity_text = "very rare";
-            }else if(rarity_roll <= rare_chance){
-                var drop_pool = rare_drops;
-                rarity_text = "rare";
-            }else{
-                var drop_pool = common_drops;
-            }
-            var drop_roll = lib.rand(0, drop_pool.length - 1);
-            var item_key = drop_pool[drop_roll];
-            var item = items[item_key].split("|");
-            
-            // Add it to the inventory
-            var inventory = lib.readFile(dir + "/inventory.txt");
-            if(inventory !== ""){
-                inventory = inventory + "," + item_key;
-            }else{
-                inventory = inventory + item_key;
-            }
-            lib.saveFile(dir + "/inventory.txt", inventory);
-            
-            // Output and end command
-            message.reply({ content: "@ __**" + username + "**__, you stumbled upon a hidden chest and found... " + icon_array[item[12]] +"**" + item[0] + "** (" + rarity_text + " treasure)!", allowedMentions: { repliedUser: false }});
-            return;
-        }
 
         // Set current area path
         var area_raw = lib.readFile(dir + "/area.txt");
         var area = "_" + area_raw;
         if(area == "_"){area = "_0";}
-
-        // Add a chance to get a random buff instead of encountering a monster
-        if(specialRand <= 4){
-            // Generate random buff
-
-
-            // Apply buff
-
-
-            // Output and end command
-            //message.reply({ content: "@ __**" + username + "**__, you are suddenly enveloped by a cloud of magic, altering your stats for a while!", allowedMentions: { repliedUser: false }});
-            //return;
-        }
-
-        // Add a chance to gain or lose Gold or Scrap instead of encountering a monster
-        if(specialRand <= 6){
-            // Determine exact change and message
-
-
-            // Update amount
-
-
-            // Output and end command
-            //message.reply({ content: "@ __**" + username + "**__, you ", allowedMentions: { repliedUser: false }});
-            //return;
-        }
-
-        // Add a chance to be taken to a realm instead of encountering a monster
-        if(specialRand == 7){
-            // Determine realm
-
-
-            // Move user
-
-
-            // Output and end command
-            //message.reply({ content: "@ __**" + username + "**__, a rift suddenly opened up and swallowed you, taking you to the " + "!", allowedMentions: { repliedUser: false }});
-            //return;
-        }
         
         // Load unique realm list and get event realm
         var unique_realms = lib.readFile("data/unique_realms.txt").split(",");
@@ -457,7 +375,20 @@ module.exports = {
 		    .setCustomId("any|check " + monster + "|" + buttonType)
 			.setLabel('Check')
 			.setStyle(2)
-		var row = new ActionRowBuilder().addComponents([button1, button2, button3, button4]);
+        var buttons = [button1, button2, button3, button4];
+
+        // Add random event button if applicable (1 in 20)
+        var randomEventRoll = lib.rand(1, 100);
+        if(randomEventRoll <= 100){ // 5
+            var eventButton = new ButtonBuilder()
+                .setCustomId(user.id + "|event|" + buttonType)
+                .setLabel('?')
+                .setStyle(3);
+            buttons.push(eventButton);
+        }
+
+        // Build row component
+		var row = new ActionRowBuilder().addComponents(buttons);
 		//var buttonList1 = [button1, button2];
 		//var buttonList2 = [button3]
 		
@@ -495,7 +426,7 @@ module.exports = {
         // If the command was called using a special button then edit the original message instead of sending a new one
         if(lib.exists(message.message) && message.customId.includes("embedEdit")){
             message.deferUpdate();
-            message.message.edit({ embeds: [outputEmbed], components: [row]});
+            message.message.edit({ embeds: [outputEmbed], components: [row] });
             return;
         }
 

@@ -595,9 +595,11 @@ siteList = [
     //{alias: 'CAN', link: "436febd1d2a7c039f7072175969a82ebe5c0fb20587ef7edf79bfd5df6fa121a818917708d0ab66ba2e1", pattern: "\<a href=\"\/view\/.*?\<\/a\>"},
     //{alias: 'FF', link: "436febd1d2a7c039e71b67759ad18fa9f8d0ee24586ef1afe79eb208b1ed4058f18c02398146b677b7e6655cd0", pattern: "\<div class=\"c-postedArticle-info.*?\<\/p\>"},
     //{alias: 'AZL', link: "436febd1d2a7c039e5083f62989e85a0a5d2f5341b6cf5a3a6d3aa1dffee4641b7966364d30cb9719cc16347c6", pattern: "\<h2\>\<span class=\"mw-headline\".*?\<\/span\>"},
-    {alias: 'YGO', link: "436febd1d2a7c039e61e2f75909685a2e8d6f52d586ef1afe79aa100b5ea005ebfdb5d64c406a72aa0ee745498cbbde10a4f3135d85fff94ba7ed97d", pattern: "\<article class=\"latest-article-container.*?\<\/article\>"},
+    //{alias: 'YGO', link: "436febd1d2a7c039e61e2f75909685a2e8d6f52d586ef1afe79aa100b5ea005ebfdb5d64c406a72aa0ee745498cbbde10a4f3135d85fff94ba7ed97d", pattern: "\<article class=\"latest-article-container.*?\<\/article\>"},
     {alias: 'NINP', link: "436febd1d2a7c039ef17277f9a90c5b6fe96fc20186ff1bae788b308a2b61713ea8e0433895a", pattern: "\<div class=\"card-list__items\"\>.*?\<\/div\>"},
-    //{alias: "GSH", link: "436febd1d2a7c039e31724639c9685e8e2d4ea201579b0a4a993a402bdb74c45b3964668db00f853a6fd7559dac2", pattern: "id=\"Version_History\".*?id=\"Maintenance\""}
+    //{alias: "GSH", link: "436febd1d2a7c039e31724639c9685e8e2d4ea201579b0a4a993a402bdb74c45b3964668db00f853a6fd7559dac2", pattern: "id=\"Version_History\".*?id=\"Maintenance\""},
+    {alias: 'MANIC-1', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"p-live-body p-live2 g-live-.*?\>"},
+    {alias: 'MANIC-2', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"g-video g-item-odd g-item-first from_video\"\>.*?\<img"}
 ];
 
 // Decrypt site URLs
@@ -605,7 +607,7 @@ siteList = [
 for(i = 0; i < siteList.length; i++){
     // Encryption code
     /*var cipher = crypto.createCipheriv(algorithm, SQLsecretKey, Buffer.from(SQLiv, 'hex'));
-    var encrypted = Buffer.concat([cipher.update("https://www.capcom-games.com/merchandise/cfb/"), cipher.final()]).toString('hex');
+    var encrypted = Buffer.concat([cipher.update("URL HERE"), cipher.final()]).toString('hex');
     console.log(encrypted);*/
 
     var nDecipher = crypto.createDecipheriv(algorithm, SQLsecretKey, Buffer.from(SQLiv, 'hex'));

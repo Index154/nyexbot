@@ -4,7 +4,7 @@ SQL preparation plan
     - Review null constraints
     - Add default constraints (only for dynamic tables)
 - Missing table stuff:
-    - Maybe: countdowns, comment sentences, words for abilities, 
+    - Maybe: countdowns, comment sentences, words for abilities
     - Item main use icons in the icon table
 - Use the reminders and clip commands as references for SQL implementation
 - How to deal with random stat values which used to be "?" instead of a number?
