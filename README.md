@@ -5,7 +5,7 @@ A just-for-fun project based around three main commands: Encounter, fight and ca
 
 I also added some unrelated commands that I came up with to this bot. These include an Elden Ring random message generator, databases for quotes, images and videos, a random nickname generator and other random stuff.
 
-This was my first step into Javascript, Node.js, npm, SQL and more. It's actually also the first Linux server I ever set up aside from simple school projects. Because of this there is definitely a lot of room for improvement and a bunch of bad practices at play. But I try my best!
+This was my first step into Javascript, Node.js, npm, SQL and more. It's actually also the first Linux server I ever set up aside from simple school projects. Because of this there is definitely a lot of room for improvement and a bunch of bad practices at play. There are a lot of things I need to fix but progress is fairly slow.
 
 The folder info/nyex-plans contains lists of changes and features I want to work on some day.
 
