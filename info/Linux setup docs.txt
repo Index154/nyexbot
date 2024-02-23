@@ -271,10 +271,10 @@ Renewing SSL cert (happens automatically too - maybe needs a one-time setup in a
 	sudo service apache2 restart
 
 
-Daily automatic reboot at 4 AM:
+Daily automatic reboot at 4:10 AM:
 	sudo crontab -e
 	Add this to the file:
-		0 4 * * * /sbin/shutdown -r now
+		10 4 * * * /sbin/shutdown -r now
 
 
 Random useful commands:
@@ -286,6 +286,11 @@ Random useful commands:
 Obtain ownership of folders created by the bot for manual editing:
 	sudo bash
 	chown -R admin /home/admin/nyexbot
+
+
+Upgrade MySQL for new Debian release:
+	Add the new apt repository, see https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-setup
+	Keep going, starting at point 4 here: https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#repo-qg-apt-upgrading
 
 
 Maintenance commands:

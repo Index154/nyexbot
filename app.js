@@ -631,17 +631,27 @@ var newsCheck = setInterval(async function() {
 
         // Compare the first pattern match to the one that was saved most recently
         var filePath = savePath + siteList[i].alias + ".txt";
+        let errorPath = savePath + "errors" + siteList[i].alias + ".txt";
         var previousResult = lib.readFile(filePath);
         if(!lib.exists(previousResult)){previousResult = "None";}
         if(!lib.exists(results) || results.length < 1){
-            lib.error("", "newsCheck() Error: No pattern match found for site " + siteList[i].alias, "");
+            // Update error counter
+            let errorCount = parseInt(lib.readFile(errorPath));
+            lib.saveFile(errorPath, errorCount + 1);
+            // If there have been 20 consecutive errors, add them to the actual error log
+            if(errorCount + 1 >= 20) lib.error("", "newsCheck() Error: No pattern match found for site " + siteList[i].alias, " at least 20 times in a row");
         }
-        else if(results[0] != previousResult){
-            // Add this list to the updated sites list
-            updateList.push("<" + siteList[i].link + ">");
+        else {
+            // Clear the error counter since there was no error
+            lib.saveFile(errorPath, "0");
 
-            // Save the pattern match result to a file for the next comparison
-            lib.saveFile(filePath, results[0]);
+            if(results[0] != previousResult){
+                // Add this list to the updated sites list
+                updateList.push("<" + siteList[i].link + ">");
+
+                // Save the pattern match result to a file for the next comparison
+                lib.saveFile(filePath, results[0]);
+            }
         }
 
     }
