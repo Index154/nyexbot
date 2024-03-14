@@ -830,6 +830,22 @@ module.exports = {
 	    input = Math.floor(parseInt(input));
 		var years = Math.floor(input / 31536000);
 		input -= years * 31536000;
+
+		// Months are a special beast
+		function checkForMonths(timestamp){
+			let returnValue = 0;
+			if(timestamp % 2592000 == 0){ returnValue = 2592000; }else
+			if(timestamp % 2678400 == 0){ returnValue = 2678400; }else
+			if(timestamp % 2505600 == 0){ returnValue = 2505600; }else
+			if(timestamp % 2419200 == 0){ returnValue = 2419200; }
+			return returnValue;
+		}
+		var monthDivideBy = checkForMonths(input);
+		var months = 0;
+		if(monthDivideBy != 0){
+			months = Math.floor(input / monthDivideBy);
+			input -= months * monthDivideBy;
+		}
 	    var days = Math.floor(input / 86400);
 	    input -= days * 86400;
 	    var hours = Math.floor(input / 3600);
@@ -838,8 +854,9 @@ module.exports = {
 	    input -= minutes * 60;
 	    
 	    // Grammar fix
-	    var yearS = "s", dayS = "s", hourS = "s", minS = "s", secS = "s";
+	    var yearS = "s", monthS = "s", dayS = "s", hourS = "s", minS = "s", secS = "s";
 		if(years == 1){yearS = "";}
+		if(months == 1){monthS = "";}
 	    if(days == 1){dayS = "";}
 	    if(hours == 1){hourS = "";}
 	    if(minutes == 1){minS = "";}
@@ -849,6 +866,10 @@ module.exports = {
 	    var output = "";
 		if(years > 0){
 			output += years + " year" + yearS;
+		}
+		if(months > 0){
+			if(output != ""){output += ", ";}
+			output += months + " month" + monthS;
 		}
 	    if(days > 0){
 			if(output != ""){output += ", ";}
@@ -1637,7 +1658,66 @@ module.exports = {
 
 	},
 
+	// Input: Integer
+	// Function: Checks if a year is a leap year
+	// Output: Boolean
+	checkLeapYear(year){
+		var leapYear = false;
+		if(year % 4 == 0){
+			if(year % 100 == 0){
+				if(year % 400 == 0){
+					leapYear = true;
+				}
+			}else{
+				leapYear = true;
+			}
+		}
+		return leapYear;
+	},
+
+	// Input: Integer
+	// Dependency: lib itself
+	// Function: Converts months into the correct number of days based on the current date
+	// Output: Integer
+	monthsToDays(months){
+		let days = 0;
+		let daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+		// Add up the days, starting from the current month
+		let d = new Date();
+		let x = d.getMonth();
+		let year = d.getUTCFullYear();
+		for(count = 0; count < months; x++){
+			if(x == 12) {x = 0; year++}  // Back to January after December. Also increment the year for leap checking
+			if(x == 1 && lib.checkLeapYear(year)) days += 1;    // Leap year correction for February
+			days += daysPerMonth[x];
+			count++
+		}
+		return days;
+	},
+
+	// Input: Integer
+	// Dependency: lib itself
+	// Funtion: Adjusts a timestamp to land on the same day of the month as today when added to the current epoch
+	// Output: Integer
+	getSameDayInMonth(timestamp){
+		let d = new Date();
+		let dayCount = timestamp / 86400;
+
+		// Calculate the amount of months
+		let monthCount;
+		if(dayCount % 31 == 0){monthCount = dayCount / 31}else
+		if(dayCount % 30 == 0){monthCount = dayCount / 30}else
+		if(dayCount % 29 == 0){monthCount = dayCount / 29}else
+		if(dayCount % 28 == 0){monthCount = dayCount / 28}else
+		{ monthCount = Math.floor(dayCount / 30); }
+
+		// Turn the months back into days with leap days and day counts factored in
+		return lib.monthsToDays(monthCount) * 24 * 60 * 60;
+	},
+
 	// Input: Integer / Unix timestamp in seconds
+	// Dependency: lib itself
 	// Function: Checks for leap days between the current time and the given input and adjusts the timestamp to correct yearly dates
     // Output: Integer / Unix timestamp in seconds
 	correctLeapDays(timestamp){
@@ -1662,22 +1742,9 @@ module.exports = {
 		// Loop through all the years between the current timestamp and the future timestamp and check if they are leap years
 		// Add a day to the timestamp for every positive
 		for(o = 0; o < loopCount; o++){
-
-			var leapYear = false;
-			if(year % 4 == 0){
-				if(year % 100 == 0){
-					if(year % 400 == 0){
-						leapYear = true;
-					}
-				}else{
-					leapYear = true;
-				}
-			}
-
-			if(leapYear){
+			if(checkLeapYear(year)){
 				timestamp += 24 * 60 * 60;
 			}
-
 			year++;
 		}
 

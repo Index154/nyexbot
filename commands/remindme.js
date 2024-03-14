@@ -15,7 +15,7 @@ module.exports = {
     weight: 45,
 	aliases: ['re', 'rem', 'remind', 'reminders', 'timer', 'timers'],
 	addendum: [
-        '- Custom time interval examples: `yearly`, `7d`, `2 hours`, `daily`, `1h 30m`',
+        '- Custom time interval examples: `1 year 2 months 1 week`, `7d`, `2 hours`, `1 day`, `1h 30m`',
         '- When creating a reminder you may also add the following arguments after the reminder text to make it repeat:\n ` repeat [Custom time interval]`'
     ],
     category: 'variety',
@@ -109,28 +109,35 @@ module.exports = {
         // Examples: "repeat every 5 hours", "repeat yearly", "repeat daily", "repeat 8d 10m"
         var repeatingInterval = 0;
         var repeatingInfo = "";
+        let splitPoint = 0;
         function intervalFromString(input, type){
 
             // Function for extracting a time interval from a string
-            function checkTimeString(timeString){
-                var reg = new RegExp("[0-9]+ " + timeString + "|[0-9]+" + timeString + "| " + timeString + "|^" + timeString, "g");
+            function checkTimeString(timeStringList){
+                var reg = new RegExp("([0-9]+(| )(" + timeStringList.join("|") + ")($| ))", "g");
                 var matches = input.match(reg);
 
                 var result = 0;
                 if(matches != null){
                     result = parseInt(matches[0]);
                     if(isNaN(result)){result = 1;}
+
+                    // Determine cut-off point for the reminder string
+                    let finalMatchIndex = input.indexOf(matches[matches.length - 1]) + matches[matches.length - 1].length;
+                    if(finalMatchIndex > splitPoint) splitPoint = finalMatchIndex;
                 }
                 return result;
             }
 
-            // Check for time intervals for minutes, hours, days and years
-            // Then add them together
-            var minutes = checkTimeString("m");
-            var hours = checkTimeString("h");
-            var days = checkTimeString("d");
-            var years = checkTimeString("y");
-            var interval = ((((((years * 365) + days) * 24) + hours) * 60) + minutes) * 60;
+            // Check for time intervals in the message, then calculate the total
+            var years = checkTimeString(["years", "year", "y"]);
+            var months = checkTimeString(["months", "month", "mo"]);
+            if(months >= 12){ years += Math.floor(months / 12); months = months % 12; }
+            var weeks = checkTimeString(["weeks", "week", "w"]);
+            var days = checkTimeString(["days", "day", "d"]);
+            var hours = checkTimeString(["hours", "hour", "h"]);
+            var minutes = checkTimeString(["minutes", "minute", "mins", "min", "m"]);
+            var interval = ((((((years * 365) + (weeks * 7) + lib.monthsToDays(months) + days) * 24) + hours) * 60) + minutes) * 60;
 
             // If the time interval is an exact multiple of years then account for leap days! Do not do this for repeating intervals
             if(type != "repeat" && interval % 31536000 == 0){ interval = lib.correctLeapDays(interval); }
@@ -148,14 +155,8 @@ module.exports = {
         }
         if(repeatingInterval == 0){repeatingInterval = null;}
 
-        // If the arguments don't contain the word "to" then abort
-        if(!allArgs.toLowerCase().includes(" to ")){
-            return message.reply({ content: "\u274C Your command does not contain the string \" to \" (after the desired reminder time). This is required in order to distinguish the content of your reminder!", allowedMentions: { repliedUser: false }});
-        }
-
-        // Convert any other time definition in the arguments before the word "to" into a timestamp. Abort if nothing is found or if the timestamp is in the past
+        // Convert any other time definition in the arguments into a timestamp. Abort if nothing is found or if the timestamp is in the past
         var creationTime = Math.floor(message.createdTimestamp / 1000);
-        var toSplit = allArgs.split(" to ");
         function timestampFromString(input, creationTime){
             
             var result = 0;
@@ -175,6 +176,8 @@ module.exports = {
                 if(matches != null){
                     date = matches[0];
                 }
+                let finalMatchIndex = input.indexOf(matches[matches.length - 1]) + matches[matches.length - 1].length;
+                if(finalMatchIndex > splitPoint) splitPoint = finalMatchIndex;
 
                 // Check for a time in the arguments. The fallback is 00:00
                 var reg = new RegExp("[0-9][0-9]:[0-9][0-9]", "g");
@@ -183,6 +186,8 @@ module.exports = {
                 if(matches != null){
                     time = matches[0];
                 }
+                finalMatchIndex = input.indexOf(matches[matches.length - 1]) + matches[matches.length - 1].length;
+                if(finalMatchIndex > splitPoint) splitPoint = finalMatchIndex;
 
                 // Determine timestamp. If there were no matching inputs at all then return null (abort)
                 if(date == today && time == "00:00"){
@@ -196,9 +201,8 @@ module.exports = {
             return result;
 
         }
-        var timestamp = timestampFromString(toSplit[0], creationTime);
-        toSplit.splice(0, 1);
-        var reminderText = toSplit.join(" to ").trim().replace(/'/g, "\\'");;
+        var timestamp = timestampFromString(allArgs, creationTime);
+        var reminderText = allArgs.slice(splitPoint).trim().replace(/'/g, "\\'");;
         if(timestamp == 0 || timestamp == null){
             return message.reply({ content: "\u274C Could not find a reminder time interval or date in your message! Check `" + prefix + "help remindme` for further information about this command", allowedMentions: { repliedUser: false }});
         }else if(timestamp <= Math.floor(new Date() / 1000)){

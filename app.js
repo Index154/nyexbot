@@ -505,13 +505,18 @@ if(!isTestBranch){
         for(i = 0; i < rows.length; i++){
     
             // If the reminder is set to repeat then update it with a new notification time. Otherwise delete it from the database
+            var buttons = [];
             var repeatingInfo = "";
             if(lib.exists(rows[i].repeating)){
                 
                 // If the repeating interval is a multiple of years then account for leap days
                 var newTimestamp = currentEpoch + rows[i].repeating;
                 if(rows[i].repeating % 31536000 == 0){ newTimestamp = currentEpoch + lib.correctLeapDays(rows[i].repeating); }
-                repeatingInfo = "\n(Repeating in " + lib.secondsToTime(rows[i].repeating) + ")";
+                else if(rows[i].repeating % 2592000 == 0 || rows[i].repeating % 2678400 == 0 || rows[i].repeating % 2419200 == 0 || rows[i].repeating % 2505600 == 0){
+                    // If it is a multiple of months then keep it on the same date every month instead of sticking to a specific number of days
+                    newTimestamp = currentEpoch + lib.getSameDayInMonth(rows[i].repeating);
+                }
+                repeatingInfo = "\n(Repeating in " + lib.secondsToTime(newTimestamp - currentEpoch) + ")";
     
                 // Update the reminder
                 var [rowsB] = await con.execute({sql: `
@@ -519,6 +524,13 @@ if(!isTestBranch){
                     SET timestamp = ${newTimestamp}
                     WHERE reminderId = ${rows[i].reminderId};
                 `, rowsAsArray: false });
+
+                // Add button for deleting the reminder
+                var button = new ButtonBuilder()
+                    .setCustomId(rows[i].userId + "|remind delete " + rows[i].reminderId + "|normal")
+                    .setLabel('Delete reminder')
+                    .setStyle(4)
+                buttons.push(button);
     
             }else{
                 // Delete the reminder
@@ -527,16 +539,37 @@ if(!isTestBranch){
                     FROM reminders
                     WHERE reminderId = ${rows[i].reminderId};
                 `, rowsAsArray: false });
+
+                // Add buttons for repeating this reminder once
+                var button1 = new ButtonBuilder()
+                    .setCustomId(rows[i].userId + "|remind 10mins " + rows[i].text + "|normal")
+                    .setLabel('\uD83D\uDD01 10m')
+                    .setStyle(2)
+                var button2 = new ButtonBuilder()
+                    .setCustomId(rows[i].userId + "|remind 1h " + rows[i].text + "|normal")
+                    .setLabel('\uD83D\uDD01 1h')
+                    .setStyle(2)
+                var button3 = new ButtonBuilder()
+                    .setCustomId(rows[i].userId + "|remind 1d " + rows[i].text + "|normal")
+                    .setLabel('\uD83D\uDD01 1d')
+                    .setStyle(2)
+                    
+                buttons.push(button1);
+                buttons.push(button2);
+                buttons.push(button3);
+
             }
-    
+            
+            var row = new ActionRowBuilder().addComponents(buttons);
+
             // Send a notification for every result that was found. Send it in DMs if the original channel of the reminder can't be identified
             var reminderMessage = `<@${rows[i].userId}>` + " - This is your reminder with the ID " + rows[i].reminderId + ":\n" + rows[i].text + repeatingInfo;
             var channel = await client.channels.cache.get(rows[i].channelId);
             if(channel == undefined){
                 var tempUser = await client.users.fetch(rows[i].userId, false);
-                tempUser.send({ content: reminderMessage });
+                tempUser.send({ content: reminderMessage, components: [row] });
             }else{
-                channel.send({ content: reminderMessage });
+                channel.send({ content: reminderMessage, components: [row] });
             }
         
         }

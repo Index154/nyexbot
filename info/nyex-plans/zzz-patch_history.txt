@@ -1,3 +1,11 @@
+__v0.19.38__
+- `remind` now supports weeks and months
+- It also no longer requires " to " in the message
+- When the bot reminds you you now have some buttons you can press to repeat that particular reminder after either 10 minutes, 1 hour or 1 day (unless the reminder is already repeating)
+- Repeating reminders now come with a 'Delete' button attached to them
+- The command no longer recognizes time descriptions without quantifiers (for example "daily", "week", "year". Instead use "1day", "1 week", "1y" or similar. The important part is the number)
+- Reminders that are set to repeat every x months should automatically correct themselves to happen on the same date of the month every time if possible
+
 __v0.19.37__
 - `area [area name]` and `move` will now display one of several images for the chosen area
 
