@@ -175,9 +175,9 @@ module.exports = {
                 var date = today;
                 if(matches != null){
                     date = matches[0];
+                    let finalMatchIndex = input.indexOf(matches[matches.length - 1]) + matches[matches.length - 1].length;
+                    if(finalMatchIndex > splitPoint) splitPoint = finalMatchIndex;
                 }
-                let finalMatchIndex = input.indexOf(matches[matches.length - 1]) + matches[matches.length - 1].length;
-                if(finalMatchIndex > splitPoint) splitPoint = finalMatchIndex;
 
                 // Check for a time in the arguments. The fallback is 00:00
                 var reg = new RegExp("[0-9][0-9]:[0-9][0-9]", "g");
@@ -185,9 +185,9 @@ module.exports = {
                 var time = "00:00";
                 if(matches != null){
                     time = matches[0];
+                    finalMatchIndex = input.indexOf(matches[matches.length - 1]) + matches[matches.length - 1].length;
+                    if(finalMatchIndex > splitPoint) splitPoint = finalMatchIndex;
                 }
-                finalMatchIndex = input.indexOf(matches[matches.length - 1]) + matches[matches.length - 1].length;
-                if(finalMatchIndex > splitPoint) splitPoint = finalMatchIndex;
 
                 // Determine timestamp. If there were no matching inputs at all then return null (abort)
                 if(date == today && time == "00:00"){
