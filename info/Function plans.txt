@@ -10,6 +10,7 @@ SQL preparation plan
 - How to deal with random stat values which used to be "?" instead of a number?
 - Define a standard for "rewardType" which appears in several tables
 - Account for area images
+- Go over other features added after area images
 
 Overall plan
 - Prepare SQL table commands
