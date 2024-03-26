@@ -10,8 +10,8 @@ This was my first step into Javascript, Node.js, npm, SQL and more. It's actuall
 The folder info/nyex-plans contains lists of changes and features I want to work on some day.
 
 
-## Installation guide
-### WARNING: Currently the bot can't be cloned / installed easily since the way I arranged the file structure for it is kinda messed up. Some necessary files will be missing even if you clone the repo. I will improve this later rather than listing all the missing files here...
+## NO Installation guide
+### WARNING: Currently the bot can't really be cloned / installed since the way I arranged the file structure for it is very messed up. Necessary files will be missing if you clone the repo. I will improve this later rather than listing all the missing files here... Below is my draft for a future installation guide
 
 In theory the installation would go a little like this:
 - Create a new bot using the Discord developer portal and obtain the token for it (the exact settings to use on the portal will be added here later)
