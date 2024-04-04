@@ -57,8 +57,8 @@ module.exports = {
     // Function: Checks whether "an" is needed instead of "a" before the given word
     // Output: String
     nCheck(name){
-        var first_letter = name.substring(0, 1);
-        if(first_letter == "A" || first_letter == "E" || first_letter == "I" || first_letter == "O" || first_letter == "U"){
+        var first_letter = name.substring(0, 1).toLowerCase();
+        if(first_letter == "a" || first_letter == "e" || first_letter == "i" || first_letter == "o" || first_letter == "u"){
             return "n";
         }else{
             return "";
@@ -1454,7 +1454,7 @@ module.exports = {
 		return curPage;
 	},
 
-		// Input: Object, array, array, integer
+	// Input: Object, array, array, integer
 	// Function: Creates an embed with buttons for switching between pages. The pages have to be supplied by the parent function in their entirety
 	async fullEmbedPaginationWithReroll(msg, pages, buttonList, timeout = 120000){
 		const {ActionRowBuilder, EmbedBuilder} = require("discord.js");
@@ -1644,18 +1644,6 @@ module.exports = {
         if(resultIndex == 0){resultIndex = parseInt(("" + userId).slice(0, 2));}
         var result = items[resultIndex];
 		return result;
-	},
-
-	// Input: Integer, String or integer
-    // Function: Picks a random ID from a list based on a seed
-    // Output: Integer
-	seededRand(arrayLength, seed){
-		// Extract numbers from the seed, assuming it is a string
-		numSeed = parseInt(seed.replace(/[^0-9]/g, ""));
-
-		// Turn the rest of the string into a hash or something??
-		// TODO
-
 	},
 
 	// Input: Integer
