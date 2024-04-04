@@ -2042,7 +2042,7 @@ module.exports = {
 					if(p == 1){
 						tempOutput += " ";
 					}
-					tempOutput += selectedWord;
+					tempOutput += selectedWord.charAt(0).toUpperCase() + selectedWord.slice(1);
 					
 				}
 			}
