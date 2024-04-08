@@ -1730,7 +1730,7 @@ module.exports = {
 		// Loop through all the years between the current timestamp and the future timestamp and check if they are leap years
 		// Add a day to the timestamp for every positive
 		for(o = 0; o < loopCount; o++){
-			if(checkLeapYear(year)){
+			if(lib.checkLeapYear(year)){
 				timestamp += 24 * 60 * 60;
 			}
 			year++;
