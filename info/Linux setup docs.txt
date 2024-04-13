@@ -82,6 +82,9 @@ Setting up Apache (artificial-index.com):
 		(change documentroot to /home/admin/artificial-index)
 	nano /etc/apache2/apache2.conf
 		(add directory /home/admin/artificial-index path with allowoverride all)
+		Add the following:
+			ServerTokens Prod
+			ServerSignature Off
 	nano /etc/apache2/conf-enabled/security.config
 		(activate security options)
 	
@@ -100,6 +103,14 @@ Setting up Apache (artificial-index.com):
 
 	Apache error logging:
 		tail -f /var/log/apache2/error.log
+	
+	Additional security settings:
+		Edit .htaccess file in site root folder and add these lines:
+			Header always set Permissions-Policy "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),payment=()"
+			Header always set Access-Control-Allow-Origin "localhost"
+			Header always set Content-Security-Policy "default-src 'self'; child-src *.youtube.com"
+			RewriteCond %{REQUEST_METHOD} ^(DELETE|PUT|TRACE|TRACK|CUSTOM)
+			RewriteRule .* - [F]
 
 
 Setting up MySQL:
