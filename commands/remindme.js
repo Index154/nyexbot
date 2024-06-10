@@ -235,6 +235,12 @@ module.exports = {
         }
         saveReminder(message.channelId, user.id, reminderText, repeatingInterval, timestamp);
 
+        // Attach button for immediately deleting it in case something went wrong
+        /*var delButton = new ButtonBuilder()
+            .setCustomId("TODO")
+            .setLabel('Delete reminder')
+            .setStyle(4)*/
+
         // Success output
         message.reply({ content: "Created a new reminder for <t:" + timestamp + ":d> <t:" + timestamp + ":t>" + repeatingInfo + secondsInfo, allowedMentions: { repliedUser: false }});
 
