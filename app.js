@@ -198,7 +198,7 @@ client.on('interactionCreate', interaction => {
     }
     
     // Process the actual interaction now
-    // For interactive elements which should trigger a command when clicked I fill the customId field with two values: The ID of the user the interaction element is restricted to (or "any" for all users) and the command that should be executed when the element is clicked
+    // For interactive elements which should trigger a command when clicked I fill the customId field with three values: The ID of the user the interaction element is restricted to (or "any" for all users), the command that should be executed when the element is clicked and whether it's an interaction that should lead to the original message being edited
 	var commandName = "";
 	if(interaction.isStringSelectMenu()){
         // The interaction came from a selection menu (only used in the class command)
@@ -214,6 +214,8 @@ client.on('interactionCreate', interaction => {
 	    if(interaction.customId === 'previousbtn' || interaction.customId === 'randbtn' || interaction.customId === 'nextbtn' || interaction.customId === 'rerollbutton') return;
 		var interactionData = interaction.customId.split("|");
 		if(interactionData[0] != "any" && interactionData[0] != user.id) return;
+        // Special "fix" for reminder buttons that may need a lot of text in the executed command which would not fit into the customId property
+        if(interactionData[1].includes("customCommand")){interactionData[1] = interactionData[1].slice(0, -13) + interaction.message.content.split("\n")[1]}
 		var args = interactionData[1].split(" ");
 		commandName = args[0];
 		args.splice(0, 1);
@@ -542,15 +544,16 @@ if(!isTestBranch){
 
                 // Add buttons for repeating this reminder once
                 var button1 = new ButtonBuilder()
-                    .setCustomId(rows[i].userId + "|remind 10mins " + rows[i].text + "|normal")
+                    .setCustomId(rows[i].userId + "|remind 10mins customCommand|normal")
                     .setLabel('\uD83D\uDD01 10m')
                     .setStyle(2)
+                console.log(button1)
                 var button2 = new ButtonBuilder()
-                    .setCustomId(rows[i].userId + "|remind 1h " + rows[i].text + "|normal")
+                    .setCustomId(rows[i].userId + "||remind 1h customCommand|normal")
                     .setLabel('\uD83D\uDD01 1h')
                     .setStyle(2)
                 var button3 = new ButtonBuilder()
-                    .setCustomId(rows[i].userId + "|remind 1d " + rows[i].text + "|normal")
+                    .setCustomId(rows[i].userId + "|remind 1d customCommand|normal")
                     .setLabel('\uD83D\uDD01 1d')
                     .setStyle(2)
                     
