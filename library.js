@@ -2348,7 +2348,7 @@ module.exports = {
 		var output = "";
 		var chosenEvent = null;
 		var events = [
-			{name: '+treasure', weight: 1000}, // weight: 30
+			{name: '+treasure', weight: 30}, // weight: 30
 			{name: '+specialItem', weight: 10},
 			{name: '+gold', weight: 50},
 			{name: '-gold', weight: 30},
@@ -2363,7 +2363,7 @@ module.exports = {
 			{name: 'makeShiny', weight: 1},
 			{name: '+exp', weight: 20},
 			{name: '+monster', weight: 10},
-			{name: 'nothing', weight: 1000}
+			{name: 'nothing', weight: 100}
 		];
 		var eventRoll = lib.rand(1, 1000);
 		for(x = 0; x < events.length && chosenEvent == null; x++){
@@ -2417,6 +2417,7 @@ module.exports = {
 		}
 
 		// If the command was called using a special button then edit the original message instead of sending a new one
+		// TODO...
 		return output;
 	}
 
