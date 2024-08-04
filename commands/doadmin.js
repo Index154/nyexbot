@@ -33,25 +33,45 @@ module.exports = {
         if(lib.exists(args[0]) && (args[0].toLowerCase() == "lc" )){
             // Define enemy stats
             let enemyStats = {
-                "flowerman": {"power": 3, "maxCount": 1},
-                "spider": {"power": 2, "maxCount": 1},
-                "butler": {"power": 2, "maxCount": 7},
-                "coilhead": {"power": 1, "maxCount": 5},
-                "girl": {"power": 2, "maxCount": 1},
-                "barber": {"power": 1, "maxCount": 8},
-                "lootbug": {"power": 1, "maxCount": 8},
-                "blob": {"power": 1, "maxCount": 2},
-                "jester": {"power": 3, "maxCount": 1},
-                "masked": {"power": 1, "maxCount": 10},
-                "nutcracker": {"power": 1, "maxCount": 10},
-                "centipede": {"power": 1, "maxCount": 4},
-                "puffer": {"power": 1, "maxCount": 2},
-                "thumper": {"power": 3, "maxCount": 4},
-                "baboon": {"power": 0.5, "maxCount": 15}, // They always spawn in twos
-                "worm": {"power": 2, "maxCount": 3},
-                "mouthdog": {"power": 2, "maxCount": 8},
-                "giant": {"power": 3, "maxCount": 3},
-                "oldbird": {"power": 3, "maxCount": 20}
+                "flowerman": {"power": 3, "maxCount": 1, "groupCount": 1},
+                "spider": {"power": 2, "maxCount": 1, "groupCount": 1},
+                "butler": {"power": 2, "maxCount": 7, "groupCount": 1},
+                "coilhead": {"power": 1, "maxCount": 5, "groupCount": 1},
+                "girl": {"power": 2, "maxCount": 1, "groupCount": 1},
+                "barber": {"power": 1, "maxCount": 8, "groupCount": 1},
+                "lootbug": {"power": 1, "maxCount": 8, "groupCount": 1},
+                "blob": {"power": 1, "maxCount": 2, "groupCount": 1},
+                "jester": {"power": 3, "maxCount": 1, "groupCount": 1},
+                "masked": {"power": 1, "maxCount": 10, "groupCount": 1},
+                "nutcracker": {"power": 1, "maxCount": 10, "groupCount": 1},
+                "centipede": {"power": 1, "maxCount": 4, "groupCount": 1},
+                "puffer": {"power": 1, "maxCount": 2, "groupCount": 1},
+                "thumper": {"power": 3, "maxCount": 4, "groupCount": 1},
+                "baboon": {"power": 0.5, "maxCount": 15, "groupCount": 2},
+                "worm": {"power": 2, "maxCount": 3, "groupCount": 1},
+                "mouthdog": {"power": 2, "maxCount": 8, "groupCount": 1},
+                "giant": {"power": 3, "maxCount": 3, "groupCount": 1},
+                "oldbird": {"power": 3, "maxCount": 20, "groupCount": 1},
+                "manticoil": {"power": 1, "maxCount": 16, "groupCount": 1},
+                "locusts": {"power": 1, "maxCount": 5, "groupCount": 1},
+                "bees": {"power": 1, "maxCount": 6, "groupCount": 1},
+                "tulipsnake": {"power": 0.5, "maxCount": 12, "groupCount": 4},
+                "wanderer": {"power": 1, "maxCount": 2, "groupCount": 1},
+                "adultwanderer": {"power": 3, "maxCount": 2, "groupCount": 1},
+                "urchin": {"power": 0, "maxCount": 4, "groupCount": 1},
+                "bruce": {"power": 3, "maxCount": 1, "groupCount": 1},
+                "mantisshrimp": {"power": 0.5, "maxCount": 8, "groupCount": 3},
+                "bellcrab": {"power": 0.5, "maxCount": 5, "groupCount": 1},
+                "shyguy": {"power": 3, "maxCount": 1, "groupCount": 1},
+                "locker": {"power": 1, "maxCount": 3, "groupCount": 1},
+                "foxy": {"power": 1, "maxCount": 1, "groupCount": 1},
+                "walker": {"power": 0, "maxCount": 1, "groupCount": 1},
+                "enforcer": {"power": 5, "maxCount": 2, "groupCount": 1},
+                "eyesecurity": {"power": 1, "maxCount": 5, "groupCount": 1},
+                "gallenarma": {"power": 3, "maxCount": 3, "groupCount": 1},
+                "ooblghost": {"power": 2, "maxCount": 1, "groupCount": 1},
+                "ghostoobl": {"power": 1, "maxCount": 1, "groupCount": 1},
+                "ghostplayer": {"power": 2, "maxCount": 1, "groupCount": 1}
             }
             
             // Define test data
@@ -90,7 +110,8 @@ module.exports = {
 
                 // Loop for one spawning event
                 let canSpawn = true;
-                let tryBaboonPair = false;
+                let repeatCount = 0;
+                let lastSelection = "none";
                 while(canSpawn){
                     // Remove unspawnable enemies from list and sum up the weights
                     let weightSum = 0;
@@ -110,18 +131,21 @@ module.exports = {
                     if(weightSum <= 0){break;}
                     let roll = lib.rand(1, weightSum);
                     let tallyWeight = 0;
-                    if(tryBaboonPair && tempList.enemies["baboon"].canSpawn){
-                        roll = 1;   // This works because baboon is always first in slot!
-                    }
                     for(let key in tempList.enemies){
                         tallyWeight += tempList.enemies[key].weight;
                         if(roll <= tallyWeight){
-                            testValues.enemies[key].total++;
+                            let selectedKey = key;
+                            if(repeatCount > 0 && tempList.enemies[lastSelection].canSpawn){
+                                repeatCount--;
+                                selectedKey = lastSelection;
+                            }
+                            testValues.enemies[selectedKey].total++;
                             testValues.totalspawns++;
-                            if(tempList.enemies[key].spawned == 0){testValues.enemies[key].dayswith++;}
-                            tempList.enemies[key].spawned++;
-                            tempList.totalpower += enemyStats[key].power;
-                            if(key == "baboon" && !tryBaboonPair) {tryBaboonPair = true;}
+                            if(tempList.enemies[selectedKey].spawned == 0){testValues.enemies[selectedKey].dayswith++;}
+                            tempList.enemies[selectedKey].spawned++;
+                            tempList.totalpower += enemyStats[selectedKey].power;
+                            lastSelection = selectedKey;
+                            if(repeatCount < 1 && tempList.enemies[selectedKey].groupCount > 1) {repeatCount = tempList.enemies[selectedKey].groupCount - 1;}
                             break;
                         }
                     }
