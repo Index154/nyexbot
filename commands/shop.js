@@ -209,8 +209,15 @@ module.exports = {
         		{ name: prices_column, value: prices[0] + " Gold\n" + prices[1] + " Gold\n" + prices[2] + " Gold\n" + prices[3] + " Gold\n" + prices[4] + " Gold\n\u200B\n" + prices[5] + " Gold\n" + prices[6] + " Gold\n" + prices[7] + " Gold\n" + prices[8] + " Gold\n" + prices[9] + " Gold\n" + prices[10] + " Gold", inline: true }
         	);
         
+        // Add view shiny listing button
+        var button = new ButtonBuilder()
+			.setCustomId("any|shop shiny")
+			.setLabel('View current shiny offer')
+			.setStyle(1)
+        var row = new ActionRowBuilder().addComponents([button]);
+        
         //Send embed output
-        message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }});
+        message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});
         
 	},
 };

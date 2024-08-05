@@ -116,8 +116,7 @@ module.exports = {
             // Modify the item's selling price based on the shop values
             var result_item = item_array[result_key];
             var result_item_data = result_item.split("|");
-            var fluctuation = 1 + (parseInt(popularities[result_key]) * 0.01);
-            var selling_price = Math.round(parseInt(result_item_data[11]) * 0.75 * buying * merch_mod * fluctuation);
+            var selling_price = Math.round(parseInt(result_item_data[11]) * 0.75 * buying * merch_mod);
             
             // If the user specified an item count, attempt to sell it multiple times, otherwise stop
             if(count > 1){

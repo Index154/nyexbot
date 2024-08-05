@@ -1,3 +1,12 @@
+__v0.19.39__
+- Fixed `sell` being completely broken
+- Nerfed `fullradar` charges a lot if they are very numerous
+- Nerfed radar bonus a bit in general
+- Lowered default shiny chance from 1/40000 (what was I thinking) to 1/4000 and lowered all other related values accordingly to hopefully not be unbalanced
+- Increased Mindwipe Tonic and Reality Shifter prices a lot
+- Lowered Unique Fragment price a bit
+- Added button for viewing shiny offer to the shop embed
+
 [Minor Patch]
 - Fixed remind command erroring out when you only give it a specific date but no time or the other way around
 

@@ -349,7 +349,7 @@ module.exports = {
 				var captures_counts = new adc(monster_array).count();
 				var capture_count = captures_counts[monster_data[0]] - 1; // Subtract one because of all_captures.txt
 				outputEmbed
-				    .addFields( { name: username + "'s capture count", value: capture_count.toString(), inline: true } );
+				    .addFields( { name: "Captured count", value: capture_count.toString(), inline: true } );
 				
 				// Find starting ID for paged embed
 				var startingId = uniq_array.indexOf(monster_key_groups[key]);

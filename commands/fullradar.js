@@ -136,13 +136,13 @@ module.exports = {
 		}
         
         // Apply the radar bonus to the upcoming rolls
-        var quest_bonus = 20 * (parseInt(quest_progress) * 0.01);
-        var mon_bonus = 30 * (parseInt(mon_progress) * 0.01);
-        var radar_bonus = Math.round(quest_bonus + mon_bonus);
+        var quest_bonus = 2 * (parseInt(quest_progress) * 0.01);
+        var mon_bonus = 3 * (parseInt(mon_progress) * 0.01);
+        var radar_bonus = quest_bonus + mon_bonus;
         
         // Nerf the radar charges if they go above certain amounts
         if(charges > 100){
-            charges = Math.round((charges - 100) * 0.5) + 100;
+            charges = Math.round((charges - 100) * 0.3) + 100;
             charges_copy = charges;
         }
         
@@ -153,7 +153,7 @@ module.exports = {
         var roll_count = 0;
         while(charges > 0 && shiny_key === 0){
             //Determine shininess
-            var mod_rand = lib.rand(1, 40000);
+            var mod_rand = lib.rand(1, 4000);
             charges--;
             roll_count++;
             if(mod_rand <= shiny_chance){

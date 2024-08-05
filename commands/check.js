@@ -119,7 +119,7 @@ module.exports = {
 		var captures_array = lib.readFile(dir + "/captures.txt").split(";");
 		var capture_count = lib.countInArray(monster_keys, captures_array);
 		outputEmbed
-            .setFooter({ text: username + "'s capture count: " + capture_count});
+            .setFooter({ text: "Captured count: " + capture_count});
 		
         // If the command was called using a special button then edit the original message instead of sending a new one
         if(lib.exists(message.message) && message.customId.includes("embedEdit")){

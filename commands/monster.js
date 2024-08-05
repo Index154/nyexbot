@@ -186,9 +186,9 @@ module.exports = {
             if(buff_stats[9] == "Special"){
                 lib.saveFile(dir + "/charges.txt", buff_timer)
                 var radar_raw = lib.readFile(dir + "/radar_values.txt").split(",");
-                var quest_bonus = 20 * (parseInt(radar_raw[0]) * 0.01);
-                var mon_bonus = 30 * (parseInt(radar_raw[1]) * 0.01);
-                radar_bonus = Math.round(quest_bonus + mon_bonus);
+                var quest_bonus = 2 * (parseInt(radar_raw[0]) * 0.01);
+                var mon_bonus = 3 * (parseInt(radar_raw[1]) * 0.01);
+                radar_bonus = quest_bonus + mon_bonus;
             }
         }
         
@@ -345,7 +345,7 @@ module.exports = {
         while(shiny_key === 0  && polisher > 0){
             // Default: 1 roll
             polisher--;
-            var mod_rand = lib.rand(1, 40000);
+            var mod_rand = lib.rand(1, 4000);
             if(mod_rand <= shiny_chance){
                 shiny_key = 1;
             }

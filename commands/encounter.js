@@ -117,9 +117,9 @@ module.exports = {
             if(buff_stats[9] == "Special"){
                 lib.saveFile(dir + "/charges.txt", buff_timer)
                 var radar_raw = lib.readFile(dir + "/radar_values.txt").split(",");
-                var quest_bonus = 20 * (parseInt(radar_raw[0]) * 0.01);
-                var mon_bonus = 30 * (parseInt(radar_raw[1]) * 0.01);
-                radar_bonus = Math.round(quest_bonus + mon_bonus);
+                var quest_bonus = 2 * (parseInt(radar_raw[0]) * 0.01);
+                var mon_bonus = 3 * (parseInt(radar_raw[1]) * 0.01);
+                radar_bonus = quest_bonus + mon_bonus;
             }
         }
         
@@ -265,15 +265,15 @@ module.exports = {
         monster_key = monster_data[7];
 
         // Chain calculations
-        var shinyRate = 40000;
+        var shinyRate = 4000;
         var chainRaw = lib.readFile(dir + "/chain.txt");
         var chain = ["0", "0"];
         if(lib.exists(chainRaw)){
             chain = chainRaw.split("|");
         }
         var chainInfo = "";
-        // 1.2 = 42 | 1.3 = 31 | 1.4 = 25 | 1.5 = 21 | 1.6 = 18 | 1.8 = 15 | 2 = 12
-        var chainModifiers = [1.3, 1.33, 1.4, 1.5, 1.6, 2];
+        // MAX chain count for 100% shiny rate: 1.2 = 42 | 1.3 = 29 | 1.4 = 23 | 1.5 = 19 | 1.6 = 17
+        var chainModifiers = [1.2, 1.23, 1.3, 1.35, 1.5, 1.6];
         if(chain[0] == chosen_group + "," + monster_key + ",0"){
             chainInfo = "\n❗ ❗ This is your current chain target ❗ ❗";
             for(i = 0; i < parseInt(chain[1]); i++){
