@@ -2348,26 +2348,24 @@ module.exports = {
 		var output = "";
 		var chosenEvent = null;
 		var events = [
-			{name: '+treasure', weight: 2}, // 30
-			{name: '+specialItem', weight: 0}, // 10
-			{name: '+gold', weight: 0}, // 50
-			{name: '-gold', weight: 0}, // 30
-			{name: '+scrap', weight: 0}, // 50
-			{name: '-scrap', weight: 0}, // 30
+			{name: '+treasure', weight: 4}, // 30
+			{name: '+specialItem', weight: 2}, // 10
+			{name: '+gold', weight: 5}, // 50
+			{name: '-gold', weight: 2}, // 30
+			{name: '+scrap', weight: 5}, // 50
+			{name: '-scrap', weight: 2}, // 30
 			{name: 'realm', weight: 0}, // 20
 			{name: 'buff', weight: 0}, // 30
 			{name: 'extremeBuff', weight: 0}, // 20
 			{name: '+radar', weight: 0}, // 20
-			{name: 'loseEncounter', weight: 0}, // 10
-			{name: '+encounterRank', weight: 0}, // 10
+			{name: 'loseEncounter', weight: 2}, // 10
 			{name: 'makeShiny', weight: 0}, // 1
 			{name: '+exp', weight: 0}, // 20
-			{name: '+monster', weight: 0}, // 10
 			{name: 'abilityCd', weight: 0}, // 40
-			{name: 'nothing', weight: 1} // 100
+			{name: 'nothing', weight: 5} // 100
 		];
 		var weightSum = 0;
-		for(e in events){weightSum = weightSum + e.weight;}
+		for(x = 0; x < events.length; x++){ weightSum = weightSum + events[x].weight; }
 		var eventRoll = lib.rand(1, weightSum);
 		for(x = 0; x < events.length && chosenEvent == null; x++){
 			if(eventRoll <= events[x].weight){
@@ -2377,10 +2375,10 @@ module.exports = {
 			}
 		}
 
+		var icon_array = {D: "<:real_black_circle:856189638153338900>", C: "🔵", B: "🟢", A: "🔴", S: "🟡", SS: "🟠", Special: "✨", Vortex: "🌀"};
 		switch(chosenEvent){
 			case '+treasure':
 				// Get treasure loot data
-				var icon_array = {D: "<:real_black_circle:856189638153338900>", C: "🔵", B: "🟢", A: "🔴", S: "🟡", SS: "🟠", Special: "✨", Vortex: "🌀"};
 				var items = lib.readFile("data/items.txt").split(";\n");
 				var treasures = lib.readFile("data/treasure_drops.txt").split(";\n");
 				var common_drops = treasures[0].split(",");
@@ -2391,13 +2389,10 @@ module.exports = {
 				
 				// Determine results
 				var rarity_roll = lib.rand(1, 100);
-				var rarity_text = "common";
 				if(rarity_roll <= veryrare_chance){
 					var drop_pool = veryrare_drops;
-					rarity_text = "very rare";
 				}else if(rarity_roll <= rare_chance){
 					var drop_pool = rare_drops;
-					rarity_text = "rare";
 				}else{
 					var drop_pool = common_drops;
 				}
@@ -2414,16 +2409,128 @@ module.exports = {
 				}
 				lib.saveFile(dir + "/inventory.txt", inventory);
 
-				output = "You got " + icon_array[item[12]] +"**" + item[0] + "** (" + rarity_text + ")!";
+				output = "You got " + icon_array[item[12]] +"**" + item[0] + "**!";
 				break;
+
+			case '+specialItem':
+				var items = lib.readFile("data/items.txt").split(";\n");
+				var possibleRewards = [
+					{name: "Lure Vortex", id: 354},
+					{name: "Lure Vortex", id: 354},
+					{name: "Special Vortex", id: 351},
+					{name: "Ability Changer", id: 346},
+					{name: "Token", id: 340},
+					{name: "Token", id: 340},
+					{name: "Token", id: 340},
+					{name: "Token", id: 340},
+					{name: "Token", id: 340},
+					{name: "Dimensional Fragment", id: 114},
+					{name: "Dimensional Fragment", id: 114},
+					{name: "Unique Fragment", id: 324},
+					{name: "Shapeless Shard", id: 325},
+					{name: "Shapeless Shard", id: 325},
+					{name: "Unstable Vortex", id: 231},
+					{name: "Unstable Vortex", id: 231}
+				];
+				
+				// Determine results
+				var roll = lib.rand(0, possibleRewards.length - 1);
+				var item = items[possibleRewards[roll].id].split("|");
+				
+				// Add it to the inventory
+				var inventory = lib.readFile(dir + "/inventory.txt");
+				if(inventory !== ""){
+					inventory = inventory + "," + possibleRewards[roll].id;
+				}else{
+					inventory = inventory + possibleRewards[roll].id;
+				}
+				lib.saveFile(dir + "/inventory.txt", inventory);
+
+				output = "You got " + icon_array[item[12]] +"**" + item[0] + "**!";
+				break;
+
+			case '+gold':
+				var possibleAmounts = [50, 100, 100, 150, 150, 150, 150, 200, 200, 300, 500];
+				var roll = lib.rand(0, possibleAmounts.length - 1);
+				var userData = lib.readFile(dir + "/stats.txt").split("|");
+				userData[12] = parseInt(userData[12]) - possibleAmounts[roll];
+				lib.saveFile(dir + "/stats.txt", userData.join("|"));
+				output = "You got **" + possibleAmounts[roll] + " Gold**!";
+				break;
+
+			case '-gold':
+				var possibleAmounts = [50, 50, 100, 100, 150, 150, 150, 150, 200, 200, 200, 300, 400];
+				var roll = lib.rand(0, possibleAmounts.length - 1);
+				var userData = lib.readFile(dir + "/stats.txt").split("|");
+				userData[12] = parseInt(userData[12]) - possibleAmounts[roll];
+				if(userData[12] < 0){userData[12] = 0;}
+				lib.saveFile(dir + "/stats.txt", userData.join("|"));
+				output = "You lost **" + possibleAmounts[roll] + " Gold**!";
+				break;
+
+			case '+scrap':
+				var possibleAmounts = [5, 5, 10, 10, 15, 15, 15, 15, 20, 30];
+				var roll = lib.rand(0, possibleAmounts.length - 1);
+				var scrap = parseInt(lib.readFile(dir + "/scrap.txt"));
+				scrap += possibleAmounts[roll];
+				lib.saveFile(dir + "/scrap.txt", scrap);
+				output = "You got **" + possibleAmounts[roll] + " Scrap**!";
+				break;
+
+			case '-scrap':
+				var possibleAmounts = [5, 5, 5, 10, 10, 10, 10, 15, 15, 20];
+				var roll = lib.rand(0, possibleAmounts.length - 1);
+				var scrap = parseInt(lib.readFile(dir + "/scrap.txt"));
+				scrap -= possibleAmounts[roll];
+				if(scrap < 0){scrap = 0;}
+				lib.saveFile(dir + "/scrap.txt", scrap);
+				output = "You lost **" + possibleAmounts[roll] + " Scrap**!";
+				break;
+
+			case 'realm':
+
+				break;
+
+			case 'buff':
+
+				break;
+
+			case 'extremeBuff':
+
+				break;
+
+			case '+radar':
+
+				break;
+
+			case 'loseEncounter':
+				message.message.embeds[0].data.description = "```diff\n-The encounter was lost...```\u2800\n\u2800\n\u2800";
+				output = "You lost the encounter!";
+				message.message.components[0].components.splice(0, 2);
+				lib.saveFile(dir + "/current_encounter.txt", "");
+				break;
+
+			case 'makeShiny':
+
+				break;
+
+			case '+exp':
+
+				break;
+
+			case 'abilityCd':
+
+				break;
+
 			default:
 				// Nothing happens
 				output = "Nothing happened..."
 		}
 
 		// Edit the message
+		output = "Event: " + output;
 		message.deferUpdate();
-		message.message.components[0].components.splice(4, 1);
+		message.message.components[0].components.splice(message.message.components[0].components.length - 1, 1);
 		message.message.embeds[0].data.description = message.message.embeds[0].data.description.slice(0, -1);
 		message.message.embeds[0].data.description += output;
 		message.message.edit({ embeds: [message.message.embeds[0]], components: [message.message.components[0]] });

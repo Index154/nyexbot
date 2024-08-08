@@ -541,9 +541,7 @@ module.exports = {
             message.message.embeds[0].data.description = output;
             // Remove event button first
             if(message.message.components[0].components.length == 5){ message.message.components[0].components.splice(4, 1); }
-            if(!realmFlag){
-                message.message.components[0].components.splice(0, 2);
-            }
+            if(!realmFlag){ message.message.components[0].components.splice(0, 2); }
             if(buttons.length > 0){
                 message.message.edit({ embeds: [message.message.embeds[0]], components: [row]});
                 return;

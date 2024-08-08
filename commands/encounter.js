@@ -377,7 +377,7 @@ module.exports = {
 
         // Add random event button sometimes (1 in 25)
         var randomEventRoll = lib.rand(1, 100);
-        if(randomEventRoll <= 4){ // 4
+        if(randomEventRoll <= 100){ // 4
             var eventButton = new ButtonBuilder()
                 .setCustomId(user.id + "|event|" + buttonType)
                 .setLabel('?')

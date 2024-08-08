@@ -1,3 +1,7 @@
+__v0.21.1__
+- Fixed every random event being nothing
+- Added several other random events
+
 __v0.20.0__
 - Random events (WIP):
     - Encounters will now sometimes have a green "?" button that triggers a random event when pressed
