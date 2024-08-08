@@ -284,7 +284,7 @@ Horn of Ragnarok|0|0|0|0|0|0|0|0|The density of mana contained within this horn 
 Mindwipe Tonic|0|0|0|0|0|0|0|0|A peculiar medicine that has the effect of resetting one's stat points, allowing them to be reassigned|Mindwipe,?|7000|Special;
 Scarecrow Corestem|0|0|8|0|-6|0|0|0|Since Scarecrows are artificially developed monsters their mana circulation needs to be regulated by an artificial tool. This one looks like an iron rod with many detailed engravings|Tool|2|D;
 Staff of Embers|3|0|6|0|0|0|0|0|The burning sap running through this branch has somehow stabilized and is able to function as a decent conductor for mana|Tool|1|D;
-Reality Shifter|0|0|0|0|0|0|0|0|This device can move the target into a different reality. Thanks to relativity, an entity of equal or similar "value" will then replace the one that has been removed|Shifter,?|9000|Special;
+Reality Shifter|0|0|0|0|0|0|0|0|This device can move the target into a different reality. An entity of equal or similar "value" will then replace the one that has been removed|Shifter,?|9000|Special;
 REPLACE|0|0|5|0|0|0|14|Holy|REPLACE|Tool|0|D;
 REPLACE|8|2|0|0|0|0|0|0|REPLACE|Weapon|3|D;
 REPLACE|3|8|0|0|0|0|0|0|REPLACE|Defense|3|D;

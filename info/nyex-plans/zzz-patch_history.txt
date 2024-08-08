@@ -1,3 +1,14 @@
+__v0.20.0__
+- Random events (WIP):
+    - Encounters will now sometimes have a green "?" button that triggers a random event when pressed
+    - For now there are only two possible events that aren't super exciting. I will add several soon. Suggestions are welcome
+    - Pay attention because the button disappears when you finish the encounter!
+- Added a button to the area list that lets you view your current area's monsters
+- Added a button to the message you get after completing a research project that lets you check the next available research projects right away
+- Changed some formatting and wording so encounter embeds should now stay at the same height more consistently in single-message mode (as long as no rare things like leveling up or getting a trophy happen)
+- `Compare` and `equip` now support single-message mode so encountering and fighting should be more seamless!
+- Daily streaks now give more rewards
+
 __v0.19.39__
 - Fixed `sell` being completely broken
 - Nerfed `fullradar` charges a lot if they are very numerous

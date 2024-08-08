@@ -10,7 +10,7 @@ module.exports = {
         '- The daily quest always asks you to `{prefix}deliver` a random monster matching your rank',
         '- You must use `{prefix}dodaily` to complete the quest',
         '- Completing the daily will reward you with either Gold, EXP or a bunch of items',
-        '- Completing dailies consecutively will grant additional rewards every 7, 14, 21 and 30 days',
+        '- Completing dailies consecutively will grant additional rewards every 5, 10, 15, 20, 25 and 30 days',
         '- Users with different ranks will receive different daily quests'
     ],
     category: 'tasks',
@@ -26,7 +26,7 @@ module.exports = {
         var rank = stats[9];
         
         // Check current day and compare it to the one of the last time the command generated a daily quest
-        var streakInfo = "\n**Reach a daily streak of 7, 14, 21 and 30 days to receive additional rewards!**";
+        var streakInfo = "\n**Reach a daily streak of 5, 10, 15, 20, 25 and 30 days to receive increasingly better rewards!**";
         var last_day = parseInt(lib.readFile("data/daily_quests/current_day_" + rank + ".txt"));
         var d = new Date();
         var day = Math.floor(d.getTime() / 86400000);
@@ -80,21 +80,12 @@ module.exports = {
         
         // Further divide the quest into smaller bits of information
         var quest_data = quest.split("|");
-        var target_type = quest_data[0];
         var target = quest_data[1];
-        var amount = parseInt(quest_data[2]);
-        var reward_type = quest_data[3];
-        var reward = quest_data[4];
-        var reward_amount = parseInt(quest_data[5]);
         var display_text = "Suggested area: " + quest_data[6];
-        var reward_text = quest_data[7];
         
         // Further further extract information from the quest data
         var target_name = "";
     	var target_source = "data/monsters/monsters.txt";
-    	var inv_path = dir + "/captures.txt";
-    	var target_inv = lib.readFile(inv_path);
-    	var separator = ";";
     	var monster_keys = target.split(",");
     	
     	monsters_raw = lib.readFile(target_source);
@@ -119,7 +110,7 @@ module.exports = {
         var captures = lib.readFile(dir + "/captures.txt");
         var capped = "";
         if(captures.includes(target)){
-            capped = "  ( \uD83D\uDCBC )";
+            capped = " \uD83D\uDCBC";
         }
         
     	// Show the user info about their current quest

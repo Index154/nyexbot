@@ -61,8 +61,10 @@ module.exports = {
                 scrap += value;
                 lib.saveFile(dir + "/new_equip.txt", "");
                 lib.saveFile(dir + "/scrap.txt", scrap);
-                
-                message.reply({ content: "@ __**" + username + "**__, the item has been converted into **" + value + " Scrap**!", allowedMentions: { repliedUser: false }});
+
+                var output = "The item has been converted into **" + value + " Scrap**!";
+                if(embedEditOutput()){return;}
+                message.reply({ content: "@ __**" + username + "**__: " + output, allowedMentions: { repliedUser: false }});
             }else{
                 message.reply({ content: "\u274C That is an unknown argument! Please try again", allowedMentions: { repliedUser: false }});
             }
@@ -137,10 +139,33 @@ module.exports = {
             lib.saveFile(dir + "/ability_cd.txt", abilityCondition);
         }
         
-        // Update equip prompt and output
+        // Update equip prompt
         lib.saveFile(dir + "/new_equip.txt", "");
 		lib.saveFile(dir + "/new_modifier.txt", "");
-        message.reply({ content: "@ __**" + username + "**__, you successfully equipped the **" + new_item_data[0] + "**, getting rid of your " + old_item_data[0] + "!", allowedMentions: { repliedUser: false }});
+
+        // If the command was called using a special button then edit the original message instead of sending a new one
+        output = "You equipped the **" + new_item_data[0] + "**, getting rid of your " + old_item_data[0] + "!";
+        if(embedEditOutput()){return;}
+        // Function for single message mode output so it can be used here and in the convert result
+        function embedEditOutput(){
+            if(lib.exists(message.message) && message.customId.includes("embedEdit")){
+                var button = new ButtonBuilder()
+                    .setCustomId(user.id + "|encounter|embedEdit")
+                    .setLabel('-- New encounter --')
+                    .setStyle(4)
+                var row = new ActionRowBuilder().addComponents([button]);
+    
+                message.deferUpdate();
+                delete message.message.embeds[0].data.fields;
+                message.message.embeds[0].data.description = output;
+                message.message.edit({ embeds: [message.message.embeds[0]], components: [row] });
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        message.reply({ content: "@ __**" + username + "**__: " + output, allowedMentions: { repliedUser: false }});
         
 	},
 };

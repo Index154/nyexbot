@@ -221,14 +221,14 @@ module.exports = {
             }else
             if(user_level >= 10 && user_level_old < 10){
                 levelup_extra = levelup_extra + "\n__You may now use__ `" + prefix + "class` __to select a character class!__";
-                trophy_extra = "You've also received the trophy **\u2747<:real_black_circle:856189638153338900>EXP Collector**|10";
+                trophy_extra = "You received the trophy **\u2747<:real_black_circle:856189638153338900>EXP Collector**|10";
             }else
             if(user_level >= 15 && user_level_old < 15){
                 levelup_extra = levelup_extra + "\n__From now on you may use__ `" + prefix + "fullradar` __as a more efficient alternative to the radar in exchange for some Gold!__";
             }else
             if(user_level >= 20 && user_level_old < 20){
                 levelup_extra = levelup_extra + "\n__From now on you may use__ `" + prefix + "research` __to gain various rewards in exchange for Scrap!__\n(Convert materials into Scrap with `" + prefix + "materials convert [amount] [name]`)";
-                trophy_extra = "You've also received the trophy **\u2747\uD83D\uDD35EXP Collector**!|20";
+                trophy_extra = "You received the trophy **\u2747\uD83D\uDD35EXP Collector**!|20";
             }else
             if(user_level >= 30 && user_level_old < 30){
                 // If the user reached level 30, give them their boost
@@ -260,11 +260,11 @@ module.exports = {
                     ab_name = "Nimble Fingers";
                     ab_desc = "Converting materials and equipment will now yield more Scrap!";
                 }
-                trophy_extra = "You've also received the trophy **\u2747\uD83D\uDFE2EXP Collector**!|30";
+                trophy_extra = "You received the trophy **\u2747\uD83D\uDFE2EXP Collector**!|30";
                 levelup_extra = levelup_extra + "\nYou got a new ability: **[" + ab_name + "]**: " + ab_desc;
             }else
             if(user_level >= 40 && user_level_old < 40){
-                trophy_extra = "You've also received the trophy **\u2747\uD83D\uDD34EXP Collector**!|40";
+                trophy_extra = "You received the trophy **\u2747\uD83D\uDD34EXP Collector**!|40";
             }else
             if(user_level >= 50 && user_level_old < 50){
                 // If the user reached level 50, tell them about their new ability
@@ -294,23 +294,23 @@ module.exports = {
                     ab_name = "Master Craftsmanship";
                     ab_desc = "Increased chance for crafting ingredients not to be consumed and you also gain even more Scrap upon conversion!";
                 }
-                trophy_extra = "You've also received the trophy **\u2747\uD83D\uDFE1EXP Collector**!|50";
+                trophy_extra = "You received the trophy **\u2747\uD83D\uDFE1EXP Collector**!|50";
                 levelup_extra = levelup_extra + "\nYou've unlocked a new ability: **[" + ab_name + "]**: " + ab_desc + "\nFrom now on your level is locked until you've completed all quests. After completing all quests you can earn stat points by leveling up!";
             }else if(user_level > 50 && user_level_old >= 50){
                 if(user_level >= 60 && user_level_old < 60){
-                    trophy_extra = "You've also received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|60";
+                    trophy_extra = "You received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|60";
                 }else
                 if(user_level >= 70 && user_level_old < 70){
-                    trophy_extra = "You've also received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|70";
+                    trophy_extra = "You received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|70";
                 }else
                 if(user_level >= 80 && user_level_old < 80){
-                    trophy_extra = "You've also received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|80";
+                    trophy_extra = "You received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|80";
                 }else
                 if(user_level >= 90 && user_level_old < 90){
-                    trophy_extra = "You've also received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|90";
+                    trophy_extra = "You received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|90";
                 }else
                 if(user_level >= 100 && user_level_old < 100){
-                    trophy_extra = "You've also received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|100";
+                    trophy_extra = "You received the trophy **\u2747\uD83D\uDFE0EXP Collector**!|100";
                 }
                 levelup_extra += "\n**You have received a stat point!**";
                 stats[13] = parseInt(stats[13]) + 1;
@@ -2336,11 +2336,11 @@ module.exports = {
 		return areaImage;
 	},
 
-	// Input: Object, Object, String
+	// Input: Object, Object
 	// Dependency: Lib itself
 	// Funtion: Executes a random event from a selection of possible outcomes
 	// Output: None
-	randomEvent(user) {
+	randomEvent(message, user) {
 		// Important variables
         var dir = "userdata/" + user.id;
 
@@ -2348,77 +2348,85 @@ module.exports = {
 		var output = "";
 		var chosenEvent = null;
 		var events = [
-			{name: '+treasure', weight: 30}, // weight: 30
-			{name: '+specialItem', weight: 10},
-			{name: '+gold', weight: 50},
-			{name: '-gold', weight: 30},
-			{name: '+scrap', weight: 50},
-			{name: '-scrap', weight: 30},
-			{name: 'realm', weight: 40},
-			{name: 'buff', weight: 50},
-			{name: 'extremeBuff', weight: 20},
-			{name: '+radar', weight: 20},
-			{name: 'loseEncounter', weight: 10},
-			{name: '+encounterRank', weight: 10},
-			{name: 'makeShiny', weight: 1},
-			{name: '+exp', weight: 20},
-			{name: '+monster', weight: 10},
-			{name: 'nothing', weight: 100}
+			{name: '+treasure', weight: 2}, // 30
+			{name: '+specialItem', weight: 0}, // 10
+			{name: '+gold', weight: 0}, // 50
+			{name: '-gold', weight: 0}, // 30
+			{name: '+scrap', weight: 0}, // 50
+			{name: '-scrap', weight: 0}, // 30
+			{name: 'realm', weight: 0}, // 20
+			{name: 'buff', weight: 0}, // 30
+			{name: 'extremeBuff', weight: 0}, // 20
+			{name: '+radar', weight: 0}, // 20
+			{name: 'loseEncounter', weight: 0}, // 10
+			{name: '+encounterRank', weight: 0}, // 10
+			{name: 'makeShiny', weight: 0}, // 1
+			{name: '+exp', weight: 0}, // 20
+			{name: '+monster', weight: 0}, // 10
+			{name: 'abilityCd', weight: 0}, // 40
+			{name: 'nothing', weight: 1} // 100
 		];
-		var eventRoll = lib.rand(1, 1000);
+		var weightSum = 0;
+		for(e in events){weightSum = weightSum + e.weight;}
+		var eventRoll = lib.rand(1, weightSum);
 		for(x = 0; x < events.length && chosenEvent == null; x++){
 			if(eventRoll <= events[x].weight){
 				chosenEvent = events[x].name;
 			}else{
-				eventRoll = eventRoll - events[x].weight;
+				eventRoll -= events[x].weight;
 			}
 		}
-		// TEMP
-		chosenEvent = '+treasure';
-			
-		// Free item
-		if(chosenEvent == '+treasure'){
-			// Get treasure loot data
-			var icon_array = {D: "<:real_black_circle:856189638153338900>", C: "🔵", B: "🟢", A: "🔴", S: "🟡", SS: "🟠", Special: "✨", Vortex: "🌀"};
-			var items = lib.readFile("data/items.txt").split(";\n");
-			var treasures = lib.readFile("data/treasure_drops.txt").split(";\n");
-			var common_drops = treasures[0].split(",");
-			var rare_drops = treasures[1].split(",");
-			var veryrare_drops = treasures[2].split(",");
-			var veryrare_chance = 2;
-			var rare_chance = 5 + veryrare_chance;
-			
-			// Determine results
-			var rarity_roll = lib.rand(1, 100);
-			var rarity_text = "common";
-			if(rarity_roll <= veryrare_chance){
-				var drop_pool = veryrare_drops;
-				rarity_text = "very rare";
-			}else if(rarity_roll <= rare_chance){
-				var drop_pool = rare_drops;
-				rarity_text = "rare";
-			}else{
-				var drop_pool = common_drops;
-			}
-			var drop_roll = lib.rand(0, drop_pool.length - 1);
-			var item_key = drop_pool[drop_roll];
-			var item = items[item_key].split("|");
-			
-			// Add it to the inventory
-			var inventory = lib.readFile(dir + "/inventory.txt");
-			if(inventory !== ""){
-				inventory = inventory + "," + item_key;
-			}else{
-				inventory = inventory + item_key;
-			}
-			lib.saveFile(dir + "/inventory.txt", inventory);
 
-			output = "You stumbled upon a hidden chest and found... " + icon_array[item[12]] +"**" + item[0] + "** (" + rarity_text + " treasure)!";
+		switch(chosenEvent){
+			case '+treasure':
+				// Get treasure loot data
+				var icon_array = {D: "<:real_black_circle:856189638153338900>", C: "🔵", B: "🟢", A: "🔴", S: "🟡", SS: "🟠", Special: "✨", Vortex: "🌀"};
+				var items = lib.readFile("data/items.txt").split(";\n");
+				var treasures = lib.readFile("data/treasure_drops.txt").split(";\n");
+				var common_drops = treasures[0].split(",");
+				var rare_drops = treasures[1].split(",");
+				var veryrare_drops = treasures[2].split(",");
+				var veryrare_chance = 2;
+				var rare_chance = 5 + veryrare_chance;
+				
+				// Determine results
+				var rarity_roll = lib.rand(1, 100);
+				var rarity_text = "common";
+				if(rarity_roll <= veryrare_chance){
+					var drop_pool = veryrare_drops;
+					rarity_text = "very rare";
+				}else if(rarity_roll <= rare_chance){
+					var drop_pool = rare_drops;
+					rarity_text = "rare";
+				}else{
+					var drop_pool = common_drops;
+				}
+				var drop_roll = lib.rand(0, drop_pool.length - 1);
+				var item_key = drop_pool[drop_roll];
+				var item = items[item_key].split("|");
+				
+				// Add it to the inventory
+				var inventory = lib.readFile(dir + "/inventory.txt");
+				if(inventory !== ""){
+					inventory = inventory + "," + item_key;
+				}else{
+					inventory = inventory + item_key;
+				}
+				lib.saveFile(dir + "/inventory.txt", inventory);
+
+				output = "You got " + icon_array[item[12]] +"**" + item[0] + "** (" + rarity_text + ")!";
+				break;
+			default:
+				// Nothing happens
+				output = "Nothing happened..."
 		}
 
-		// If the command was called using a special button then edit the original message instead of sending a new one
-		// TODO...
-		return output;
+		// Edit the message
+		message.deferUpdate();
+		message.message.components[0].components.splice(4, 1);
+		message.message.embeds[0].data.description = message.message.embeds[0].data.description.slice(0, -1);
+		message.message.embeds[0].data.description += output;
+		message.message.edit({ embeds: [message.message.embeds[0]], components: [message.message.components[0]] });
 	}
 
 };

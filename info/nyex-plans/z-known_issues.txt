@@ -1,4 +1,7 @@
 ## __Known issues__
 - Transform can transform a Vortex into the same Vortex, making it sometimes useless
 - The bot throws an error when a daily quest is generated for the first time for each rank
+- Media command can not display mp4s
+- Remind command can't deal with timestamps that are not fully filled in (like 1.5.2024 or 5:30)
+- Reoeating reminders don't stay consistent if they repeat over several months
 <:sp:860269564779429908>

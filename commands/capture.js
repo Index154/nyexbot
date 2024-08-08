@@ -119,28 +119,28 @@ module.exports = {
                 case 2:
                     // Affinity - Higher capturing cap - Value is bonus
                     capLimitBonus = abilityValue;
-                    abilityOutput = "\n**Your equipment ability has activated, increasing this encounter's maximum capture chance!**";
+                    abilityOutput = "**Ability: Increased this encounter's max capture chance!**";
                     break;
                 case 3:
                     // Subduer - Higher mana - Value is bonus
                     capBonus = abilityValue;
-                    abilityOutput = "\n**Your equipment ability has activated, increasing your mana for this encounter!**";
+                    abilityOutput = "**Ability: Increased mana for this encounter!**";
                     break;
                 case 4:
                     // Curse - Lower mana - Value is negative bonus
                     capBonus = abilityValue;
-                    abilityOutput = "\n**Your equipment ability has activated, lowering your mana for this encounter!**";
+                    abilityOutput = "**Ability: Lowered mana for this encounter!**";
                     break;
                 case 5:
                     // Scrapper - Grant some Scrap - Value is amount
-                    abilityOutput = "\n**Your equipment ability has activated, granting you " + abilityValue + " Scrap!**";
+                    abilityOutput = "**Ability: Obtained " + abilityValue + " Scrap!**";
                     var scrap = parseInt(lib.readFile(dir + "/scrap.txt"));
                     scrap += abilityValue;
                     lib.saveFile(dir + "/scrap.txt", scrap);
                     break;
                 case 6:
                     // Charger - Grant some radar charges - Value is amount
-                    abilityOutput = "\n**Your equipment ability has activated, granting you " + abilityValue + " radar charges!**";
+                    abilityOutput = "**Ability: Obtained " + abilityValue + " radar charges!**";
                     var charge_amount = abilityValue;
                     // Determine new total charge amount
                     var old_charge_amount = lib.readFile(dir + "/charges.txt");
@@ -163,13 +163,13 @@ module.exports = {
                     var lureTypes = ["Slime", "Beast", "Demon", "Undead", "Arthropod", "Dark", "Water", "Plant", "Reptile", "Armored", "Flying", "Fire", "Fish", "Holy", "Alien", "Intangible", "Frost", "Lightning", "Legendary", "Dragon"];
                     var lureType = lureTypes[lib.rand(0, lureTypes.length - 1)];
                     newBuff = [lureType + " Lure", 0, 0, 0, 0, 0, 0, 0, 0, "Special", "Item," + abilityValue];
-                    abilityOutput = "\n**Your equipment ability has activated, granting you a " + lureType + " Lure buff!**";
+                    abilityOutput = "**Ability: Obtained a " + lureType + " Lure buff!**";
                     buffFlag = true;
                     break;
                 case 8:
                     // Gambler - Grant a Dark Matter buff (random stats) - Value is negative limit
                     newBuff = ["Gambler", "?", "?", "?", "?", "?", "?", 0, 0, "Special", "Item,8"];
-                    abilityOutput = "\n**Your equipment ability has activated, granting you a buff with random stat changes!**";
+                    abilityOutput = "**Ability: Obtained a random buff!**";
                     // Replace question mark buff data with random numbers
                     for(i = 1; i < 7; i++){
                         newBuff[i] = lib.rand(abilityValue, 15);
@@ -179,7 +179,7 @@ module.exports = {
                 default:
                     // Persistence - Keep encounter after losing - Value is always 1
                     keepEncounter = true;
-                    abilityOutput = "\n**Your equipment ability has activated! But it seems to have been of no use...**";
+                    abilityOutput = "**Ability: It was of no use this time...**";
             }
         }
 		
@@ -235,15 +235,15 @@ module.exports = {
             lib.saveFile(dir + "/hp.txt", hp);
             
             // If the user's HP is below 1, throw them out of the realm
-            realm_extra = "You have **" + hp + "** HP remaining!\n";
+            realm_extra = "You have **" + hp + "** HP remaining!";
             if(hp < 1){
                 lib.saveFile(dir + "/area.txt", "0");
-                realm_extra = "Your HP has been reduced to **0** and you've been returned to the Hub!\n";
+                realm_extra = "Your HP has been reduced to **0** and you've been returned to the Hub!";
             }
         }
 		
 		// If the user won, add the monster to their captures and captures dex
-		var output = "```diff\n-The " + monster_title + " escaped...```" + realm_extra + "The success chance was **" + win_chance + "%**" + abilityOutput;
+		var output = "```diff\n-The " + monster_title + " escaped...```";
 		if(win){
 		    var trophy_extra = "";
 			var captures = lib.readFile(dir + "/captures.txt");
@@ -277,7 +277,6 @@ module.exports = {
 			        for(y = 0; y < checkTypes.length; y++){
 			            var type_count = 0;
 			            var has_count = 0;
-			            var id_list = [];
     			        for(i = 0; i < monster_groups.length; i++){
     			            var temp_monsters = monster_groups[i].split(";\n");
     			            for(x = 0; x < temp_monsters.length - 1; x++){
@@ -293,13 +292,13 @@ module.exports = {
     			        // Give a trophy if a milestone has been reached
     			        if(has_count == type_count){
     			            // Full type completion
-    			            trophy_extra += "\nYou've received the trophy **" + trophyIcons[checkTypes[y]] + "\uD83D\uDFE1[" + checkTypes[y] + "] Master**!";
+    			            trophy_extra += "You've received the trophy **" + trophyIcons[checkTypes[y]] + "\uD83D\uDFE1[" + checkTypes[y] + "] Master**!";
     			            trophy = true;
     			            new_trophies.push("50" + "|" + checkTypes[y] + "|" + "S" + "|**[" + checkTypes[y] + "] Master** - Collected all " + checkTypes[y] + " monsters");
     			        }else
     			        if(has_count == Math.floor(type_count / 2)){
     			            // 50% type completion
-    			            trophy_extra += "\nYou've received the trophy **" + trophyIcons[checkTypes[y]] + "\uD83D\uDD34[" + checkTypes[y] + "] Enthusiast**!";
+    			            trophy_extra += "You've received the trophy **" + trophyIcons[checkTypes[y]] + "\uD83D\uDD34[" + checkTypes[y] + "] Enthusiast**!";
     			            trophy = true;
     			            new_trophies.push("51" + "|" + checkTypes[y] + "|" + "A" + "|**[" + checkTypes[y] + "] Enthusiast** - Collected 50% of " + checkTypes[y] + " monsters");
     			        }
@@ -321,21 +320,36 @@ module.exports = {
 			
 			lib.saveFile(dir + "/captures.txt", captures);
 			lib.saveFile(dir + "/current_encounter.txt", "");
-			output = "```diff\n+You successfully captured the " + monster_title + "!```" + realm_extra + "The success chance was **" + win_chance + "%**" + abilityOutput + trophy_extra;
+			output = "```diff\n+Capture success!```";
 		}
 
 		// End encounter (unless ability prevented it)
 		if(!win && keepEncounter){
-		    output = "```diff\n-You did not capture the " + monster_title + "```" + realm_extra + "The success chance was **" + win_chance + "%**\n**Your equipment ability has activated, allowing you to try again!**";
+		    output = "```diff\n-The " + monster_title + " escaped...```";
+            abilityOutput = "**Ability: You get a second chance!**";
 		}else{
 		    lib.saveFile(dir + "/current_encounter.txt", "");
 		}
 
-        // Formatting consistency
-        output += "\n\u2800";
-        if(realm_extra == ""){
-            output += "\n\u2800";
+        // Formatting for semi-consistent embed height
+        chanceExtra = "**" + win_chance + "%** success chance";
+        allExtras = [chanceExtra, realm_extra, abilityOutput, trophy_extra];
+        var extraCount = 0;
+        for(e = 0; e < allExtras.length; e++){
+            if(allExtras[e] != ""){
+                extraCount++;
+                if(extraCount > 1){
+                    allExtras[e] = "\n" + allExtras[e];
+                }
+            }
         }
+        lineCount = 3;
+        for(i = lineCount; i > extraCount; i--){
+            var spacer = "\n\u2800";
+            if(extraCount == 0 && i == lineCount){spacer = "\u2800";}
+            allExtras.push(spacer);
+        }
+        output += allExtras.join("");
 
         // If the command was called using a special button then edit the original message instead of sending a new one
         if(lib.exists(message.message) && message.customId.includes("embedEdit")){
@@ -347,7 +361,10 @@ module.exports = {
             }
             delete message.message.embeds[0].data.fields;
             message.message.embeds[0].data.description = output;
+            // Remove interact buttons
             message.message.components[0].components.splice(0, 2);
+            // Remove event button
+            if(message.message.components[0].components.length == 3){ message.message.components[0].components.splice(2, 1); }
             message.message.edit({ embeds: [message.message.embeds[0]], components: [message.message.components[0]]});
             return;
         }

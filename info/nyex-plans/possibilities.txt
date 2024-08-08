@@ -13,4 +13,5 @@
 - Let users update reminders?
 - Allow users to define their timezone for reminders?
 - Separate DM notification settings for bosses, updates and (later) shinies?
+- Guessing minigame for Isaac or Gungeon item silhouettes
 <:sp:860269564779429908>

@@ -26,7 +26,6 @@ module.exports = {
         // Set important variables
         var username = user.username;
         var dir = "userdata/" + user.id;
-        var extraCount = 0;
         
         // Empty confirmation queues
         lib.saveFile(dir + "/confirm.txt", "");
@@ -77,7 +76,6 @@ module.exports = {
             var buff_stat_subdiv = buff_stats[10].split(",");
             var buff_timer = parseInt(buff_stat_subdiv[1]);
             var item_name = buff_stats[0];
-            extraCount++;
             if(buff_timer === 0){
                 // Remove old item's values from the user's stats
                 for(y = 1; y < 7; y++){
@@ -130,7 +128,7 @@ module.exports = {
         // Set monster group data
         var m_luck = parseInt(user_stats[4]);
         var rarities = [4, 10, 20, 40, 200];
-        var rarity_names = ["Rank SS", "Rank S", "Rank A", "Rank B", "Rank C", "Rank D"];
+        var rarity_names = ["SS", "S", "A", "B", "C", "D"];
         // Modify rarity chances based on monster luck
         var limit = 1000;
         // Negative luck math
@@ -231,7 +229,7 @@ module.exports = {
                     var abilityRand = lib.rand(1, 100);
                     if(abilityRand <= abilityCondition){
                         polisher = abilityValue;
-                        abilityOutput = "**Your equipment ability has activated, increasing this encounter's shiny chance!**";
+                        abilityOutput = "**Ability: Increased this encounter's shiny chance!**";
                     }
                     break;
                 case 1:
@@ -241,7 +239,7 @@ module.exports = {
                     var last_min = parseInt(lib.readFile(dir + "/ability_timestamp.txt"));
                     if(last_min + abilityCondition < current_min || last_min - current_min > abilityCondition){
                         polisher = abilityValue;
-                        abilityOutput = "**Your equipment ability has activated, increasing this encounter's shiny chance!**";
+                        abilityOutput = "**Ability: Increased this encounter's shiny chance!**";
                         lib.saveFile(dir + "/ability_timestamp.txt", current_min);
                     }
                     break;
@@ -249,7 +247,7 @@ module.exports = {
                     // Encounter-based
                     if(abilityCondition === 0){
                         polisher = abilityValue;
-                        abilityOutput = "**Your equipment ability has activated, increasing this encounter's shiny chance!**";
+                        abilityOutput = "**Ability: Increased this encounter's shiny chance!**";
                         var abilityList = lib.readFile("data/ability_conditions.txt").split("\n");
                         var abilityVariants = abilityList[abilityID].split(";;");
                         var abilityVariant = abilityVariants[abilityModifierTime].split("|");
@@ -275,7 +273,7 @@ module.exports = {
         // MAX chain count for 100% shiny rate: 1.2 = 42 | 1.3 = 29 | 1.4 = 23 | 1.5 = 19 | 1.6 = 17
         var chainModifiers = [1.2, 1.23, 1.3, 1.35, 1.5, 1.6];
         if(chain[0] == chosen_group + "," + monster_key + ",0"){
-            chainInfo = "\n❗ ❗ This is your current chain target ❗ ❗";
+            chainInfo = "❗ ❗ **__Chain target__** ❗ ❗";
             for(i = 0; i < parseInt(chain[1]); i++){
                 shinyRate = Math.floor(shinyRate / chainModifiers[chosen_group]);
                 if(shinyRate < 1){shinyRate = 1;}
@@ -342,7 +340,7 @@ module.exports = {
         var captures = lib.readFile(dir + "/all_captures.txt");
         var capped = "";
         if(captures.includes(monster)){
-            capped = "  ( \uD83D\uDCBC )";
+            capped = " \uD83D\uDCBC";
         }
 		
         // Check single-embed mode setting and change button types accordingly
@@ -377,9 +375,9 @@ module.exports = {
 			.setStyle(2)
         var buttons = [button1, button2, button3, button4];
 
-        // Add random event button if applicable (1 in 20)
+        // Add random event button sometimes (1 in 25)
         var randomEventRoll = lib.rand(1, 100);
-        if(randomEventRoll <= 100){ // 5
+        if(randomEventRoll <= 4){ // 4
             var eventButton = new ButtonBuilder()
                 .setCustomId(user.id + "|event|" + buttonType)
                 .setLabel('?')
@@ -393,22 +391,29 @@ module.exports = {
 		//var buttonList2 = [button3]
 		
         // Prepare extra text and formatting
-        if(buff_extra != ""){abilityOutput = "\n" + abilityOutput;}
         var hpExtra = "";
         if(parseInt(area_raw) > 13){
             var hp = parseInt(lib.readFile(dir + "/hp.txt"));
             hpExtra = "You have **" + hp + "** HP remaining!";
-            extraCount++;
         }
-        if(abilityOutput != ""){extraCount++;}
-        if(hpExtra != "" && buff_extra != ""){buff_extra = "\n" + buff_extra;}
-        allExtras = hpExtra + buff_extra + abilityOutput;
-        
+
         // Formatting for semi-consistent embed height
-        for(i = 3; i > extraCount; i--){
+        chanceExtra = "";
+        allExtras = [chainInfo, hpExtra, buff_extra, abilityOutput];
+        var extraCount = 0;
+        for(e = 0; e < allExtras.length; e++){
+            if(allExtras[e] != ""){
+                extraCount++;
+                if(extraCount > 1){
+                    allExtras[e] = "\n" + allExtras[e];
+                }
+            }
+        }
+        lineCount = 3;
+        for(i = lineCount; i > extraCount; i--){
             var spacer = "\n\u2800";
-            if(extraCount == 0 && i == 3){spacer = "\u2800";}
-            allExtras = allExtras + spacer;
+            if(extraCount == 0 && i == lineCount){spacer = "\u2800";}
+            allExtras.push(spacer);
         }
 
         // Output embed
@@ -416,7 +421,7 @@ module.exports = {
         	.setColor(embed_color)
         	.setTitle("@ __**" + username + "**__")
         	.setThumbnail("https://artificial-index.com/media/rpg_monsters/" + monster_name.toLowerCase().replace(/ /g, "_") + ".png")
-        	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + chainInfo + "```" + allExtras);
+        	.setDescription("```" + color_mod + "A" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ") appeared!" + capped + "```" + allExtras.join(""));
 
         // Add footer if necessary
         if(chain[1] != "0"){

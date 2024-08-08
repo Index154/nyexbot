@@ -41,11 +41,11 @@ module.exports = {
         var captures = lib.readFile(dir + "/all_captures.txt");
         var capped = "";
         if(captures.includes(monster_keys)){
-            capped = "  ( \uD83D\uDCBC )";
+            capped = " \uD83D\uDCBC";
         }
         
         // Get rarity
-        var rarity_names = ["Rank D", "Rank C", "Rank B", "Rank A", "Rank S", "Rank SS"];
+        var rarity_names = ["D", "C", "B", "A", "S", "SS"];
         var rarity = rarity_names[monster_keys_array[0]];
         
         // Shiny check

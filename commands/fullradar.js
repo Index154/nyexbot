@@ -173,7 +173,7 @@ module.exports = {
         // Set monster group data
         var m_luck = parseInt(user_stats[4]);
         var rarities = [5, 10, 20, 40, 200];
-        var rarity_names = ["Rank SS", "Rank S", "Rank A", "Rank B", "Rank C", "Rank D"];
+        var rarity_names = ["SS", "S", "A", "B", "C", "D"];
         // Modify rarity chances based on monster luck
         var limit = 1000;
         if(m_luck < 0){
@@ -287,7 +287,7 @@ module.exports = {
         var captures = lib.readFile(dir + "/all_captures.txt");
         var capped = "";
         if(captures.includes(monster)){
-            capped = "  ( \uD83D\uDCBC )";
+            capped = " \uD83D\uDCBC";
         }
         
         // Build buttons

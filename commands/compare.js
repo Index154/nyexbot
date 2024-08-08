@@ -145,21 +145,32 @@ module.exports = {
         	);
 		
 		if(!noButtons){
-		    // Extra footer
-		    outputEmbed
-		        .setFooter({ text: "Do " + prefix + "equip to replace your " + item_data[0] + " with the " + new_item_data[0] + "!" });
-		    
+
+			// Check single-embed mode setting and change button types accordingly
+			var mode = "single";
+			var buttonType = "embedEdit";
+			var userModeSetting = lib.readFile(dir + "/commandmode.txt");
+			if(lib.exists(userModeSetting)){ mode = userModeSetting; }
+			if(mode != "single"){ buttonType = "normal"; }
+
 		    // Create buttons
     		var button1 = new ButtonBuilder()
-    			.setCustomId(user.id + "|equip")
+    			.setCustomId(user.id + "|equip|" + buttonType)
     			.setLabel('Equip')
     			.setStyle(3)
     		var button2 = new ButtonBuilder()
-    			.setCustomId(user.id + "|equip convert")
+    			.setCustomId(user.id + "|equip convert|" + buttonType)
     			.setLabel('Convert')
     			.setStyle(4)
     		var row = new ActionRowBuilder().addComponents([button1, button2]);
-    		
+			
+			// If the command was called using a special button then edit the original message instead of sending a new one
+			if(lib.exists(message.message) && message.customId.includes("embedEdit")){
+				message.deferUpdate();
+				message.message.edit({ embeds: [outputEmbed], components: [row] });
+				return;
+			}
+
     		// Button output
     		message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }, components: [row]});
 		}else{

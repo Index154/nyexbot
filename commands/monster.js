@@ -214,7 +214,7 @@ module.exports = {
         // Set monster group data
         var m_luck = parseInt(user_stats[4]);
         var rarities = [4, 10, 20, 40, 200];
-        var rarity_names = ["Rank SS", "Rank S", "Rank A", "Rank B", "Rank C", "Rank D"];
+        var rarity_names = ["SS", "S", "A", "B", "C", "D"];
         // Modify rarity chances based on monster luck
         var limit = 1000;
         // Negative luck math
@@ -315,7 +315,7 @@ module.exports = {
                     var abilityRand = lib.rand(1, 100);
                     if(abilityRand <= abilityCondition){
                         polisher = abilityValue;
-                        abilityOutput = "**Your equipment ability has activated, increasing this encounter's shiny chance!**";
+                        abilityOutput = "**Ability: Increased this encounter's shiny chance!**";
                     }
                     break;
                 case 1:
@@ -325,7 +325,7 @@ module.exports = {
                     var last_min = parseInt(lib.readFile(dir + "/ability_timestamp.txt"));
                     if(last_min + abilityCondition < current_min || last_min - current_min > abilityCondition){
                         polisher = abilityValue;
-                        abilityOutput = "**Your equipment ability has activated, increasing this encounter's shiny chance!**";
+                        abilityOutput = "**Ability: Increased this encounter's shiny chance!**";
                         lib.saveFile(dir + "/ability_timestamp.txt", current_min);
                     }
                     break;
@@ -333,7 +333,7 @@ module.exports = {
                     // Encounter-based
                     if(abilityCondition === 0){
                         polisher = abilityValue;
-                        abilityOutput = "**Your equipment ability has activated, increasing this encounter's shiny chance!**";
+                        abilityOutput = "**Ability: Increased this encounter's shiny chance!**";
                         var abilityList = lib.readFile("data/ability_conditions.txt").split("\n");
                         var abilityVariants = abilityList[abilityID].split(";;");
                         var abilityVariant = abilityVariants[abilityModifierTime].split("|");
@@ -397,7 +397,7 @@ module.exports = {
         var all_captures = lib.readFile(dir + "/all_captures.txt");
         var capped = "";
         if(all_captures.includes(monster)){
-            capped = "  ( \uD83D\uDCBC )";
+            capped = " \uD83D\uDCBC";
         }
 		
 		// Reduce realm HP

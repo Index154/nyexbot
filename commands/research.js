@@ -196,10 +196,17 @@ module.exports = {
                     }
                     
                 }
+
+                // Button for new research
+                var button = new ButtonBuilder()
+                    .setCustomId("any|research")
+                    .setLabel('New research list')
+                    .setStyle(1)
+                var row = new ActionRowBuilder().addComponents([button]);
                 
                 // Output and clearing of research file
                 if(levelup_extra !== ""){levelup_extra = "\n" + levelup_extra;}
-                message.reply({ content: "You claimed your research reward:\n**" + reward + "**" + levelup_extra + trophy_extra, allowedMentions: { repliedUser: false }});
+                message.reply({ content: "You claimed your research reward:\n**" + reward + "**" + levelup_extra + trophy_extra, components: [row], allowedMentions: { repliedUser: false }});
                 lib.saveFile(dir + "/research.txt", "");
                 return;
             }

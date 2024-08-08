@@ -540,7 +540,7 @@ module.exports = {
                     var embed_colors = ["#b0b0b0", "#0099ff", "#2AA189", "#b80909", "#e3b712", "#e39f0e"];
                     var embed_color = embed_colors[enc_keys[0]];
                     var color_mod = color_modifiers[enc_keys[0]];
-                    var rarity_names = ["Rank D", "Rank C", "Rank B", "Rank A", "Rank S", "Rank SS"];
+                    var rarity_names = ["D", "C", "B", "A", "S", "SS"];
                     var rarity = rarity_names[enc_keys[0]];
                     
                     // If the user has an active lure buff then give a chance to reroll into a monster of the matching type
@@ -605,7 +605,7 @@ module.exports = {
                     var captures = lib.readFile(dir + "/all_captures.txt");
                     var capped = "";
                     if(captures.includes(monster)){
-                        capped = "  ( \uD83D\uDCBC )";
+                        capped = " \uD83D\uDCBC";
                     }
 				    
 				    // Set flag for later

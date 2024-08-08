@@ -241,7 +241,7 @@ module.exports = {
             }
             var rankIcon = rankIcons[nextMilestone];
             if(trophy_extra !== ""){trophy_extra += "\n";}
-            trophy_extra += "You've also received the trophy **\uD83D\uDCAC" + rankIcon + "Quest Completionist**!";
+            trophy_extra += "You received the trophy **\uD83D\uDCAC" + rankIcon + "Quest Completionist**!";
 		}
 		
 		// Save trophies

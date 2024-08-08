@@ -47,6 +47,10 @@ module.exports = {
                     var checkArg = "nocheck";
                 }
             }
+            // Change "current" into user's current area for normal
+            if(args[0] == "current"){
+                args[0] = areas[parseInt(userArea)].split("**")[1].toLowerCase();
+            }
             
             if(area_list_lower.includes(args[0]) || args[0] == "realm" && userArea >= 14){
                 // If the user is looking at their current realm, reobtain the area list and don't remove realms this time
@@ -144,7 +148,14 @@ module.exports = {
             	.setTitle("Area list")
             	.setDescription(areas_raw);
             
-            message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false }});
+            // With button :)
+            var button = new ButtonBuilder()
+                .setCustomId("any|area current")
+                .setLabel('View current area monsters')
+                .setStyle(1)
+            var row = new ActionRowBuilder().addComponents([button]);
+            
+            message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});
         }
 
 	},

@@ -141,25 +141,29 @@ module.exports = {
                 var streakInfo = "\nYour current daily streak is " + streak;
                 var streakReward = "";
                 switch(parseInt(streak)){
-                    case 7:
-                        // 7 day streak
-                        streakInfo = "\nYou have reached a streak of 7! Your reward is one [Monster Token] and a [Special Vortex (Common)]!";
+                    case 5:
+                        streakInfo = "\nYou have reached a streak of 5! Your reward is one **[Monster Token]** and a **[Special Vortex (Common)]**!";
                         streakReward = "351,340";
                         break;
-                    case 14:
-                        // 14 day streak
-                        streakInfo = "\nYou have reached a streak of 14! Your reward is one [Monster Token] and a [Special Vortex (Rare)]!";
+                    case 10:
+                        streakInfo = "\nYou have reached a streak of 10! Your reward is **two [Monster Token]** and a **[Special Vortex (Common)]**!";
+                        streakReward = "351,340,340";
+                        break;
+                    case 15:
+                        streakInfo = "\nYou have reached a streak of 15! Your reward is one **[Monster Token]** and a **[Special Vortex (Rare)]**!";
                         streakReward = "352,340";
                         break;
-                    case 21:
-                        // 21 day streak
-                        streakInfo = "\nYou have reached a streak of 21! Your reward is one [Monster Token] and a [Special Vortex (Rare)]!";
-                        streakReward = "352,340";
+                    case 20:
+                        streakInfo = "\nYou have reached a streak of 20! Your reward is **two [Monster Token]** and a **[Special Vortex (Rare)]**!";
+                        streakReward = "352,340,340";
+                        break;
+                    case 25:
+                        streakInfo = "\nYou have reached a streak of 25! Your reward is one **[Monster Token]** and a **[Special Vortex (Ultra rare)]**!";
+                        streakReward = "353,340";
                         break;
                     case 30:
-                        // Max streak (resets streak to 0)
-                        streakInfo = "\nYou have reached a streak of 30! Your reward is one [Monster Token] and a [Special Vortex (Ultra rare)]!\nYour streak has been reset to 0!";
-                        streakReward = "353,340";
+                        streakInfo = "\nYou have reached a streak of 30! Your reward is **two [Monster Token]** and a **[Special Vortex (Ultra rare)]**!\nYour streak has been reset to 0!";
+                        streakReward = "353,340,340";
                         streak = 0;
                         break;
                     default:

@@ -113,18 +113,18 @@ module.exports = {
                 case 4:
                     // Curse - Lower attack and speed - Value is negative bonus
                     figBonus = abilityValue / 2;
-                    abilityOutput = "\n**Your equipment ability has activated, reducing your attack and speed for this encounter!**";
+                    abilityOutput = "**Ability: Reduced attack and speed for this encounter!**";
                     break;
                 case 5:
                     // Scrapper - Grant some Scrap - Value is amount
-                    abilityOutput = "\n**Your equipment ability has activated, granting you " + abilityValue + " Scrap!**";
+                    abilityOutput = "**Ability: Obtained " + abilityValue + " Scrap!**";
                     var scrap = parseInt(lib.readFile(dir + "/scrap.txt"));
                     scrap += abilityValue;
                     lib.saveFile(dir + "/scrap.txt", scrap);
                     break;
                 case 6:
                     // Charger - Grant some radar charges - Value is amount
-                    abilityOutput = "\n**Your equipment ability has activated, granting you " + abilityValue + " radar charges!**";
+                    abilityOutput = "**Ability: Obtained " + abilityValue + " radar charges!**";
                     var charge_amount = abilityValue;
                     // Determine new total charge amount
                     var old_charge_amount = lib.readFile(dir + "/charges.txt");
@@ -147,13 +147,13 @@ module.exports = {
                     var lureTypes = ["Slime", "Beast", "Demon", "Undead", "Arthropod", "Dark", "Water", "Plant", "Reptile", "Armored", "Flying", "Fire", "Fish", "Holy", "Alien", "Intangible", "Frost", "Lightning", "Legendary", "Dragon"];
                     var lureType = lureTypes[lib.rand(0, lureTypes.length - 1)];
                     newBuff = [lureType + " Lure", 0, 0, 0, 0, 0, 0, 0, 0, "Special", "Item," + abilityValue];
-                    abilityOutput = "\n**Your equipment ability has activated, granting you a " + lureType + " Lure buff!**";
+                    abilityOutput = "**Ability: Obtained a " + lureType + " Lure buff!**";
                     buffFlag = true;
                     break;
                 case 8:
                     // Gambler - Grant a Dark Matter buff (random stats) - Value is negative limit
                     newBuff = ["Gambler", "?", "?", "?", "?", "?", "?", 0, 0, "Special", "Item,8"];
-                    abilityOutput = "\n**Your equipment ability has activated, granting you a buff with random stat changes!**";
+                    abilityOutput = "**Ability: Obtained a random buff!**";
                     // Replace question mark buff data with random numbers
                     for(i = 1; i < 7; i++){
                         newBuff[i] = lib.rand(abilityValue, 15);
@@ -163,17 +163,17 @@ module.exports = {
                 case 9:
                     // Persistence - Keep encounter after losing - Value is always 1
                     keepEncounter = true;
-                    abilityOutput = "\n**Your equipment ability has activated! But it seems to have been of no use...**";
+                    abilityOutput = "**Ability: It was of no use this time...**";
                     break;
                 case 10:
                     // Strength - Higher winning cap - Value is bonus
                     figLimitBonus = abilityValue;
-                    abilityOutput = "\n**Your equipment ability has activated, increasing this encounter's maximum winning chance!**";
+                    abilityOutput = "**Ability: Increased this encounter's max winning chance!**";
                     break;
                 default:
                     // Berserker - Higher attack/speed - Value is bonus
                     figBonus = abilityValue / 2;
-                    abilityOutput = "\n**Your equipment ability has activated, increasing your attack and speed for this encounter!**";
+                    abilityOutput = "**Ability: Increased attack and speed for this encounter!**";
             }
         }
         
@@ -297,12 +297,12 @@ module.exports = {
                 lib.saveFile(dir + "/hp.txt", hp);
                 
                 // Extra output
-                realm_extra = "You have **" + hp + "** HP remaining!\n";
+                realm_extra = "You have **" + hp + "** HP remaining!";
                 
                 // If the user's HP is below 1, throw them out of the realm
                 if(hp < 1){
                     lib.saveFile(dir + "/area.txt", "0");
-                    forced_death_extra = "You ran out of HP and have been returned to the Hub!\n";
+                    forced_death_extra = "You ran out of HP and have been returned to the Hub!";
                     realm_extra = "";
                 }
                 
@@ -360,18 +360,25 @@ module.exports = {
                 }
                 
             }
+
+            // Check single-embed mode setting and change button types accordingly
+            var mode = "single";
+            var buttonType = "embedEdit";
+            var userModeSetting = lib.readFile(dir + "/commandmode.txt");
+            if(lib.exists(userModeSetting)){ mode = userModeSetting; }
+            if(mode != "single"){ buttonType = "normal"; }
             
             // Define buttons for equip drops
             var button1 = new ButtonBuilder()
-    			.setCustomId(user.id + "|equip")
+    			.setCustomId(user.id + "|equip|" + buttonType)
     			.setLabel('Equip')
     			.setStyle(3)
             var button2 = new ButtonBuilder()
-    			.setCustomId(user.id + "|compare")
+    			.setCustomId(user.id + "|compare|" + buttonType)
     			.setLabel('Compare')
     			.setStyle(1)
     		var button3 = new ButtonBuilder()
-    			.setCustomId(user.id + "|equip convert")
+    			.setCustomId(user.id + "|equip convert|" + buttonType)
     			.setLabel('Convert')
     			.setStyle(4)
             
@@ -382,7 +389,7 @@ module.exports = {
                 // Get item data
                 var items = lib.readFile("data/items.txt").split(";\n");
                 var item_data = items[item_key].split("|");
-                drop_extra = "\nThe monster dropped: **" + item_data[0] + "**";
+                drop_extra = "The monster dropped: **" + item_data[0] + "**";
                 
                 // If the drop is equippable and new, start an equip prompt. Otherwise add it to the inventory / material inventory
                 if(item_data[10] == "Weapon" || item_data[10] == "Defense" || item_data[10] == "Tool"){
@@ -393,7 +400,7 @@ module.exports = {
 					
 					var equipModifier = lib.generateModifier(user_stats[6]);
 					lib.saveFile(dir + "/new_modifier.txt", equipModifier);
-					drop_extra = "\nThe monster dropped: **" + equipModifier.split("|")[0] + item_data[0] + "**";
+					drop_extra = "The monster dropped: **" + equipModifier.split("|")[0] + item_data[0] + "**";
                     
                 }else{
                     // It is a consumable or material. Save it
@@ -453,17 +460,34 @@ module.exports = {
                     trophies = trophies + ";\n" + new_trophy;
 	            }
                 lib.saveFile(dir + "/trophies.txt", trophies);
-                trophy_extra = "\n" + trophy_data[0];
+                trophy_extra = trophy_data[0];
+            }
+
+            // Formatting for semi-consistent embed height
+            chanceExtra = "**" + exp + "** EXP & **" + gold + "** Gold - **" + win_chance + "%** win chance";
+            allExtras = [chanceExtra, realm_extra + forced_death_extra, drop_extra + material_extra, abilityOutput, levelup_extra, trophy_extra];
+            var extraCount = 0;
+            for(e = 0; e < allExtras.length; e++){
+                if(allExtras[e] != ""){
+                    extraCount++;
+                    if(extraCount > 1){
+                        allExtras[e] = "\n" + allExtras[e];
+                    }
+                }
+            }
+            lineCount = 3;
+            for(i = lineCount; i > extraCount; i--){
+                var spacer = "\n\u2800";
+                if(extraCount == 0 && i == lineCount){spacer = "\u2800";}
+                allExtras.push(spacer);
             }
             
             // Winning output
-            if(levelup_extra !== ""){levelup_extra = "\n" + levelup_extra;}
-            output = "```diff\n+You defeated the " + monster_title + "!" + "```" + realm_extra + forced_death_extra + "You got **" + exp + "** EXP and **" + gold + "** Gold!" + abilityOutput + levelup_extra + drop_extra + material_extra + trophy_extra + "\nYour chance of winning was **" + win_chance + "%**!";
-            if(drop_extra == ""){output += "\n\u2800";}
+            output = "```diff\n+You won!```" + allExtras.join("");
             
         }else{
             // Regular losing message
-            output = "```diff\n-You lost...```Your chance of winning was **" + win_chance + "%**!";
+            output = "```diff\n-You lost...```**" + win_chance + "%** win chance";
 
             // If the user is in a realm, reduce their HP and prepare a different output
             var area = lib.readFile(dir + "/area.txt");
@@ -479,12 +503,12 @@ module.exports = {
                 // If the user's HP is below 1, throw them out of the realm
                 if(hp < 1){
                     lib.saveFile(dir + "/area.txt", "0");
-                    message.reply({ content: "@ __**" + username + "**__```diff\n-You lost...```Your HP has been reduced to **0** and you've been returned to the Hub!\nYour chance of winning was **" + win_chance + "%**!", allowedMentions: { repliedUser: false }});
+                    message.reply({ content: "@ __**" + username + "**__```diff\n-You lost...```**" + win_chance + "%** win chance\nYour HP has been reduced to **0** and you've been returned to the Hub!", allowedMentions: { repliedUser: false }});
                     return;
                 }
                 
                 // Realm losing message
-                output = "```diff\n-You lost...```You have **" + hp + "** HP remaining!\nYour chance of winning was **" + win_chance + "%**!\n**Due to the effects of the realm you may try again**";
+                output = "```diff\n-You lost...```**" + win_chance + "%** win chance\nYou have **" + hp + "** HP remaining!\n**The realm allows you to try again...**";
             }
             
         }
@@ -492,8 +516,8 @@ module.exports = {
         // End encounter
         if(!win){
             if(keepEncounter){
-                if(!realmFlag){abilityOutput = "\n**Your equipment ability has activated, allowing you to try again!**" + "\n\u2800";}
-                else{abilityOutput = "\n**Your equipment ability has activated but [Persistence] has no effect on fights inside of a realm...**";}
+                if(!realmFlag){abilityOutput = "**Ability: You get a second chance!**" + "\n\u2800";}
+                else{abilityOutput = "**Ability: [Persistence] has no effect in a realm...**";}
             }else if(!realmFlag){
                 output += "\n\u2800\n\u2800";
                 lib.saveFile(dir + "/current_encounter.txt", "");
@@ -515,6 +539,8 @@ module.exports = {
             message.deferUpdate();
             delete message.message.embeds[0].data.fields;
             message.message.embeds[0].data.description = output;
+            // Remove event button first
+            if(message.message.components[0].components.length == 5){ message.message.components[0].components.splice(4, 1); }
             if(!realmFlag){
                 message.message.components[0].components.splice(0, 2);
             }

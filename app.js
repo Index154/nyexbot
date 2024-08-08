@@ -214,6 +214,11 @@ client.on('interactionCreate', interaction => {
 	    if(interaction.customId === 'previousbtn' || interaction.customId === 'randbtn' || interaction.customId === 'nextbtn' || interaction.customId === 'rerollbutton') return;
 		var interactionData = interaction.customId.split("|");
 		if(interactionData[0] != "any" && interactionData[0] != user.id) return;
+        // Event button behavior
+        if(interaction.customId.includes("|event|")){
+            lib.randomEvent(interaction, user);
+            return;
+        }
         // Special "fix" for reminder buttons that may need a lot of text in the executed command which would not fit into the customId property
         if(interactionData[1].includes("customCommand")){interactionData[1] = interactionData[1].slice(0, -13) + interaction.message.content.split("\n")[1]}
 		var args = interactionData[1].split(" ");
@@ -648,7 +653,7 @@ for(i = 0; i < siteList.length; i++){
 
     var nDecipher = crypto.createDecipheriv(algorithm, SQLsecretKey, Buffer.from(SQLiv, 'hex'));
     var nDecrypted = Buffer.concat([nDecipher.update(Buffer.from(siteList[i].link, 'hex')), nDecipher.final()]).toString();
-    console.log(nDecrypted);
+    //console.log(nDecrypted);
     siteList[i].link = nDecrypted;
 }
 
