@@ -244,8 +244,8 @@ module.exports = {
 		
 		// If the user won, add the monster to their captures and captures dex
 		var output = "```diff\n-The " + monster_title + " escaped...```";
+        var trophy_extra = "";
 		if(win){
-		    var trophy_extra = "";
 			var captures = lib.readFile(dir + "/captures.txt");
 			if(captures === ""){
 				captures = monster_keys;
