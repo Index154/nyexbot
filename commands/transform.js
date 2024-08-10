@@ -27,11 +27,14 @@ module.exports = {
         
         // If there was no input, send a generic message with price information
 	    if(args.length === 0 || args[0] === undefined){
+            // Get scrap amount
+            var scrapAmount = lib.readFile(dir + "/scrap.txt");
+            if(scrapAmount === undefined || scrapAmount === ""){ scrapAmount = 0; }
 	        // Assemble only a basic embed
     	    var outputEmbed = new Discord.EmbedBuilder()
             	.setColor('#0099ff')
             	.setTitle("Transformation Info")
-            	.setDescription("Below is a list of item types that can be transformed (rerolled) along with their respective scrap costs.")
+            	.setDescription("(Your scrap count: " + scrapAmount + ")\nBelow is a list of item types that can be transformed (rerolled) along with their respective scrap costs.")
             	.addFields(
             		{ name: 'Vortex Prices', value: "Common: " + vortexPrices[0] + "\nRare: " + vortexPrices[1] + "\nUltra rare: " + vortexPrices[2], inline: true },
             		{ name: 'Equipment Prices', value: "D-tier: " + equipPrices[0] + "\nC-tier: " + equipPrices[1] + "\nB-tier: " + equipPrices[2] + "\nA-tier: " + equipPrices[3] + "\nS-tier: " + equipPrices[4] + "\nSS-tier: " + equipPrices[5], inline: true }

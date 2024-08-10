@@ -133,7 +133,6 @@ module.exports = {
 			var monster_name = monster_values[0];
 			var shiny = "";
 			var shiny_2 = "";
-			var shiny_extra = "";
 			var icon = "";
 			var iconModifier = iconMods[keys[0]];
 			if(monster_values[4].substring(0, 9) == "(Special)"){icon = "\uD83D\uDFE3"; iconModifier = iconModifier + "1";}else{

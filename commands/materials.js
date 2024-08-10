@@ -38,9 +38,7 @@ module.exports = {
         
         // Get scrap amount
         var scrap_amount = lib.readFile(dir + "/scrap.txt");
-        if(scrap_amount === undefined || scrap_amount === ""){
-            scrap_amount = 0;
-        }
+        if(scrap_amount === undefined || scrap_amount === ""){ scrap_amount = 0; }
         
         // Go through the item names and join them into a list
         var item_names = "";

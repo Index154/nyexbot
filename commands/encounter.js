@@ -375,9 +375,9 @@ module.exports = {
 			.setStyle(2)
         var buttons = [button1, button2, button3, button4];
 
-        // Add random event button sometimes (1 in 25)
+        // Add random event button sometimes
         var randomEventRoll = lib.rand(1, 1000);
-        if(randomEventRoll <= 36){ // 36
+        if(randomEventRoll <= 25){ // 25 aka ~1/40?
             var eventButton = new ButtonBuilder()
                 .setCustomId(user.id + "|event|" + buttonType)
                 .setLabel('?')

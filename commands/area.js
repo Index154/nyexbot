@@ -3,15 +3,16 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'area',
-	usages: ['', '[area name]', 'check [area name]'],
-	descriptions: ['Displays a list of areas', 'Displays a list of monsters in an area', 'Displays a list of monsters the user has yet to capture, available in the specified area'],
+	usages: ['', '[area name]', 'check [area name]', 'checkshiny [area name]'],
+	descriptions: ['Displays a list of areas', 'Displays a list of monsters in an area', 'Displays a list of monsters the user has yet to capture, available in the specified area', 'Displays a list of shiny monsters the user has yet to capture, available in the specified area'],
     shortDescription: 'Check areas and their monsters',
     weight: 20,
     addendum: [
         '- You can `{prefix}move` between regular areas at will',
         '- The area you are in determines which monsters you can encounter',
         '- Some areas called realms are only accessible through special items called fragments',
-        '- The [area name] argument can be replaced with the word "realm" to inspect a realm you are currently in'
+        '- The [area name] argument can be replaced with the word "current" to inspect a realm you are currently in',
+        '- You can also replace the [area name] argument with the word "all" to check all monsters in the game'
     ],
     category: 'info',
 	
@@ -28,50 +29,58 @@ module.exports = {
         // Set list of available areas
         var areas_raw = lib.readFile("data/area_names.txt");
         var areas = areas_raw.split(",");
-        // Remove areas above ID 13 (Realms)
-        areas = areas.slice(0, 14);
+        // Remove areas above ID 13 (Realms) except for the one the user is in, if any
+        
+        if(userArea < 14){
+            areas = areas.slice(0, 14);
+        }else if(userArea == 14){
+            areas = areas.slice(0, 15);
+        }else{
+            areas.splice(userArea + 1, areas.length - 1 - userArea);
+            areas.splice(14, userArea - 14);
+            userArea = 14;
+        }
         var area_list_lower = areas.join("|").toLowerCase();
         areas[parseInt(userArea)] = "**" + areas[parseInt(userArea)] + "** - `You are here!`";
         areas_raw = areas.join("\n");
         
         // Give out a list of areas if the user submitted no argument. Otherwise try to match their input to an area
         if(args.length > 0){
-            if(args.length > 1){
-                allArgs = allArgs.toLowerCase();
-                // Check for check input
-                if(args[0] == "check"){
-                    var checkArg = "check";
-                    var checkSplit = allArgs.split("check ");
-                    args[0] = checkSplit[1];
-                }else{
-                    var checkArg = "nocheck";
-                }
+            allArgs = allArgs.toLowerCase();
+            // Check for check input
+            if(args[0] == "check" || args[0] == "checkshiny"){
+                if(args.length == 1){allArgs += " current";}
+                var checkArg = "check";
+                if(args[0] == "checkshiny"){ checkArg = "checkshiny";}
+                var checkSplit = allArgs.split(args[0] + " ");
+                args[0] = checkSplit[1];
+            }else{
+                var checkArg = "nocheck";
             }
-            // Change "current" into user's current area for normal
+
+            console.log(args);
+            
+            // Change "current" into user's current area for normal areas
             if(args[0] == "current"){
                 args[0] = areas[parseInt(userArea)].split("**")[1].toLowerCase();
             }
             
-            if(area_list_lower.includes(args[0]) || args[0] == "realm" && userArea >= 14){
-                // If the user is looking at their current realm, reobtain the area list and don't remove realms this time
-                areas_raw = lib.readFile("data/area_names.txt");
-                areas = areas_raw.split(",");
-                area_list_lower = areas.join("|").toLowerCase();
-                areas_raw = areas.join("\n");
-                
-                if(args[0] == "realm" && userArea >= 14){
-                    var key = userArea;
-                }else{
-                    var split = area_list_lower.split(args[0]);
-    				var left_side = split[0].replace(/[^|]/g, "");
-    				var key = left_side.length;
-                }
-                var area_name = areas[key];
-                
-                // Set area monster path
+            if(area_list_lower.includes(args[0]) || args[0] == "all"){
+                // Get area id by name
                 var area = "";
-                area = "_" + key;
-                
+                var area_name = "All";
+                if(args[0] != "all"){
+                    var split = area_list_lower.split(args[0]);
+                    var left_side = split[0].replace(/[^|]/g, "");
+                    var key = left_side.length;
+                    area_name = areas[key];
+                    area = "_" + key;
+                }
+                // Remove "** - `You are here!`" from area name
+                if(area_name.includes("You are here")){
+                    area_name = area_name.slice(0, -18);
+                }
+                                
 				// Create paged embed
 				var embedTemplate = new Discord.EmbedBuilder()
 					.setColor('#0099ff')
@@ -82,16 +91,16 @@ module.exports = {
                 
                 // Create monster list for displaying
                 var monsters_raw = lib.readFile("data/monsters/monsters" + area + ".txt");
-                var monster_groups = monsters_raw.split("#################################################################################\n");
-                var monster_groups_main = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
-                if(lib.readFile(dir + "/monster_mode.txt") == "funny"){monster_groups_main = lib.readFile("data/monsters/monsters_alt.txt").split("#################################################################################\n");}
+                var monster_groups = monsters_raw.split("#################################################################################\n");                
                 // Get captures if the user passed the "check" argument
-                if(checkArg == "check"){
+                if(checkArg == "check" || checkArg == "checkshiny"){
                     var captures = lib.readFile(dir + "/all_captures.txt");
                     check = " that you haven't captured";
                     for_user = username + ", here are all ";
+                    var group = "Monsters";
+                    if(checkArg == "checkshiny"){group = "Shinies";}
                     embedTemplate
-                        .setDescription("Only showing monsters that " + username + " has never captured before");
+                        .setDescription(group + " you've never captured before");
                 }
                 
                 // Go through all the monster names and add them to the embed
@@ -108,14 +117,21 @@ module.exports = {
                         var monster_name = monster_values[0];
                         
                         // If the area is Hub, put the rank in the name of every monster and save them in an array
-                        monster_name = icon_array[i] + monster_name;
+                        var specialIcon = "";
+                        if(monster_values[4].substring(0, 9) == "(Special)"){ specialIcon = "\uD83D\uDFE3"; }
+                        monster_name = icon_array[i] + specialIcon + monster_name;
                         
                         // If the user entered "check" as the second argument, only add uncaught monsters
-                        if(checkArg == "check"){
+                        if(checkArg == "check" || checkArg == "checkshiny"){
                             // Get ID
                             var id = monster_values[7];
                             // Check if the monster is captured
-                            if(captures.includes(i + "," + id + ",0")){}else{
+                            var toCheck = i + "," + id + ",0";
+                            if(checkArg == "checkshiny"){
+                                toCheck = i + "," + id + ",1";
+                                monster_name = icon_array[i] + specialIcon + "\u2728" + monster_values[0];
+                            }
+                            if(!captures.includes(toCheck)){
                                 hub_array[hub_array.length] = monster_name;
                             }
                         }else{
@@ -133,7 +149,7 @@ module.exports = {
                 
                 // Send embed
 				var paginationArray = hub_array;
-				var elementsPerPage = 20;
+				var elementsPerPage = 17;
 				var fieldTitle = "Sorted by rank";
 				lib.createPagedFieldEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
 				

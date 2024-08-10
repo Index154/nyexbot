@@ -1,3 +1,15 @@
+__v0.21.2__
+- Increased all button timeouts to at least 1 minute
+- `Research` buttons no longer time out (it was unnecessary)
+- `Recipes` now shows all recipes when there is no argument
+- `Transform` now shows your scrap count
+- Fixed `check` not working on shinies
+- Fixed `area check hub` not working under certain conditions due to going over the allowed character limit of embeds
+- Fixed `area` acting weird when you're in a realm
+- If you try to check an area without including an area name then it will default to checking your current area now
+- New subcommand: `area checkshiny [area name]` can be used to see which shinies you are missing from an area's available monsters
+- You can now do `area all`, `area check all` and `area checkshiny all` to see a list of ALL monsters in the game, including realms and stuff
+
 __v0.21.1__
 - Fixed every random event being nothing
 - Added several other random events

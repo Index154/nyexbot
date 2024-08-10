@@ -310,6 +310,7 @@ module.exports = {
 			.setLabel('C')
 			.setStyle(3)
 		var buttons = [button1, button2, button3];
+        var row = new ActionRowBuilder().addComponents(buttons);
 		
 		// Get scrap amount
 		var scrapAmount = parseInt(lib.readFile(dir + "/scrap.txt"));
@@ -321,7 +322,7 @@ module.exports = {
         // Display project list
 	    var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
-        	.setTitle(username + "'s available research projects")
+        	.setTitle("Your available research projects")
         	.setDescription("Available Scrap: " + scrapAmount.toString())
         	.addFields(
         		{ name: "Project A:\n[" + projectA_data[1] + " " + projectA_data[0] + " Research]", value: "Cost: " + prices[projectA_data[1]] + " Scrap" + notAffordable[0] + "\nDuration: " + research_durations[projectA_data[1]], inline: false},
@@ -331,7 +332,8 @@ module.exports = {
         	.setFooter({ text: "Use \"" + prefix + "research [A/B/C]\" or a button to start a project!" });
         
         // Output
-        lib.buttonReply(message, [outputEmbed], buttons)
+        message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});
+        //lib.buttonReply(message, [outputEmbed], buttons)
         
 	},
 };

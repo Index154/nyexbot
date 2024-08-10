@@ -355,7 +355,7 @@ module.exports = {
 		buttonList = [ button1, button2 ];
 		
 		// Send embed
-		lib.embedFieldPagination(message, embedTemplate, pages, buttonList, 30000);
+		lib.embedFieldPagination(message, embedTemplate, pages, buttonList, 60000);
 	},
 	
 	// Input: Array, object, integer, object, ?, ?, ?, string, string, object
@@ -514,7 +514,7 @@ module.exports = {
 		buttonList = [ button1, button2, button3, button4 ];
 		
 		// Send embed
-		lib.monsterPagination(message, pages, buttonList, startingId, 30000, shinyButtons, alternateImages);
+		lib.monsterPagination(message, pages, buttonList, startingId, 60000, shinyButtons, alternateImages);
 	},
 	
 	// Input: Array, string, integer, object
@@ -550,7 +550,7 @@ module.exports = {
 		buttonList = [ button1, button3, button2 ];
 		
 		// Send embed
-		lib.embedlessPagination(message, pages, buttonList, startingId, 30000);
+		lib.embedlessPagination(message, pages, buttonList, startingId, 60000);
 	},
 
 	// Input: String, ?, ?, integer, object, object, ?
@@ -685,7 +685,7 @@ module.exports = {
 		buttonList = [ button1, button2, button3 ];
 
 		// Go to secondary function
-		lib.itemEmbedPagination(user, message, embeds, buttonList, startingId, 30000);
+		lib.itemEmbedPagination(user, message, embeds, buttonList, startingId, 60000);
 	},
 
 	// Input: Message object, array of embed objects
@@ -1127,6 +1127,7 @@ module.exports = {
 			});
 		}else{
 			embed.data.fields[embed.data.fields.length - 1].value = pages[page];
+			console.log(pages[page]);
 			curPage = await msg.reply({
 				embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [row],
@@ -2532,6 +2533,7 @@ module.exports = {
 		message.deferUpdate();
 		message.message.components[0].components.splice(message.message.components[0].components.length - 1, 1);
 		message.message.embeds[0].data.description = message.message.embeds[0].data.description.slice(0, -1);
+		if(!message.message.embeds[0].data.description.includes("```")){message.message.embeds[0].data.description += "\n\u2800\n";}
 		message.message.embeds[0].data.description += output;
 		message.message.edit({ embeds: [message.message.embeds[0]], components: [message.message.components[0]] });
 	}

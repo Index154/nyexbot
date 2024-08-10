@@ -182,10 +182,33 @@ module.exports = {
 			    message.reply({ content: "\u274C That item could not be found. Please try again!", allowedMentions: { repliedUser: false }});
 			}
             
-        }else{
-            // Default output message
-            message.reply({ content: 'The full crafting recipe list is currently unavailable.\nYou may instead use `' + prefix + 'recipes craftable` to see which items you are able to craft right now.', allowedMentions: { repliedUser: false }});
+        }else{            
+            // Loop through the recipes list and add them all to the output
+            var items = lib.readFile("data/items.txt");
+            var items_array = items.split(";\n");
+            var item_list = ["None"];
+            var recipes = lib.readFile("data/recipes.txt").split(";\n");
+            for(i = 0; i < recipes.length; i++){
+                var recipe = "|" + recipes[i];
+                var recipe_data = recipes[i].split("|");
+                
+                // Add to output
+                var result_item = items_array[recipe_data[0]].split("|");
+                if(item_list[0] == "None"){
+                    item_list[0] = icon_array[result_item[12]] + "**" + result_item[0] + "** (" + recipe_data[2] + ")";
+                }else{
+                    item_list[item_list.length] = icon_array[result_item[12]] + "**" + result_item[0] + "** (" + recipe_data[2] + ")";
+                }
+            }
+            
+            // Create paged embed and send it
+            var paginationArray = item_list;
+            var elementsPerPage = 15;
+            var fieldTitle = "Found " + item_list.length + " recipes\n";
+            var embedTemplate = new Discord.EmbedBuilder()
+                .setColor('#0099ff')
+                .setTitle("List of all recipes");
+            lib.createPagedFieldEmbed(paginationArray, elementsPerPage, embedTemplate, fieldTitle, message);
         }
-        
 	},
 };

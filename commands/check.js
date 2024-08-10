@@ -53,14 +53,12 @@ module.exports = {
             var monster_data = monsters[monster_keys_array[1]].split("|");
 		}
         
-        // Minor grammatical check
-        var n_extra = lib.nCheck(monster_data[0]);
-        
         // Get rarity
         var rarity_names = ["D", "C", "B", "A", "S", "SS"];
         var rarity = rarity_names[monster_keys_array[0]];
         if(monster_keys_array[2] == "1"){
             rarity = rarity + "++";
+            monster_data[4] = "A shiny monster! This is an exceedingly rare find!"
         }
         
 		// Assemble a basic embed for the output
@@ -74,14 +72,14 @@ module.exports = {
         outputEmbed = new Discord.EmbedBuilder()
         	.setColor(embed_color)
         	.setTitle(monster_data[0])
+            .setDescription(monster_data[4])
         	.setImage("https://artificial-index.com/media/rpg_monsters/" + monster_data[0].toLowerCase().replace(/ /g, "_") + ".png")
-        	.setDescription(monster_data[4])
         	.addFields(
         		{ name: 'Attack', value: monster_data[1], inline: true },
         		{ name: 'Speed', value: monster_data[2], inline: true },
         		{ name: 'Rank', value: rarity, inline: true},
         		{ name: 'Type', value: type, inline: true }
-        	)
+        	);
 		
 		// Get item drops and add them
 		if(monster_keys_array[2] == "1"){
@@ -111,7 +109,7 @@ module.exports = {
             }
             drops = drops + item_data[0] + ": " + drop_chances[x] + "%";
         }
-        
+
         outputEmbed
             .addFields( { name: "Drops", value: drops, inline: true } );
             
