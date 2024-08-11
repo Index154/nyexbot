@@ -25,12 +25,12 @@ module.exports = {
         
         // Get user's current area
         var userArea = parseInt(lib.readFile(dir + "/area.txt"));
+        var originalUserArea = userArea;
 
         // Set list of available areas
         var areas_raw = lib.readFile("data/area_names.txt");
         var areas = areas_raw.split(",");
         // Remove areas above ID 13 (Realms) except for the one the user is in, if any
-        
         if(userArea < 14){
             areas = areas.slice(0, 14);
         }else if(userArea == 14){
@@ -58,16 +58,14 @@ module.exports = {
                 var checkArg = "nocheck";
             }
             
-            // Change "current" into user's current area for normal areas
-            if(args[0] == "current"){
-                args[0] = areas[parseInt(userArea)].split("**")[1].toLowerCase();
-            }
-            
-            if(area_list_lower.includes(args[0]) || args[0] == "all"){
+            if(area_list_lower.includes(args[0]) || args[0] == "all" || args[0] == "current"){
                 // Get area id by name
                 var area = "";
                 var area_name = "All";
-                if(args[0] != "all"){
+                if(args[0] == "current"){
+                    area_name = areas[parseInt(userArea)].split("**")[1].toLowerCase();
+                    area = "_" + originalUserArea;
+                }else if(args[0] != "all"){
                     var split = area_list_lower.split(args[0]);
                     var left_side = split[0].replace(/[^|]/g, "");
                     var key = left_side.length;
