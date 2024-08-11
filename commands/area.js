@@ -63,7 +63,7 @@ module.exports = {
                 var area = "";
                 var area_name = "All";
                 if(args[0] == "current"){
-                    area_name = areas[parseInt(userArea)].split("**")[1].toLowerCase();
+                    area_name = areas[parseInt(userArea)].split("**")[1];
                     area = "_" + originalUserArea;
                 }else if(args[0] != "all"){
                     var split = area_list_lower.split(args[0]);
