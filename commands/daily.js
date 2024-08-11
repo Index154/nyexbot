@@ -99,22 +99,24 @@ module.exports = {
         }
         target_name = shiny + monster_data[0];
 
-        // Create button
-        var button1 = new ButtonBuilder()
-			.setCustomId("any|dodaily")
-			.setLabel('Do daily')
-			.setStyle(3);
-		var row = new ActionRowBuilder().addComponents([button1]);
-		
-		// Check if the user has the monster in their previous captures
+		// Check if the user has the monster in their captures
+        var button = null;
         var captures = lib.readFile(dir + "/captures.txt");
-        var capped = "";
         if(captures.includes(target)){
-            capped = " \uD83D\uDCBC";
+            button = new ButtonBuilder()
+                .setCustomId("any|dodaily")
+                .setLabel('Do daily')
+                .setStyle(3);
+        }else{
+            button = new ButtonBuilder()
+                .setCustomId("any|move " + quest_data[6].toLowerCase())
+                .setLabel('Move to area')
+                .setStyle(1);
         }
+        var row = new ActionRowBuilder().addComponents([button]);
         
     	// Show the user info about their current quest
-        var output = "@ __**" + username + "**__ Today's " + rank + "-Rank quest is... ```\nDeliver [" + target_name + "]!" + capped + "```" + display_text + streakInfo;
+        var output = "@ __**" + username + "**__ Today's " + rank + "-Rank quest is... ```\nDeliver [" + target_name + "]!```" + display_text + streakInfo;
         message.reply({ content: output, allowedMentions: { repliedUser: false }, components: [row] });
 	},
 };
