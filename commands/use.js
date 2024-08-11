@@ -270,7 +270,6 @@ module.exports = {
                 }
 
                 // If the item is a Memory Link then check if the user has a chain and save it for later. Also don't apply regular buffs further down
-                var keep_item_2 = false;
                 if(new_item_data_2[0] == "Memory"){
                     
                     // Check if the user has a chain (higher than 0)
@@ -707,7 +706,6 @@ module.exports = {
                             }
                         }
                         inventory_array.splice(key, 1);
-                    
                     }
 				}
 				lib.saveFile(dir + "/inventory.txt", inventory_array.join(","));
