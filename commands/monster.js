@@ -33,62 +33,9 @@ module.exports = {
         var dir = "userdata/" + user.id;
         
         // Create a new user folder with default files if there is none yet
-        var newInfo = "";
         if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
-            lib.saveFile(dir + "/ability.txt", "0|0|0");
-            lib.saveFile(dir + "/ability_cd.txt", "");
-            lib.saveFile(dir + "/ability_timestamp.txt", "");
-            lib.saveFile(dir + "/all_captures.txt", "");
-            lib.saveFile(dir + "/area.txt", "4");
-            lib.saveFile(dir + "/boss_cd.txt", "1");
-            lib.saveFile(dir + "/captures.txt", "");
-            lib.saveFile(dir + "/charges.txt", "0");
-            lib.saveFile(dir + "/chain.txt", "0|0");
-            lib.saveFile(dir + "/confirm.txt", "");
-            lib.saveFile(dir + "/confirm_conv.txt", "no");
-            lib.saveFile(dir + "/cooldown.txt", "1");
-            lib.saveFile(dir + "/crafting_queue.txt", "");
-            lib.saveFile(dir + "/current_buff.txt", "");
-            lib.saveFile(dir + "/current_quest.txt", "0");
-            lib.saveFile(dir + "/daily.txt", "1|0");
-            lib.saveFile(dir + "/daily_radar.txt", "1");
-            lib.saveFile(dir + "/dmupdates.txt", "no");
-            lib.saveFile(dir + "/equipment.txt", "0,1,2");
-			lib.saveFile(dir + "/equip_modifiers.txt", "|0|0|0|0|0|0\n|0|0|0|0|0|0\n|0|0|0|0|0|0");
-            lib.saveFile(dir + "/fav_mats.txt", "");
-            lib.saveFile(dir + "/hp.txt", "0");
-            lib.saveFile(dir + "/inventory.txt", "");
-            lib.saveFile(dir + "/main_monster.txt", "");
-            lib.saveFile(dir + "/materials.txt", "");
-            lib.saveFile(dir + "/mon_cd.txt", "1");
-            lib.saveFile(dir + "/monster_mode.txt", "normal");
-            lib.saveFile(dir + "/new_equip.txt", "");
-			lib.saveFile(dir + "/new_modifier.txt", "");
-            lib.saveFile(dir + "/projects.txt", "");
-            lib.saveFile(dir + "/radar_values.txt", "0,0");
-            lib.saveFile(dir + "/research.txt", "");
-            lib.saveFile(dir + "/saved_chain.txt", "");
-            lib.saveFile(dir + "/saved_encounter.txt", "");
-            lib.saveFile(dir + "/scrap.txt", "0");
-            lib.saveFile(dir + "/stats.txt", "Classless|5|5|3|0|0|0|0|0|D|1|0|0|0");
-            lib.saveFile(dir + "/token_state.txt", "");
-            lib.saveFile(dir + "/username.txt", username);
-            
-            // If the user is an alpha tester, give them their trophy to start with
-            var userId = user.id.toString().trim();
-            newInfo = "You can either `" + prefix + "capture` or `" + prefix + "fight` monsters.\nUse`" + prefix + "enc` at any time to start an encounter!\nCheck out `" + prefix + "quest` to make progress and learn more!\nUse `" + prefix + "help` for more concentrated information!\nAnd please use `" + prefix + "submit` to send feedback and bug reports!";
-            if(userId == "266598133683847169" || userId == "690236539971698719" || userId == "480412132538712070" || userId == "270597404342878210"){
-                lib.saveFile(dir + "/trophies.txt", "10|Tester|Special|**Alpha Tester** - One of the special people!");
-                newInfo = "**Welcome back, alpha tester! Your trophy has been added**\n" + newInfo;
-            }else if(userId == "214754022832209921"){
-                lib.saveFile(dir + "/trophies.txt", "10|Tester|Special|**Creator** - Real!");
-                newInfo = "**You deleted your account again? So dedicated!**\n" + newInfo;
-            }else{
-                lib.saveFile(dir + "/trophies.txt", "");
-            }
-            
-            message.reply({ content: "@ __**" + username + "**__, your account has been created! Here is your first monster: ", allowedMentions: { repliedUser: false }});
+            lib.createUserFiles(message, user, commandPrefix);
+            return;
         }
         
         // Check and update cooldown
@@ -494,7 +441,7 @@ module.exports = {
 		lib.saveFile(dir + "/captures.txt", captures);
 		
         // Output embed
-        var extraStuff = [newInfo, realm_extra, tokenExtra, buff_extra, abilityOutput, trophy_extra];
+        var extraStuff = [realm_extra, tokenExtra, buff_extra, abilityOutput, trophy_extra];
         for(u = 0; u < extraStuff.length; u++){
             if(extraStuff[u] === ""){extraStuff.splice(u, 1); u--}
         }

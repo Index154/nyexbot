@@ -116,6 +116,15 @@ client.on("guildCreate", guild => {
     var serverList = lib.readFile("./data/serverlist.txt");
     serverList += "\n" + guild.id + " (" + guild.name + ")";
     lib.saveFile("./data/serverlist.txt", serverList);
+    
+    // Make config files for new servers
+    if(!fs.existsSync("./data/configs/" + guild.id)){
+        fs.mkdirSync("./data/configs/" + guild.id);
+        lib.saveFile("./data/configs/" + guild.id + "/channel.txt", "Undefined");
+        lib.saveFile("./data/configs/" + guild.id + "/prefix.txt", prefix);
+        lib.saveFile("./data/configs/" + guild.id + "/updates.txt", "Undefined");
+    }
+
     // Joining message
     guild.systemChannel.send("Thank you for inviting me to this server! Some quick tips for server admins & mods:\nUse `,set prefix [prefix]` to change the command prefix!\nUse `,set channel` in the channel where you want me to post my global announcements (for example when I'm updated or when a boss spawns)!");
 });
@@ -552,7 +561,6 @@ if(!isTestBranch){
                     .setCustomId(rows[i].userId + "|remind 10mins customCommand|normal")
                     .setLabel('\uD83D\uDD01 10m')
                     .setStyle(2)
-                console.log(button1)
                 var button2 = new ButtonBuilder()
                     .setCustomId(rows[i].userId + "||remind 1h customCommand|normal")
                     .setLabel('\uD83D\uDD01 1h')
