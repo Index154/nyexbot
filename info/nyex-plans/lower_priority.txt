@@ -1,7 +1,6 @@
 ## __Lower priority__
 `Same as above but even less necessary for the overall quality and completeness of the game`
 - .rec craftable being sorted by icons (so mostly by rank)
-- .rec showing all recipes in Discord instead of linking to the website
 - More regular realms and corresponding vortexes
 - Review of monster luck in items
 - Review of item drop rates (especially materials)

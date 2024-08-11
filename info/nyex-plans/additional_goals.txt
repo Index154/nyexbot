@@ -1,15 +1,11 @@
 ## __Additional goals__
 `These can be done at any time in any order and are not super important. Usually QoL improvements, fixes and additional features`
 - Additional icons for consumables in the inventory so you can tell what their main usages are (for example so you can easily find an item meant to help with capturing/fighting/item drops)
-- Unique shiny images for the last few remaining monsters
-- Global notifications when a shiny is caught, killed or failed
-- Monster modifiers which give extra rewards to the player if they capture or fight
-- Crafting system rework: No more equipment upgrades or set recipes for equipment. Instead every material has certain attributes (but no specific numbers) and you can craft custom equipment using a certain number of them (3 to 5?). The attributes of the ingredients then determine the resulting equipment item's stats and so on. Perhaps one of the ingredients has to be a "main ingredient" which will determine what kind of equipment will be made. The rank and values of the stats will be determined based on either the average rank of the ingredients or the lowest rank used and how often each attribute is present. Example: Using 4 D-Rank materials with only attack attributes will make an equipment with 10 Attack (plus some random fluctuation). If one of them had speed instead of attack then it would maybe have 8 attack and 2 speed on average
-- The ability to browse the details of items in the shop (like inventory embeds)
+- Crafting system rework: No more equipment upgrades or set recipes for equipment. Instead every material has certain attributes (but no specific numbers) and you can craft custom equipment using a certain number of them (3 to 5?). The attributes of the ingredients then determine the resulting equipment item's stats and so on. The type of equipment to craft can be chosen manually. The rank and values of the stats will be determined based on either the average rank of the ingredients or the lowest rank used and how often each attribute is present. Example: Using 4 D-Rank materials with only attack attributes will make an equipment with 10 Attack (plus some random fluctuation). If one of them had speed instead of attack then it would maybe have 8 attack and 2 speed on average
+- New equipment enhancement system: Equipment of rank A and above is no longer super strong compared to previous ranks. This makes it kind of underwhelming. To prevent users getting overly powerful equipment by chance it should still stay like this but there could be a mechanic that allows upgrading their stats with special materials. Maybe these materials can only be farmed from other monsters of the given rank found in realms. This would make realms more important. The progression in late game would then also depend less on stat points from quests which is good. Maybe enhancing could just add like +1 to +5 or +10 to the weapon name and multiply the stats
 - Convert media and quote into SQL commands with tags, then make `add` also use SQL
 - A daily and weekly refresh countdown in relevant commands (Example: A timer to show when the next daily will be, visible in daily and todo. Or a countdown to the next shop reset in the shop footer)
 - An option (or permanent change) for captures to only show matching results (Example: `.caps slime` => Then you can browse through all the Slime results with the buttons) | Similar to how media, clip and such work currently
-- Change speed gold bonus
 - Paginate reminders embed
 - Descriptions for the newer equipment and monsters
 - The ability to craft multiple consumables at once
@@ -23,5 +19,4 @@
 - List view sorting options (easier to implement with SQL)
 - A monster dex which shows how many monsters you're missing. Also with clues (area icons) for obtaining them (requires SQL)
 - Review high rank monster rates and maybe make it so S and SS are always kinda rare
-- More ways of getting monster tokens and maybe token monster rates being static (more like a gacha than normal)
 <:sp:860269564779429908>

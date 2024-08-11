@@ -1,5 +1,6 @@
 var { prefix } = require('../config.json');
 nick = require('./nickname.js');
+const { PermissionsBitField, ButtonBuilder, EmbedBuilder, ActionRowBuilder } = require('discord.js');
 
 module.exports = {
 	name: 'worldboss',
@@ -150,8 +151,8 @@ module.exports = {
 	    lib.saveFile(dir + "/boss_cd.txt", current_sec);
 	    
 	    // Lower the HP of the boss
-	    var user_data = lib.readFile(dir + "/stats.txt").split("|");
-	    var damage = parseInt(user_data[1]) + parseInt(user_data[2]);
+	    var userData = lib.readFile(dir + "/stats.txt").split("|");
+	    var damage = parseInt(userData[1]) + parseInt(userData[2]);
 	    if(damage < 0){damage = 0;}
 	    hp = hp - damage;
 	    
@@ -166,9 +167,9 @@ module.exports = {
             if(buff_timer === 0){
                 // Remove old item's values from the user's stats
                 for(y = 1; y < 7; y++){
-                    var base = parseInt(user_data[y]);
+                    var base = parseInt(userData[y]);
                     var minus = parseInt(buff_stats[y]);
-                    user_data[y] = base - minus;
+                    userData[y] = base - minus;
                 }
                 
                 buff_extra = "*Your **" + item_name + "**'s effect ran out!*";
@@ -312,36 +313,19 @@ module.exports = {
 	        }
 
 			// Give 20 Gold to the user
-			user_data[12] = parseInt(user_data[12]) + 20;
-			lib.saveFile(dir + "/stats.txt", user_data.join("|"));
+			userData[12] = parseInt(userData[12]) + 20;
+			lib.saveFile(dir + "/stats.txt", userData.join("|"));
 
 	        // Global output
 	        if(buff_extra !== ""){buff_extra = "\n" + buff_extra;}
 	        message.reply({ content: "You dealt **" + damage + "** damage to the boss, successfully defeating it! You've received **20 Gold**!" + buff_extra, allowedMentions: { repliedUser: false }});
-	        var global_message = "**The world boss [" + name + "] has been defeated!**\nAll participants have received one **[Unstable Vortex]**!\nThe following players have received trophies for being the top contributors:```\n" + top_players + "```";
 
-	        // Alert users in all configured channels
-            fs.readdir("data/configs", (err, files) => {
-                for(i = 0; i < files.length; i++){
-                    var channelID = lib.readFile("data/configs/" + files[i] + "/channel.txt");
-                    if(channelID !== "Undefined"){
-                        message.client.channels.cache.get(channelID).send(global_message);
-                    }
-                }
-            });
+			var outputEmbed = new EmbedBuilder()
+				.setColor('#0099ff')
+				.setTitle("Worldboss notification")
+				.setDescription("**The world boss [" + name + "] has been defeated!**\nAll participants have received one **[Unstable Vortex]**!\nThe following players have received trophies for being the top contributors:```\n" + top_players + "```");
 
-            // Also alert the signed-up users in DMs
-            fs.readdir("userdata", (err, files) => {
-                for(x = 0; x < files.length; x++){
-                    // Check if a user wants to receive announcements in DMs
-                    var userDMSetting = lib.readFile("./userdata/" + files[x] + "/dmupdates.txt");
-                    if(userDMSetting == "yes"){
-                        message.client.users.fetch(files[x], false).then((tempUser) => {
-                            tempUser.send(global_message);
-                        });
-                    }
-                }
-            });
+	        lib.notifyAll(user.id, message, outputEmbed, "bosses");
 
 	    }else{
 			// Define standard output
@@ -350,18 +334,18 @@ module.exports = {
 			// Determine if Gold should be taken away or given
 			if(lib.rand(1, 8) == 1){
 				// Unlucky!
-				user_data[12] = parseInt(user_data[12]);
+				userData[12] = parseInt(userData[12]);
 				var loss = 50;
-				if(user_data[12] < loss){loss = loss - (loss - user_data[12]);}
-				user_data[12] = user_data[12] - loss;
+				if(userData[12] < loss){loss = loss - (loss - userData[12]);}
+				userData[12] = userData[12] - loss;
 				output = "You dealt **" + damage + " damage** to the boss!\n__Oh no! The boss sneezed on you, making you lose **" + loss + " Gold**!__ Here is the monster's current status:```\n[" + name + "] (Rank " + rank + "X)\n" + hp + " HP remaining```" + buff_extra;
 			}else{
 				// Normal outcome
-				user_data[12] = parseInt(user_data[12]) + 20;
+				userData[12] = parseInt(userData[12]) + 20;
 			};
 			
 			// Update user stats with Gold change
-			lib.saveFile(dir + "/stats.txt", user_data.join("|"));
+			lib.saveFile(dir + "/stats.txt", userData.join("|"));
 
 	        // Regular output
 	        message.reply({ content: output, allowedMentions: { repliedUser: false }});

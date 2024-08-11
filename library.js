@@ -2563,6 +2563,47 @@ module.exports = {
 		if(!message.message.embeds[0].data.description.includes("```")){message.message.embeds[0].data.description += "\n\u2800\n";}
 		message.message.embeds[0].data.description += output;
 		message.message.edit({ embeds: [message.message.embeds[0]], components: [message.message.components[0]] });
-	}
+	},
 
+	// Input: Object, Object, Object, String
+	// Dependency: Lib itself
+	// Funtion: Tries to send a notification message to all users or channels configured to receive it
+	// Output: None
+	notifyAll(userId, message, outputEmbed, notifType){
+		var notifTypes = ["updates", "bosses", "shinies"];
+		
+		// Notify update channels
+		fs.readdir("./data/configs", (err, files) => {
+			// Go through the configured update channels for all servers
+			for(i = 0; i < files.length; i++){
+				var channelID = lib.readFile("./data/configs/" + files[i] + "/channel.txt");
+				var settings = lib.readFile("./data/configs/" + files[i] + "/updates.txt").split("|");
+				if(channelID !== "Undefined" && settings[notifTypes.indexOf(notifType)] == "On"){
+					message.client.channels.cache.get(channelID).send({ embeds: [outputEmbed] });
+				}
+			}
+		});
+
+		// Notify users
+		fs.readdir("./userdata", (err, files) => {
+			for(i = 0; i < files.length; i++){
+				// Go through all users
+				var settings = lib.readFile("./userdata/" + files[i] + "/dmupdates.txt").split("|");
+				if(settings[notifTypes.indexOf(notifType)] == "On"){
+					if(files[i] == userId){
+						// The user is the one who triggered the notification. Just reply to their message directly
+						// For notifications that should not reply to the user, just pass a dummy ID
+						// Exclude shiny notifications because the user doesn't need to get them
+						if(notifType != "shinies"){
+							message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
+						}
+					}else{
+						message.client.users.fetch(files[i], false).then((tempUser) => {
+							tempUser.send({ embeds: [outputEmbed] });
+						});
+					}
+				}
+			}
+		});
+	}
 };

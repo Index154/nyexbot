@@ -58,11 +58,11 @@ module.exports = {
         
         // If the user is a Merchant, check for abilities
         var merch_mod = 1;
-		var user_data = lib.readFile(dir + "/stats.txt").split("|");
-        if(user_data[0] == "Merchant"){
-            if(parseInt(user_data[10]) >= 50){
+		var userData = lib.readFile(dir + "/stats.txt").split("|");
+        if(userData[0] == "Merchant"){
+            if(parseInt(userData[10]) >= 50){
                 merch_mod = 1.1;
-            }else if(parseInt(user_data[10]) >= 30){
+            }else if(parseInt(userData[10]) >= 30){
                 merch_mod = 1.05;
             }
         }
@@ -139,9 +139,9 @@ module.exports = {
             lib.saveFile(dir + "/inventory.txt", inventory_array);
             
             // Give the user their gold
-            var user_data = lib.readFile(dir + "/stats.txt").split("|");
-            user_data[12] = parseInt(user_data[12]) + selling_price;
-            lib.saveFile(dir + "/stats.txt", user_data.join("|"));
+            var userData = lib.readFile(dir + "/stats.txt").split("|");
+            userData[12] = parseInt(userData[12]) + selling_price;
+            lib.saveFile(dir + "/stats.txt", userData.join("|"));
             
             // Output
             message.reply({ content: "You sold **[" + result_item_data[0] + " x " + count + "]** for **" + selling_price + "** Gold!", allowedMentions: { repliedUser: false }});

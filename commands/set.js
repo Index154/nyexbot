@@ -3,8 +3,8 @@ const { PermissionsBitField, ButtonBuilder, EmbedBuilder, ActionRowBuilder } = r
 
 module.exports = {
 	name: 'set',
-	usages: ['', 'updates', 'commandmode', 'monstermode', 'channel', 'prefix [text]'],
-	descriptions: ["Posts an embed with buttons for you to change some personal settings with", "Enables or disables whether you will receive announcements in DMs", "Enables or disables the single-message command mode", "Enables or disables the funny monster mode", "Sets the current channel as the server's NyexBot announcement channel", "Sets a new server-side prefix for the bot"],
+	usages: ['', 'updates', 'commandmode', 'monstermode', 'channel', 'channelupdates', 'prefix [text]'],
+	descriptions: ["Posts an embed with buttons for you to change some personal settings with", "Choose which announcements you'd like to receive in DMs", "Enables or disables the single-message command mode", "Enables or disables the funny monster mode", "Sets the current channel as the server's channel for various bot announcements and notifications", "Choose which types of announcements should be posted to the announcement channel", "Sets a new server-side prefix for the bot"],
     shortDescription: 'Set the server prefix or announcements channel or enable update DMs',
     weight: 5,
     addendum: [
@@ -19,21 +19,111 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
 
-        // Toggle updates for DM control
-        if(args[0] == "updates"){
-            // Get current setting
-            var updateSetting = lib.readFile(dir + "/dmupdates.txt");
-
-            // Switch the setting
-            if(updateSetting == "yes"){
-                updateSetting = "no";
-                message.reply({ content: "@ __**" + username + "**__: " + "You will no longer receive update and boss announcements in DMs!", allowedMentions: { repliedUser: false }});
+        // Permission check function
+        function hasPerms(){
+            if(!(message.client.guilds.cache.get(message.guildId)).members.cache.get(user.id).permissions.has(PermissionsBitField.Flags.ManageGuild)){
+                message.reply({ content: "\u274C This command can only be used by those with the permission \"Manage Server\"!", allowedMentions: { repliedUser: false }});
+                return false;
             }else{
-                updateSetting = "yes";
-                message.reply({ content: "@ __**" + username + "**__: " + "From now on you will receive update and boss announcements in DMs!", allowedMentions: { repliedUser: false }});
+                return true;
+            }
+        }
+
+        // Bring up notification selection menu...
+        if(args[0] == "updates" || args[0] == "channelupdates"){
+            var channelSet = "";
+            var embedTitle = "Your DM notifications";
+            var settingsPath = "";
+            var desc = "";
+            var setChannelButton = null;
+            if(args[0] == "channelupdates"){
+                // Only in servers
+                if(message.guild === null){
+                    message.reply({ content: "\u274C You can only change channel notification settings in servers!", allowedMentions: { repliedUser: false }});
+                    return;
+                }
+                // No server folder found
+                if(!fs.existsSync("./data/configs/" + message.guildId)){
+                    message.reply({ content: "\u274C Server config folder is missing!", allowedMentions: { repliedUser: false }});
+                    return;
+                }else{
+                    // No server settings found
+                    if(!fs.existsSync("./data/configs/" + message.guildId + "/updates.txt")){
+                        message.reply({ content: "\u274C Server update config is missing!", allowedMentions: { repliedUser: false }});
+                        return;
+                    }
+                }
+
+                // Check for permissions
+                if(!hasPerms()){ return; }
+
+                updateChannel = lib.readFile("./data/configs/" + message.guildId + "/channel.txt");
+                if(updateChannel != "Undefined"){
+                    updateChannel = message.client.channels.cache.get(updateChannel).name;
+                }
+                desc += "__Current notification channel:__ **" + updateChannel + "**";
+                settingsPath = "./data/configs/" + message.guildId + "/updates.txt";
+                embedTitle = "Server announcement channel notifications";
+                channelSet = "channel";
+                setChannelButton = new ButtonBuilder()
+                    .setCustomId(user.id + "|set channel")
+                    .setLabel("Make this the update channel")
+                    .setStyle(1);
+            }else{
+                settingsPath = dir + "/dmupdates.txt";
             }
 
-            lib.saveFile(dir + "/dmupdates.txt", updateSetting);
+            // Get current settings
+            var settingsList = ["updates", "bosses", "shinies"];
+            var settingsText = ["Update notifications", "World boss spawn and defeat notifications", "Shiny fight and capture notifications"];
+            var settings = lib.readFile(settingsPath).split("|");
+
+            // Change a setting
+            if(args.length > 1 && settingsList.includes(args[1])){
+                var idx = settingsList.indexOf(args[1]);
+                if(settings[idx] == "On"){
+                    settings[idx] = "Off";
+                }else{
+                    settings[idx] = "On";
+                }
+            }
+
+            // Format description
+            for(x = 0; x < settings.length; x++){
+                if(desc != ""){ desc += "\n"; }
+                desc += "- " + settingsText[x] + ": **" + settings[x] + "**";
+            }
+            var outputEmbed = new EmbedBuilder()
+                .setColor('#0099ff')
+                .setTitle(embedTitle)
+                .setDescription(desc);
+            var states = {"On": [4, "Disable"], "Off": [3, "Enable"]};
+            var button1 = new ButtonBuilder()
+                .setCustomId(user.id + "|set " + channelSet + "updates updates")
+                .setLabel(states[settings[0]][1] + ' update notifs')
+                .setStyle(states[settings[0]][0]);
+            var button2 = new ButtonBuilder()
+                .setCustomId(user.id + "|set " + channelSet + "updates bosses")
+                .setLabel(states[settings[1]][1] + ' boss notifs')
+                .setStyle(states[settings[1]][0]);
+            var button3 = new ButtonBuilder()
+                .setCustomId(user.id + "|set " + channelSet + "updates shinies")
+                .setLabel(states[settings[2]][1] + ' shiny notifs')
+                .setStyle(states[settings[2]][0]);
+            var buttons = [button1, button2, button3];
+            if(setChannelButton != null){ buttons.push(setChannelButton); }
+            var row = new ActionRowBuilder().addComponents(buttons);
+
+            // Save settings & output
+            lib.saveFile(settingsPath, settings.join("|"));
+            if(lib.exists(message.message)){
+                // Edit existing message
+                message.deferUpdate();
+                message.message.edit({ embeds: [outputEmbed], components: [row] });
+            }else{
+                // Post new message
+                message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
+            }
             return;
         }
 
@@ -131,7 +221,7 @@ module.exports = {
             // Build buttons
             var button1 = new ButtonBuilder()
                 .setCustomId("any|set updates")
-                .setLabel('Toggle DM updates')
+                .setLabel('Set notifications')
                 .setStyle(1)
             var button2 = new ButtonBuilder()
                 .setCustomId("any|set commandmode")
@@ -145,7 +235,7 @@ module.exports = {
 
             var outputEmbed = new EmbedBuilder()
                 .setTitle("@ __**" + username + "**__")
-                .setDescription("You may toggle the following settings:\n- DM updates: If enabled, you will be notified about world bosses and bot updates in DMs\n- Command mode: If single mode is enabled, pressing certain buttons will make the bot edit the message the buttons are attached to instead of posting a new message\n- Monster mode: If funny mode is enabled, all monster names and images will be randomized")
+                .setDescription("You may toggle the following settings:\n- Notifications: You can choose to be notified about world bosses, shiny interactions and bot updates in DMs\n- Command mode: If single mode is enabled, pressing certain buttons will make the bot edit the message the buttons are attached to instead of posting a new message\n- Monster mode: If funny mode is enabled, all monster names will be randomized (images will not work)")
                 .setFooter({ text: "See `" + prefix + "help set` for how to change server-wide settings" });
             
             message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
@@ -159,39 +249,31 @@ module.exports = {
         }
         
         // If the user doesn't have server admin rights, stop the command
-        (message.client.guilds.cache.get(message.guildId)).members.fetch(user.id).then((member) => {
-            if(!member.permissions.has(PermissionsBitField.Flags.ManageGuild)){
-                message.reply({ content: "\u274C This command can only be used by those with the permission \"Manage Server\"!", allowedMentions: { repliedUser: false }});
+        if(!hasPerms()){ return; }
+        
+        // Save the second argument as the new prefix or save the channel
+        var change_path = "data/configs/" + message.guildId + "/prefix.txt";
+        if(args[0] == "channel"){
+            change_path = "data/configs/" + message.guildId + "/channel.txt";
+            args[1] = message.channel.id;
+        }else{
+            if(args[1] === "" || args[1] === null || args[1] === undefined){
+                message.reply({ content: "\u274C Please define a prefix!", allowedMentions: { repliedUser: false }});
                 return;
-            }else{
-                // Get the server ID for later
-                var serverID = message.guildId;
-                
-                // Save the second argument as the new prefix or save the channel
-                var change_path = "data/configs/" + serverID + "/prefix.txt";
-                if(args[0] == "channel"){
-                    change_path = "data/configs/" + serverID + "/channel.txt";
-                    args[1] = message.channel.id;
-                }else{
-                    if(args[1] === "" || args[1] === null || args[1] === undefined){
-                        message.reply({ content: "\u274C Please define a prefix!", allowedMentions: { repliedUser: false }});
-                        return;
-                    }
-                }
-                
-                // If there is no folder for the server yet, create the files
-                var guilddir = "data/configs/" + serverID;
-                if(!fs.existsSync(guilddir)){
-                    fs.mkdirSync(guilddir);
-                    lib.saveFile(guilddir + "/prefix.txt", ",");
-                    lib.saveFile(guilddir + "/channel.txt", "Undefined");
-                }
-                
-                // Change the thing
-                message.reply({ content: "The server's " + args[0] + " has successfully been changed to " + args[1], allowedMentions: { repliedUser: false }});
-                lib.saveFile(change_path, args[1]);
             }
-        });
+        }
+        
+        // If there is no folder for the server yet, create the files
+        var guilddir = "data/configs/" + message.guildId;
+        if(!fs.existsSync(guilddir)){
+            fs.mkdirSync(guilddir);
+            lib.saveFile(guilddir + "/prefix.txt", ",");
+            lib.saveFile(guilddir + "/channel.txt", "Undefined");
+        }
+        
+        // Change the thing
+        message.reply({ content: "The server's " + args[0] + " has successfully been changed to " + args[1], allowedMentions: { repliedUser: false }});
+        lib.saveFile(change_path, args[1]);
         
 	},
 };

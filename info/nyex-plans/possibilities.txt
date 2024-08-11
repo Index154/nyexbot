@@ -6,12 +6,13 @@
 - Being able to preview the loot tables of vortexes?
 - The ability to bet Gold on a fight with possible rewards corresponding to the winning chance?
 - Equipment being put into the equipping queue when replaced so you can switch back?
+- Monthly or weekly events that buff a specific monster's shiny rates?
+- A text log of the player's encounter, fight and capture history (because otherwise in single-message mode you can't tell what happened)?
 - Seasonal events / anniversary?
 - Some sort of difficulty increase after unlocking the level cap?
 - NG+ mechanics? Maybe let the player reset their level back to 1 and pick an additional class after reaching level 10 again?
 - A command to reset your account? (Except for trophies? Maybe combine this with the NG+ idea?)
 - Let users update reminders?
 - Allow users to define their timezone for reminders?
-- Separate DM notification settings for bosses, updates and (later) shinies?
 - Guessing minigame for Isaac or Gungeon item silhouettes
 <:sp:860269564779429908>

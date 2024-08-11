@@ -22,6 +22,7 @@ module.exports = {
         // Set important variables
         var username = user.username;
         var dir = "userdata/" + user.id;
+        var shinyNotif = false;
         
         // Fetch current encounter
 		var monster_keys = lib.readFile(dir + "/current_encounter.txt");
@@ -38,6 +39,15 @@ module.exports = {
 		var monsters = monster_groups[monster_keys_array[0]].split(";\n");
 		var monster_data_raw = monsters[monster_keys_array[1]];
 		var monster_data = monster_data_raw.split("|");
+
+        // Prepare shiny notification
+        if(monster_keys_array[2] == "1"){
+            shinyNotif = true;
+            var notificationEmbed = new Discord.EmbedBuilder()
+                .setColor('#8f1ee6')
+                .setTitle("Shiny confrontation!")
+                .setThumbnail("https://artificial-index.com/media/rpg_monsters/shiny_" + monster_data[0].toLowerCase().replace(/ /g, "_") + ".png");
+		}
 
         // Stop the current chain if fighting the target
         var chain = lib.readFile(dir + "/chain.txt").split("|");
@@ -522,7 +532,8 @@ module.exports = {
             
         }
         
-        // End encounter
+        // End encounter unless the realm or ability prevents it
+        var ranks = ["D", "C", "B", "A", "S", "SS"];
         if(!win){
             if(keepEncounter){
                 if(!realmFlag){abilityOutput = "**Ability: You get a second chance!**" + "\n\u2800";}
@@ -530,10 +541,16 @@ module.exports = {
             }else if(!realmFlag){
                 output += "\n\u2800\n\u2800";
                 lib.saveFile(dir + "/current_encounter.txt", "");
+                if(shinyNotif){
+                    notificationEmbed.setDescription("The player **" + username + "** engaged with:\n```\nShiny " + monster_data[0] + "** (Rank " + ranks[monster_keys_array[0]] + ")``````diff\n-They lost the fight!```You get what you deserve I'd say!");
+                }
             }
             output += abilityOutput;
 		}else{
 		    lib.saveFile(dir + "/current_encounter.txt", "");
+            if(shinyNotif){
+                notificationEmbed.setDescription("The player **" + username + "** engaged with:\n```\nShiny " + monster_data[0] + " (Rank " + ranks[monster_keys_array[0]] + ")``````diff\n+They won the fight!```Congrats I guess??");
+            }
 		}
 
         // Add equip buttons if necessary
@@ -541,6 +558,11 @@ module.exports = {
         if(buttons.length > 0){
             var row = new ActionRowBuilder().addComponents(buttons);
             outputObject = { content: "@ __**" + username + "**__" + output, allowedMentions: { repliedUser: false }, components: [row] };
+        }
+
+        // Shiny notification
+        if(shinyNotif){
+            lib.notifyAll(user.id, message, notificationEmbed, "shinies");
         }
 
         // If the command was called using a special button then edit the original message instead of sending a new one

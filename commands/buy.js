@@ -22,7 +22,6 @@ module.exports = {
         }
         
         // Set important variables
-        var username = user.username;
         var dir = "userdata/" + user.id;
 	    
 	    // If there was no input, end the command
@@ -54,8 +53,10 @@ module.exports = {
 
         // Generate new shop if necessary
         var last_week = lib.readFile("data/shop_week.txt");
+        var monster_keys = null;
         if(last_week != week){
             var shop_data = lib.updateShop(item_array, week).split("|");
+            monster_keys = shop_data[12];
             lib.saveFile("data/shiny_shop.txt", shop_data[12]);
             lib.saveFile("data/shiny_shop_user.txt", "");
         }else{
@@ -66,9 +67,12 @@ module.exports = {
         // If the user used the shinymon argument, try to buy the shiny from the shiny shop
 	    if(args[0] == "shinymon"){
 	        // Get current shiny
-	        var monster_keys = lib.readFile("data/shiny_shop.txt");
+            if(last_week == week){
+                monster_keys = lib.readFile("data/shiny_shop.txt");
+            }
 		    var monster_keys_array = monster_keys.split(",");
-		    var monster_groups = lib.readFile("data/monsters/monsters.txt").split("#################################################################################\n");
+            var monstersRaw = lib.readFile("data/monsters/monsters.txt");
+		    var monster_groups = monstersRaw.split("#################################################################################\n");
     		var monsters = monster_groups[monster_keys_array[0]].split(";\n");
     		var monster_data_raw = monsters[monster_keys_array[1]];
     		var monster_data = monster_data_raw.split("|");
@@ -78,9 +82,9 @@ module.exports = {
 	        if(reservedUser !== user.id){
 	            // Create button
     			var button1 = new ButtonBuilder()
-    			.setCustomId(user.id + "|buy shinymon")
-    			.setLabel('Confirm')
-    			.setStyle(3)
+                    .setCustomId(user.id + "|buy shinymon")
+                    .setLabel('Confirm')
+                    .setStyle(3)
     			var row = new ActionRowBuilder().addComponents([button1]);
     			
     			// Output
@@ -90,7 +94,7 @@ module.exports = {
 	        }
 	        
 	        // Check if the user has collected all monsters
-    		var mons = lib.readFile("data/monsters/monsters.txt").split(";\n");
+    		var mons = monstersRaw.split(";\n");
     		var mon_total = mons.length - 1;
     		// Get a full list of captured monsters
     		var captures = lib.readFile(dir + "/all_captures.txt");
@@ -121,11 +125,11 @@ module.exports = {
 		    var result_price = rankPrices[monster_keys_array[0]];
     		
 		    // If the user is a Merchant, check for abilities
-			var user_data = lib.readFile(dir + "/stats.txt").split("|");
-            if(user_data[0] == "Merchant"){
-                if(parseInt(user_data[10]) >= 50){
+			var userData = lib.readFile(dir + "/stats.txt").split("|");
+            if(userData[0] == "Merchant"){
+                if(parseInt(userData[10]) >= 50){
                     result_price = Math.round(result_price * 0.87);
-                }else if(parseInt(user_data[10]) >= 30){
+                }else if(parseInt(userData[10]) >= 30){
                     result_price = Math.round(result_price * 0.93);
                 }
             }
@@ -136,10 +140,10 @@ module.exports = {
     		}
 			
 			// Check if the user has enough Gold for the purchase
-            if(parseInt(user_data[12]) >= result_price){
+            if(parseInt(userData[12]) >= result_price){
                 // Update the user's gold
-                user_data[12] = parseInt(user_data[12]) - result_price;
-                lib.saveFile(dir + "/stats.txt", user_data.join("|"));
+                userData[12] = parseInt(userData[12]) - result_price;
+                lib.saveFile(dir + "/stats.txt", userData.join("|"));
             }else{
                 message.reply({ content: "\u274C You don't have enough Gold to make this purchase!", allowedMentions: { repliedUser: false }});
                 return;
@@ -179,8 +183,8 @@ module.exports = {
 		    var monster_groupsLimited = lib.readFile("data/monsters/monsters_0.txt").split("#################################################################################\n");
 		    var monstersNew = monster_groupsLimited[rank].split(";\n");
             var monster_key = lib.rand(0, monstersNew.length - 2);
-            var monster_data = monstersNew[monster_key].split("|");
-            monster_key = monster_data[7];
+            var monster_data_new = monstersNew[monster_key].split("|");
+            monster_key = monster_data_new[7];
             var newMonster = rank + "," + monster_key + ",1";
             lib.saveFile("data/shiny_shop.txt", newMonster);
             lib.saveFile("data/shiny_shop_user.txt", "");
@@ -275,21 +279,21 @@ module.exports = {
 			var result_price = parseInt(prices[key]);
 			
 			// If the user is a Merchant, check for abilities
-			var user_data = lib.readFile(dir + "/stats.txt").split("|");
-            if(user_data[0] == "Merchant"){
-                if(parseInt(user_data[10]) >= 50){
+			var userData = lib.readFile(dir + "/stats.txt").split("|");
+            if(userData[0] == "Merchant"){
+                if(parseInt(userData[10]) >= 50){
                     result_price = Math.round(result_price * 0.87);
-                }else if(parseInt(user_data[10]) >= 30){
+                }else if(parseInt(userData[10]) >= 30){
                     result_price = Math.round(result_price * 0.93);
                 }
             }
 			
 			// Check if the user has enough Gold for the purchase
 			result_price = result_price * buyCount;
-            if(parseInt(user_data[12]) >= result_price){
+            if(parseInt(userData[12]) >= result_price){
                 // Update the user's gold
-                user_data[12] = parseInt(user_data[12]) - result_price;
-                lib.saveFile(dir + "/stats.txt", user_data.join("|"));
+                userData[12] = parseInt(userData[12]) - result_price;
+                lib.saveFile(dir + "/stats.txt", userData.join("|"));
                 
                 // Give them their purchased item
                 var inv_path = dir + "/inventory.txt";

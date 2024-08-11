@@ -1,3 +1,9 @@
+__v0.22.1__
+- You now have more control over which types of DM notifications you get from the bot. Just use `set updates` and pick the types of events you want to receive DMs for
+- Notifications can also be tweaked the same way for each server using the `set channelupdates` command
+- In addition to the notifications for updates and bosses you can now also choose to get notified when somebody captures, defeats or "loses" a shiny
+- Hopefully fixed the shiny shop showing incorrect information
+
 __v0.22.0__
 - Fighting the chain target monster now resets your chain
 - The capture and fight buttons will now sometimes swap positions while you're on a capture chain :trollface:

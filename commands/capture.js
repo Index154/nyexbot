@@ -1,4 +1,5 @@
 var { prefix } = require('../config.json');
+const Discord = require('discord.js');
 
 module.exports = {
 	name: 'capture',
@@ -23,6 +24,7 @@ module.exports = {
         // Set important variables
         var username = user.username;
         var dir = "userdata/" + user.id;
+        var shinyNotif = false;
         
 		// Fetch current encounter
 		var monster_keys = lib.readFile(dir + "/current_encounter.txt");
@@ -52,6 +54,11 @@ module.exports = {
 		var shiny = "";
 		if(monster_keys_array[2] == "1"){
 			shiny = "Shiny ";
+            shinyNotif = true;
+            var notificationEmbed = new Discord.EmbedBuilder()
+                .setColor('#8f1ee6')
+                .setTitle("Shiny confrontation!")
+                .setThumbnail("https://artificial-index.com/media/rpg_monsters/shiny_" + monster_data[0].toLowerCase().replace(/ /g, "_") + ".png");
 		}
 		var monster_title = shiny + monster_data[0];
 		
@@ -324,11 +331,22 @@ module.exports = {
 		}
 
 		// End encounter (unless ability prevented it)
-		if(!win && keepEncounter){
-		    output = "```diff\n-The " + monster_title + " escaped...```";
-            abilityOutput = "**Ability: You get a second chance!**";
+        var ranks = ["D", "C", "B", "A", "S", "SS"];
+		if(!win){
+            if(keepEncounter){
+                output = "```diff\n-The " + monster_title + " escaped...```";
+                abilityOutput = "**Ability: You get a second chance!**";
+            }else{
+                lib.saveFile(dir + "/current_encounter.txt", "");
+                if(shinyNotif){
+                    notificationEmbed.setDescription("The player **" + username + "** tried to capture:\n```" + monster_title + " (Rank " + ranks[monster_keys_array[0]] + ")``````diff\n-The shiny escaped!```Better luck next time!");
+                }
+            }
 		}else{
 		    lib.saveFile(dir + "/current_encounter.txt", "");
+            if(shinyNotif){
+                notificationEmbed.setDescription("The player **" + username + "** tried to capture:\n```\n" + monster_title + " (Rank " + ranks[monster_keys_array[0]] + ")``````diff\n+Capture success!```Congrats!");
+            }
 		}
 
         // Formatting for semi-consistent embed height
@@ -350,6 +368,11 @@ module.exports = {
             allExtras.push(spacer);
         }
         output += allExtras.join("");
+
+        // Shiny notification
+        if(shinyNotif){
+            lib.notifyAll(user.id, message, notificationEmbed, "shinies");
+        }
 
         // If the command was called using a special button then edit the original message instead of sending a new one
         if(lib.exists(message.message) && message.customId.includes("embedEdit")){

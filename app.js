@@ -106,8 +106,7 @@ client.once('ready', async () => {
 client.rest.on('rateLimited', console.log);
 
 // Prepare some variables for the boss code
-var bossChance = 8000;   // The chance is defined as 1 out of bossChance per message
-var min = 1;
+var bossRarity = 1;   // The chance is defined as 1 out of bossRarity per message
 var ranks = ["D", "C", "B", "A", "S", "SS"];
 var chances = [23, 30, 20, 14, 9, 4];   // The chances for each rank of boss to be chosen, out of 100
 
@@ -147,6 +146,38 @@ client.on("guildDelete", guild => {
     lib.saveFile("./data/serverlist.txt", serverList.join("\n"));
 });
 
+// Boss spawning function
+function trySpawnBoss(message){
+
+    // Determine whether a world boss should spawn or not
+    var worldboss = lib.readFile("./data/worldboss.txt");
+    // If this is the test branch or there already is an active boss then stop
+    if(!isTestBranch && worldboss === ""){
+        // Random event math
+        var bossRoll = lib.rand(1, bossRarity);
+        if(bossRoll <= 1){
+            // Spawn a boss! Determine the rank first
+            var rankRand = lib.rand(1, 100);
+            var addPrevious = 0;
+            var rank = "";
+            for(y = 0; y < 6 && rank === ""; y++){
+                if(rankRand <= (chances[y] + addPrevious)){
+                    rank = ranks[y];
+                }
+                addPrevious = addPrevious + chances[y];
+            }
+            lib.saveFile("./data/worldboss.txt", rank);
+
+            var outputEmbed = new Discord.EmbedBuilder()
+                .setColor('#0099ff')
+                .setTitle("Worldboss notification")
+                .setDescription("**A world boss (rank " + rank + ") has spawned!**\nUse the command `wb` to deal damage to it!");
+            
+            lib.notifyAll("0", message, outputEmbed, "bosses");
+        }
+    }
+}
+
 // Listen for interactions (this includes slash commands, button presses and menu selections)
 client.on('interactionCreate', interaction => {
     // Define some necessary variables. "Rename" some of them so the code is closer to the message event code further below
@@ -159,52 +190,8 @@ client.on('interactionCreate', interaction => {
     // On the test branch: Ignore all messages that weren't sent by the bot admin
     if(isTestBranch && user.id != "214754022832209921") return;
 
-    // Determine whether a world boss should spawn or not
-    var worldboss = lib.readFile("./data/worldboss.txt");
-    // If this is the test branch or there already is an active boss then stop
-    if(!isTestBranch && worldboss === ""){
-        // Random event math
-        var wResult = Math.floor(Math.random() * (Math.floor(bossChance) - min + 1)) + min;
-        if(wResult <= min){
-            // Spawn a boss! Determine the rank first
-            var rankRand = lib.rand(1, 100);
-            var addPrevious = 0;
-            var rank = "";
-            for(y = 0; y < 6 && rank === ""; y++){
-                if(rankRand <= (chances[y] + addPrevious)){
-                    rank = ranks[y];
-                }
-                addPrevious = addPrevious + chances[y];
-            }
-            lib.saveFile("./data/worldboss.txt", rank);
-            
-            // Send an alert about the boss in all configured channels
-            fs.readdir("./data/configs", (err, files) => {
-                // Go through the configured update channels for all servers
-                for(i = 0; i < files.length; i++){
-                    var serverPrefix = lib.readFile("./data/configs/" + files[i] + "/prefix.txt");
-                    var channelID = lib.readFile("./data/configs/" + files[i] + "/channel.txt");
-                    if(channelID !== "Undefined"){
-                        client.channels.cache.get(channelID).send("**A world boss (rank " + rank + ") has spawned!**\nUse the command `" + serverPrefix + "wb` to deal damage to it and become eligible for rewards!");
-                    }
-                }
-            });
-
-            // Also alert users who signed up for it in DMs
-            fs.readdir("./userdata", (err, files) => {
-                for(x = 0; x < files.length; x++){
-                    // Go through all users and check if they have update alerts enabled
-                    var userDMSetting = lib.readFile("./userdata/" + files[x] + "/dmupdates.txt");
-                    if(userDMSetting == "yes"){
-                        client.users.fetch(files[x], false).then((tempUser) => {
-                            tempUser.send("**A world boss (rank " + rank + ") has spawned!**\nUse the command `.wb` to deal damage to it and become eligible for rewards!");
-                        });
-                    }
-                }
-            });
-            
-        }
-    }
+    // Try to spawn a boss
+    trySpawnBoss(message);
     
     // Process the actual interaction now
     // For interactive elements which should trigger a command when clicked I fill the customId field with three values: The ID of the user the interaction element is restricted to (or "any" for all users), the command that should be executed when the element is clicked and whether it's an interaction that should lead to the original message being edited
@@ -316,49 +303,8 @@ client.on('messageCreate', async message => {
     // On the test branch: Only react to the bot owner
     if(isTestBranch && user.id != "214754022832209921") return;
 
-    // Check whether a world boss should spawn or not
-    var worldboss = lib.readFile("./data/worldboss.txt");
-    if(!isTestBranch && worldboss === ""){
-        var wResult = Math.floor(Math.random() * (Math.floor(bossChance) - min + 1)) + min;
-        if(wResult <= min){
-            // Spawn a boss with a random rank!
-            var rankRand = Math.floor(Math.random() * (Math.floor(100) - min + 1)) + min
-            var addPrevious = 0;
-            var rank = "";
-            for(y = 0; y < 6 && rank === ""; y++){
-                if(rankRand <= (chances[y] + addPrevious)){
-                    rank = ranks[y];
-                }
-                addPrevious = addPrevious + chances[y];
-            }
-            lib.saveFile("./data/worldboss.txt", rank);
-            
-            // Alert users about the boss in all configured channels
-            fs.readdir("./data/configs", (err, files) => {
-                for(i = 0; i < files.length; i++){
-                    var serverPrefix = lib.readFile("./data/configs/" + files[i] + "/prefix.txt");
-                    var channelID = lib.readFile("./data/configs/" + files[i] + "/channel.txt");
-                    if(channelID !== "Undefined"){
-                        client.channels.cache.get(channelID).send("**A world boss (rank " + rank + ") has spawned!**\nUse the command `" + serverPrefix + "wb` to deal damage to it and become eligible for rewards!");
-                    }
-                }
-            });
-
-            // Also alert the signed-up users in DMs
-            fs.readdir("./userdata", (err, files) => {
-                for(x = 0; x < files.length; x++){
-                    // Check if a user wants to receive announcements in DMs
-                    var userDMSetting = lib.readFile("./userdata/" + files[x] + "/dmupdates.txt");
-                    if(userDMSetting == "yes"){
-                        client.users.fetch(files[x], false).then((tempUser) => {
-                            tempUser.send("**A world boss (rank " + rank + ") has spawned!**\nUse the command `.wb` to deal damage to it and become eligible for rewards!");
-                        });
-                    }
-                }
-            });
-            
-        }
-    }
+    // Try to spawn a boss
+    trySpawnBoss(message);
     
     // Check if the server has a custom prefix and load it
     commandPrefix = prefix;
@@ -376,26 +322,7 @@ client.on('messageCreate', async message => {
                 .setTitle("New bot update")
                 .setDescription(message.content.trim());
 
-        fs.readdir("./data/configs", (err, files) => {
-            for(i = 0; i < files.length; i++){
-                var channelID = lib.readFile("./data/configs/" + files[i] + "/channel.txt");
-                if(channelID !== "Undefined" && channelID !== "516038839949852695"){
-                    client.channels.cache.get(channelID).send({ embeds: [updateEmbed] });
-                }
-            }
-        });
-
-        fs.readdir("./userdata", (err, files) => {
-            for(x = 0; x < files.length; x++){
-                // Check if a user wants to receive announcements in DMs
-                var userDMSetting = lib.readFile("./userdata/" + files[x] + "/dmupdates.txt");
-                if(userDMSetting == "yes"){
-                    client.users.fetch(files[x], false).then((tempUser) => {
-                        tempUser.send({ embeds: [updateEmbed] });
-                    });
-                }
-            }
-        });
+        lib.notifyAll("0", message, updateEmbed, "updates");
     }
     
     /*

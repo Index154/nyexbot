@@ -7,4 +7,3 @@
 - Replace old images for unimplemented MH monsters
 - Redesign the quests to be less difficult at the start
 - More buttons working with single message mode
-- **Random encounter events (like finding treasure) being presented as a ? button you have to press which then triggers a random event from a list of possibilities**

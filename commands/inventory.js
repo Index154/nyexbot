@@ -206,7 +206,7 @@ module.exports = {
         }else{
             // There was no input
             // Fetch gold count
-            var user_data = lib.readFile(dir + "/stats.txt").split("|");
+            var userData = lib.readFile(dir + "/stats.txt").split("|");
             
             // Fetch stasis space data
             var stasis = lib.readFile(dir + "/saved_encounter.txt");
@@ -265,7 +265,7 @@ module.exports = {
                 	.setTitle(username + "'s Inventory")
                 	.addFields(
                 		{ name: 'Equipment', value: name0 + "\n" + name1 + "\n" + name2 },
-                		{ name: 'Gold', value: user_data[12], inline: true },
+                		{ name: 'Gold', value: userData[12], inline: true },
                 		{ name: 'Stasis Space', value: stasis_info, inline: true },
 						{ name: 'Saved chain', value: chainInfo, inline: true}
 					)
@@ -292,7 +292,7 @@ module.exports = {
                 	.setTitle(username + "'s Inventory")
                 	.addFields(
                 		{ name: 'Equipment', value: name0 + "\n" + name1 + "\n" + name2 },
-                		{ name: 'Gold', value: user_data[12], inline: true },
+                		{ name: 'Gold', value: userData[12], inline: true },
                 		{ name: 'Stasis Space', value: stasis_info, inline: true },
 						{ name: 'Saved chain', value: chainInfo, inline: true}
                 	)

@@ -312,6 +312,7 @@ module.exports = {
 
         // Shiny check
         var shiny_extra = "";
+        //shiny_key = 1;
         if(shiny_key == 1){
             shiny_extra = "\u2728";
             rarity = rarity + "++";
@@ -370,7 +371,7 @@ module.exports = {
 			.setLabel('-- New encounter --')
 			.setStyle(4)
         var button4 = new ButtonBuilder()
-		    .setCustomId("any|check " + monster + "|" + buttonType)
+		    .setCustomId(buttonRestriction + "|check " + monster + "|" + buttonType)
 			.setLabel('Check')
 			.setStyle(2)
         var buttons = [button1, button2, button3, button4];

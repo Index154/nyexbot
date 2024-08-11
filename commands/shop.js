@@ -66,11 +66,11 @@ module.exports = {
 		    var result_price = rankPrices[monster_keys_array[0]];
     		
 		    // If the user is a Merchant, check for abilities
-			var user_data = lib.readFile(dir + "/stats.txt").split("|");
-            if(user_data[0] == "Merchant"){
-                if(parseInt(user_data[10]) >= 50){
+			var userData = lib.readFile(dir + "/stats.txt").split("|");
+            if(userData[0] == "Merchant"){
+                if(parseInt(userData[10]) >= 50){
                     result_price = Math.round(result_price * 0.87);
-                }else if(parseInt(user_data[10]) >= 30){
+                }else if(parseInt(userData[10]) >= 30){
                     result_price = Math.round(result_price * 0.93);
                 }
             }
@@ -159,16 +159,16 @@ module.exports = {
         
         // If the user is a Merchant, check for abilities
         var prices = [price1, price2, price3, price4, price5, price6, price7, price8, price9, price10, price11];
-		var user_data = lib.readFile(dir + "/stats.txt").split("|");
+		var userData = lib.readFile(dir + "/stats.txt").split("|");
 		var prices_column = "Prices";
-        if(user_data[0] == "Merchant" && user_data[10] >= 30){
-            if(parseInt(user_data[10]) >= 50){
+        if(userData[0] == "Merchant" && userData[10] >= 30){
+            if(parseInt(userData[10]) >= 50){
                 merch_mod = 0.87;
-            }else if(parseInt(user_data[10]) >= 30){
+            }else if(parseInt(userData[10]) >= 30){
                 merch_mod = 0.93;
             }
             
-            prices_column = "Prices (lvl " + user_data[10] + " Merchant)";
+            prices_column = "Prices (lvl " + userData[10] + " Merchant)";
             for(i = 0; i < prices.length; i++){
                 price = Math.round(prices[i] * merch_mod);
             }
