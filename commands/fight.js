@@ -494,11 +494,13 @@ module.exports = {
                     }
                 }
             }
-            lineCount = 3;
-            for(i = lineCount; i > extraCount; i--){
-                var spacer = "\n\u2800";
-                if(extraCount == 0 && i == lineCount){spacer = "\u2800";}
-                allExtras.push(spacer);
+            if(lib.exists(message.message) && message.customId.includes("embedEdit")){
+                var lineCount = 3;
+                for(i = lineCount; i > extraCount; i--){
+                    var spacer = "\n\u2800";
+                    if(extraCount == 0 && i == lineCount){spacer = "\u2800";}
+                    allExtras.push(spacer);
+                }
             }
             
             // Winning output

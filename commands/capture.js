@@ -361,13 +361,6 @@ module.exports = {
                 }
             }
         }
-        lineCount = 3;
-        for(i = lineCount; i > extraCount; i--){
-            var spacer = "\n\u2800";
-            if(extraCount == 0 && i == lineCount){spacer = "\u2800";}
-            allExtras.push(spacer);
-        }
-        output += allExtras.join("");
 
         // Shiny notification
         if(shinyNotif){
@@ -376,6 +369,15 @@ module.exports = {
 
         // If the command was called using a special button then edit the original message instead of sending a new one
         if(lib.exists(message.message) && message.customId.includes("embedEdit")){
+            // Space insertion for single message mode
+            var lineCount = 3;
+            for(i = lineCount; i > extraCount; i--){
+                var spacer = "\n\u2800";
+                if(extraCount == 0 && i == lineCount){spacer = "\u2800";}
+                allExtras.push(spacer);
+            }
+            output += allExtras.join("");
+
             message.deferUpdate();
             if(chainValue > 0){
                 message.message.embeds[0].data.footer = { text: "Current chain: " + monster_title + " (" + chainValue + ")"};
