@@ -40,7 +40,7 @@
 84,93|5,5;   // Ghoul: Small Core, Rotten Flesh
 84,199|4,30;   // Ravager: Small Core, Ravager Tail
 96,84|6,6;   // Sabertooth Tiger: Smilodon Fang, Small Core
-16,97,24,84|2,2,5;   // Werewolf: Leather Breastplate, Small Hand Axe, Simple Bow
+16,97,24|2,2,5;   // Werewolf: Leather Breastplate, Small Hand Axe, Simple Bow
 98,84|7,8;   // Insect Warrior: War Hammer, Small Core
 84,200|7,19;   // Scavenger Serpent: Small Core, Scavenger Serpent Skull
 84,201|5,22;   // Shadow Vermin: Small Core, Lifeless Eye
