@@ -374,6 +374,18 @@ module.exports = {
 			.setLabel('Check')
 			.setStyle(2)
         var buttons = [button1, button2, button3, button4];
+        // Change button order sometimes while chaining
+        var chainValue = parseInt(chain[1]);
+        if(chainValue > 5){
+            var orderRoll = lib.rand(1, 100);
+            // Chain > 5 => 1/33
+            // Chain > 15 => 1/20
+            // Chain > 25 => 1/14
+            // Chain > 30 => 1/10
+            if(orderRoll <= 3 || (chainValue > 15 && orderRoll <= 5) || (chainValue > 25 && orderRoll <= 7) || (chainValue > 30 && orderRoll <= 10)){
+                buttons = [button2, button1, button3, button4];
+            }
+        }
 
         // Add random event button sometimes
         var randomEventRoll = lib.rand(1, 1000);

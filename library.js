@@ -555,10 +555,15 @@ module.exports = {
 
 	// Input: String, ?, ?, integer, object, object, ?
 	// Function: Creates a paged embed with a specific layout for the display of item details. The list of items has to be supplied by the calling function
-	createPagedItemEmbed(dir, items, allItems, startingId, message, user, itemList){
+	createPagedItemEmbed(dir, items, allItems, startingId, message, user, itemList, priceList){
 		const { EmbedBuilder, ButtonBuilder } = require('discord.js');
 
 		// Important variables
+		var isShop = false;
+		if(priceList.length > 0){
+			isShop = true;
+			var ownedGold = lib.readFile(dir + "/stats.txt").split("|")[12];
+		}
 		var equipRarities = lib.readFile(dir + "/equip_modifiers.txt").split("\n");
 		var statNames = ["Filler", "Attack", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck", "Unnamed"];
 
@@ -569,7 +574,7 @@ module.exports = {
 			var itemTitle = itemData[0];
 			var itemType = "\uD83C\uDF6F Consumable";
 			var itemAbilityOrUseAmount = "";
-			var itemValue = "\u200b";
+			var itemValue = "\n\u200b";
 			var itemAmount = "\u200b";
 
 			// Assemble embed
@@ -645,9 +650,14 @@ module.exports = {
 				}
 				
 				// Add price and item count
-				itemValue =  "**Value:** " + itemData[11] + " Gold";
-				var itemCounts = new adc(allItems).count();
-				itemAmount = "**Your amount:** " + itemCounts[items[i]].toString();
+				if(isShop){
+					itemValue = "**Being sold for:** " + priceList[i] + " Gold";
+					itemAmount = "\n**Your Gold:** " + ownedGold;
+				}else{
+					itemValue =  "**Value:** " + itemData[11] + " Gold";
+					var itemCounts = new adc(allItems).count();
+					itemAmount = "\n**Your amount:** " + itemCounts[items[i]].toString();
+				}
 			}
 			
 			var itemStats = "";
@@ -661,7 +671,7 @@ module.exports = {
 			}
 
 			embed
-				.setDescription(itemData[9] + "\n\n**Type:** " + itemType + "\n" + itemAbilityOrUseAmount + "\n" + itemValue + "\n" + itemAmount + "\n\n__**Stats**__" + "```\n" + itemStats + "\n```")
+				.setDescription(itemData[9] + "\n\n**Type:** " + itemType + "\n" + itemAbilityOrUseAmount + "\n" + itemValue + itemAmount + "\n\n__**Stats**__" + "```\n" + itemStats + "\n```")
 				.setTitle(itemTitle);
 
 			embeds[i] = embed;
@@ -674,18 +684,21 @@ module.exports = {
 			.setCustomId('previousbtn')
 			.setLabel('Previous')
 			.setStyle(2);
+		buttonList = [ button1 ];
 		const button2 = new ButtonBuilder()
 			.setCustomId('randbtn')
 			.setLabel('Random')
 			.setStyle(1);
+		if(!isShop){buttonList.push(button2);}
 		const button3 = new ButtonBuilder()
 			.setCustomId('nextbtn')
 			.setLabel('Next')
 			.setStyle(2);
+		buttonList.push(button3);
 		buttonList = [ button1, button2, button3 ];
 
 		// Go to secondary function
-		lib.itemEmbedPagination(user, message, embeds, buttonList, startingId, 60000);
+		lib.itemEmbedPagination(user, message, embeds, buttonList, startingId, 60000, isShop);
 	},
 
 	// Input: Message object, array of embed objects
@@ -1127,7 +1140,6 @@ module.exports = {
 			});
 		}else{
 			embed.data.fields[embed.data.fields.length - 1].value = pages[page];
-			console.log(pages[page]);
 			curPage = await msg.reply({
 				embeds: [embed.setFooter({ text: `Page ${page + 1} / ${pages.length}` })],
 				components: [row],
@@ -1302,7 +1314,7 @@ module.exports = {
 	
 	// Input: Object, object, array, array, integer, integer
 	// Function: Creates an embed with an extra button for using items
-	async itemEmbedPagination(user, msg, pages, buttonList, startingId, timeout = 120000){
+	async itemEmbedPagination(user, msg, pages, buttonList, startingId, timeout = 120000, isShop){
 		const {ActionRowBuilder, ButtonBuilder} = require("discord.js");
 
 		if (!msg && !msg.channel) throw new Error("Channel is inaccessible.");
@@ -1312,15 +1324,23 @@ module.exports = {
 		  	throw new Error(
 				"Link buttons are not supported"
 		  	);
-		if (buttonList.length !== 3) throw new Error("Need three buttons.");
 		
 		let page = startingId;
-		buttonList.push(
-			new ButtonBuilder()
-				.setCustomId(user.id + "|use " + pages[page].data.title)
-				.setLabel('Use')
-				.setStyle(1)
-		);
+		if(isShop){
+			buttonList.push(
+				new ButtonBuilder()
+					.setCustomId(user.id + "|buy " + pages[page].data.title)
+					.setLabel('Buy')
+					.setStyle(1)
+			);
+		}else{
+			buttonList.push(
+				new ButtonBuilder()
+					.setCustomId(user.id + "|use " + pages[page].data.title)
+					.setLabel('Use')
+					.setStyle(1)
+			);
+		}
 
 		var row = new ActionRowBuilder().addComponents(buttonList);
 
@@ -1357,10 +1377,17 @@ module.exports = {
 			default:
 				break;
 			}
-			buttonList[3] = new ButtonBuilder()
-				.setCustomId(user.id + "|use " + pages[page].data.title)
-				.setLabel('Use')
-				.setStyle(1)
+			if(isShop){
+				buttonList[3] = new ButtonBuilder()
+					.setCustomId(user.id + "|buy " + pages[page].data.title)
+					.setLabel('Buy')
+					.setStyle(1)
+			}else{
+				buttonList[3] = new ButtonBuilder()
+					.setCustomId(user.id + "|use " + pages[page].data.title)
+					.setLabel('Use')
+					.setStyle(1)
+			}
 			row = new ActionRowBuilder().addComponents(buttonList);
 			await i.deferUpdate();
 			await i.editReply({

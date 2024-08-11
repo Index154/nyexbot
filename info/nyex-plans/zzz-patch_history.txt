@@ -1,3 +1,11 @@
+__v0.22.0__
+- Fighting the chain target monster now resets your chain
+- The capture and fight buttons will now sometimes swap positions while you're on a capture chain :trollface:
+- Added a button to the shop for viewing the details of the items being sold
+- When you get an item drop there will now be a button for immediately viewing its details
+- Nerfed the Speed Gold bonus (now a max of 20% extra Gold if you have 100 more Speed than Attack)
+- Lowered drop rates of many consumable items across Ranks D, C and B to reduce accumulation of drops
+
 __v0.21.2__
 - Increased all button timeouts to at least 1 minute
 - `Research` buttons no longer time out (it was unnecessary)

@@ -195,7 +195,7 @@ module.exports = {
 				// The item has been determined. Prepare paged embed
 				var uniqueItems = item_keys.filter(onlyUnique);
 				var startingId = uniqueItems.indexOf(result_key);
-				lib.createPagedItemEmbed(dir, uniqueItems, item_keys, startingId, message, user, items_array);
+				lib.createPagedItemEmbed(dir, uniqueItems, item_keys, startingId, message, user, items_array, []);
 				
 			}else{
 				// Error, item not found

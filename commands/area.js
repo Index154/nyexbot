@@ -57,8 +57,6 @@ module.exports = {
             }else{
                 var checkArg = "nocheck";
             }
-
-            console.log(args);
             
             // Change "current" into user's current area for normal areas
             if(args[0] == "current"){

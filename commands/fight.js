@@ -38,11 +38,12 @@ module.exports = {
 		var monsters = monster_groups[monster_keys_array[0]].split(";\n");
 		var monster_data_raw = monsters[monster_keys_array[1]];
 		var monster_data = monster_data_raw.split("|");
-		var shiny = "";
-		if(monster_keys_array[2] == "1"){
-			shiny = "Shiny ";
-		}
-		var monster_title = shiny + monster_data[0];
+
+        // Stop the current chain if fighting the target
+        var chain = lib.readFile(dir + "/chain.txt").split("|");
+        if(chain[0] == monster_keys){
+            lib.saveFile(dir + "/chain.txt", "9,9,9|" + 0);
+        }
 		
 		// Get user stats
         var user_stats = lib.readFile(dir + "/stats.txt").split("|");
@@ -356,9 +357,7 @@ module.exports = {
                         dropped = true;
                     }
                     add_chance = add_chance + chances[i];
-                    
                 }
-                
             }
 
             // Check single-embed mode setting and change button types accordingly
@@ -404,10 +403,19 @@ module.exports = {
                     
                 }else{
                     // It is a consumable or material. Save it
+                    var buttonInv = "";
                     if(item_data[10] == "Material"){
+                        buttonInv = new ButtonBuilder()
+                            .setCustomId(user.id + "|mats " + item_data[0])
+                            .setLabel('Check drop')
+                            .setStyle(1);
                         material_extra = " ( \uD83D\uDEE0 )";
                         var inv_path = dir + "/materials.txt";
                     }else{
+                        buttonInv = new ButtonBuilder()
+                            .setCustomId(user.id + "|inv " + item_data[0])
+                            .setLabel('Check drop')
+                            .setStyle(1);
                         var inv_path = dir + "/inventory.txt";
                     }
                     var old_inventory = lib.readFile(inv_path);
@@ -416,6 +424,7 @@ module.exports = {
                     }else{
                         lib.saveFile(inv_path, item_key);
                     }
+                    buttons = [buttonInv];
                 }
             }
             
@@ -433,13 +442,13 @@ module.exports = {
             trophy_extra = levelCheckResults.trophy_extra;
             
             // Determine Gold
-            var speed_gold_bonus = ((user_speed / user_attack) - 1) * 2;
-            var gold = Math.ceil(((monster_attack + monster_speed) / 8) + speed_gold_bonus);
+            var speed_gold_bonus = 1.2 * Math.min(1, ((user_speed - user_attack) * 0.01));
+            var gold = Math.ceil(((monster_attack + monster_speed) / 8) * speed_gold_bonus);
             if (gold < 0){gold = 1;}
             
             // If the user is a merchant, give more Gold
             if(user_stats[10] == "Merchant"){
-                gold = Math.round(gold * 1.50);
+                gold = Math.round(gold * 1.25);
             }
 
             // Update user stats
@@ -540,11 +549,16 @@ module.exports = {
             delete message.message.embeds[0].data.fields;
             message.message.embeds[0].data.description = output;
             // Remove event button first
+            console.log(message.message.components[0].components[0]);
             if(message.message.components[0].components.length == 5){ message.message.components[0].components.splice(4, 1); }
             if(!realmFlag){ message.message.components[0].components.splice(0, 2); }
             if(buttons.length > 0){
-                message.message.edit({ embeds: [message.message.embeds[0]], components: [row]});
-                return;
+                if(buttons.length > 1){
+                    message.message.edit({ embeds: [message.message.embeds[0]], components: [row]});
+                    return;
+                }else{
+                    message.message.components[0].components.push(buttons[0]);
+                }
             }
             message.message.edit({ embeds: [message.message.embeds[0]], components: [message.message.components[0]]});
             return;

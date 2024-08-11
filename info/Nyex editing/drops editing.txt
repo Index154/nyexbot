@@ -1,68 +1,68 @@
-84,4|5,10;   // Slime: Small Core, Blue Slime Gel
+84,4|3,10;   // Slime: Small Core, Blue Slime Gel
 84,9|5,7;   // Bear: Small Core, Bear Claw
 84,8|5,7;   // Wolf: Small Core, Wolf Pelt
-3|15;   // Giant Scorpion: Scorpion Toxin
-6,7|7,30;   // Goblin: Wooden Club, Goblin Horn
+3|12;   // Giant Scorpion: Scorpion Toxin
+6,7|7,10;   // Goblin: Wooden Club, Goblin Horn
 13|5;   // Crawler: Dark Matter
-14,84|6,10;   // Giant Crab: Crab Pincer, Small Core
-15|15;   // Wood Spirit: Mana Wood Splinter
-16,18|7,10;   // Stray Lizardman: Leather Breastplate, Mana Emerald
-26,16,24,109|4,5,6,15;   // Skeleton Archer: Malicious Bone, Leather Breastplate, Simple Bow, Bone
-26,16,25,109|4,5,6,15;   // Skeleton Soldier: Malicious Bone, Leather Breastplate, Old Straightsword, Bone
-42,38|18,30;   // Vampire Bat: Pure Blood, Cursed Blood
-37|30;   // Lost Spirit: Ectoplasm
-41,40|6,30;   // Hellhound: Undying Ember, Small Ember
-41,40|6,30;   // Hellcat: Undying Ember, Small Ember
-53,3,192|6,15,30;   // Rock Scorpion: Rock Scorpion Shell, Scorpion Toxin, Rock Plate
-210,78|2,8;   // Abyssal Fish: Essence of the Sea, Compressed Core
-79,84|6,8;   // Assassin Vine: Vine Whip, Small Core
-80,193|15,25;   // Astral Lurker: Stardust Core, Stardust
-80,193|15,25;   // Astral Serpent: Stardust Core, Stardust
-84,81|9,12;   // Basilisk: Small Core, Basilisk Eye
-82,83,194|4,6,30;   // Blade Demon: Demonic Meat, Sharp Metal Scrap, Metal Scrap
-84,195|13,20;   // Chupacabra: Small Core, Chupacabra Claw
-93,85|8,9;   // Crawling Hand: Rotten Flesh, Enchanted Ring
-86|13;   // Cursed Skull: Cursed Flame
+14,84|6,7;   // Giant Crab: Crab Pincer, Small Core
+15|9;   // Wood Spirit: Mana Wood Splinter
+16,18|7,8;   // Stray Lizardman: Leather Breastplate, Mana Emerald
+26,16,24,109|2,3,4,15;   // Skeleton Archer: Malicious Bone, Leather Breastplate, Simple Bow, Bone
+26,16,25,109|2,3,4,15;   // Skeleton Soldier: Malicious Bone, Leather Breastplate, Old Straightsword, Bone
+42,38|8,15;   // Vampire Bat: Pure Blood, Cursed Blood
+37|7;   // Lost Spirit: Ectoplasm
+41,40|6,9;   // Hellhound: Undying Ember, Small Ember
+41,40|5,10;   // Hellcat: Undying Ember, Small Ember
+53,3,192|6,8,30;   // Rock Scorpion: Rock Scorpion Shell, Scorpion Toxin, Rock Plate
+210,78|2,6;   // Abyssal Fish: Essence of the Sea, Compressed Core
+79,84|6,6;   // Assassin Vine: Vine Whip, Small Core
+80,193|6,25;   // Astral Lurker: Stardust Core, Stardust
+80,193|6,25;   // Astral Serpent: Stardust Core, Stardust
+84,81|4,8;   // Basilisk: Small Core, Basilisk Eye
+82,83,194|3,6,30;   // Blade Demon: Demonic Meat, Sharp Metal Scrap, Metal Scrap
+84,195|7,25;   // Chupacabra: Small Core, Chupacabra Claw
+93,85|5,7;   // Crawling Hand: Rotten Flesh, Enchanted Ring
+86|10;   // Cursed Skull: Cursed Flame
 87|7;   // Demon Fungus: Fungus Juice
-84,196|11,24;   // Demon Insect: Small Core, Demon Insect Mandibles
-84,197|12,30;   // Draco Lizard: Small Core, Draco Hide
-88|8;   // Man-Eating Flower: Azure Petal
-42,38,89|8,15,25;   // Vampire Frog: Pure Blood, Cursed Blood, Frog Mucus
+84,196|6,24;   // Demon Insect: Small Core, Demon Insect Mandibles
+84,197|8,30;   // Draco Lizard: Small Core, Draco Hide
+88|5;   // Man-Eating Flower: Azure Petal
+42,38,89|5,7,8;   // Vampire Frog: Pure Blood, Cursed Blood, Frog Mucus
 90,84|6,8;   // Giant Stag: Large Shiny Shell, Small Core
-114,107,52,194|1,1,3,20;   // Enforcer: Dimensional Fragment, Large Cracked Core, Golem Core, Metal Scrap
+114,107,52,194|1,1,2,20;   // Enforcer: Dimensional Fragment, Large Cracked Core, Golem Core, Metal Scrap
 91|8;   // Mandragora: Mandragora Bulb
-92,105,198|4,4,25;   // Scavenger: Regular Core, Cracked Core, Mossy Scale
-42,38|18,30;   // Giant Mosquito: Pure Blood, Cursed Blood
-84,93|5,10;   // Undead Bat: Small Core, Rotten Flesh
-84|11;   // Giant Rat: Small Core
+92,105,198|2,2,25;   // Scavenger: Regular Core, Cracked Core, Mossy Scale
+42,38|15,20;   // Giant Mosquito: Pure Blood, Cursed Blood
+84,93|4,8;   // Undead Bat: Small Core, Rotten Flesh
+84|9;   // Giant Rat: Small Core
 94|13;   // Mummy: Ancient Bandages
 285,95|6,8;   // Gloomwood: Staff of Embers, Charred Wood
-84,93|10,10;   // Ghoul: Small Core, Rotten Flesh
-84,199|12,20;   // Ravager: Small Core, Ravager Tail
-96,84|6,8;   // Sabertooth Tiger: Smilodon Fang, Small Core
-16,97,24,84|3,3,4,10;   // Werewolf: Leather Breastplate, Small Hand Axe, Simple Bow, Small Core
-98,84|7,10;   // Insect Warrior: War Hammer, Small Core
-84,200|13,19;   // Scavenger Serpent: Small Core, Scavenger Serpent Skull
-84,201|11,22;   // Shadow Vermin: Small Core, Lifeless Eye
-99,37|6,10;   // Wraith: Wraith Robes, Ectoplasm
+84,93|5,5;   // Ghoul: Small Core, Rotten Flesh
+84,199|4,30;   // Ravager: Small Core, Ravager Tail
+96,84|6,6;   // Sabertooth Tiger: Smilodon Fang, Small Core
+16,97,24,84|2,2,5;   // Werewolf: Leather Breastplate, Small Hand Axe, Simple Bow
+98,84|7,8;   // Insect Warrior: War Hammer, Small Core
+84,200|7,19;   // Scavenger Serpent: Small Core, Scavenger Serpent Skull
+84,201|5,22;   // Shadow Vermin: Small Core, Lifeless Eye
+99,37|6,8;   // Wraith: Wraith Robes, Ectoplasm
 100,19|6,9;   // Harpy: Golden Spear, Mana Sapphire
-92,105,202|4,4,20;   // Yeti: Regular Core, Cracked Core, Yeti Horn
-92,105,192|5,5,15;   // Gargoyle: Regular Core, Cracked Core, Rock Plate
-284,101,203|8,15,20;   // Scarecrow: Scarecrow Corestem, Haunted Pumpkin, Cloth
-84,192|14,24;   // Rock Mimic: Small Core, Rock Plate
-89|14;   // Giant Toad: Frog Mucus
-18,17,84,203|5,5,10,30;   // Imp: Mana Emerald, Mana Ruby, Small Core, Cloth
-210,84,204|3,12,20;   // Meerfolk: Essence of the Sea, Small Core, Meerfolk Fin
-210,84,205|4,10,22;   // Lesser Sea Serpent: Essence of the Sea, Small Core, Cyan Scale
-84,93|7,7;   // Hollow Zombie: Small Core, Rotten Flesh
-84|13;   // Giant Ant: Small Core
-42,84,38|4,8,10;   // Giant Leech: Pure Blood, Small Core, Cursed Blood
-92,105|4,4;   // Troll: Regular Core, Cracked Core
+92,105,202|2,2,25;   // Yeti: Regular Core, Cracked Core, Yeti Horn
+92,105,192|3,3,15;   // Gargoyle: Regular Core, Cracked Core, Rock Plate
+284,101,203|6,10,20;   // Scarecrow: Scarecrow Corestem, Haunted Pumpkin, Cloth
+84,192|6,24;   // Rock Mimic: Small Core, Rock Plate
+89|9;   // Giant Toad: Frog Mucus
+18,17,84,203|4,4,6,30;   // Imp: Mana Emerald, Mana Ruby, Small Core, Cloth
+210,84,204|3,7,20;   // Meerfolk: Essence of the Sea, Small Core, Meerfolk Fin
+210,84,205|3,7,22;   // Lesser Sea Serpent: Essence of the Sea, Small Core, Cyan Scale
+84,93|4,5;   // Hollow Zombie: Small Core, Rotten Flesh
+84|8;   // Giant Ant: Small Core
+42,84,38|4,5,10;   // Giant Leech: Pure Blood, Small Core, Cursed Blood
+92,105|3,3;   // Troll: Regular Core, Cracked Core
 107,52|1,3;   // Mud Golem: Large Cracked Core, Golem Core
-84,206|12,20;   // Mad Sloth: Small Core, Sloth Fur
-82,102,84|4,6,8;   // Lesser Demon: Demonic Meat, Demon Spear, Small Core
-103,84|8,15;   // Giant Mantis: Mantis Claw, Small Core
-84|13;   // Lesser Drake: Small Core
+84,206|9,20;   // Mad Sloth: Small Core, Sloth Fur
+82,102,84|2,6,8;   // Lesser Demon: Demonic Meat, Demon Spear, Small Core
+103,84|6,7;   // Giant Mantis: Mantis Claw, Small Core
+84|6;   // Lesser Drake: Small Core
 325|1;
 325|1;
 325|1;
@@ -92,63 +92,63 @@
 325|1;
 D
 #######################
-11,105,92|6,6,10;   // Lesser Minotaur: Rusty Greataxe, Cracked Core, Regular Core
-10,7|7,28;   // Goblin Shaman: Shaman Staff, Goblin Horn
-27,28|18,18;   // Steel-Silk Spider: Sticky Thread, Steel Thread
-107,113,39|1,4,6;   // Earth Tortoise: Large Cracked Core, Large Core, Boulder
-43|6;   // Heavenly Drone: Golden Helmet
-45,44,105,92|3,3,5,15;   // Orc: Spiky Club, Iron Chainmail, Cracked Core, Regular Core
-82,54|5,5;   // Red Devil: Demonic Meat, Chain Blade
-55,105,92|5,6,10;   // Killer Beetle: Beetle Carapace, Cracked Core, Regular Core
-210,78|10,14;   // Abyssal Demon: Essence of the Sea, Compressed Core
+11,105,92|4,4,6;   // Lesser Minotaur: Rusty Greataxe, Cracked Core, Regular Core
+10,7|5,10;   // Goblin Shaman: Shaman Staff, Goblin Horn
+27,28|5,5;   // Steel-Silk Spider: Sticky Thread, Steel Thread
+107,113,39|1,3,4;   // Earth Tortoise: Large Cracked Core, Large Core, Boulder
+43|5;   // Heavenly Drone: Golden Helmet
+45,44,105,92|2,2,3,6;   // Orc: Spiky Club, Iron Chainmail, Cracked Core, Regular Core
+82,54|2,5;   // Red Devil: Demonic Meat, Chain Blade
+105,55,92|2,5,5;   // Killer Beetle: Cracked Core, Beetle Carapace, Regular Core
+210,78|5,6;   // Abyssal Demon: Essence of the Sea, Compressed Core
 26,117,109|4,5,20;   // Bone Serpent: Malicious Bone, Giant Rib, Bone
-105,92,207|6,12,20;   // Griffon: Cracked Core, Regular Core, Griffon Feathers
-108,144|5,9;   // Fire Elemental: Raging Ember, Living Flame
-145,80|10,20;   // Astral Spirit: Galactic Particle, Stardust Core
-107,113,82,208|1,3,8,14;   // Demon Brute: Large Cracked Core, Large Core, Demonic Meat, Demonic Horn
-105,82,92,171|5,7,10,15;   // Barbed Demon: Cracked Core, Demonic Meat, Regular Core, Demon Spike
-105,92|6,11;   // Cetus: Cracked Core, Regular Core
-105,92,209|5,10,17;   // Armored Bull: Cracked Core, Regular Core, Iron Plate
-118,37|6,18;   // Blade Wraith: Blade Claw, Ectoplasm
-105,92,210|4,9,14;   // Lesser Sea Drake: Cracked Core, Regular Core, Essence of the Sea
-210,84|15,19;   // Killer Squid: Essence of the Sea, Small Core
-105,92|6,8;   // Hippogriff: Cracked Core, Regular Core
-146|11;   // Wind Elemental: Wind Orb
+105,92,207|3,6,20;   // Griffon: Cracked Core, Regular Core, Griffon Feathers
+108,144|3,6;   // Fire Elemental: Raging Ember, Living Flame
+145,80|6,6;   // Astral Spirit: Galactic Particle, Stardust Core
+107,113,82,208|1,3,4,14;   // Demon Brute: Large Cracked Core, Large Core, Demonic Meat, Demonic Horn
+105,82,92,171|2,4,5,15;   // Barbed Demon: Cracked Core, Demonic Meat, Regular Core, Demon Spike
+105,92|2,8;   // Cetus: Cracked Core, Regular Core
+105,92,209|2,5,17;   // Armored Bull: Cracked Core, Regular Core, Iron Plate
+118,37|4,7;   // Blade Wraith: Blade Claw, Ectoplasm
+105,92,210|2,4,8;   // Lesser Sea Drake: Cracked Core, Regular Core, Essence of the Sea
+210,84|6,8;   // Killer Squid: Essence of the Sea, Small Core
+105,92|3,4;   // Hippogriff: Cracked Core, Regular Core
+146|8;   // Wind Elemental: Wind Orb
 119|5;   // Sickle Spider: Spider Sickle
-105,92,75|4,8,12;   // Lesser Magma Drake: Cracked Core, Regular Core, Obsidian Chunk
+105,92,75|2,5,7;   // Lesser Magma Drake: Cracked Core, Regular Core, Obsidian Chunk
 107,113,137|1,4,5;   // Giant Worm: Large Cracked Core, Large Core, Worm Carapace
-37|20;   // Dread Wraith: Ectoplasm
-105,92,211|4,9,18;   // Frost Salamander: Cracked Core, Regular Core, Icy Hide
-212,213,210|4,5,13;   // Demon Crab: Demon Crab Egg, Demon Crab Shell, Essence of the Sea
-120,78,210|5,13,15;   // Abyssal Stalker: Abyssal Tentacle, Compressed Core, Essence of the Sea
-210,84|15,20;   // Lesser Cliff Drake: Essence of the Sea, Small Core
-13|18;   // Nightstalker: Dark Matter
-105,92|5,10;   // Jabberwock: Cracked Core, Regular Core
-105,92,214|4,9,19;   // Land Shark: Cracked Core, Regular Core, Land Shark Claw
-82,38,203|8,12,27;   // Madness Demon: Demonic Meat, Cursed Blood, Cloth
-84|19;   // Two-Headed Lesser Drake: Small Core
-121,3|5,20;   // Magma Scorpion: Obsidian Stinger, Scorpion Toxin
-105,52,215|3,6,18;   // Stone Golem: Cracked Core, Golem Core, Rune Stone
-147|13;   // Water Elemental: Water Orb
-82,216|10,15;   // Hunger Demon: Demonic Meat, Demonic Eye
+37|8;   // Dread Wraith: Ectoplasm
+105,92,211|1,4,18;   // Frost Salamander: Cracked Core, Regular Core, Icy Hide
+212,213,210|4,5,10;   // Demon Crab: Demon Crab Egg, Demon Crab Shell, Essence of the Sea
+120,78,210|5,6,12;   // Abyssal Stalker: Abyssal Tentacle, Compressed Core, Essence of the Sea
+210,84|8,8;   // Lesser Cliff Drake: Essence of the Sea, Small Core
+13|10;   // Nightstalker: Dark Matter
+105,92|2,6;   // Jabberwock: Cracked Core, Regular Core
+105,92,214|2,4,19;   // Land Shark: Cracked Core, Regular Core, Land Shark Claw
+82,38,203|4,6,24;   // Madness Demon: Demonic Meat, Cursed Blood, Cloth
+84|9;   // Two-Headed Lesser Drake: Small Core
+121,3|4,10;   // Magma Scorpion: Obsidian Stinger, Scorpion Toxin
+105,52,215|1,3,18;   // Stone Golem: Cracked Core, Golem Core, Rune Stone
+147|8;   // Water Elemental: Water Orb
+82,216|5,15;   // Hunger Demon: Demonic Meat, Demonic Eye
 217|18;   // Spore Slime: Toxic Spore Sac
-93,218|13,16;   // Possessive Slime: Rotten Flesh, Possessive Slime Gel
-179|14;   // Crystal Bat: Crystal Shard
-15,122|18,20;   // Scythe Tree: Mana Wood Splinter, Scythe Branch
+93,218|5,8;   // Possessive Slime: Rotten Flesh, Possessive Slime Gel
+179|10;   // Crystal Bat: Crystal Shard
+15,122|8,20;   // Scythe Tree: Mana Wood Splinter, Scythe Branch
 219|13;   // Vipervine: Living Vine
-26,138,123,109|3,3,3,10;   // Reaper Skeleton: Malicious Bone, The Reaper's Cloak, The Reaper's Scythe, Bone
-105,92|4,8;   // Lesser Frost Drake: Cracked Core, Regular Core
-105,92,220|5,9,14;   // Desert Drake: Cracked Core, Regular Core, Desert Drake Wing
-76,75|3,17;   // Volcanic Guardian: Pure Obsidian, Obsidian Chunk
-84|18;   // River Drake: Small Core
-105,114,52,221|3,3,7,14;   // Wandering Golem: Cracked Core, Dimensional Fragment, Golem Core, Refined Iron
-105,92,222|5,10,17;   // Naga: Cracked Core, Regular Core, Naga Scales
+26,138,123,109|2,2,3,10;   // Reaper Skeleton: Malicious Bone, The Reaper's Cloak, The Reaper's Scythe, Bone
+105,92|2,6;   // Lesser Frost Drake: Cracked Core, Regular Core
+105,92,220|2,3,14;   // Desert Drake: Cracked Core, Regular Core, Desert Drake Wing
+76,75|2,8;   // Volcanic Guardian: Pure Obsidian, Obsidian Chunk
+84|10;   // River Drake: Small Core
+105,114,52,221|1,2,3,14;   // Wandering Golem: Cracked Core, Dimensional Fragment, Golem Core, Refined Iron
+105,92,222|2,5,17;   // Naga: Cracked Core, Regular Core, Naga Scales
 223|18;   // Mold Slime: Slime Moss
-52,15|4,18;   // Wood Golem: Golem Core, Mana Wood Splinter
-148|12;   // Poison Pitcher Plant: Pitcher Poison
-78,210|10,15;   // Abyssal Crab: Compressed Core, Essence of the Sea
-105,92,149,93|4,8,10,15;   // Infection Beast: Cracked Core, Regular Core, Bulbuous Growth, Rotten Flesh
-163|13;   // Red Slime: Red Slime Gel
+52,15|2,8;   // Wood Golem: Golem Core, Mana Wood Splinter
+148|7;   // Poison Pitcher Plant: Pitcher Poison
+78,210|4,15;   // Abyssal Crab: Compressed Core, Essence of the Sea
+105,92,149,93|1,2,4,4;   // Infection Beast: Cracked Core, Regular Core, Bulbuous Growth, Rotten Flesh
+163|6;   // Red Slime: Red Slime Gel
 325|2;
 325|2;
 325|2;
@@ -181,48 +181,48 @@ D
 325|2;
 C
 #######################
-12|50;   // Huge Slime: Concentrated Slime Gel
-74,32,105,92|2,5,8,14;   // Minotaur: Supreme Meat, Flaming Greataxe, Cracked Core, Regular Core
-23,22,21,20,192,19,18,17|2,3,3,3,5,5,5,5;   // Gemshard Golem: Large Mana Diamond, Large Mana Sapphire, Large Mana Emerald, Large Mana Ruby, Rock Plate, Mana Sapphire, Mana Emerald, Mana Ruby
-46,47,37,224|3,3,18,25;   // Haunted Armor: Enchanted Greatsword, Enchanted Greatshield, Ectoplasm, Enchanted Metal
-74,56,58,57,82|2,2,2,2,6;   // Demon: Supreme Meat, Flamewhip, Dark Metal Armor, Punishing Blade, Demonic Meat
+12|13;   // Huge Slime: Concentrated Slime Gel
+74,32,105,92|2,4,5,9;   // Minotaur: Supreme Meat, Flaming Greataxe, Cracked Core, Regular Core
+23,22,21,20,192,19,18,17|1,2,2,2,4,4,4,4;   // Gemshard Golem: Large Mana Diamond, Large Mana Sapphire, Large Mana Emerald, Large Mana Ruby, Rock Plate, Mana Sapphire, Mana Emerald, Mana Ruby
+46,47,37,224|2,2,8,25;   // Haunted Armor: Enchanted Greatsword, Enchanted Greatshield, Ectoplasm, Enchanted Metal
+74,56,58,57,82|1,1,2,2,3;   // Demon: Supreme Meat, Flamewhip, Dark Metal Armor, Punishing Blade, Demonic Meat
 59,60|2,3;   // Heavenly Knight: Firesword, Golden Holy Armor
-107,139,113|1,5,8;   // Frost Worm: Large Cracked Core, Frost Carapace, Large Core
-124,125,105,52|2,3,5,10;   // Stone Soldier: Ancient Shield, Ancient Sword, Cracked Core, Golem Core
-76,225,75|5,5,30;   // Magma Beetle: Pure Obsidian, Magma Carapace, Obsidian Chunk
+107,139,113|1,5,5;   // Frost Worm: Large Cracked Core, Frost Carapace, Large Core
+124,125,105,52|2,2,3,6;   // Stone Soldier: Ancient Shield, Ancient Sword, Cracked Core, Golem Core
+76,225,75|3,5,20;   // Magma Beetle: Pure Obsidian, Magma Carapace, Obsidian Chunk
 126,226|4,28;   // Nebula Wraith: Nebula Singularity, Nebula Mist
-107,113,228|2,9,16;   // Dracolisk: Large Cracked Core, Large Core, Dracolisk Egg
-105,30,234|5,8,19;   // Dragon Fairy: Cracked Core, Dragon Core, Tiny Dragon Wing
-78,235,355|18,20,60;   // Abyssal Eel: Compressed Core, Abyss Essence
-78,235|19,20;   // Abyssal Soldier: Compressed Core, Abyss Essence
-107,113,82,236|3,7,13,18;   // Beholder: Large Cracked Core, Large Core, Demonic Meat, Ominous Eyestalk
-13|22;   // Dark Sludge: Dark Matter
-26,109|7,30;   // Bone Demon: Malicious Bone, Bone
-140,105,92|5,8,14;   // Dragon Turtle: Draconata Shell, Cracked Core, Regular Core
-238,237,37|5,18,19;   // Ashen Spirit: Cursed Armor, Haunted Ash, Ectoplasm
-150|16;   // Nightmare: Nightmare Matter
-105,151,92|8,11,15;   // Emperor Cobra: Cracked Core, King's Venom, Regular Core
-105,92,239|8,13,21;   // Feathered Drake: Cracked Core, Regular Core, Drake Beak
-105,108,92|8,9,12;   // Fire Drake: Cracked Core, Raging Ember, Regular Core
-105,92,82,240|7,8,13,20;   // Gazer: Cracked Core, Regular Core, Demonic Meat, Gazer Saliva
-105,92,241|9,14,19;   // Jungle Drake: Cracked Core, Regular Core, Emerald Scale
+107,113,228|2,5,16;   // Dracolisk: Large Cracked Core, Large Core, Dracolisk Egg
+105,30,234|3,5,19;   // Dragon Fairy: Cracked Core, Dragon Core, Tiny Dragon Wing
+78,235,355|6,15,60;   // Abyssal Eel: Compressed Core, Abyss Essence, Glowing Bulb
+78,235|6,20;   // Abyssal Soldier: Compressed Core, Abyss Essence
+107,113,82,236|2,3,5,18;   // Beholder: Large Cracked Core, Large Core, Demonic Meat, Ominous Eyestalk
+13|12;   // Dark Sludge: Dark Matter
+26,109|5,25;   // Bone Demon: Malicious Bone, Bone
+140,105,92|5,6,8;   // Dragon Turtle: Draconata Shell, Cracked Core, Regular Core
+238,37,237|4,8,19;   // Ashen Spirit: Cursed Armor, Ectoplasm, Haunted Ash
+150|9;   // Nightmare: Nightmare Matter
+105,151,92|4,7,9;   // Emperor Cobra: Cracked Core, King's Venom, Regular Core
+105,92,239|4,8,21;   // Feathered Drake: Cracked Core, Regular Core, Drake Beak
+105,108,92|3,6,8;   // Fire Drake: Cracked Core, Raging Ember, Regular Core
+105,92,82,240|3,5,8,20;   // Gazer: Cracked Core, Regular Core, Demonic Meat, Gazer Saliva
+105,92,241|4,7,19;   // Jungle Drake: Cracked Core, Regular Core, Emerald Scale
 127,128,26,109|2,2,5,20;   // Lich: Alguul Grimoire (Tool), Alguul Grimoire (Weapon), Malicious Bone, Bone
-141,105,92|4,8,15;   // Magic Wolf: Mana-Infused Pelt, Cracked Core, Regular Core
+141,105,92|3,5,8;   // Magic Wolf: Mana-Infused Pelt, Cracked Core, Regular Core
 129,94|4,30;   // Mummy Pharaoh: Relic Pike, Ancient Bandages
-152|16;   // Sulfur Slime: Sulfuric Slime Gel
+152|10;   // Sulfur Slime: Sulfuric Slime Gel
 57,58,46,124|1,1,1,2;   // Overgrowth: Punishing Blade, Dark Metal Armor, Enchanted Greatsword, Ancient Shield
-242,105,92|3,9,13;   // Reefclaw: Reef-Claw, Cracked Core, Regular Core
+242,105,92|3,4,8;   // Reefclaw: Reef-Claw, Cracked Core, Regular Core
 130|5;   // Succubus: Necklace of Bewitching
-105,52,77|5,10,14;   // Obsidian Golem: Cracked Core, Golem Core, Obsidian Alloy
-105,92,243|9,14,20;   // Sea Drake: Cracked Core, Regular Core, Drake Webbing
-26,109|7,28;   // Skeleton Giant: Malicious Bone, Bone
-153,37|12,15;   // Spectre: Overloaded Ectoplasm, Ectoplasm
+105,52,77|3,7,14;   // Obsidian Golem: Cracked Core, Golem Core, Obsidian Alloy
+105,92,243|5,8,20;   // Sea Drake: Cracked Core, Regular Core, Drake Webbing
+26,109|5,24;   // Skeleton Giant: Malicious Bone, Bone
+153,37|6,10;   // Spectre: Overloaded Ectoplasm, Ectoplasm
 131,114|4,5;   // Spiral Guardian: Robotic Blade, Dimensional Fragment
-105,92,244|7,12,19;   // Wyvern: Cracked Core, Regular Core, Tail Spike
-105,92,245|8,14,17;   // Ogre: Cracked Core, Regular Core, Ogre Stone
-105,92,246|8,13,20;   // Swamp Beast: Cracked Core, Regular Core, Mossy Antlers
-105,52,108,192|5,10,15,20;   // Volcano Golem: Cracked Core, Golem Core, Raging Ember, Rock Plate
-105,52,192|6,12,30;   // Vine Golem: Cracked Core, Golem Core, Rock Plate
+105,92,244|5,10,19;   // Wyvern: Cracked Core, Regular Core, Tail Spike
+105,92,245|6,10,17;   // Ogre: Cracked Core, Regular Core, Ogre Stone
+105,92,246|5,9,20;   // Swamp Beast: Cracked Core, Regular Core, Mossy Antlers
+105,52,108,192|3,8,12,15;   // Volcano Golem: Cracked Core, Golem Core, Raging Ember, Rock Plate
+105,52,192|4,8,25;   // Vine Golem: Cracked Core, Golem Core, Rock Plate
 325|3;
 325|3;
 325|3;

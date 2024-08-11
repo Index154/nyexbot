@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'shop',
-	usages: ['', 'shiny'],
-	descriptions: ['Displays the current weekly shop', 'Displays the shiny shop'],
+	usages: ['', 'shiny', 'check'],
+	descriptions: ['Displays the current weekly shop', 'Displays the shiny shop', 'Displays details of the items being sold'],
     shortDescription: 'Check the weekly shop',
     weight: 10,
     addendum: [
@@ -148,10 +148,17 @@ module.exports = {
         var item11 = 162;
         var item11_data = item_array[item11].split("|");
         var price11 = item11_data[11];
+
+        // If the user entered the "check" argument or pressed the button, show the item details in a paged menu
+        if(args[0] == "check"){
+            item_keys = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11];
+            priceList = [price1, price2, price3, price4, price5, price6, price7, price8, price9, price10, price11];
+            lib.createPagedItemEmbed(dir, item_keys, item_keys, 0, message, user, item_array, priceList);
+            return;
+        }
         
         // If the user is a Merchant, check for abilities
         var prices = [price1, price2, price3, price4, price5, price6, price7, price8, price9, price10, price11];
-        var shopItems = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11];
 		var user_data = lib.readFile(dir + "/stats.txt").split("|");
 		var prices_column = "Prices";
         if(user_data[0] == "Merchant" && user_data[10] >= 30){
@@ -210,11 +217,15 @@ module.exports = {
         	);
         
         // Add view shiny listing button
-        var button = new ButtonBuilder()
+        var button1 = new ButtonBuilder()
+			.setCustomId("any|shop check")
+			.setLabel('Inspect wares')
+			.setStyle(1);
+        var button2 = new ButtonBuilder()
 			.setCustomId("any|shop shiny")
 			.setLabel('View current shiny offer')
-			.setStyle(1)
-        var row = new ActionRowBuilder().addComponents([button]);
+			.setStyle(1);
+        var row = new ActionRowBuilder().addComponents([button1, button2]);
         
         //Send embed output
         message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});
