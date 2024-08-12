@@ -23,6 +23,7 @@ module.exports = {
         var username = user.username;
         var dir = "userdata/" + user.id;
         var shinyNotif = false;
+        var saveStats = false;
         
         // Fetch current encounter
 		var monster_keys = lib.readFile(dir + "/current_encounter.txt");
@@ -200,7 +201,7 @@ module.exports = {
                 var plus = parseInt(newBuff[y]);
                 user_stats[y] = base + plus;
             }       
-            lib.saveFile(dir + "/stats.txt", user_stats.join("|"));
+            saveStats = true;
 		}
         
         // Determine fight result by comparing user stats to monster stats
@@ -463,7 +464,7 @@ module.exports = {
 
             // Update user stats
             user_stats[12] = parseInt(user_stats[12]) + gold;
-            lib.saveFile(dir + "/stats.txt", user_stats.join("|"));
+            saveStats = true;
             
             // Give a trophy if necessary
             if(trophy_extra !== ""){
@@ -524,15 +525,16 @@ module.exports = {
                 // If the user's HP is below 1, throw them out of the realm
                 if(hp < 1){
                     lib.saveFile(dir + "/area.txt", "0");
-                    message.reply({ content: "@ __**" + username + "**__```diff\n-You lost...```**" + win_chance + "%** win chance\nYour HP has been reduced to **0** and you've been returned to the Hub!", allowedMentions: { repliedUser: false }});
-                    return;
+                    output =  "**__```diff\n-You lost...```**" + win_chance + "%** win chance\nYour HP has been reduced to **0** and you've been returned to the Hub!";
+                }else{
+                    // Realm losing message
+                    output = "```diff\n-You lost...```**" + win_chance + "%** win chance\nYou have **" + hp + "** HP remaining!\n**The realm allows you to try again...**";
                 }
-                
-                // Realm losing message
-                output = "```diff\n-You lost...```**" + win_chance + "%** win chance\nYou have **" + hp + "** HP remaining!\n**The realm allows you to try again...**";
             }
-            
         }
+
+        // Save stats if necessary
+        if(saveStats){ lib.saveFile(dir + "/stats.txt", user_stats.join("|")); }
         
         // End encounter unless the realm or ability prevents it
         var ranks = ["D", "C", "B", "A", "S", "SS"];

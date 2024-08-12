@@ -2376,21 +2376,20 @@ module.exports = {
 		var output = "";
 		var chosenEvent = null;
 		var events = [
-			{name: '+treasure', weight: 4}, // 30
-			{name: '+specialItem', weight: 2}, // 10
-			{name: '+gold', weight: 5}, // 50
+			{name: '+treasure', weight: 3}, // 40
+			{name: '+specialItem', weight: 2}, // 20
+			{name: '+gold', weight: 4}, // 50
 			{name: '-gold', weight: 2}, // 30
-			{name: '+scrap', weight: 5}, // 50
+			{name: '+scrap', weight: 4}, // 50
 			{name: '-scrap', weight: 2}, // 30
 			{name: 'realm', weight: 0}, // 20
 			{name: 'buff', weight: 0}, // 30
 			{name: 'extremeBuff', weight: 0}, // 20
 			{name: '+radar', weight: 0}, // 20
-			{name: 'loseEncounter', weight: 2}, // 10
-			{name: 'makeShiny', weight: 0}, // 1
-			{name: '+exp', weight: 0}, // 20
-			{name: 'abilityCd', weight: 0}, // 40
-			{name: 'nothing', weight: 5} // 100
+			{name: 'loseEncounter', weight: 2}, // 30
+			{name: 'makeShiny', weight: 0}, // 3
+			{name: 'abilityCd', weight: 3}, // 40
+			{name: 'nothing', weight: 5} // 70
 		];
 		var weightSum = 0;
 		for(x = 0; x < events.length; x++){ weightSum = weightSum + events[x].weight; }
@@ -2478,16 +2477,17 @@ module.exports = {
 				break;
 
 			case '+gold':
-				var possibleAmounts = [50, 100, 100, 150, 150, 150, 150, 200, 200, 300, 500];
+				var possibleAmounts = [20, 50, 100, 100, 100, 150, 150, 150, 150, 200, 200, 300];
 				var roll = lib.rand(0, possibleAmounts.length - 1);
 				var userData = lib.readFile(dir + "/stats.txt").split("|");
-				userData[12] = parseInt(userData[12]) - possibleAmounts[roll];
+				userData[12] = parseInt(userData[12]) + possibleAmounts[roll];
+
 				lib.saveFile(dir + "/stats.txt", userData.join("|"));
 				output = "You got **" + possibleAmounts[roll] + " Gold**!";
 				break;
 
 			case '-gold':
-				var possibleAmounts = [50, 50, 100, 100, 150, 150, 150, 150, 200, 200, 200, 300, 400];
+				var possibleAmounts = [20, 50, 100, 100, 150, 150, 150, 150, 200, 200, 200, 300];
 				var roll = lib.rand(0, possibleAmounts.length - 1);
 				var userData = lib.readFile(dir + "/stats.txt").split("|");
 				userData[12] = parseInt(userData[12]) - possibleAmounts[roll];
@@ -2497,7 +2497,7 @@ module.exports = {
 				break;
 
 			case '+scrap':
-				var possibleAmounts = [5, 5, 10, 10, 15, 15, 15, 15, 20, 30];
+				var possibleAmounts = [3, 3, 8, 8, 12, 12, 12, 12, 15, 15];
 				var roll = lib.rand(0, possibleAmounts.length - 1);
 				var scrap = parseInt(lib.readFile(dir + "/scrap.txt"));
 				scrap += possibleAmounts[roll];
@@ -2506,7 +2506,7 @@ module.exports = {
 				break;
 
 			case '-scrap':
-				var possibleAmounts = [5, 5, 5, 10, 10, 10, 10, 15, 15, 20];
+				var possibleAmounts = [3, 3, 8, 8, 12, 12, 12, 12, 15, 15];
 				var roll = lib.rand(0, possibleAmounts.length - 1);
 				var scrap = parseInt(lib.readFile(dir + "/scrap.txt"));
 				scrap -= possibleAmounts[roll];
@@ -2539,15 +2539,23 @@ module.exports = {
 				break;
 
 			case 'makeShiny':
-
-				break;
-
-			case '+exp':
-
+				output = "The monster became shiny!";
+				// Edit embed image and color!
+				var keys = lib.readFile(dir + "/current_encounter.txt").split(",");
+				keys[2] = 1;
+				lib.saveFile(dir + "/current_encounter.txt", keys.join(","));
 				break;
 
 			case 'abilityCd':
-
+				output = "Your ability cooldown has been reset!";
+				var abilityData = lib.readFile(dir + "/ability.txt").split("|");
+				if(abilityData[2] == "0"){
+					output = "Nothing happened..."
+				}else if(abilityData[2] == "1"){
+					lib.saveFile(dir + "/ability_timestamp.txt", "1");
+				}else{
+					lib.saveFile(dir + "/ability_cd.txt", "0");
+				}
 				break;
 
 			default:

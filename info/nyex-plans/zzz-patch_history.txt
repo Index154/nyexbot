@@ -1,3 +1,10 @@
+__v0.22.2__
+- Removed command `showencounter`
+- Instead you can just do `encounter show` or `enc show` now and it will also be much better than the old command in several ways
+- `Monster` now tells and allows you to use your monster tokens directly if you have any
+- Fixed little oopsie that caused all Gold events to reduce your Gold instead of increasing it when it should
+- Added a new little event
+
 __v0.22.1__
 - You now have more control over which types of DM notifications you get from the bot. Just use `set updates` and pick the types of events you want to receive DMs for
 - Notifications can also be tweaked the same way for each server using the `set channelupdates` command

@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'encounter',
-	usages: [''],
-	descriptions: ['Starts an encounter and creates a new user account if necessary'],
+	usages: ['', 'show'],
+	descriptions: ['Starts an encounter and creates a new user account if necessary', 'Shows the previous encounter again'],
     shortDescription: 'Encounter a monster',
     weight: 5,
 	cooldown: 3,
@@ -26,6 +26,21 @@ module.exports = {
         // Set important variables
         var username = user.username;
         var dir = "userdata/" + user.id;
+
+        // Flag for showing previous enc
+        var showEnc = false;
+        var prevMon = "";
+        var monster_keys = "";
+        if(lib.exists(args[0])){
+            prevMon = lib.readFile(dir + "/current_encounter.txt");
+            console.log(prevMon);
+            if(!lib.exists(prevMon)){
+                message.reply({ content: "\u274C There is no active encounter to display!", allowedMentions: { repliedUser: false } });
+                return;
+            }
+            showEnc = true;
+            monster_keys = prevMon.split(",");
+        }
         
         // Empty confirmation queues
         lib.saveFile(dir + "/confirm.txt", "");
@@ -87,8 +102,10 @@ module.exports = {
                 var new_stats = user_stats.join("|");
                 buff_extra = "*Your **" + item_name + "**'s buff ran out!*";
                 current_buff = "";
-                lib.saveFile(dir + "/stats.txt", new_stats);
-                lib.saveFile(dir + "/current_buff.txt", "");
+                if(!showEnc){
+                    lib.saveFile(dir + "/stats.txt", new_stats);
+                    lib.saveFile(dir + "/current_buff.txt", "");
+                }
             }
         }
         
@@ -96,11 +113,11 @@ module.exports = {
         var radar_bonus = 0;
         if(current_buff !== ""){
             // Modify and repack the timer
-            buff_timer--;
+            if(!showEnc){ buff_timer--; }
             buff_stat_subdiv[1] = buff_timer;
             buff_stats[10] = buff_stat_subdiv.join(",");
             
-            lib.saveFile(dir + "/current_buff.txt", buff_stats.join("|"));
+            if(!showEnc){ lib.saveFile(dir + "/current_buff.txt", buff_stats.join("|")); }
             if(buff_timer === 0){
                 buff_extra = "*Your **" + item_name + "**'s buff will run out after this encounter!*";
             }else{
@@ -112,7 +129,7 @@ module.exports = {
             }
             
             // Calculate radar bonus and update charge count if it is active
-            if(buff_stats[9] == "Special"){
+            if(buff_stats[9] == "Special" && !showEnc){
                 lib.saveFile(dir + "/charges.txt", buff_timer)
                 var radar_raw = lib.readFile(dir + "/radar_values.txt").split(",");
                 var quest_bonus = 2 * (parseInt(radar_raw[0]) * 0.01);
@@ -159,6 +176,7 @@ module.exports = {
         rarities[0] = rarities[0] + (m_luck / 4);   //10 M-Luck is 0.25%
         
         // Determine result!
+        var inverted_ids = [5, 4, 3, 2, 1, 0];
         var rarity_rand = lib.rand(1, limit);
         var chosen_group = 5;
         var addPrevious = 0;
@@ -168,10 +186,10 @@ module.exports = {
             }
             addPrevious = addPrevious + rarities[y];
         }
+        if(showEnc){ chosen_group = inverted_ids[monster_keys[0]]; }
         var rarity = rarity_names[chosen_group];
         
         // Determine monster
-        var inverted_ids = [5, 4, 3, 2, 1, 0];
         chosen_group = inverted_ids[chosen_group];
         var monsters = monster_groups[chosen_group].split(";\n");
         var monster_key = lib.rand(0, monsters.length - 2);
@@ -181,7 +199,7 @@ module.exports = {
         var color_mod = color_modifiers[chosen_group];
         
         // If the user has an active lure buff then give a chance to reroll into a monster of the matching type
-        if(current_buff !== "" && buff_stats[0].includes("Lure")){
+        if(current_buff !== "" && !showEnc && buff_stats[0].includes("Lure")){
             // Make an array of all monsters which the encounter could be rerolled into
             var target_type = buff_stats[0].slice(0, -5); // Get the type from the item buff name
             var id_list = [];
@@ -218,7 +236,7 @@ module.exports = {
         else{abilityModifierEffect = 0;}
         var abilityCondition = parseInt(lib.readFile(dir + "/ability_cd.txt"));
         var abilityOutput = "";
-        if(abilityData[0] == "1"){
+        if(abilityData[0] == "1" && !showEnc){
             // Check for cooldown
             var abilityValuesList = lib.readFile("data/ability_values.txt").split("\n");
             var abilityValues = abilityValuesList[abilityID].split("|");
@@ -253,14 +271,20 @@ module.exports = {
                         var abilityVariant = abilityVariants[abilityModifierTime].split("|");
                         abilityCondition = parseInt(abilityVariant[abilityConditionType]) + 1;
                     }
-                
+                    
             }
         }
 
-        // Get monster info for output
-        var monster_data = monsters[monster_key].split("|");
         // Change monster key to accomodate for the area
+        var monster_data = monsters[monster_key].split("|");
         monster_key = monster_data[7];
+
+        // If showing previous encounter => Get monster keys from file
+        if(showEnc){
+            chosen_group = parseInt(monster_keys[0]);
+            monster_key = parseInt(monster_keys[1]);
+            shiny_key = parseInt(monster_keys[2]);
+        }
 
         // Chain calculations
         var shinyRate = 4000;
@@ -280,7 +304,7 @@ module.exports = {
             }
         }
         // Determine shininess
-        while(shiny_key === 0  && polisher > 0){
+        while(shiny_key === 0  && polisher > 0 && !showEnc){
             // Default: 1 roll
             polisher--;
             var mod_rand = lib.rand(1, shinyRate);
@@ -290,7 +314,7 @@ module.exports = {
         }
         
         // Update ability cooldown if it is encounter-based
-        if(abilityData[0] !== "0" && abilityData[2] == "2"){
+        if(abilityData[0] !== "0" && abilityData[2] == "2" && !showEnc){
             if(abilityCondition > 0){abilityCondition--;}
             lib.saveFile(dir + "/ability_cd.txt", abilityCondition);
         }
@@ -335,7 +359,7 @@ module.exports = {
         
         // Create final monster key group and save encounter
         var monster = chosen_group + "," + monster_key + "," + shiny_key;
-        lib.saveFile(dir + "/current_encounter.txt", monster);
+        if(!showEnc){ lib.saveFile(dir + "/current_encounter.txt", monster); }
         
         // Check if the user has the monster in their previous captures
         var captures = lib.readFile(dir + "/all_captures.txt");
@@ -450,7 +474,6 @@ module.exports = {
 
 		// Normal output
 		message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
-		//lib.buttonReply(message, [outputEmbed], buttonList1, buttonList2)     This would make the capture and fight buttons timeout after a while and disable after one click
 		
 	},
 };

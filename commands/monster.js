@@ -48,7 +48,6 @@ module.exports = {
             message.reply({ content: "\u274C You have to wait **" + timeLeft + "** before you can receive another guaranteed monster!", allowedMentions: { repliedUser: false }});
             return;
         }
-        lib.saveFile(dir + "/mon_cd.txt", current_sec);
         
         // Get current area path
         var area_raw = lib.readFile(dir + "/area.txt");
@@ -81,6 +80,59 @@ module.exports = {
                 lib.saveFile(dir + "/area.txt", "0");
                 return;
             }
+        }
+
+        // Check for monster tokens
+        var tokenState = lib.readFile(dir + "/token_state.txt");
+        var tokenExtra = "";
+        var inventory = lib.readFile(dir + "/inventory.txt");
+        var item_keys;
+        if(inventory.includes(",")){
+            item_keys = inventory.split(",");
+        }else if(inventory !== ""){
+            item_keys = [inventory];
+        }else{
+            item_keys = [];
+        }
+        // If the user has a token but no active token points then suggest using one OR use one after pressing the button
+        if(args[0] != "notoken" && (!lib.exists(tokenState) || args[0] == "withtoken") && (item_keys.includes("340") || item_keys.includes("350"))){
+            // Suggest using token
+            if(args[0] != "withtoken"){
+                var outputEmbed = new Discord.EmbedBuilder()
+                    .setColor("#0099ff")
+                    .setTitle("Token notice")
+                    .setDescription("You seem to have an unused **[Monster Token]** or **[Grand Token]** in your inventory. Would you like to use it right now in order to obtain a monster from an exclusive pool?");
+
+                var button1 = new ButtonBuilder()
+                    .setCustomId(user.id + "|monster withtoken|embedEdit")
+                    .setLabel("Yes")
+                    .setStyle(3);
+                var button2 = new ButtonBuilder()
+                    .setCustomId(user.id + "|monster notoken|embedEdit")
+                    .setLabel("No")
+                    .setStyle(4);
+                var row = new Discord.ActionRowBuilder().addComponents([button1, button2]);
+
+                message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false } });
+                return;
+            }else{
+                // Use token directly (preferrably normal ones first)
+                var itemToUse = "350";
+                if(item_keys.includes("340")){itemToUse = "340";}
+
+                // Remove it from inv
+                var key = item_keys.indexOf(itemToUse);
+                item_keys.splice(key, 1);
+                lib.saveFile(dir + "/inventory.txt", item_keys.join(","));
+
+                // Give point(s)
+                var itemsArray = lib.readFile("data/items.txt").split(";\n");
+                var itemData = itemsArray[parseInt(itemToUse)].split("|");
+                tokenExtra = "You used a " + itemData[0] + "! ";
+                if(!lib.exists(tokenState)){tokenState = 0;}
+                tokenState = parseInt(tokenState) + itemData[10].split(",")[1];
+            }
+            
         }
         
         // Load relevant stats
@@ -140,8 +192,6 @@ module.exports = {
         }
         
         // Check if the user has activated a monster token and use a different monsters file if so
-        var tokenExtra = "";
-        var tokenState = lib.readFile(dir + "/token_state.txt");
         if(lib.exists(tokenState)){
             // Fetch token monster pool
             var monsters_raw = lib.readFile("data/monsters/monsters_token.txt");
@@ -149,7 +199,13 @@ module.exports = {
             
             // Update token counter
             tokenState = parseInt(tokenState) - 1;
-            tokenExtra = "One Token Point has been used up! You have **" + tokenState + "** remaining!";
+            if(tokenExtra != ""){
+                if(tokenExtra.includes("Grand")){
+                    tokenExtra += "You have **" + tokenState + "** Token points remaining";
+                }
+            }else{
+                tokenExtra += "You used 1 Token point! You have **" + tokenState + "** remaining!";
+            }
             if(tokenState === 0){tokenState = "";}
             lib.saveFile(dir + "/token_state.txt", tokenState);
         }else{
@@ -449,8 +505,19 @@ module.exports = {
         	.setColor(embed_color)
         	.setTitle("@ __**" + username + "**__")
         	.setThumbnail("https://artificial-index.com/media/rpg_monsters/" + monster_name.toLowerCase().replace(/ /g, "_") + ".png")
-        	.setDescription("```" + color_mod + "You've obtained a" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ")!" + capped + "```" + extraStuff.join("\n"));
-		// Real output
+        	.setDescription("```" + color_mod + "You got a" + n_extra + " " + shiny_extra + monster_name + shiny_extra + " (" + rarity + ")!" + capped + "```" + extraStuff.join("\n"));
+
+        // Update cooldown
+        lib.saveFile(dir + "/mon_cd.txt", current_sec);
+
+        // Edit message if applicable
+        if(lib.exists(message.message) && message.customId.includes("embedEdit")){
+            message.deferUpdate();
+            message.message.edit({ embeds: [outputEmbed], components: [] });
+            return;
+        }
+
+		// Output
 		message.reply({ embeds: [outputEmbed], allowedMentions: { repliedUser: false } });
 	},
 };
