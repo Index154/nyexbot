@@ -106,7 +106,7 @@ client.once('ready', async () => {
 client.rest.on('rateLimited', console.log);
 
 // Prepare some variables for the boss code
-var bossRarity = 1;   // The chance is defined as 1 out of bossRarity per message
+var bossRarity = 8000;   // The chance is defined as 1 out of bossRarity per message
 var ranks = ["D", "C", "B", "A", "S", "SS"];
 var chances = [23, 30, 20, 14, 9, 4];   // The chances for each rank of boss to be chosen, out of 100
 
