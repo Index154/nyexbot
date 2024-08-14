@@ -1,6 +1,6 @@
 var { prefix } = require('../config.json');
 nick = require('./nickname.js');
-const { PermissionsBitField, ButtonBuilder, EmbedBuilder, ActionRowBuilder } = require('discord.js');
+const { ButtonBuilder, EmbedBuilder, ActionRowBuilder } = require('discord.js');
 
 module.exports = {
 	name: 'worldboss',
@@ -9,7 +9,8 @@ module.exports = {
     shortDescription: 'Fight the current boss',
     weight: 30,
 	addendum: [
-        '- Can only be used once an hour and only if there is an active boss',
+        '- Can only be used at most once every 3 hours and only if there is an active boss',
+		'- The more damage you deal to the boss the longer the cooldown will be before you can fight it again',
         '- Bosses can spawn randomly whenever a message is sent. You can use the command `{prefix}set` to enable notifications for when a boss spawns',
         '- Only one boss is ever active at a time but it\'s available to all users across all servers',
         '- Every player who dealt damage to the boss will receive an Unstable Vortex once it is defeated',
@@ -322,7 +323,7 @@ module.exports = {
 	        // Global output
 	        if(buff_extra !== ""){buff_extra = "\n" + buff_extra;}
 	        message.reply({ content: "You dealt **" + damage + "** damage to the boss, successfully defeating it! You've received **20 Gold**!" + buff_extra, allowedMentions: { repliedUser: false }});
-			
+
 			var outputEmbed = new EmbedBuilder()
 				.setColor('#0099ff')
 				.setTitle("Worldboss notification")
