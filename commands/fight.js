@@ -242,6 +242,7 @@ module.exports = {
         if(win_chance > win_cap){
             win_chance = win_cap;
         }
+        if(win_chance > 100){win_chance = 100;}
         if(win_chance < -70){win_chance = 3;}
         else if(win_chance < 4){win_chance = 4;}
         if(fight_rand <= win_chance){

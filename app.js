@@ -189,9 +189,6 @@ client.on('interactionCreate', interaction => {
     
     // On the test branch: Ignore all messages that weren't sent by the bot admin
     if(isTestBranch && user.id != "214754022832209921") return;
-
-    // Try to spawn a boss
-    trySpawnBoss(message);
     
     // Process the actual interaction now
     // For interactive elements which should trigger a command when clicked I fill the customId field with three values: The ID of the user the interaction element is restricted to (or "any" for all users), the command that should be executed when the element is clicked and whether it's an interaction that should lead to the original message being edited
@@ -302,9 +299,6 @@ client.on('messageCreate', async message => {
 
     // On the test branch: Only react to the bot owner
     if(isTestBranch && user.id != "214754022832209921") return;
-
-    // Try to spawn a boss
-    trySpawnBoss(message);
     
     // Check if the server has a custom prefix and load it
     commandPrefix = prefix;
@@ -313,6 +307,9 @@ client.on('messageCreate', async message => {
            commandPrefix = lib.readFile("./data/configs/" + message.guildId + "/prefix.txt");
         }
     }
+
+    // Try to spawn a boss only for non-bot messages and non-commands
+    if (!message.content.startsWith(commandPrefix) && !user.bot) trySpawnBoss(message);
     
     // If the message was sent in the updates channel on the main server and is not a minor patch then crosspost it to all other configured announcement channels (except the one on the main server)
     // Also send it to all signed-up users in DMs

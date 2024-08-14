@@ -64,9 +64,11 @@ module.exports = {
         var current_sec = Math.floor(d.getTime() / 1000);
 	    var last_boss = parseInt(lib.readFile(dir + "/boss_cd.txt"));
 	    var boss = lib.readFile("data/worldboss.txt");
+		var lastDamage = parseInt(lib.readFile(dir + "/boss_dmg.txt"));
+		var timeToWait = 10800 + (lastDamage * 30);
 	    if(boss !== "" && boss !== undefined){
-    	    if(current_sec < last_boss + 3600){
-    	        var wbCooldown = lib.secondsToTime(3600 - current_sec + last_boss);
+    	    if(current_sec < last_boss + timeToWait){
+    	        var wbCooldown = lib.secondsToTime(timeToWait - current_sec + last_boss);
     	        description += "\n\u274C Your worldboss cooldown is **" + wbCooldown + "**";
     	    }else{
     	        description += "\n\u2694 You can fight the **worldboss** right now!";

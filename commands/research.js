@@ -296,7 +296,6 @@ module.exports = {
         }
         
         // Create selection buttons
-        // Build buttons
 		var button1 = new ButtonBuilder()
 			.setCustomId(user.id + "|research A")
 			.setLabel('A')
@@ -310,26 +309,26 @@ module.exports = {
 			.setLabel('C')
 			.setStyle(3)
 		var buttons = [button1, button2, button3];
-        var row = new ActionRowBuilder().addComponents(buttons);
 		
 		// Get scrap amount
 		var scrapAmount = parseInt(lib.readFile(dir + "/scrap.txt"));
-		var notAffordable = ["", "", ""];
-		if(scrapAmount < parseInt(prices[projectA_data[1]])){notAffordable[0] = " - **You don't have enough!**"}
-		if(scrapAmount < parseInt(prices[projectB_data[1]])){notAffordable[1] = " - **You don't have enough!**"}
-		if(scrapAmount < parseInt(prices[projectC_data[1]])){notAffordable[2] = " - **You don't have enough!**"}
+		var affordableIcons = ["\u2705", "\u2705", "\u2705"];
+        var strikeThroughs = ["", "", ""];
+		if(scrapAmount < parseInt(prices[projectA_data[1]])){affordableIcons[0] = "\u274C"; buttons[0].setDisabled(true); strikeThroughs[0] = "~~";}
+		if(scrapAmount < parseInt(prices[projectB_data[1]])){affordableIcons[1] = "\u274C"; buttons[1].setDisabled(true); strikeThroughs[1] = "~~";}
+		if(scrapAmount < parseInt(prices[projectC_data[1]])){affordableIcons[2] = "\u274C"; buttons[2].setDisabled(true); strikeThroughs[2] = "~~";}
+        var row = new ActionRowBuilder().addComponents(buttons);
         
         // Display project list
 	    var outputEmbed = new Discord.EmbedBuilder()
         	.setColor('#0099ff')
-        	.setTitle("Your available research projects")
-        	.setDescription("Available Scrap: " + scrapAmount.toString())
+        	.setTitle("Available research")
+        	.setDescription("Your Scrap: " + scrapAmount.toString())
         	.addFields(
-        		{ name: "Project A:\n[" + projectA_data[1] + " " + projectA_data[0] + " Research]", value: "Cost: " + prices[projectA_data[1]] + " Scrap" + notAffordable[0] + "\nDuration: " + research_durations[projectA_data[1]], inline: false},
-        		{ name: "Project B:\n[" + projectB_data[1] + " " + projectB_data[0] + " Research]", value: "Cost: " + prices[projectB_data[1]] + " Scrap" + notAffordable[1] + "\nDuration: " + research_durations[projectB_data[1]], inline: false},
-        		{ name: "Project C:\n[" + projectC_data[1] + " " + projectC_data[0] + " Research]", value: "Cost: " + prices[projectC_data[1]] + " Scrap" + notAffordable[2] + "\nDuration: " + research_durations[projectC_data[1]], inline: false}
-        	)
-        	.setFooter({ text: "Use \"" + prefix + "research [A/B/C]\" or a button to start a project!" });
+        		{ name: affordableIcons[0] + strikeThroughs[0] + "[A] = [" + projectA_data[1] + " " + projectA_data[0] + " Research]" + strikeThroughs[0], value: "Cost: " + prices[projectA_data[1]] + " Scrap - Duration: " + research_durations[projectA_data[1]], inline: false},
+        		{ name: affordableIcons[1] + strikeThroughs[1] + "[B] = [" + projectB_data[1] + " " + projectB_data[0] + " Research]" + strikeThroughs[1], value: "Cost: " + prices[projectB_data[1]] + " Scrap - Duration: " + research_durations[projectB_data[1]], inline: false},
+        		{ name: affordableIcons[2] + strikeThroughs[2] + "[C] = [" + projectC_data[1] + " " + projectC_data[0] + " Research]" + strikeThroughs[2], value: "Cost: " + prices[projectC_data[1]] + " Scrap - Duration: " + research_durations[projectC_data[1]], inline: false}
+        	);
         
         // Output
         message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});

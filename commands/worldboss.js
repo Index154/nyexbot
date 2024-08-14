@@ -143,8 +143,10 @@ module.exports = {
 	    var d = new Date();
         var current_sec = Math.floor(d.getTime() / 1000);
 	    var last_sec = parseInt(lib.readFile(dir + "/boss_cd.txt"));
-	    if(current_sec < last_sec + 3600){
-	        var cooldown = lib.secondsToTime(3600 - current_sec + last_sec);
+		var lastDamage = parseInt(lib.readFile(dir + "/boss_dmg.txt"));
+		var timeToWait = 10800 + (lastDamage * 30);
+	    if(current_sec < last_sec + timeToWait){
+	        var cooldown = lib.secondsToTime(timeToWait - current_sec + last_sec);
 	        message.reply({ content: "\u274C You need to wait **" + cooldown + "** before you can fight a boss again!", allowedMentions: { repliedUser: false }});
 	        return;
 	    }
@@ -153,8 +155,9 @@ module.exports = {
 	    // Lower the HP of the boss
 	    var userData = lib.readFile(dir + "/stats.txt").split("|");
 	    var damage = parseInt(userData[1]) + parseInt(userData[2]);
-	    if(damage < 0){damage = 0;}
+	    if(damage < 1){damage = 1;}
 	    hp = hp - damage;
+		lib.saveFile(dir + "/boss_dmg.txt", damage);
 	    
 	    // Update user stats and empty the current buff file if the buff timer has reached 0
         var current_buff = lib.readFile(dir + "/current_buff.txt");
@@ -319,7 +322,7 @@ module.exports = {
 	        // Global output
 	        if(buff_extra !== ""){buff_extra = "\n" + buff_extra;}
 	        message.reply({ content: "You dealt **" + damage + "** damage to the boss, successfully defeating it! You've received **20 Gold**!" + buff_extra, allowedMentions: { repliedUser: false }});
-
+			
 			var outputEmbed = new EmbedBuilder()
 				.setColor('#0099ff')
 				.setTitle("Worldboss notification")
@@ -336,8 +339,8 @@ module.exports = {
 				// Unlucky!
 				userData[12] = parseInt(userData[12]);
 				var loss = 50;
-				if(userData[12] < loss){loss = loss - (loss - userData[12]);}
 				userData[12] = userData[12] - loss;
+				if(userData[12] < 0){userData[12] = 0;}
 				output = "You dealt **" + damage + " damage** to the boss!\n__Oh no! The boss sneezed on you, making you lose **" + loss + " Gold**!__ Here is the monster's current status:```\n[" + name + "] (Rank " + rank + "X)\n" + hp + " HP remaining```" + buff_extra;
 			}else{
 				// Normal outcome
@@ -352,8 +355,5 @@ module.exports = {
 	        lib.saveFile("data/worldboss.txt", name + "|" + hp + "|" + rank);
 	        lib.saveFile("data/boss_participants.txt", players);
 	    }
-	    
-	    
-	    
 	},
 };

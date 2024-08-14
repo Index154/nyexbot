@@ -1,3 +1,8 @@
+__v0.22.3__
+- The research project list is now formatted better and projects that you can't afford are better marked as such
+- Boss spawning can now only be triggered by messages that aren't commands (so "normal" server activity)
+- Increased default boss fighting cooldown to 3 hours. Additionally, the cooldown increases the more damage you deal to him per attack
+
 __v0.22.2__
 - Removed command `showencounter`
 - Instead you can just do `encounter show` or `enc show` now and it will also be much better than the old command in several ways

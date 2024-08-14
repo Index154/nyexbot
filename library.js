@@ -2288,6 +2288,7 @@ module.exports = {
 		lib.saveFile(dir + "/all_captures.txt", "");
 		lib.saveFile(dir + "/area.txt", "4");
 		lib.saveFile(dir + "/boss_cd.txt", "1");
+		lib.saveFile(dir + "/boss_dmg.txt", "0");
 		lib.saveFile(dir + "/captures.txt", "");
 		lib.saveFile(dir + "/charges.txt", "0");
 		lib.saveFile(dir + "/chain.txt", "0|0");
