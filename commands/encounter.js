@@ -294,7 +294,8 @@ module.exports = {
             chain = chainRaw.split("|");
         }
         var chainInfo = "";
-        // MAX chain count for 100% shiny rate: 1.2 = 42 | 1.3 = 29 | 1.4 = 23 | 1.5 = 19 | 1.6 = 17
+        // MAX chain count for 100% shiny rate (1/4000): 1.2 = 42 | 1.3 = 29 | 1.4 = 23 | 1.5 = 19 | 1.6 = 17
+        // MAX chain count for 100% shiny rate (1/8000): 1.2 = 46 | 1.3 =  | 1.4 =  | 1.5 = 21 | 1.6 = 18
         var chainModifiers = [1.2, 1.23, 1.3, 1.35, 1.5, 1.6];
         if(chain[0] == chosen_group + "," + monster_key + ",0"){
             chainInfo = "❗ ❗ **__Chain target__** ❗ ❗";

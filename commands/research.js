@@ -205,7 +205,12 @@ module.exports = {
                             lib.saveFile(dir + "/current_buff.txt", buff_data.join("|"));
                         }
                     }
-                    
+                }else if(research_data[2] == "Scrap"){
+                    var scrap = 5;
+                    reward = scrap + " Scrap";
+                    var scrapCount = parseInt(lib.readFile(dir + "/scrap.txt"));
+                    scrapCount += scrap;
+                    lib.saveFile(dir + "/scrap.txt", scrapCount);
                 }
 
                 // Button for new research
@@ -230,7 +235,7 @@ module.exports = {
         
         // If no projects have been generated yet, generate them. Otherwise load the existing ones
         var projects = lib.readFile(dir + "/projects.txt");
-        var research_durations = {Small: "4 hours", Medium: "8 hours", Large: "15 hours", Unstable: "30 hours"};
+        var research_durations = {Small: "4 hours", Medium: "8 hours", Large: "15 hours", Unstable: "30 hours", Tiny: "24 hours"};
         var prices = {Small: 5, Medium: 10, Large: 20, Unstable: 40};
         if(projects === undefined || projects === ""){
             // Clear the user input to prevent accidentally chosing a project right after it is generated
@@ -265,7 +270,7 @@ module.exports = {
         
         // If the user's input matches one of the generated projects and they have enough scrap then begin research
         if(args[0] !== "" && args[0] !== undefined){args[0] = args[0].toUpperCase();}
-        if(args[0] == "A" || args[0] == "B" || args[0] == "C"){
+        if(args[0] == "A" || args[0] == "B" || args[0] == "C" || args[0] == "D"){
             var cooldowns = {Small: 14400, Medium: 28800, Large: 54000, Unstable: 108000};
             if(args[0] == "A"){
                 var cooldown = cooldowns[projectA_data[1]];
@@ -277,11 +282,16 @@ module.exports = {
                 var price = prices[projectB_data[1]];
                 var chosen_type = projectB_data[0];
                 var chosen_size = projectB_data[1];
-            }else{
+            }else if(args[0] == "C"){
                 var cooldown = cooldowns[projectC_data[1]];
                 var price = prices[projectC_data[1]];
                 var chosen_type = projectC_data[0];
                 var chosen_size = projectC_data[1];
+            }else{
+                var cooldown = 86400;
+                var price = 0;
+                var chosen_type = "Scrap";
+                var chosen_size = "Tiny";
             }
             
             // Check if the user has enough scrap and subtract it if so
@@ -319,11 +329,15 @@ module.exports = {
 			.setCustomId(user.id + "|research C")
 			.setLabel('C')
 			.setStyle(3)
-		var buttons = [button1, button2, button3];
+        var button4 = new ButtonBuilder()
+			.setCustomId(user.id + "|research D")
+			.setLabel('D')
+			.setStyle(2)
+		var buttons = [button1, button2, button3, button4];
 		
 		// Get scrap amount
 		var scrapAmount = parseInt(lib.readFile(dir + "/scrap.txt"));
-		var affordableIcons = ["\u2705", "\u2705", "\u2705"];
+		var affordableIcons = ["\u2705", "\u2705", "\u2705", "\u2705"];
         var strikeThroughs = ["", "", ""];
 		if(scrapAmount < parseInt(prices[projectA_data[1]])){affordableIcons[0] = "\u274C"; buttons[0].setDisabled(true); strikeThroughs[0] = "~~";}
 		if(scrapAmount < parseInt(prices[projectB_data[1]])){affordableIcons[1] = "\u274C"; buttons[1].setDisabled(true); strikeThroughs[1] = "~~";}
@@ -338,12 +352,12 @@ module.exports = {
         	.addFields(
         		{ name: affordableIcons[0] + strikeThroughs[0] + "[A] = " + icons[projectA_data[0]] + icons[projectA_data[1]] + "[" + projectA_data[1] + " " + projectA_data[0] + " Research]" + strikeThroughs[0], value: "Cost: " + prices[projectA_data[1]] + " Scrap - Duration: " + research_durations[projectA_data[1]], inline: false},
         		{ name: affordableIcons[1] + strikeThroughs[1] + "[B] = " + icons[projectB_data[0]] + icons[projectB_data[1]] + "[" + projectB_data[1] + " " + projectB_data[0] + " Research]" + strikeThroughs[1], value: "Cost: " + prices[projectB_data[1]] + " Scrap - Duration: " + research_durations[projectB_data[1]], inline: false},
-        		{ name: affordableIcons[2] + strikeThroughs[2] + "[C] = " + icons[projectC_data[0]] + icons[projectC_data[1]] + "[" + projectC_data[1] + " " + projectC_data[0] + " Research]" + strikeThroughs[2], value: "Cost: " + prices[projectC_data[1]] + " Scrap - Duration: " + research_durations[projectC_data[1]], inline: false}
+        		{ name: affordableIcons[2] + strikeThroughs[2] + "[C] = " + icons[projectC_data[0]] + icons[projectC_data[1]] + "[" + projectC_data[1] + " " + projectC_data[0] + " Research]" + strikeThroughs[2], value: "Cost: " + prices[projectC_data[1]] + " Scrap - Duration: " + research_durations[projectC_data[1]], inline: false},
+                { name: affordableIcons[3] + "[D] = [Tiny Scrap Research]", value: "Cost: Free - Duration: 24 hours", inline: false}
         	);
         
         // Output
         message.reply({ embeds: [outputEmbed], components: [row], allowedMentions: { repliedUser: false }});
-        //lib.buttonReply(message, [outputEmbed], buttons)
         
 	},
 };

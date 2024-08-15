@@ -1,3 +1,7 @@
+__v0.22.5__
+- Added a new research button for a very small amount of free Scrap. This way you can always start a research even if you don't have any Scrap
+- Command cooldown errors no longer make the embed super small so they look less annoying
+
 __v0.22.4__
 - Added some icons to `research`
 - Halved base shiny rate and buffed radar a bit

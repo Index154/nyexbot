@@ -259,7 +259,7 @@ client.on('interactionCreate', interaction => {
 			const expirationTime = timestamps.get(user.id) + cooldownAmount;
 			if (now < expirationTime) {
 				const timeLeft = (expirationTime - now) / 1000;
-                output = `\n\u274C Please wait ${timeLeft.toFixed(1)} more second(s) before using \`${command.name}\` again!`;
+                output = `\n\u274C Please wait ${timeLeft.toFixed(1)} more second(s) before using \`${command.name}\` again!\n\u2800\n\u2800\n\u2800\n\u2800`;
 
                 // If the command was called using a special button then edit the original message instead of sending a new one
                 if(lib.exists(message.message) && message.customId.includes("embedEdit")){
