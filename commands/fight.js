@@ -526,7 +526,7 @@ module.exports = {
                 // If the user's HP is below 1, throw them out of the realm
                 if(hp < 1){
                     lib.saveFile(dir + "/area.txt", "0");
-                    output =  "**__```diff\n-You lost...```**" + win_chance + "%** win chance\nYour HP has been reduced to **0** and you've been returned to the Hub!";
+                    output =  "```diff\n-You lost...```**" + win_chance + "%** win chance\nYour HP has been reduced to **0** and you've been returned to the Hub!";
                 }else{
                     // Realm losing message
                     output = "```diff\n-You lost...```**" + win_chance + "%** win chance\nYou have **" + hp + "** HP remaining!\n**The realm allows you to try again...**";
