@@ -14,7 +14,7 @@ module.exports = {
 	    const lib = require("../library.js");
         
         // Only Index is allowed
-        if(user.id != 214754022832209921){
+        if(user.id != globalVars.adminUserId){
             message.reply({ content: "\u274C This subcommand can only be used by Index!", allowedMentions: { repliedUser: false }});
             return;
         }

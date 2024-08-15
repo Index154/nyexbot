@@ -1,3 +1,8 @@
+__v0.22.4__
+- Added some icons to `research`
+- Halved base shiny rate and buffed radar a bit
+- Fixed scuffed Gold reward rates if your Speed isn't much higher than your Attack
+
 __v0.22.3__
 - The research project list is now formatted better and projects that you can't afford are better marked as such
 - Boss spawning can now only be triggered by messages that aren't commands (so "normal" server activity)

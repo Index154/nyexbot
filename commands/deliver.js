@@ -20,7 +20,7 @@ module.exports = {
         
 	    // Get user's current main quest
         var quest_list_raw = lib.readFile("data/quests.txt");
-        var quest_list = quest_list_raw.split(";\n");
+        var quest_list = quest_list_raw.split("\n");
         var quest_count = quest_list.length;
         var quest_id = lib.readFile(dir + "/current_quest.txt");
         // If the user has finished the final quest, cancel the command
@@ -216,7 +216,7 @@ module.exports = {
         lib.saveFile(dir + "/current_quest.txt", next_quest);
         
         // Check previous as well as new quest completion
-        var quests = lib.readFile("data/quests.txt").split(";\n");
+        var quests = lib.readFile("data/quests.txt").split("\n");
 		var quest_total = quests.length;
 		var quest_progress_old = parseInt((Math.round((quest_id / quest_total) * 1000)) / 10);
 		var quest_progress_new = parseInt((Math.round(((quest_id + 1) / quest_total) * 1000)) / 10);

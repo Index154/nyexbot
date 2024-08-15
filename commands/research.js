@@ -22,6 +22,17 @@ module.exports = {
         // Set important variables
         var username = user.username;
         var dir = "userdata/" + user.id;
+        var icons = {
+            "Vortex": "\uD83C\uDF00",
+            "Gold": "\uD83E\uDE99",
+            "EXP": "\u2747",
+            "Radar": "\uD83D\uDCE1",
+            "Buff": "\uD83E\uDDEA",
+            "Large": "\uD83C\uDDF1",
+            "Medium": "\uD83C\uDDF2",
+            "Small": "\uD83C\uDDF8",
+            "Unstable": ""
+        };
         
         // If the user is below level 20, stop the command
         var user_stats = lib.readFile(dir + "/stats.txt").split("|");
@@ -49,7 +60,7 @@ module.exports = {
                 
                 if(research_data[2] == "Gold"){
                     // Get Gold based on size
-                    var gold_amounts = {Small: 200, Medium: 400, Large: 800};
+                    var gold_amounts = {Small: 100, Medium: 200, Large: 400};
                     var gold = gold_amounts[research_data[3]];
                     reward = gold + " Gold";
                     user_stats[12] = parseInt(user_stats[12]) + gold;
@@ -101,7 +112,7 @@ module.exports = {
                     
                     // Prepare all possible options for the buff
                     var buff_names = ["Null", "Attack", "Speed", "Mana", "Monster Luck", "Drop Luck", "Rare Luck"];
-                    var durations = {Small: 10, Medium: 15, Large: 20};
+                    var durations = {Small: 18, Medium: 24, Large: 26};
                     var values_small = [0, 15, 15, 10, 20, 5, 10];
                     var values_medium = [0, 20, 20, 15, 30, 10, 15];
                     var values_large = [0, 25, 25, 20, 40, 15, 20];
@@ -175,7 +186,7 @@ module.exports = {
                     
                 }else if(research_data[2] == "Radar"){
                     // Get radar charges based on size
-                    var charges = {Small: 15, Medium: 30, Large: 60};
+                    var charges = {Small: 30, Medium: 50, Large: 70};
                     var charge_amount = charges[research_data[3]];
                     reward = charge_amount + " radar charges";
                     
@@ -325,9 +336,9 @@ module.exports = {
         	.setTitle("Available research")
         	.setDescription("Your Scrap: " + scrapAmount.toString())
         	.addFields(
-        		{ name: affordableIcons[0] + strikeThroughs[0] + "[A] = [" + projectA_data[1] + " " + projectA_data[0] + " Research]" + strikeThroughs[0], value: "Cost: " + prices[projectA_data[1]] + " Scrap - Duration: " + research_durations[projectA_data[1]], inline: false},
-        		{ name: affordableIcons[1] + strikeThroughs[1] + "[B] = [" + projectB_data[1] + " " + projectB_data[0] + " Research]" + strikeThroughs[1], value: "Cost: " + prices[projectB_data[1]] + " Scrap - Duration: " + research_durations[projectB_data[1]], inline: false},
-        		{ name: affordableIcons[2] + strikeThroughs[2] + "[C] = [" + projectC_data[1] + " " + projectC_data[0] + " Research]" + strikeThroughs[2], value: "Cost: " + prices[projectC_data[1]] + " Scrap - Duration: " + research_durations[projectC_data[1]], inline: false}
+        		{ name: affordableIcons[0] + strikeThroughs[0] + "[A] = " + icons[projectA_data[0]] + icons[projectA_data[1]] + "[" + projectA_data[1] + " " + projectA_data[0] + " Research]" + strikeThroughs[0], value: "Cost: " + prices[projectA_data[1]] + " Scrap - Duration: " + research_durations[projectA_data[1]], inline: false},
+        		{ name: affordableIcons[1] + strikeThroughs[1] + "[B] = " + icons[projectB_data[0]] + icons[projectB_data[1]] + "[" + projectB_data[1] + " " + projectB_data[0] + " Research]" + strikeThroughs[1], value: "Cost: " + prices[projectB_data[1]] + " Scrap - Duration: " + research_durations[projectB_data[1]], inline: false},
+        		{ name: affordableIcons[2] + strikeThroughs[2] + "[C] = " + icons[projectC_data[0]] + icons[projectC_data[1]] + "[" + projectC_data[1] + " " + projectC_data[0] + " Research]" + strikeThroughs[2], value: "Cost: " + prices[projectC_data[1]] + " Scrap - Duration: " + research_durations[projectC_data[1]], inline: false}
         	);
         
         // Output

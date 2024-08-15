@@ -197,7 +197,7 @@ module.exports = {
     // Output: Object containing String and array
     levelCheck(levels, stats, levelup_extra, prefix, dir){
         // Get total quest count and user completion for level cap
-		var quests = lib.readFile("data/quests.txt").split(";\n");
+		var quests = lib.readFile("data/quests.txt").split("\n");
 		var quest_total = quests.length;
 		var quest_num = parseInt(lib.readFile(dir + "/current_quest.txt"));
         var canLevel = true;
@@ -2329,7 +2329,7 @@ module.exports = {
 		if(userId == "266598133683847169" || userId == "690236539971698719" || userId == "480412132538712070" || userId == "270597404342878210"){
 			lib.saveFile(dir + "/trophies.txt", "10|Tester|Special|**Alpha Tester** - One of the special people!");
 			newInfo = "**Welcome back, alpha tester! Your trophy has been added**\n" + newInfo;
-		}else if(userId == "214754022832209921"){
+		}else if(userId == globalVars.adminUserId){
 			lib.saveFile(dir + "/trophies.txt", "10|Tester|Special|**Creator** - Real!");
 			newInfo = "**You deleted your account again? So dedicated!**\n" + newInfo;
 		}else{

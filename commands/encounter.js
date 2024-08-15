@@ -132,8 +132,8 @@ module.exports = {
             if(buff_stats[9] == "Special" && !showEnc){
                 lib.saveFile(dir + "/charges.txt", buff_timer)
                 var radar_raw = lib.readFile(dir + "/radar_values.txt").split(",");
-                var quest_bonus = 2 * (parseInt(radar_raw[0]) * 0.01);
-                var mon_bonus = 3 * (parseInt(radar_raw[1]) * 0.01);
+                var quest_bonus = globalVars.questRadarBonus * (parseInt(radar_raw[0]) * 0.01);
+                var mon_bonus = globalVars.monsterRadarBonus * (parseInt(radar_raw[1]) * 0.01);
                 radar_bonus = quest_bonus + mon_bonus;
             }
         }
@@ -278,7 +278,7 @@ module.exports = {
         // Change monster key to accomodate for the area
         var monster_data = monsters[monster_key].split("|");
         monster_key = monster_data[7];
-
+        
         // If showing previous encounter => Get monster keys from file
         if(showEnc){
             chosen_group = parseInt(monster_keys[0]);
@@ -287,7 +287,7 @@ module.exports = {
         }
 
         // Chain calculations
-        var shinyRate = 4000;
+        var shinyRate = globalVars.shinyRate;
         var chainRaw = lib.readFile(dir + "/chain.txt");
         var chain = ["0", "0"];
         if(lib.exists(chainRaw)){

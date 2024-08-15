@@ -124,7 +124,7 @@ module.exports = {
         
         // Check quest
         var quest_list_raw = lib.readFile("data/quests.txt");
-        var quest_list = quest_list_raw.split(";\n");
+        var quest_list = quest_list_raw.split("\n");
         var quest_count = quest_list.length;
         var quest_id = lib.readFile(dir + "/current_quest.txt");
         if(quest_id < quest_count){

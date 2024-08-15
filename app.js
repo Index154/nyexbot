@@ -11,6 +11,8 @@ const Discord = require('discord.js');
 fs = require('fs');
 lib = require("./library.js");
 mysql = require('mysql2/promise');
+globalVars = JSON.parse(lib.readFile("./globalVariables.json"));
+
 // Load important configs
 var {token, prefix, testToken, testPrefix, SQLiv, hashedSQLpass, isTestBranch} = require('./config.json');
 
@@ -94,7 +96,7 @@ client.once('ready', async () => {
     		],
     	};
 	
-	    const command = await client.guilds.cache.get('516031666456887312')?.commands.create(data);
+	    const command = await client.guilds.cache.get(globalVars.mainServerId)?.commands.create(data);
     }
     */
     
@@ -106,7 +108,6 @@ client.once('ready', async () => {
 client.rest.on('rateLimited', console.log);
 
 // Prepare some variables for the boss code
-var bossRarity = 8000;   // The chance is defined as 1 out of bossRarity per message
 var ranks = ["D", "C", "B", "A", "S", "SS"];
 var chances = [23, 30, 20, 14, 9, 4];   // The chances for each rank of boss to be chosen, out of 100
 
@@ -154,7 +155,7 @@ function trySpawnBoss(message){
     // If this is the test branch or there already is an active boss then stop
     if(!isTestBranch && worldboss === ""){
         // Random event math
-        var bossRoll = lib.rand(1, bossRarity);
+        var bossRoll = lib.rand(1, globalVars.bossRate);
         if(bossRoll <= 1){
             // Spawn a boss! Determine the rank first
             var rankRand = lib.rand(1, 100);
@@ -188,7 +189,7 @@ client.on('interactionCreate', interaction => {
     user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "").replace(/[\r\n]/gm, "");
     
     // On the test branch: Ignore all messages that weren't sent by the bot admin
-    if(isTestBranch && user.id != "214754022832209921") return;
+    if(isTestBranch && user.id != globalVars.adminUserId) return;
     
     // Process the actual interaction now
     // For interactive elements which should trigger a command when clicked I fill the customId field with three values: The ID of the user the interaction element is restricted to (or "any" for all users), the command that should be executed when the element is clicked and whether it's an interaction that should lead to the original message being edited
@@ -298,7 +299,7 @@ client.on('messageCreate', async message => {
     user.username = user.username.replace(/\_/g, "").replace(/\*/g, "").replace(/\|/g, "").replace(/\~/g, "");
 
     // On the test branch: Only react to the bot owner
-    if(isTestBranch && user.id != "214754022832209921") return;
+    if(isTestBranch && user.id != globalVars.adminUserId) return;
     
     // Check if the server has a custom prefix and load it
     commandPrefix = prefix;
@@ -313,7 +314,7 @@ client.on('messageCreate', async message => {
     
     // If the message was sent in the updates channel on the main server and is not a minor patch then crosspost it to all other configured announcement channels (except the one on the main server)
     // Also send it to all signed-up users in DMs
-    if(!isTestBranch && message.channel.id == "731236740974510100" && !message.content.toLowerCase().includes("[minor patch]")){
+    if(!isTestBranch && message.channel.id == globalVars.updateChannelId && !message.content.toLowerCase().includes("[minor patch]")){
         // Define embed
         var updateEmbed = new Discord.EmbedBuilder()
                 .setTitle("New bot update")
@@ -545,7 +546,7 @@ if(!isTestBranch){
                     log = "";
                 }
                 tempMessage = tempMessage.split("```").join("`");
-                client.channels.cache.get("1136023345373122560").send("```js\n" + tempMessage + "```");
+                client.channels.cache.get(globalVars.logChannelId).send("```js\n" + tempMessage + "```");
 
             }
 
@@ -569,7 +570,7 @@ siteList = [
     //{alias: 'FF', link: "436febd1d2a7c039e71b67759ad18fa9f8d0ee24586ef1afe79eb208b1ed4058f18c02398146b677b7e6655cd0", pattern: "\<div class=\"c-postedArticle-info.*?\<\/p\>"},
     //{alias: 'AZL', link: "436febd1d2a7c039e5083f62989e85a0a5d2f5341b6cf5a3a6d3aa1dffee4641b7966364d30cb9719cc16347c6", pattern: "\<h2\>\<span class=\"mw-headline\".*?\<\/span\>"},
     //{alias: 'YGO', link: "436febd1d2a7c039e61e2f75909685a2e8d6f52d586ef1afe79aa100b5ea005ebfdb5d64c406a72aa0ee745498cbbde10a4f3135d85fff94ba7ed97d", pattern: "\<article class=\"latest-article-container.*?\<\/article\>"},
-    {alias: 'NINP', link: "436febd1d2a7c039ef17277f9a90c5b6fe96fc20186ff1bae788b308a2b61713ea8e0433895a", pattern: "\<div class=\"card-list__items\"\>.*?\<\/div\>"},
+    {alias: 'NINP', link: "436febd1d2a7c039ef17277f9a90c5b6fe96fc20186ff1bae788b308a2b61713ea8e0433895a", pattern: "\<div class=\"card-list__items\"\>.*?\<\/div\>"}
     //{alias: "GSH", link: "436febd1d2a7c039e31724639c9685e8e2d4ea201579b0a4a993a402bdb74c45b3964668db00f853a6fd7559dac2", pattern: "id=\"Version_History\".*?id=\"Maintenance\""},
     //{alias: 'MANIC-1', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"p-live-body p-live2 g-live-.*?\>"},
     //{alias: 'MANIC-2', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"g-video g-item-odd g-item-first from_video\"\>.*?\<img"}

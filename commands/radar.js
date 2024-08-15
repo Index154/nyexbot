@@ -52,7 +52,7 @@ module.exports = {
         
         // Get total monster and quest counts
         var mons = lib.readFile("data/monsters/monsters.txt").split(";\n");
-		var quests = lib.readFile("data/quests.txt").split(";\n");
+		var quests = lib.readFile("data/quests.txt").split("\n");
 		var mon_total = mons.length - 1;
 		var quest_total = quests.length;
 		

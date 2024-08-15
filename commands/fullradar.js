@@ -99,7 +99,7 @@ module.exports = {
         // Determine radar bonus
         // Get total monster and quest counts
         var mons = lib.readFile("data/monsters/monsters.txt").split(";\n");
-		var quests = lib.readFile("data/quests.txt").split(";\n");
+		var quests = lib.readFile("data/quests.txt").split("\n");
 		var mon_total = mons.length - 1;
 		var quest_total = quests.length;
 		
@@ -136,8 +136,8 @@ module.exports = {
 		}
         
         // Apply the radar bonus to the upcoming rolls
-        var quest_bonus = 2 * (parseInt(quest_progress) * 0.01);
-        var mon_bonus = 3 * (parseInt(mon_progress) * 0.01);
+        var quest_bonus = globalVars.questRadarBonus * (parseInt(quest_progress) * 0.01);
+        var mon_bonus = globalVars.monsterRadarBonus * (parseInt(mon_progress) * 0.01);
         var radar_bonus = quest_bonus + mon_bonus;
         
         // Nerf the radar charges if they go above certain amounts
@@ -153,7 +153,7 @@ module.exports = {
         var roll_count = 0;
         while(charges > 0 && shiny_key === 0){
             //Determine shininess
-            var mod_rand = lib.rand(1, 4000);
+            var mod_rand = lib.rand(1, globalVars.shinyRate);
             charges--;
             roll_count++;
             if(mod_rand <= shiny_chance){
@@ -162,7 +162,7 @@ module.exports = {
         }
         
         // Calculate the true chance
-        var no_shiny = 1 - (shiny_chance / 40000);
+        var no_shiny = 1 - (shiny_chance / globalVars.shinyRate);
         var no_shinies = no_shiny ** charges_copy;
         var real_shiny = Math.round((1 - no_shinies) * 100000) / 1000;
         

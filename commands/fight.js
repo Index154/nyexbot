@@ -454,7 +454,7 @@ module.exports = {
             trophy_extra = levelCheckResults.trophy_extra;
             
             // Determine Gold
-            var speed_gold_bonus = 1.2 * Math.min(1, ((user_speed - user_attack) * 0.01));
+            var speed_gold_bonus = 1 + (0.2 * Math.min(1, ((user_speed - user_attack) * 0.015)));
             var gold = Math.ceil(((monster_attack + monster_speed) / 8) * speed_gold_bonus);
             if (gold < 0){gold = 1;}
             

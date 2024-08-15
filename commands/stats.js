@@ -164,7 +164,7 @@ module.exports = {
         var area_name = areas[area_key];
         
         // Get total quest count and user completion for level cap
-		var quests = lib.readFile("data/quests.txt").split(";\n");
+		var quests = lib.readFile("data/quests.txt").split("\n");
 		var quest_total = quests.length;
 		var quest_num = parseInt(lib.readFile(dir + "/current_quest.txt"));
         

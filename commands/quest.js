@@ -24,7 +24,7 @@ module.exports = {
         
         // Get user's current main quest
         var quest_list_raw = lib.readFile("data/quests.txt");
-        var quest_list = quest_list_raw.split(";\n");
+        var quest_list = quest_list_raw.split("\n");
         var quest_count = quest_list.length;
         var quest_id = lib.readFile(dir + "/current_quest.txt");
         // If the user has finished the final quest, cancel the command

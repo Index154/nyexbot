@@ -18,7 +18,7 @@ module.exports = {
         var id = user.id;
         
         // If the user isn't me, end the command
-        if(id != "214754022832209921"){
+        if(id != globalVars.adminUserId){
             message.reply({ content: "\u274C This command is only useable by Index154", allowedMentions: { repliedUser: false }});
             return;
         }
