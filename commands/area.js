@@ -12,7 +12,17 @@ module.exports = {
         '- The area you are in determines which monsters you can encounter',
         '- Some areas called realms are only accessible through special items called fragments',
         '- The [area name] argument can be replaced with the word "current" to inspect a realm you are currently in',
-        '- You can also replace the [area name] argument with the word "all" to check all monsters in the game'
+        '- You can also replace the [area name] argument with the word "all" to check all monsters in the game',
+        '\n**What are realms?**',
+        '- Realms are special areas with additional restrictions and benefits. You **cannot** enter a realm by using `{prefix}move`',
+        '- To enter a regular realm you must use a Dimensional Fragment. You can `{prefix}buy` these',
+        '- Interacting with monsters inside of a realm will reduce your HP. Running out of HP throws you out of the realm',
+        '- You can obtain Vortexes by fighting monsters inside of realms',
+        '- There are also unique realms which can only be accessed with a Unique Fragment',
+        '- Only one unique realm is accessible at a time. The active unique realm changes every Monday',
+        '- The current weekly unique realm can be checked in the `{prefix}shop`',
+        '- All unique realm monsters of the same rank share the same drop table',
+        '- S and SS rank monsters from unique realms can drop special Shards that allow you to upgrade equipment from the corresponding rank'
     ],
     category: 'info',
 	

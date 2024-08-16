@@ -285,12 +285,12 @@ Mindwipe Tonic|0|0|0|0|0|0|0|0|A peculiar medicine that has the effect of resett
 Scarecrow Corestem|0|0|8|0|-6|0|0|0|Since Scarecrows are artificially developed monsters their mana circulation needs to be regulated by an artificial tool. This one looks like an iron rod with many detailed engravings|Tool|2|D;
 Staff of Embers|3|0|6|0|0|0|0|0|The burning sap running through this branch has somehow stabilized and is able to function as a decent conductor for mana|Tool|1|D;
 Reality Shifter|0|0|0|0|0|0|0|0|This device can move the target into a different reality. An entity of equal or similar "value" will then replace the one that has been removed. (Can be used to "reroll" a monster while keeping its rank and shininess the same)|Shifter,?|9000|Special;
-REPLACE|0|0|5|0|0|0|14|Holy|REPLACE|Tool|0|D;
-REPLACE|8|2|0|0|0|0|0|0|REPLACE|Weapon|3|D;
-REPLACE|3|8|0|0|0|0|0|0|REPLACE|Defense|3|D;
-REPLACE|3|6|0|0|0|0|0|0|REPLACE|Weapon|5|D;
-REPLACE|2|5|0|0|0|0|0|0|REPLACE|Defense|1|D;
-REPLACE|0|0|5|0|0|0|0|0|REPLACE|Tool|0|D;
+REPLACE|0|0|5|0|0|0|0|0|REPLACE|Material|5|D;
+REPLACE|8|2|0|0|0|0|0|0|REPLACE|Material|7|C;
+REPLACE|3|8|0|0|0|0|0|0|REPLACE|Material|12|B;
+REPLACE|3|6|0|0|0|0|0|0|REPLACE|Material|17|A;
+Ultra Shard|2|5|0|0|0|0|0|0|The immense power of a special creature, manifested as ethereal matter. Can be used to enhance powerful equipment further|Material|23|S;
+Legendary Shard|0|0|5|0|0|0|0|0|The immense power of a special creature, manifested as ethereal matter. Can be used to enhance powerful equipment further|Material|27|SS;
 REPLACE|4|5|0|0|0|0|0|0|REPLACE|Weapon|11|D;
 REPLACE|8|2|0|0|0|0|0|0|REPLACE|Defense|0|D;
 REPLACE|5|12|0|0|0|5|0|0|REPLACE|Defense|4|C;

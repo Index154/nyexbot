@@ -340,23 +340,23 @@ A
 107,113,270|10,21,30;   // Demon Royalty: Large Cracked Core, Large Core, Royal Withered Flesh
 107,271,272,113|10,16,17,20;   // Colossal Hermit: Large Cracked Core, Hermit Crystal, Hermit Shell, Large Core
 105,92,273,82|10,10,20,30,30;   // Ecliptic Demon: Cracked Core, Regular Core, Eclipse Matter, Demonic Meat
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
-325|6;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
+325,291|6,12;
 S
 #######################
 34,107,26,109|6,10,30,30;   // Skeletal Dragon: Empty Dragon Core, Large Cracked Core, Malicious Bone, Bone
@@ -378,16 +378,16 @@ S
 107,113,281|17,30,30;   // Demon King: Large Cracked Core, Large Core, King's Flesh
 164,107,113|5,13,23;   // Cocytus: Frozen Halberd, Large Cracked Core, Large Core
 107,74,282,30|10,11,20,30;   // Destruction Dragon: Large Cracked Core, Supreme Meat, Horn of Ragnarok, Dragon Core
-325|8;
-325|8;
-325|8;
-325|8;
-325|8;
-325|8;
-325|8;
-325|8;
-325|8;
-325|8;
-325|8;
-325|8;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
+325,292|8,15;
 SS
