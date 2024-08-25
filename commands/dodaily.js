@@ -274,8 +274,8 @@ module.exports = {
                 
                 // Update the user's quest
                 lib.saveFile(dir + "/daily.txt", day + "|" + streak);
-                if(trophy_extra !== "" && levelup_extra !== ""){trophy_extra = "\n" + trophy_extra;}
-                message.reply({ content: "@ __**" + username + "**__, you've completed the quest! As a reward you got... ```\n" + reward_amount + " [" + reward_name + "]" + streakInfo + "```" + levelup_extra + trophy_extra, allowedMentions: { repliedUser: false }});
+                if(streakInfo !== "" && trophy_extra !== "" && levelup_extra !== ""){trophy_extra = "\n" + trophy_extra;}
+                message.reply({ content: "@ __**" + username + "**__, you've completed the quest! As a reward you got... ```\n" + reward_amount + " [" + reward_name + "]```" + streakInfo + levelup_extra + trophy_extra, allowedMentions: { repliedUser: false }});
             
             }else{
                 message.reply({ content: "@ __**" + username + "**__ \u274C You don't have enough of the necessary item or monster!", allowedMentions: { repliedUser: false }});
