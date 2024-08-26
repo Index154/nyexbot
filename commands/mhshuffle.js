@@ -62,7 +62,7 @@ module.exports = {
             if(previousLetter == " " || previousLetter == "-" || e == 0) letters[e] = letters[e].toUpperCase();
             previousLetter = letters[e];
         }
-        output = letters.join("");
+        output = letters.join("").replace("- ", " ").replace(" -", "-");
 
         // Random weapon name
         var weapon = weaponParts[0][lib.rand(0, weaponParts[0].length - 1)] + weaponParts[1][lib.rand(0, weaponParts[1].length - 1)] + weaponParts[2][lib.rand(0, weaponParts[2].length - 1)];
