@@ -1,297 +1,271 @@
-Apceros
-Aptonoth
-Bullfango
-Cephalos
-Felyne
-Genprey
-Hornetaur
-Ioprey
-Kelbi
-Melynx
-Mosswine
-Velociprey
-Vespoid
-Basarios
-Cephadrome
-Diablos
-Gendrome
-Gravios
-Gypceros
-Iodrome
-Khezu
-Monoblos
-Plesioth
-Rathalos
-Rathian
-Velocidrome
-Yian Kut-Ku
-Fatalis
-Kirin
-Lao-Shan Lung
-Azure Rathalos
-Silver Rathalos
-Black Diablos
-Black Gravios
-Blue Yian Kut-Ku
-Green Plesioth
-Pink Rathian
-Gold Rathian
-Purple Gypceros
-Red Khezu
-White Monoblos
-Ashen Lao-Shan Lung
-Crimson Fatalis
-Scarred Yian Garuga
-Anteka
-Blango
-Ceanataur
-Conga
-Giaprey
-Great Thunderbug
-Hermitaur
-Popo
-Remobra
-Shakalaka
-Blangonga
-Bulldrome
-Congalala
-Daimyo Hermitaur
-Giadrome
-King Shakalaka
-Rajang
-Shen Gaoren
-Shogun Ceanataur
-Chameleos
-Kushala Daora
-Rusted Kushala Daora
-Lunastra
-Teostra
-White Fatalis
-Yama Tsukami
-Akantor
-Tigrex
-Copper Blangonga
-Emerald Congalala
-Furious Rajang
-Hypnocatrice
-Lavasioth
-Nargacuga
-Plum Daimyo Hermitaur
-Terra Shogun Ceanataur
-Ukanlos
-Vespoid Queen
-Yian Garuga
-Altaroth
-Baggi
-Bnahabra
-Delex
-Epioth
-Fish
-Giggi
-Jaggi
-Jaggia
-Ludroth
-Rhenoplos
-Uroktor
-Agnaktor
-Barioth
-Barroth
-Deviljho
-Gigginox
-Gobul
-Great Baggi
-Great Jaggi
-Lagiacrus
-Qurupeco
-Royal Ludroth
-Uragaan
-Alatreon
-Ceadeus
-Jhen Mohran
-Gargwa
-Slagtoth
-Wroggi
-Arzuros
-Baleful Gigginox
-Brute Tigrex
-Crimson Qurupeco
-Duramboros
-Glacial Agnaktor
-Great Wroggi
-Green Nargacuga
-Jade Barroth
-Lagombi
-Nibelsnarf
-Purple Ludroth
-Sand Barioth
-Steel Uragaan
-Volvidon
-Zinogre
-Amatsu
-Brachydios
-Ivory Lagiacrus
-Abyssal Lagiacrus
-Lucent Nargacuga
-Rust Duramboros
-Savage Deviljho
-Stygian Zinogre
-Dire Miralis
-Goldbeard Ceadeus
-Hallowed Jhen Mohran
-Konchu
-Zamite
-Kecha Wacha
-Molten Tigrex
-Najarala
-Nerscylla
-Ruby Basarios
-Seltas
-Seltas Queen
-Tetsucabra
-Zamtrios
-Gore Magala
-Dah'ren Mohran
-Dalamadur
-Oroshi Kirin
-Shagaru Magala
-Ash Kecha Wacha
-Berserk Tetsucabra
-Desert Seltas
-Desert Seltas Queen
-Raging Brachydios
-Seregios
-Shrouded Nerscylla
-Tidal Najarala
-Tigerstripe Zamtrios
-Chaotic Gore Magala
-Gogmazios
-Shah Dalamadur
-Maccao
-Moofah
-Larinoth
-Astalos
-Crystalbeard Uragaan
-Deadeye Yian Garuga
-Dreadking Rathalos
-Dreadqueen Rathian
-Drilltusk Tetsucabra
-Gammoth
-Glavenus
-Hellblade Glavenus
-Great Maccao
-Grimclaw Tigrex
-Malfestio
-Mizutsune
-Redhelm Arzuros
-Silverwind Nargacuga
-Snowbaron Lagombi
-Stonefist Hermitaur
-Thunderlord Zinogre
-Nakarkos
-Ahtal-Ka
-Bloodbath Diablos
-Boltreaver Astalos
-Elderfrost Gammoth
-Nightcloak Malfestio
-Rustrazor Ceanataur
-Soulseer Mizutsune
-Valstrax
-Barnos
-Gajalaka
-Gajalaka Chief
-Gajau
-Gastodon
-Girros
-Grimalkyne
-Jagras
-Kestodon
-Mernos
-Noios
-Raphinos
-Shamos
-Anjanath
-Bazelgeuse
-Dodogama
-Great Girros
-Great Jagras
-Jyuratodus
-Kulu-Ya-Ku
-Legiana
-Leshen
-Ancient Leshen
-Odogaron
-Paolumu
-Pukei-Pukei
-Radobaan
-Tzitzi-Ya-Ku
-Tobi-Kadachi
-Behemoth
-Kulve Taroth
-Nergigante
-Vaal Hazak
-Xeno'jiiva
-Zorah Magdaros
-Boaboa
-Cortos
-Wulg
-Acidic Glavenus
-Banbaro
-Beotodus
-Coral Pukei-Pukei
-Ebony Odogaron
-Frostfang Barioth
-Fulgur Anjanath
-Nightshade Paolumu
-Seething Bazelgeuse
-Shrieking Legiana
-Viper Tobi-Kadachi
-Blackveil Vaal Hazak
-Namielle
-Ruiner Nergigante
-Safi'jiiva
-Shara Ishvalda
-Velkhana
-Bombadgy
-Canyne
-Izuchi
-Rachnoid
-Aknosom
-Almudron
-Apex Arzuros
-Apex Diablos
-Apex Mizutsune
-Apex Rathalos
-Apex Rathian
-Apex Zinogre
-Bishaten
-Goss Harag
-Great Izuchi
-Magnamalo
-Rakna-Kadaki
-Somnacanth
-Tetranadon
-Crimson Glow Valstrax
-Thunder Serpent Narwa
-Narwa the Allmother
-Wind Serpent Ibushi
-Boggi
-Gowngoat
-Pyrantula
-Aurora Somnacanth
-Blood Orange Bishaten
-Espinas
-Flaming Espinas
-Garangolm
-Lunagaron
-Magma Almudron
-Pyre Rakna-Kadaki
-Scorned Magnamalo
-Violet Mizutsune
-Gaismagorm
-Malzeno
-Primordial Malzeno
-Risen Chameleos
-Risen Kushala Daora
-Risen Teostra
-Risen Crimson Glow Valstrax
-Risen Shagaru Magala
+Ap,ce,ros
+Ap,to,noth
+Bull,fan,go
+Ce,pha,los
+Fe,lyne
+Gen,prey
+Hor,ne,taur
+Io,prey
+Kel,bi
+Me,lyn,x
+Moss,wi,ne
+Ve,loci,prey
+Ves,poid
+Ba,sa,rios
+Ce,pha,drome
+Dia,blos
+Gen,drome
+Gra,vi,os
+Gyp,ce,ros
+Io,drome
+Khe,zu
+Mo,no,blos
+Ple,si,oth
+Ra,tha,los
+Ra,thi,an
+Ve,loci,drome
+Yi,an Kut-,Ku
+Fa,ta,lis
+Ki,rin
+Lao-,-Shan , Lung
+Azure ,
+Silver ,
+Black ,
+Blue ,
+Green ,
+Pink ,
+Gold ,
+Purple ,
+Red ,
+White ,
+Ashen ,
+Crimson ,
+Scarred ,
+An,te,ka
+Blan,go
+Cea,na,taur
+Con,ga
+Gia,prey
+Great ,
+Her,mi,taur
+Po,po
+Re,mo,bra
+Sha,ka,laka
+Blan,gon,ga
+Bull,drome
+Con,ga,lala
+Dai,myo , Hermitaur
+Gia,drome
+King ,
+Ra,jang
+Shen , Gao,ren
+Sho,gun Cea,nataur
+Cha,me,leos
+Ku,shala , Daora
+Rusted ,
+Lu,nas,tra
+Te,os,tra
+Yama , Tsu,kami
+A,kan,tor
+Ti,grex
+Copper ,
+Emerald ,
+Furious ,
+Hyp,noca,trice
+La,vasi,oth
+Nar,ga,cuga
+Plum ,
+Terra ,
+U,kan,los
+Ves,poid , Queen
+Yian , Garu,ga
+Al,ta,roth
+Ba,ggi
+Bna,ha,bra
+De,lex
+E,pi,oth
+Gi,ggi
+Ja,ggi
+Ja,ggi,a
+Lu,dro,th
+Rhe,no,plos
+U,rok,tor
+Ag,nak,tor
+Ba,ri,oth
+Bar,roth
+De,vil,jho
+Gi,ggi,nox
+Go,bul
+La,gia,crus
+Qu,ru,peco
+Royal ,
+U,ra,gaan
+Ala,tre,on
+Cea,deus
+Jhen , Moh,ran
+Gar,gwa
+Slag,toth
+Wro,ggi
+Ar,zu,ros
+Baleful ,
+Brute ,
+Du,ram,boros
+Glacial ,
+Jade ,
+La,gom,bi
+Ni,bel,snarf
+Sand ,
+Steel ,
+Vol,vi,don
+Zi,no,gre
+A,ma,tsu
+Bra,chy,dios
+Ivory ,
+Abyssal ,
+Lucent ,
+Rust ,
+Savage ,
+Stygian ,
+Dire , Mira,lis
+Goldbeard ,
+Hallowed ,
+Kon,chu
+Za,mite
+Ke,cha Wa,cha
+Molten ,
+Na,ja,rala
+Ner,scyl,la
+Ruby ,
+Sel,tas
+Sel,tas , Queen
+Te,tsu,cabra
+Zam,tri,os
+Gore , Maga,la
+Dah',ren Mo,hran
+Da,la,madur
+Oroshi 
+Shaga,ru Ma,gala
+Ash ,
+Berserk ,
+Desert ,
+Raging ,
+Se,re,gios
+Shrouded ,
+Tidal ,
+Tigerstripe ,
+Chaotic ,
+Gog,ma,zios
+Shah ,
+Mac,cao
+Moo,fah
+La,ri,noth
+As,ta,los
+Crystalbeard ,
+Deadeye ,
+Dreadking ,
+Dreadqueen ,
+Drilltusk ,
+Gam,moth
+Gla,ve,nus
+Hellblade ,
+Grimclaw ,
+Mal,fes,tio
+Mizu,tsu,ne
+Redhelm ,
+Silverwind ,
+Snowbaron ,
+Stonefist ,
+Thunderlord ,
+Na,kar,kos
+Ah,tal-,Ka
+Bloodbath ,
+Boltreaver ,
+Elderfrost ,
+Nightcloak ,
+Rustrazor ,
+Soulseer ,
+Val,strax
+Bar,nos
+Ga,ja,laka
+Ga,jau
+Gas,to,don
+Gir,ros
+Gri,mal,kyne
+Jag,ras
+Kes,to,don
+Mer,nos
+Noi,os
+Ra,phi,nos
+Sha,mos
+An,ja,nath
+Ba,zel,geuse
+Do,do,gama
+Jyu,rato,dus
+Kulu-,-Ya-,-Ku
+Le,gi,ana
+Odo,ga,ron
+Pao,lu,mu
+Pu,kei-,-Pukei
+Ra,do,baan
+Tzi,tzi-Ya,-Ku
+Tobi-,-Kada,chi
+Kul,ve Ta,roth
+Ner,gi,gante
+Vaal , Ha,zak
+Xe,no'jii,va
+Zo,rah Mag,daros
+Boa,boa
+Cor,tos
+Wul,g
+Acidic ,
+Ban,ba,ro
+Beo,to,dus
+Coral ,
+Ebony ,
+Frostfang ,
+Fulgur ,
+Nightshade ,
+Seething ,
+Shrieking ,
+Viper ,
+Blackveil ,
+Na,mi,elle
+Ruiner ,
+Safi','jii,va
+Sha,ra Ish,valda
+Vel,kha,na
+Bom,badgy
+Ca,nyne
+I,zu,chi
+Rach,noid
+Ak,no,som
+Al,mu,dron
+Apex ,
+Bi,sha,ten
+Goss , Ha,rag
+Mag,na,malo
+Rak,na-Ka,daki
+Som,na,canth
+Te,trana,don
+Crimson Glow ,
+Thunder Serpent ,
+Nar,wa
+Wind Serpent ,
+I,bu,shi
+Bo,ggi
+Gown,goat
+Py,ran,tula
+Aurora ,
+Blood Orange ,
+Es,pi,nas
+Flaming ,
+Ga,ran,golm
+Lu,naga,ron
+Magma ,
+Pyre ,
+Scorned ,
+Violet ,
+Gais,ma,gorm
+Mal,ze,no
+Primordial ,
+Risen ,
