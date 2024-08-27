@@ -601,6 +601,7 @@ var newsCheck = setInterval(async function() {
     for(i = 0; i < siteList.length; i++){
 
         // Fetch the site body, only returning the HTML text matching the defined pattern
+        console.log(siteList[i].pattern);
         var body = await lib.getHTML(siteList[i].link);
         var reg = new RegExp(siteList[i].pattern, "g");
         var results = await body.match(reg);
