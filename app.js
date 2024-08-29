@@ -561,8 +561,8 @@ if(!isTestBranch){
 
 // Define list of sites to check in the newsCheck function later as well as the HTML element patterns to extract from them
 siteList = [
-    {alias: 'MANIC-1', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"p-live-body p-live2 g-live-.*?\>"},
-    {alias: 'MANIC-2', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"g-video g-item-odd g-item-first from_video\"\>.*?\<img"}
+    {"alias": 'MANIC-1', "link": "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", "pattern": "\<div class=\"p-live-body p-live2 g-live-.*?\>"},
+    {"alias": 'MANIC-2', "link": "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", "pattern": "\<div class=\"g-video g-item-odd g-item-first from_video\"\>.*?\<img"}
 ];
 
     //{alias: 'UNO', link: "436febd1d2a7c039ed1f22759a8b8aaca5c1e239596affaea498b214ffa81f1de68c04309f", pattern: "\<li class=\"pages\"\>Pages:.*?\<\/li\>"}, 
@@ -601,9 +601,9 @@ var newsCheck = setInterval(async function() {
     for(i = 0; i < siteList.length; i++){
 
         // Fetch the site body, only returning the HTML text matching the defined pattern
-        console.log(siteList[i].pattern);
-        var body = await lib.getHTML(siteList[i].link);
+        console.log(siteList[i]);
         var reg = new RegExp(siteList[i].pattern, "g");
+        var body = await lib.getHTML(siteList[i].link);
         var results = await body.match(reg);
 
         // Compare the first pattern match to the one that was saved most recently
