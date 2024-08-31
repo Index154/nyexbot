@@ -561,12 +561,12 @@ if(!isTestBranch){
 
 // Define list of sites to check in the newsCheck function later as well as the HTML element patterns to extract from them
 siteList = [
-    {"alias": 'MANIC-1', "link": "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", "pattern": "\<div class=\"p-live-body p-live2 g-live-.*?\>"},
-    {"alias": 'MANIC-2', "link": "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", "pattern": "\<div class=\"g-video g-item-odd g-item-first from_video\"\>.*?\<img"}
+    {alias: 'MANIC-1', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"p-live-body p-live2 g-live-.*?\>"},
+    {alias: 'MANIC-2', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"g-video g-item-odd g-item-first from_video\"\>.*?\<img"},
+    {alias: 'UNO', link: "436febd1d2a7c039ed1f22759a8b8aaca5c1e239596affaea498b214ffa81f1de68c04309f", pattern: "\<li class=\"pages\"\>Pages:.*?\<\/li\>"},
+    {alias: 'ZHG', link: "436febd1d2a7c039f6072675c7cbc5bdf3c1b5281869fbbae68da81defe94e4dbb84416ec31df176fee36f43c18aa8ed084f2336c517f69a", pattern: "\<div class=\"image-list.*?\<a id=\".*?\""}
 ];
 
-    //{alias: 'UNO', link: "436febd1d2a7c039ed1f22759a8b8aaca5c1e239596affaea498b214ffa81f1de68c04309f", pattern: "\<li class=\"pages\"\>Pages:.*?\<\/li\>"}, 
-    //{alias: 'ZHG', link: "436febd1d2a7c039f6072675c7cbc5bdf3c1b5281869fbbae68da81defe94e4dbb84416ec31df176fee36f43c18aa8ed084f2336c517f69a", pattern: "\<div class=\"image-list.*?\<a id=\".*?\""},
     //{alias: 'CAP', link: "436febd1d2a7c039f3053d3e979e9ba6e4d4b7261760fbb1e69eaf00fff44a58bdd1506fd400a460ecec60529a", pattern: "\<ul class=\"productLists\"\>.*?figure class"},      // Cloudfront block
     //{alias: 'MIK', link: "436febd1d2a7c039ef17277f9a90c5b6fe96fc201879f7a3e788b308a2b61c12e78c00", pattern: "\<div class=\"card-list__items\"\>.*?\<\/div\>"},
     //{alias: 'SOLO', link: "436febd1d2a7c039fd172460869a98b6a5daf52c597efbb0a198b342a3f64345f3d55477d505be6ba4a2655fd8c5bf", pattern: "\<div class=\"inline_block col-d-20 col-t-33 .*?\<\/div\>"},
@@ -598,25 +598,26 @@ var newsCheck = setInterval(async function() {
     var savePath = "../nyextest/data/sitedata/";
 
     // Go through the site list
-    for(i = 0; i < siteList.length; i++){
+    for(y = 0; y < siteList.length; y++){
 
         // Fetch the site body, only returning the HTML text matching the defined pattern
-        console.log(siteList[i]);
-        var reg = new RegExp(siteList[i].pattern, "g");
-        var body = await lib.getHTML(siteList[i].link);
+        var alias = siteList[y].alias;
+        var link = siteList[y].link;
+        var filePath = savePath + siteList[y].alias + ".txt";
+        let errorPath = savePath + "errors" + siteList[y].alias + ".txt";
+        var reg = new RegExp(siteList[y].pattern, "g");
+        var body = await lib.getHTML(siteList[y].link);
         var results = await body.match(reg);
 
         // Compare the first pattern match to the one that was saved most recently
-        var filePath = savePath + siteList[i].alias + ".txt";
-        let errorPath = savePath + "errors" + siteList[i].alias + ".txt";
         var previousResult = lib.readFile(filePath);
-        if(!lib.exists(previousResult)){previousResult = "None";}
+        if(!lib.exists(previousResult)) previousResult = "None";
         if(!lib.exists(results) || results.length < 1){
             // Update error counter
             let errorCount = parseInt(lib.readFile(errorPath));
             lib.saveFile(errorPath, errorCount + 1);
             // If there have been 20 consecutive errors, add them to the actual error log
-            if(errorCount + 1 >= 20) lib.error("", "newsCheck() Error: No pattern match found for site " + siteList[i].alias, " at least 20 times in a row");
+            if(errorCount + 1 >= 20) lib.error("", "newsCheck() Error: No pattern match found for site " + alias + " at least 20 times in a row");
         }
         else {
             // Clear the error counter since there was no error
@@ -624,13 +625,12 @@ var newsCheck = setInterval(async function() {
 
             if(results[0] != previousResult){
                 // Add this list to the updated sites list
-                updateList.push("<" + siteList[i].link + ">");
+                updateList.push("<" + link + ">");
 
                 // Save the pattern match result to a file for the next comparison
                 lib.saveFile(filePath, results[0]);
             }
         }
-
     }
 
     // Notify me about the list of updated sites in my private channel
