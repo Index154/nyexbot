@@ -561,12 +561,12 @@ if(!isTestBranch){
 
 // Define list of sites to check in the newsCheck function later as well as the HTML element patterns to extract from them
 siteList = [
-    {alias: 'MANIC-1', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"p-live-body p-live2 g-live-.*?\>"},
-    {alias: 'MANIC-2', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"g-video g-item-odd g-item-first from_video\"\>.*?\<img"},
     {alias: 'UNO', link: "436febd1d2a7c039ed1f22759a8b8aaca5c1e239596affaea498b214ffa81f1de68c04309f", pattern: "\<li class=\"pages\"\>Pages:.*?\<\/li\>"},
     {alias: 'ZHG', link: "436febd1d2a7c039f6072675c7cbc5bdf3c1b5281869fbbae68da81defe94e4dbb84416ec31df176fee36f43c18aa8ed084f2336c517f69a", pattern: "\<div class=\"image-list.*?\<a id=\".*?\""}
 ];
-
+    
+    //{alias: 'MANIC-1', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"p-live-body p-live2 g-live-.*?\>"},
+    //{alias: 'MANIC-2', link: "436febd1d2a7c039e71a647e9d9c84b3e2ddff2e5867eeed8694a705a4b4624bacdc", pattern: "\<div class=\"g-video g-item-odd g-item-first from_video\"\>.*?\<img"},
     //{alias: 'CAP', link: "436febd1d2a7c039f3053d3e979e9ba6e4d4b7261760fbb1e69eaf00fff44a58bdd1506fd400a460ecec60529a", pattern: "\<ul class=\"productLists\"\>.*?figure class"},      // Cloudfront block
     //{alias: 'MIK', link: "436febd1d2a7c039ef17277f9a90c5b6fe96fc201879f7a3e788b308a2b61c12e78c00", pattern: "\<div class=\"card-list__items\"\>.*?\<\/div\>"},
     //{alias: 'SOLO', link: "436febd1d2a7c039fd172460869a98b6a5daf52c597efbb0a198b342a3f64345f3d55477d505be6ba4a2655fd8c5bf", pattern: "\<div class=\"inline_block col-d-20 col-t-33 .*?\<\/div\>"},
