@@ -1850,8 +1850,14 @@ module.exports = {
 	generateNicks(allArgs){
 
 		var args = allArgs.split(" ");
+		var type0Flag = false;
+		// Use only normal nouns for type0
+		if(args.length > 0 && (args[0] == 'type0' || args[1] == 'type0')) {
+			args.splice(args.indexOf("type0"), 1);
+			type0Flag = true;
+		}
 		// Default to type4
-		if(args.length == 1 && args[0] == '') args = ['type4']
+		if(args.length == 1 && args[0] == '') args = ['type3']
 
 		// Set starting variables
 		var words = lib.readFile("../nyextest/data/imported/words.txt");
@@ -1918,8 +1924,8 @@ module.exports = {
 				if(position == 0){nextWordPosition = 1;}else
 				if(position == 1){nextWordPosition = 0;}
 
-				if(args[p] == "type4" || args[p] == "type3"){
-					wordTypes[position] = "type4";
+				if(args[p] == "type3"){
+					wordTypes[position] = "type3";
 
 				}else if(!customWordUsed && args[p] != "type2" && args[p] != "type1" && lib.exists(args[p])){
 					wordTypes[position] = "customWord";
@@ -2019,11 +2025,12 @@ module.exports = {
 					// Set starting variables
 					var randNum = lib.rand(1, 100);
 					// If the user included one of the keywords, set the word pool for every loop manually
+					if(type0Flag) randNum = 10;
 					if(wordTypes[p] == "type1" && p == 0){
 						randNum = 51;
 					}else if(wordTypes[p] == "type2" && p == 0){
 						randNum = 66;
-					}else if(wordTypes[p] == "type4"){
+					}else if(wordTypes[p] == "type3"){
 						randNum = 1;
 					}else if(wordTypes[p] == "customWord"){
 						randNum = 0;
