@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'nickname',
-	usages: ['[number] type1/type2/type3 [custom word]/type4', '[number] truename', '[number] type0'],
+	usages: ['[number] type1/type2/type3 [custom word]/type3', '[number] truename', '[number] type0'],
 	descriptions: ['Generates a random weird nickname.\nThe number argument is optional and specifies how many nicknames should be generated at once. The maximum is 20.\nIf you include a custom word then it will be used in the resulting nickname. Underscores will be converted into spaces. Additionally, the word will also be added to the pool of custom words and can then appear in all future results. You may also use one of the typeX arguments to make the bot only choose from specific word lists. See more info below.', 'Will generate a specified amount of new words (random combinations of letters)', 'Will generate a specified amount of nicknames made up of only "normal" nouns from a dictionary'],
     shortDescription: 'Generate random nicknames',
     weight: 40,
