@@ -487,7 +487,7 @@ if(!isTestBranch){
                     .setLabel('\uD83D\uDD01 10m')
                     .setStyle(2)
                 var button2 = new ButtonBuilder()
-                    .setCustomId(rows[i].userId + "||remind 1h customCommand|normal")
+                    .setCustomId(rows[i].userId + "|remind 1h customCommand|normal")
                     .setLabel('\uD83D\uDD01 1h')
                     .setStyle(2)
                 var button3 = new ButtonBuilder()
