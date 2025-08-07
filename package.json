@@ -2,7 +2,6 @@
   "dependencies": {
     "adc.js": "^1.0.1",
     "discord.js": "^14.11.0",
-    "mysql2": "^3.5.2",
-    "pm2": "^5.3.0"
+    "mysql2": "^3.5.2"
   }
 }
