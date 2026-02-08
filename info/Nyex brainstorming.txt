@@ -32,7 +32,7 @@ What features does the bot have and what do they accomplish?
     - Items with long durations: Can be used at any time to increase the chances of success slightly for many events
     - Materials: Filler items to add more drops to the game without oversaturating the pool of consumables
         => Actual uses?
-            - Crafting: A way to limit the user's progress based on which materials they can obtain consistently BUT this is not necessary because equipment drops already do this naturally even though the user can get lucky and obtain high level equipment too early. But if it's only one piece of equipment then it's not too bad. Also getting something very strong early on is fun anyway and the game doesn't need to be very balanced + adds more opportunities for decision-making BUT that's not really the case because deciding which equipment to craft is too cumbersome to really get into + Kinda overcomplicates the game
+            - Crafting: A way to limit the user's progress based on which materials they can obtain consistently BUT this is not necessary because equipment drops already do this naturally even though the user can get lucky and obtain high level equipment too early. But if it's only one piece of equipment then it's not too bad. Also getting something very strong early on is fun anyway and the game doesn't need to be very balanced + adds more opportunities for decision-making BUT that's not really the case because deciding which equipment to craft is too cumbersome to really get into + Kinda overcomplicates the game => If crafting was more useful and interesting then it would be good
             - Obtaining Scrap is NOT a use of materials. Scrapping something is admitting that it is useless
     - Special items:
         - Mindwipe tonic: Allows the user to redo past decisions after having gained new knowledge
@@ -46,7 +46,7 @@ What features does the bot have and what do they accomplish?
     - Shop: Main use for Gold
     - Random encounter events: Add more variety and fun due to randomness
     - World bosses: Add temporary limited ways to gain rewards for free and might make a user come back frequently
-    - Radar: Extra use for Gold + shiny hunting method
+    - Radar: Extra use for Gold + luck-based shiny hunting method
     - Daily quests: Keep a user coming back + make user go to specific areas and hunt for specific monsters + give temporary goals to a user
     - Quests: Progression system with good rewards + tutorial + clear goals to work towards
     - Monster command: Free random rewards that keep a user coming back
@@ -65,3 +65,4 @@ Conclusions and ideas:
     - Type Bonus stat is useless because it doesn't actually affect your decisions => Remove it
     - Weak items should basically all have medium to long durations (10+ turns) to make them actually useful => Audit and change them
     - Allow browsing the details of items in the shop
+    - Crafting of equipment should be more experimental instead of requiring specific recipes => Make it easier and dynamic

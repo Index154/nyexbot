@@ -295,5 +295,5 @@ OLD NOTES
     Also: Every action that could reward a trophy should probably be done through a function so I don't have to code the trophy checks everytime
 
     Functions to still look for and implement in all the commands:
-    - nCheck
+    - anCheck
     - levelCheck

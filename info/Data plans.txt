@@ -1,66 +1,111 @@
+Side notes
+- Deduplicate code in worldboss for name generation
+- Deduplicate monster selection code
+
+
 IMPORTANT
 - Data that is kept in files and is not part of the git repo should be moved into ONE UNTRACKED sub-directory in the bot directory.
 - Stop putting stuff into the testbranch files
+- Review the loose JSON files already present
+- Review the stuff that's already in the SQL database
+- Load static data into variables when the bot starts + generate helper variables (like a list of monster IDs in each area) on launch to make some processes faster. Also generate temporary files for me to look at (list of monsters in each area)
+- Put the domain name of the media server into a config file as well
+- Rename imported folder to misc
+- Differentiate between keeping data in js vs json
 
 
-WHEN TO PUT STUFF SOMEWHERE
-- SQL: Dynamic data and static data which is required in combination with other data?
-- Files: Static data and dynamic data which is rarely altered or accessed
+WHEN TO PUT STUFF WHERE
+- SQL: Data that is often altered at runtime and data with special filtering requirements
+- JS files (const variables): Data which is never altered at runtime and should always remain in memory due to frequent usage
+- TXT files: Data which is occasionally altered at runtime. Simple data that is easy to read and modify manually
+- JSON files: Data which is occasionally altered at runtime. Complex or relational data that is otherwise hard to read and modify manually
+
+
+Loose data in the code:
+- Rank names in app.js and more
+- Boss rank chances in app.js
+- Media server URL in app.js and more
+- Path to nyextest in app.js and more => Put this in config.json
+- Shop item pool and more in library.js > updateShop
+- Class abilities, trophies and more in library.js > levelCheck
+- Trophies and icons in capture.js
+- Embed and text colors in almost every command, especially captures.js
+- Alpha tester UserIDs in library.js > createUserFiles
+- Area image counts in library.js > getAreaImage
+- Random events in library.js > randomEvent
+- Icons in library.js and more
+- Special item reward pool in library.js > randomEvent
+- Command categories in all commands
+- Shiny rank chances in buy.js and more?
+- Static shop items in buy.js and more?
+- Shiny prices in buy.js
+- Shiny drops in captures.js and more?
+- Class names, starting abilities and descriptions in class.js
+- Daily rewards in daily.js
+- Daily streak rewards in dodaily.js
+- Monster rank rarities by player rank in encounter.js
+- Equipment scrap values in equip.js
+- Various research data in research.js
+- Channel IDs in various commands
+- Transform prices
+- Realm HP bonuses in use.js
+
 
 List of data and how to change its location:
 - commands: Git
 - data:
-    - configs: Dynamic but rare => SQL or files
-    - daily_quests: Dynamic => SQL
-    - guess: Partially dynamic and static => SQL and maybe files
+    - configs: Dynamic but rare => One JSON per server
+    - daily_quests: Dynamic => JSON
+    - guess: Partially dynamic and static => No change
     - imported:
-        - fates: Static => SQL or files
-        - comments: Static => SQL or files
-        - customWords: Dynamic => SQL (separate from main words list) - Do not track
-        - eldenWords: Static => SQL or files
-        - journal: Static => SQL or files
-        - logBackup: Dynamic => Keep as file
+        - fates: Static => No change
+        - comments: Static => No change
+        - customWords: Dynamic => TXT - Untrack from git
+        - eldenWords: Static => No change
+        - journal: Static => No change
+        - logBackup: Dynamic => No change
         - Media: Dynamic but rare => SQL
-        - MHL: Dynamic but rare => SQL
-        - monsterNames: Static => SQL or file (rename!)
-        - pokeattempts: Dynamic => SQL
-        - pokegories: Static => SQL
-        - pokeprompt: Dynamic => SQL
-        - pokesolutions: Dynamic => SQL
+        - MHL: Dynamic but rare => No change
+        - monsterNames: Static => Rename the file for clarity
+        - pokeattempts: Dynamic => No change
+        - pokegories: Static => No change
+        - pokeprompt: Dynamic => No change
+        - pokesolutions: Dynamic => No change
         - quote: Dynamic => SQL
         - SCPErrors: Dynamic => Remove entirely? Do actual logging
         - TenorErrors: Dynamic => Remove entirely? Do actual logging
-        - verbs: Static => Keep as file
-        - words: Static => Keep as file (split and move customwords to SQL)
-    - monsters: Static => SQL
-        - monsters_alt: Dynamic => SQL?
-    - realmdrops: Static => SQL
-    - sitedata: Dynamic => Keep as files
-    - abilities: Static => SQL
-    - ability_conditions: Static => SQL
-    - ability_values: Static => SQL
-    - area_names: Static => SQL
+        - verbs: Static => No change
+        - words: Static => No change
+    - monsters: Static => JSON
+        - monsters_alt: Dynamic => TXT or JSON (Only save the names)
+    - realmdrops: Static => JSON
+    - sitedata: Dynamic => No change
+    - abilities: Static => JSON
+    - ability_conditions: Static => JSON
+    - ability_values: Static => JSON
+    - area_names: Static => JSON
     - bad_messages: Static => Remove entirely
-    - boss_mods: Static => SQL
-    - boss_participants: Dynamic => SQL
-    - drops: Static => SQL
-    - items: Static => SQL
-    - level_reqs: Static => Keep as file
-    - quests: Static => SQL
-    - realm_week: Dynamic => SQL
-    - recipes: Static => SQL
-    - serverlist: Dynamic => SQL
-    - shiny_shop_user: Dynamic => SQL
-    - shop_week: Dynamic => SQL
-    - shop: Dynamic => SQL
-    - transform_pools: Static => Remove entirely (make it dynamic)
-    - unique_realms: Static => SQL
-    - vortex_loot: Static => SQL
-    - weekly_realm: Dynamic => SQL
-    - worldboss: Dynamic => SQL
+    - boss_mods: Static => JSON
+    - boss_participants: Dynamic => No change
+    - drops: Static => JSON
+    - items: Static => JSON
+    - level_reqs: Static => JSON
+    - quests: Static => JSON
+    - realm_week: Dynamic => JSON (Global variables)
+    - recipes: Static => JSON
+    - serverlist: Dynamic => Review if this is needed at all
+    - shiny_shop_user: Dynamic => JSON (Global variables)
+    - shop_week: Dynamic => JSON
+    - shop: Dynamic => JSON
+    - transform_pools: Static => JSON
+    - unique_realms: Static => JSON
+    - vortex_loot: Static => JSON
+    - weekly_realm: Dynamic => JSON (Global variables?)
+    - worldboss: Dynamic => No change
 - info: Static => Keep as files
 - markov-text: Static => Remove entirely
 - sql: Static => Keep as files
 - userdata: Dynamic => SQL
 
 - various stuff from the code: Static => Put that stuff into json files!
+- trophies: Static => ?

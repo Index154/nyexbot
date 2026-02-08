@@ -6,11 +6,6 @@ AWS Lightsail / Linux setup:
 	Download certificate for SSH login
 
 	Put debian repository sources into /etc/apt/sources.list (will change based on the Debian release!)
-	Example:
-		deb http://deb.debian.org/debian bullseye main contrib non-free
-		deb http://deb.debian.org/debian bullseye-updates main contrib non-free
-		deb http://security.debian.org/debian-security bullseye-security main
-		deb http://ftp.debian.org/debian bullseye-backports main contrib non-free
 
 	sudo timedatectl set-timezone Europe/Berlin
 
@@ -124,10 +119,6 @@ Setting up MySQL:
 	
 	restart the machine
 	
-	Other articles about it (slightly old):
-		https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-debian-10
-		https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
-	
 	(How to use: mysql -u root -p)
 
 
@@ -230,7 +221,7 @@ Automatic Git pulls for production environment:
 		git remote set-url nyexbot git@github.com:Index154/nyexbot.git
 		(Alternative: git remote set-url nyexbot https://github.com/Index154/nyexbot)
 	Test pull action:
-		git pull -q nyexbot master
+		git pull -q origin master
 	git config --global --add safe.directory /home/admin/nyexbot
 	crontab -e
 	Add this text:
@@ -299,17 +290,13 @@ Obtain ownership of folders created by the bot for manual editing:
 	chown -R admin /home/admin/nyexbot
 
 
-Upgrade MySQL for new Debian release:
-	Add the new apt repository, see https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-setup
-	Keep going, starting at point 4 here: https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#repo-qg-apt-upgrading
-
-
 Maintenance commands:
 
 sudo bash
 apt update
-npm update
+npm -g update
 npm i -g npm@latest
+npm update
 cd /home/admin/nyexbot
 npm update
 apt upgrade

@@ -1,0 +1,22 @@
+export const recipes = {
+    "Concentrated Slime Gel": {ingredients: [{item: "Blue Slime Gel", amount: 4}], type: "Consumable"},
+    "Flaming Greataxe": {ingredients: [{item: "Rusty Greataxe", amount: 1}, {item: "Raging Ember", amount: 3}], type: "Weapon Upgrade"},
+    "Malicious Bone": {ingredients: [{item: "Dark Matter", amount: 4}, {item: "Bone", amount: 1}], type: "Consumable"},
+    "Strange Salad": {ingredients: [{item: "Mandragora Bulb", amount: 1}, {item: "Azure Petal", amount: 2}, {item: "Pure Blood", amount: 1}], type: "Consumable"},
+    "Power Potion": {ingredients: [{item: "Scorpion Toxin", amount: 1}, {item: "Small Core", amount: 1}], type: "Consumable"},
+    "Berserker Potion": {ingredients: [{item: "Power Potion", amount: 1}, {item: "Raging Ember", amount: 2}], type: "Consumable"},
+    "Dimensional Fragment (Slime)": {ingredients: [{item: "Dimensional Fragment", amount: 1}, {item: "Blue Slime Gel", amount: 1}], type: "Fragment"},
+    "Gemstone Necklace": {ingredients: [{item: "Mana Ruby", amount: 1}, {item: "Mana Emerald", amount: 1}, {item: "Mana Sapphire", amount: 1}], type: "Consumable"},
+    "Grand Slime Gel": {ingredients: [{item: "Madness Slime Gel", amount: 1}, {item: "Chaos Slime Gel", amount: 1}, {item: "Golden Slime Gel", amount: 1}], type: "Consumable"},
+    "Combined Thread": {ingredients: [{item: "Sticky Thread", amount: 1}, {item: "Steel Thread", amount: 1}], type: "Consumable"},
+    "Overloaded Ectoplasm": {ingredients: [{item: "Ectoplasm", amount: 2}], type: "Consumable"},
+    "Cursed Slime Gel": {ingredients: [{item: "Blue Slime Gel", amount: 1}, {item: "Cursed Blood", amount: 1}], type: "Consumable"},
+    "Bloodred Ruby": {ingredients: [{item: "Mana Ruby", amount: 1}, {item: "Pure Blood", amount: 1}], type: "Consumable"},
+    "Supreme Stew": {ingredients: [{item: "Supreme Meat", amount: 3}, {item: "Frog Mucus", amount: 1}], type: "Consumable"},
+    "Hellish Skewer": {ingredients: [{item: "Demonic Meat", amount: 3}, {item: "Demon Spike", amount: 1}], type: "Consumable"},
+    "Meat Platter": {ingredients: [{item: "Rotten Flesh", amount: 1}, {item: "Demonic Meat", amount: 1}, {item: "Supreme Meat", amount: 1}], type: "Consumable"},
+    "Ignited Gloomwood": {ingredients: [{item: "Charred Wood", amount: 1}, {item: "Raging Ember", amount: 1}], type: "Consumable"},
+    "Chaos Orb": {ingredients: [{item: "Wind Orb", amount: 1}, {item: "Water Orb", amount: 1}, {item: "Storm Orb", amount: 1}], type: "Consumable"},
+    "Nightmare Matter": {ingredients: [{item: "Dark Matter", amount: 3}], type: "Consumable"},
+    "Ability Changer": {ingredients: [{item: "Cracked Core", amount: 1}, {item: "Demon Crab Egg", amount: 1}], type: "Consumable"}
+};

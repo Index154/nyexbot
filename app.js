@@ -52,7 +52,6 @@ ButtonBuilder = Discord.ButtonBuilder;
 StringSelectMenuBuilder = Discord.StringSelectMenuBuilder;
 const client = new Discord.Client({ intents: [Intents.MessageContent, Intents.Guilds, Intents.GuildMessages, Intents.DirectMessages], partials: [Partials.Channel] });
 
-// Make some collections to put the commands and their cooldowns into
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 
@@ -60,18 +59,12 @@ client.cooldowns = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-    
-	// Set a new item in the collection with the key as the command name and the value as the exported module containing the actual code
 	client.commands.set(command.name, command);
 }
 
-// When the client is ready, run this code
 // This event will only trigger once after the bot has successfully started
 client.once('ready', async () => {
-    // Log bot start time
     console.log(Date() + '  |  ' + appName + ' has been started');
-
-    // Set presence
 	client.user.setPresence({
         status: 'online',
         activities: [{
@@ -104,7 +97,6 @@ client.once('ready', async () => {
     // client.guilds.cache.get("ID").leave();
 });
 
-// Log it when the bot gets rate-limited by Discord for sending messages too quickly
 client.rest.on('rateLimited', console.log);
 
 // Prepare some variables for the boss code
@@ -117,7 +109,6 @@ client.on("guildCreate", guild => {
     serverList += "\n" + guild.id + " (" + guild.name + ")";
     lib.saveFile("./data/serverlist.txt", serverList);
     
-    // Make config files for new servers
     if(!fs.existsSync("./data/configs/" + guild.id)){
         fs.mkdirSync("./data/configs/" + guild.id);
         lib.saveFile("./data/configs/" + guild.id + "/channel.txt", "Undefined");
@@ -125,7 +116,6 @@ client.on("guildCreate", guild => {
         lib.saveFile("./data/configs/" + guild.id + "/updates.txt", "Undefined");
     }
 
-    // Joining message
     guild.systemChannel.send("Thank you for inviting me to this server! Some quick tips for server admins & mods:\nUse `,set prefix [prefix]` to change the command prefix!\nUse `,set channel` in the channel where you want me to post my global announcements (for example when I'm updated or when a boss spawns)!");
 });
 
@@ -133,11 +123,10 @@ client.on("guildCreate", guild => {
 client.on("guildDelete", guild => {
 
     // Check if the server had a config folder and update it
-    var serverID = guild.id;
-    if(fs.existsSync("./data/configs/" + serverID)){
-        lib.saveFile("./data/configs/" + serverID + "/channel.txt", "Undefined");
+    if(fs.existsSync("./data/configs/" + guild.id)){
+        lib.saveFile("./data/configs/" + guild.id + "/channel.txt", "Undefined");
     }
-    // Remove it from the server list
+
     var serverList = lib.readFile("./data/serverlist.txt").split("\n");
     for(i = 0; i < serverList.length; i++){
         if(serverList[i].includes(guild.id)){
@@ -147,17 +136,16 @@ client.on("guildDelete", guild => {
     lib.saveFile("./data/serverlist.txt", serverList.join("\n"));
 });
 
-// Boss spawning function
 function trySpawnBoss(message){
-
-    // Determine whether a world boss should spawn or not
     var worldboss = lib.readFile("./data/worldboss.txt");
+    
     // If this is the test branch or there already is an active boss then stop
     if(!isTestBranch && worldboss === ""){
-        // Random event math
+
         var bossRoll = lib.rand(1, globalVars.bossRate);
         if(bossRoll <= 1){
-            // Spawn a boss! Determine the rank first
+
+            // Spawn a boss
             var rankRand = lib.rand(1, 100);
             var addPrevious = 0;
             var rank = "";

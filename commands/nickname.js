@@ -26,8 +26,6 @@ module.exports = {
         if(nickResult[0] == "error"){return;}
         var output = nickResult[0];
 
-        // Build rerollable output
         lib.rerollbuttonReply(message, output, allArgs, nickResult[1], "nickname");
-
 	}
 };

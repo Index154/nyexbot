@@ -200,7 +200,7 @@ module.exports = {
             }
             if(buff_timer == 0){
                 outputEmbed
-                    .setFooter({ text: "Active buff: " + buff_data[0] + " (Current turn)" });
+                    .setFooter({ text: "Active buff: " + buff_data[0] + " (Final turn)" });
             }else{
                 outputEmbed
                     .setFooter({ text: "Active buff: " + buff_data[0] + " (" + buff_timer + " turn" + ex_s + ")" });

@@ -19,7 +19,7 @@ module.exports = {
         var dir = "userdata/" + user.id;
         
         // Define options
-        var movementTypes = ["Terrestrial", "Flying", "Burrowing", "Swimming"];
+        var movementTypes = ["Terrestrial", "Flying", "Burrowing", "Aquatic"];
         var behaviors = ["aggressive", "peaceful", "skittish", "lazy", "curious"];
         var sizes = ["rat-sized", "cat-sized", "dog-sized", "horse-sized", "truck-sized", "house-sized", "mountain-sized"];
         var animalTypes = ["bird", "mammal", "fish", "reptile", "amphibian", "arthropod", "invertebrate", "elemental", "machine"];

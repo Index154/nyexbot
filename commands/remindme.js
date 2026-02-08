@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'remindme',
-	usages: ['[DD.MM.YYYY] [HH:MM] to [Reminder text]', 'in [Custom time interval] to [Reminder text]', '', 'delete [Reminder ID]'],
+	usages: ['[DD.MM.YYYY] [HH:MM] [Reminder text]', 'in [Custom time interval] to [Reminder text]', '', 'delete [Reminder ID]'],
 	descriptions: [
         'Creates a reminder for the specified date and time in the UTC timezone',
         'Creates a reminder which will notify you after a specified duration from the current time',
