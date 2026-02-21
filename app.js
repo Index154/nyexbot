@@ -63,7 +63,7 @@ for (const file of commandFiles) {
 }
 
 // This event will only trigger once after the bot has successfully started
-client.once('ready', async () => {
+client.once('clientReady', async () => {
     console.log(Date() + '  |  ' + appName + ' has been started');
 	client.user.setPresence({
         status: 'online',
